@@ -1,0 +1,3 @@
+[submodule "data-processing/osm2pgrouting-mac"]
+	path = data-processing/osm2pgrouting-mac
+	url = git://github.com/zzolo/osm2pgrouting-mac.git
