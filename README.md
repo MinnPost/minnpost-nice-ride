@@ -6,27 +6,25 @@ Nice Ride MN released all of its 2011 data.  It is available at
 [here](http://velotraffic.com/2012/01/nice-ride-mn-data-set-made-public/); 
 included in this repository for convenience.
 
-Unzip the data so that the contents are in the following folder:
+Unzip the data to work with:
 
 ```
-data/NRMN_2011_reports/*
+cd data; unzip -d NRMN_2011_reports NRMN_2011_reports.zip;
 ```
 
 ## Data processing
 
-### Determine routes
+### Prerequisites
 
-Get [pgRouting](http://www.pgrouting.org/).
+* [pgRouting](http://www.pgrouting.org/).
+    1. Use [the kyngchaos binary for Mac](http://www.kyngchaos.com/software/postgres).
+* Install [osm2pgrouting](http://www.pgrouting.org/docs/tools/osm2pgrouting.html).
+    1. ```brew install expat```
+    2. ```git clone git://github.com/zzolo/osm2pgrouting-mac.git```
+    3. ```cd osm2pgrouting-mac; make```
 
-1. One way is to use [the kyngchaos binary for Mac](http://www.kyngchaos.com/software/postgres).
-2. Installing from source on Mac should be something like 
-    * get code from: http://www.pgrouting.org/download.html
-    * ```brew install cmake```
-    * ```cmake .```
-    * ```make```
-    
-Install osm2pgrouting
+### Get OSM Data
 
-brew install expat
-git clone git://github.com/zzolo/osm2pgrouting-mac.git
-make
+* Get [OSM Download for Twin Cities](http://metro.teczno.com/#mpls-stpaul)
+    1. ```cd data; wget http://osm-metro-extracts.s3.amazonaws.com/mpls-stpaul.osm.bz2```
+    2. ```bunzip2 mpls-stpaul.osm.bz2```
