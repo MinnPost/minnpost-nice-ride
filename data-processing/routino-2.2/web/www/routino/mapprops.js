@@ -10,15 +10,17 @@ var mapprops={ // contains all properties for the map to be displayed.
  // Zoom level 4 to 15
 
  // EDIT THIS below to change the visible map limits
+ 
+ // EDITED For Twin Cities region
 
-    westedge:  -11.0,          // Minimum longitude (degrees)
-    eastedge:    2.0,          // Maximum longitude (degrees)
+    westedge:   -94.482,          // Minimum longitude (degrees)
+    eastedge:   -92.126,          // Maximum longitude (degrees)
 
-    southedge:  49.5,          // Minimum latitude (degrees)
-    northedge:  61.0,          // Maximum latitude (degrees)
+    southedge:  44.266,          // Minimum latitude (degrees)
+    northedge:  45.636,          // Maximum latitude (degrees)
 
-    zoomout:       4,          // Minimum zoom
-    zoomin:       15,          // Maximum zoom
+    zoomout:      10,          // Minimum zoom
+    zoomin:       16,          // Maximum zoom
 
  // EDIT THIS above to change the visible map limits
 
