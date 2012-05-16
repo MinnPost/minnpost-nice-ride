@@ -22,6 +22,7 @@ included in this repository for convenience.
 ### Prerequisites
 
 1. Install [Routino](http://www.routino.org/).
+    * ```cd data-processing/routino-2.2; make;```
     
 ### Calculate routes
 
