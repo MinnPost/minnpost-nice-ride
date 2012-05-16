@@ -31,8 +31,10 @@ included in this repository for convenience.
 
 In order to better work with the data, we will put the Nice Ride data into a PostGIS database.
 
+1. Get Python requirements: ```pip install -r requirements.txt```
 1. Create a new database from a PostGIS template: ```createdb -U postgres -h localhost -T template_postgis minnpost_nice_ride```
-1. ```psql -U postgres -h localhost -f data-processing/create-tables.sql minnpost_nice_ride```
+1. Create tables (not that this is destructive): ```psql -U postgres -h localhost -f data-processing/create-tables.sql minnpost_nice_ride```
+1. Import data: ```python data-processing/import-nice-ride-data.py```
     
 ### Calculate routes
  
