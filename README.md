@@ -27,6 +27,13 @@ included in this repository for convenience.
     * (optional) For setting up web app for testing, install OpenLayers: ```cd data-processing/routino-2.2/web/www/openlayers && bash install.sh; cd -;```
     * (optional) Open ```data-processing/routino-2.2/web/www/routino/router.html``` in a browser to test some routes.  The database was made for bicycles so that is the only type of route that will work.
     
+### Put Nice Ride Data in Postgres
+
+In order to better work with the data, we will put the Nice Ride data into a PostGIS database.
+
+1. Create a new database from a PostGIS template: ```createdb -U postgres -h localhost -T template_postgis minnpost_nice_ride```
+1. ```psql -U postgres -h localhost -f data-processing/create-tables.sql minnpost_nice_ride```
+    
 ### Calculate routes
  
 
