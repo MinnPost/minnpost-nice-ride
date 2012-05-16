@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- ============================================================
+     An XML Schema Definition for a test XML file
+     ============================================================
+     This file Copyright 2010 Andrew M. Bishop
+
+     This program is free software: you can redistribute it and/or modify
+     it under the terms of the GNU Affero General Public License as published by
+     the Free Software Foundation, either version 3 of the License, or
+     (at your option) any later version.
+     ============================================================ -->
+
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <!-- The top level -->
+
+  <xsd:element name="test" type="schemaType"/>
+
+  <!-- The first level element -->
+
+  <xsd:complexType name="schemaType">
+    <xsd:sequence>
+      <xsd:element name="level1"    type="level1Type"/>
+    </xsd:sequence>
+    <xsd:attribute name="attr1"     type="xsd:string"/>
+    <xsd:attribute name="attr2"     type="xsd:string"/>
+  </xsd:complexType>
+
+  <!-- The second level element -->
+
+  <xsd:complexType name="level1Type">
+    <xsd:sequence>
+      <xsd:element name="level2"    type="level2Type"   minOccurs="0"/>
+    </xsd:sequence>
+    <xsd:attribute name="attr1"     type="xsd:string"/>
+  </xsd:complexType>
+
+</xsd:schema>

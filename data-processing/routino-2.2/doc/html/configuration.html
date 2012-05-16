@@ -1,0 +1,257 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+
+<!--
+ Routino documentation - configuration
+
+ Part of the Routino routing software.
+
+ This file Copyright 2008-2011 Andrew M. Bishop
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU Affero General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Affero General Public License for more details.
+
+ You should have received a copy of the GNU Affero General Public License
+ along with this program.  If not, see http://www.gnu.org/licenses/.
+-->
+
+<HEAD>
+<TITLE>Routino : Configuration</TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<LINK href="style.css" type="text/css" rel="stylesheet">
+</HEAD>
+
+<BODY>
+
+<!-- Header Start -->
+
+<div class="header" align="center">
+
+<h1>Routino : Configuration</h1>
+
+<hr>
+</div>
+
+<!-- Header End -->
+
+<!-- Content Start -->
+
+<div class="content">
+
+<h2><a name="H_1_1"></a>XML Configuration Files</h2>
+
+New in version 1.4 of Routino is the use of configuration files to allow more
+information to be provided to the programs at run-time.  The configuration files
+that are used are:
+<ul>
+  <li>Tagging transformation rules for the <em>planetsplitter</em> program.
+  <li>Routing profiles for the <em>router</em> program.
+  <li>Output translations for the <em>router</em> program.
+</ul>
+
+In keeping with the nature of the input and output files the configuration files
+are also XML files.  Each of the files uses a custom defined XML schema and an
+XSD file is provided for each of them.
+
+<h3><a name="H_1_1_1" title="Tagging rules"></a>Tag Transformation Rules</h3>
+
+The default name of the tagging transformation rules XML configuration file
+is <em>tagging.xml</em> in the same directory as the generated database files.
+Other filenames can be specified on the command line using
+the <tt>--tagging</tt> option.  When processing the input it is possible to have
+a different set of tagging rules for each file; for example different rules for
+different countries.
+
+<p>
+
+The tagging rules allow modifying the highway tags in the source file so that
+the routing can be performed on a simpler set of tags.  This removes the special
+case tagging rules from the source code into the configuration file where they
+can be easily modified.  Part of the provided tagging.xml file showing the rules
+for motorway_link and motorway highway types.
+
+<pre class="boxed">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;routino-tagging&gt;
+
+  &lt;way&gt;
+
+    &lt;if k="highway" v="motorway_link"&gt;
+      &lt;set v="motorway"/&gt;
+    &lt;/if&gt;
+
+    &lt;if k="highway" v="motorway"&gt;
+      &lt;output k="highway"/&gt;
+
+      &lt;output k="motorbike"  v="yes"/&gt;
+      &lt;output k="motorcar"   v="yes"/&gt;
+      &lt;output k="goods"      v="yes"/&gt;
+      &lt;output k="hgv"        v="yes"/&gt;
+      &lt;output k="psv"        v="yes"/&gt;
+
+      &lt;output k="paved"      v="yes"/&gt;
+      &lt;output k="multilane"  v="yes"/&gt;
+      &lt;output k="oneway"     v="yes"/&gt;
+    &lt;/if&gt;
+...
+  &lt;way&gt;
+
+&lt;/routino-tagging&gt;
+</pre>
+
+The rules all have the same format; an <em>if</em> element for matching the
+input and some <em>set</em> or <em>output</em> elements to either change the
+input tags or create an output tag.  The <em>k</em> and <em>v</em> attributes
+have the same meaning as the attributes with the same names in the OSM XML file
+- the tag key and tag value.
+
+<p>
+
+An <em>if</em> rule that has both <em>k</em> and <em>v</em> specified is only
+applied if a tag exists in the input that matches both.  An <em>if</em> rule
+that has only the <em>k</em> attribute is applied if a tag with that key exists
+and an <em>if</em> rule that has only the <em>v</em> attribute is applied to all
+tags with that value.
+
+<p>
+
+For the <em>set</em> and <em>output</em> elements the tag that is created in the
+input or output tag set uses the <em>k</em> and <em>v</em> attributes specified.
+If one or both are not specified then the original ones are used.
+
+
+<h3><a name="H_1_1_2" title="Profiles"></a>Routing Profiles</h3>
+
+The default name of the routing profiles XML configuration file
+is <em>profiles.xml</em> in the same directory as the database files.  Other
+filenames can be specified on the command line using the <tt>--tagging</tt>
+option.
+
+<p>
+
+The purpose of this configuration file is to allow easy modification of the
+routing parameters so that they do not all need to be specified on the command
+line.  In versions of Routino before version 1.4 the default routing parameters
+(preferred highways, preferred speeds etc) were contained in the source code,
+now they are in a configuration file.  When calculating a route
+the <tt>--profile</tt> option selects the named profile from the configuration
+file.
+
+<p>
+
+Part of the provided profiles.xml file showing the parameters for transport on
+foot is shown below:
+
+<pre class="boxed">
+&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;routino-profiles&gt;
+
+  &lt;profile name="foot" transport="foot"&gt;
+    &lt;speeds&gt;
+...
+      &lt;speed highway="cycleway"      kph="4" /&gt;
+      &lt;speed highway="path"          kph="4" /&gt;
+      &lt;speed highway="steps"         kph="4" /&gt;
+    &lt;/speeds&gt;
+    &lt;preferences&gt;
+...
+      &lt;preference highway="cycleway"      percent="95" /&gt;
+      &lt;preference highway="path"          percent="100" /&gt;
+      &lt;preference highway="steps"         percent="80" /&gt;
+    &lt;/preferences&gt;
+    &lt;properties&gt;
+      &lt;property type="paved"        percent="50" /&gt;
+      &lt;property type="multilane"    percent="25" /&gt;
+      &lt;property type="bridge"       percent="50" /&gt;
+      &lt;property type="tunnel"       percent="50" /&gt;
+...
+    &lt;/properties&gt;
+    &lt;restrictions&gt;
+      &lt;oneway obey="0" /&gt; 
+      &lt;weight limit="0.0" /&gt;
+      &lt;height limit="0.0" /&gt;
+      &lt;width  limit="0.0" /&gt;
+      &lt;length limit="0.0" /&gt;
+    &lt;/restrictions&gt;
+  &lt;/profile&gt;
+  &lt;profile name="horse" transport="horse"&gt;
+...
+  &lt;/profile&gt;
+...
+&lt;/routino-profiles&gt;
+</pre>
+
+
+<h3><a name="H_1_1_3" title="Translations"></a>Output Translations</h3>
+
+The default name of the output translations XML configuration file
+is <em>translations.xml</em> in the same directory as the database files.  Other
+filenames can be specified on the command line using the <tt>--translations</tt>
+option.
+
+<p>
+
+The generated HTML and GPX output files (described in the next section) are
+created using the fragments of text that are defined in this file.  Additional
+languages can be added to the file and are selected using
+the <tt>--language</tt> option to the router.  If no language is specified the
+first one in the file is used.
+
+<p>
+
+Part of the provided translations.xml file showing some of the English language
+(en) translations is shown below:
+
+<pre class="boxed">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;routino-translations&gt;
+
+  &lt;language lang="en"&gt;
+...
+    &lt;turn direction="-4" string="Very sharp left" /&gt;
+    &lt;turn direction="-3" string="Sharp left" /&gt;
+    &lt;turn direction="-2" string="Left" /&gt;
+...
+    &lt;heading direction="-4" string="South" /&gt;
+    &lt;heading direction="-3" string="South-West" /&gt;
+    &lt;heading direction="-2" string="West" /&gt;
+...
+    &lt;route type="shortest" string="Shortest" /&gt;
+    &lt;route type="quickest" string="Quickest" /&gt;
+    &lt;output-html&gt;
+...
+    &lt;/output-html&gt;
+    &lt;output-gpx&gt;
+...
+    &lt;/output-gpx&gt;
+  &lt;/language&gt;
+&lt;/routino-translations&gt;
+</pre>
+
+</div>
+
+<!-- Content End -->
+
+<!-- Footer Start -->
+
+<div class="footer" align="center">
+<hr>
+
+<address>
+&copy; Andrew M. Bishop = &lt;amb "at" gedanken.demon.co.uk&gt;
+</address>
+
+</div>
+
+<!-- Footer End -->
+
+</BODY>
+
+</HTML>

@@ -1,0 +1,23 @@
+# Creator : Routino - http://www.routino.org/
+# Source : Routino test cases - (c) Andrew M. Bishop
+# License : GNU Affero General Public License v3 or later
+#
+#Latitude	Longitude	    Node	Type	Segment	Segment	Total	Total  	Speed	Bearing	Highway
+#        	         	        	    	Dist   	Durat'n	Dist 	Durat'n	     	       	       
+ -0.219562	  -0.520851	      -1 	Waypt	0.000	 0.00	 0.00	  0.0			
+ -0.220223	  -0.520885	       5*	Junct	0.073	 0.04	 0.07	  0.0	 96	 182	main 1
+ -0.220666	  -0.520893	       4*	Junct	0.049	 0.03	 0.12	  0.1	 96	 181	main 1
+ -0.220695	  -0.519489	      11*	Junct	0.156	 0.20	 0.28	  0.3	 48	  91	high street
+ -0.220280	  -0.519256	      15*	Junct	0.052	 0.07	 0.33	  0.3	 48	  29	loop 1
+ -0.219910	  -0.519112	      17 	Waypt	0.044	 0.06	 0.37	  0.4	 48	  21	loop 1
+ -0.219237	  -0.519286	      13*	Junct	0.077	 0.10	 0.45	  0.5	 48	 345	loop 1
+ -0.218764	  -0.519471	      12 	Inter	0.056	 0.07	 0.51	  0.6	 48	 338	loop 1
+ -0.218380	  -0.519134	      16 	Inter	0.056	 0.07	 0.56	  0.6	 48	  41	loop 1
+ -0.218776	  -0.518838	      18 	Inter	0.055	 0.07	 0.62	  0.7	 48	 143	loop 1
+ -0.219237	  -0.519286	      13*	Junct	0.071	 0.09	 0.69	  0.8	 48	 224	loop 1
+ -0.220280	  -0.519256	      15*	Junct	0.044	 0.06	 0.73	  0.8	 48	 201	loop 1
+ -0.220695	  -0.519489	      11*	Junct	0.052	 0.07	 0.79	  0.9	 48	 209	loop 1
+ -0.220739	  -0.517801	      19*	Junct	0.187	 0.23	 0.97	  1.1	 48	  91	high street
+ -0.220784	  -0.516035	      30*	Junct	0.196	 0.24	 1.17	  1.4	 48	  91	high street
+ -0.220311	  -0.516015	      31*	Inter	0.052	 0.03	 1.22	  1.4	 96	   2	main 2
+ -0.219596	  -0.515984	      -3 	Waypt	0.079	 0.05	 1.30	  1.5	 96	   2	main 2

@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+
+<!--
+ Routino documentation - index
+
+ Part of the Routino routing software.
+
+ This file Copyright 2008-2011 Andrew M. Bishop
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU Affero General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Affero General Public License for more details.
+
+ You should have received a copy of the GNU Affero General Public License
+ along with this program.  If not, see http://www.gnu.org/licenses/.
+-->
+
+<HEAD>
+<TITLE>Routino : Documentation</TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<LINK href="style.css" type="text/css" rel="stylesheet">
+</HEAD>
+
+<BODY>
+
+<!-- Header Start -->
+
+<div class="header" align="center">
+
+<h1>Routino : Documentation</h1>
+
+<hr>
+</div>
+
+<!-- Header End -->
+
+<!-- Content Start -->
+
+<div class="content">
+
+
+<h2><a name="H_1_1"></a>Data</h2>
+
+A good router relies on good data and the
+<a class="ext" title="OpenStreetMap" href="http://www.openstreetmap.org/">OpenStreetMap</a>
+data is a good source.  There are however a number of things that need to be
+considered about
+<a href="data.html" title="Data considerations">the data used</a>.
+
+
+<h2><a name="H_1_2"></a>Tagging</h2>
+
+In addition to the raw data the way that are tags are used is also important.
+With Routino the
+<a title="Tagging" href="tagging.html">tagging rules</a>
+are contained in a configuration file and can easily be customised to change the
+interpretation of each tag.
+
+
+<h2><a name="H_1_3"></a>Program Usage</h2>
+
+There are four programs that make up this software, two create the routing
+database and use the information in it and the other two perform additional functions.
+<a href="usage.html" title="Program Usage">Full instructions</a>
+for using the four programs are provided.
+
+
+<h2><a name="H_1_4"></a>Configuration Files</h2>
+
+When the programs are run they read in one or more
+<a href="configuration.html" title="Configuration Files">configuration files</a>.
+These files contain information about the routing preferences (types of highways,
+preferred speeds etc), tagging rules and translation information for the outputs.
+
+
+<h2><a name="H_1_5"></a>Output Files</h2>
+
+The final result of running the router is one or more
+<a href="output.html" title="Output Files">output files</a>
+that contain the calculated route.
+
+
+<h2><a name="H_1_6"></a>Algorithm</h2>
+
+The <a title="Algorithm" href="algorithm.html">algorithm</a> that is used by
+Routino takes the OpenStreetMap data and creates a local database of the
+important information for rapid routing.
+
+
+<h2><a name="H_1_7"></a>Installation</h2>
+
+The Routino source code comes with a set of files that can be used to create
+a working server very easily.  The full information about
+<a href="installation.html" title="Installation">installation</a>
+describes how to compile the programs and install them.
+
+
+</div>
+
+<!-- Content End -->
+
+<!-- Footer Start -->
+
+<div class="footer" align="center">
+<hr>
+
+<address>
+&copy; Andrew M. Bishop = &lt;amb "at" gedanken.demon.co.uk&gt;
+</address>
+
+</div>
+
+<!-- Footer End -->
+
+</BODY>
+
+</HTML>

@@ -1,0 +1,4107 @@
+2012-03-03  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	Version 2.2 released
+
+2012-03-03 [r978-981]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/html/output.html: Updated to version 2.2.
+
+	* doc/html/readme.html: Updated to version 2.2.
+
+	* doc/README.txt, FILES: Updated to version 2.2.
+
+	* doc/NEWS.txt: Updated to version 2.2.
+
+2012-02-21 [r977]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/prunex.c: Refactor code slightly for isolated regions.
+
+2012-02-21 [r976]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/prunex.c: Re-arrange small sections of code based on results
+	  of profiling.
+
+2012-02-21 [r975]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/test/a-b-c.sh, src/test/a-b.sh, doc/html/usage.html,
+	  src/planetsplitter.c, src/test/Makefile, src/test, doc/USAGE.txt,
+	  src/test/start-1-finish.sh, src/test/only-split.sh: Enable
+	  pruning by default. Fix the test cases to run with and without
+	  pruning but only compare against the expected results when not
+	  pruned.
+
+2012-02-20 [r974]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/planetsplitter.c: Prune straight highways then isolated
+	  regions and then short segments.
+
+2012-02-20 [r973]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/prunex.c: Remove compiler warnings (when compiled with
+	  optimisation).
+
+2012-02-20 [r972]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/prunex.c: Allow pruning isolated regions to be run second or
+	  later.
+
+2012-02-20 [r971]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/prunex.c: Don't remove nodes/segments when straightening ways
+	  if it would cause the loss of a way name.
+
+2012-02-19 [r970]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/prunex.c: Some fixes to be able to process the whole of the
+	  UK.
+
+2012-02-18 [r969]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/html/algorithm.html, doc/ALGORITHM.txt: Add a general
+	  description of data pruning.
+
+2012-02-18 [r968]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/prunex.c: Fix bug with pruning that caused super-node search
+	  to fail.
+
+2012-02-18 [r967]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/prunex.c: Refactored the code for straight highways and made
+	  improvements.
+
+2012-02-18 [r966]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/prunex.h, doc/html/usage.html, src/planetsplitter.c,
+	  doc/USAGE.txt, src/prunex.c: Prune nodes in the middle of
+	  straight highways.
+
+2012-02-12 [r965]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.h: Need 3 cached nodes for slim mode.
+
+2012-02-11 [r964]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/html/usage.html, src/planetsplitter.c, src/segments.h,
+	  doc/USAGE.txt, src/waysx.h, src/prunex.c, src/segmentsx.h: Prune
+	  short segments.
+
+2012-02-09 [r963]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/prunex.h, src/planetsplitter.c, src/prunex.c: Prune isolated
+	  segments if they cannot be routed to anywhere else, not just if
+	  they are not connected.
+
+2012-02-09 [r962]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/types.h: The latlong_t type is signed so must use an
+	  appropriate constant.
+
+2012-02-08 [r961]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.h, src/types.h, src/prunex.c: Change the way that
+	  pruned nodes are recorded.
+
+2012-02-08 [r960]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/prunex.c: Don't mark pruned nodes as they are found but mark
+	  them all at the end.
+
+2012-02-07 [r959]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/Makefile: Revert the CFLAGS value.
+
+2012-01-28 [r958]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/typesx.h: Fix the recent change with the bitmask type.
+
+2012-01-28 [r956-957]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/files.h, src/prunex.c: Fix function comments.
+
+	* src/sorting.h: Replace a missing header.
+
+2012-01-28 [r955]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/segments.c, src/prunex.h, src/superx.c, src/visualiser.c,
+	  src/relationsx.c, src/profiles.h, src/sorting.h, src/fakes.h,
+	  src/nodesx.c, src/output.c, src/relations.c, src/typesx.h,
+	  src/results.c, src/relations.h, src/nodes.c, src/waysx.c,
+	  src/optimiser.c, src/osmparser.c, src/segmentsx.c, src/nodes.h,
+	  src/tagging.c, src/prunex.c, src/segmentsx.h, src/profiles.c,
+	  src/queue.c: Simplify and standardise the included headers.
+
+2012-01-14 [r954]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/typesx.h: Change the bitmask type from uint8_t to uint32_t.
+
+2012-01-14 [r953]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/prunex.h, doc/html/usage.html, src/planetsplitter.c,
+	  doc/USAGE.txt, src/prunex.c: Add the option to prune small
+	  isolated regions out of the database to avoid routes starting of
+	  finishing on them.
+
+2012-01-14 [r951-952]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/segmentsx.c: Bug fix for latest change.
+
+	* src/relationsx.c: Zero the structure before filling it in so that
+	  no junk is written to disk.
+
+2012-01-13 [r950]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.h, src/superx.c, src/segmentsx.c, src/typesx.h,
+	  src/segmentsx.h: Add new macros to abstract the bit mask types.
+
+2012-01-13 [r949]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.h, src/prunex.h (added), src/superx.c,
+	  src/relationsx.c, src/types.h, src/planetsplitter.c,
+	  src/Makefile, src/segmentsx.c, src/nodesx.c, src/prunex.c
+	  (added), src/segmentsx.h: Add an infrastructure to allow adding
+	  new functions to prune nodes and segments.
+
+2012-01-11 [r948]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/sorting.c, src/relationsx.c, src/sorting.h, src/waysx.c,
+	  src/nodesx.c: The filesort_*() functions now return a count of
+	  the number of items kept after sorting.
+
+2012-01-10 [r947]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/superx.c, src/nodesx.c: Move the allocation of the nodexs
+	  super flags memory until just before it is needed and free it as
+	  soon as no longer needed.
+
+2011-12-11 [r946]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/segmentsx.c: Remove unnecessary test.
+
+2011-12-11 [r945]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/output.c: Remove warning about uninitialised variable.
+
+2011-12-11 [r944]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/relationsx.c, src/segmentsx.c, src/nodesx.c: Fill the
+	  structures with zero before inserting data and writing to file
+	  (removes junk from unused spaces in database files).
+
+2011-12-11 [r943]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/superx.c, src/relationsx.c, src/segmentsx.c, src/segmentsx.h:
+	  Remove the "position" parameter from the NextSegmentX() function.
+
+2011-12-11 [r942]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.h, src/relationsx.c, src/segmentsx.c, src/waysx.h,
+	  src/segmentsx.h: Remove the "position" parameter from the
+	  PutBack*X() functions (only used in slim mode).
+
+2011-12-10 [r940-941]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/osmparser.h: Update file now that the name has changed.
+
+	* src/functionsx.h (removed), src/planetsplitter.c,
+	  src/osmparser.c, src/osmparser.h (added): Rename functionsx.h to
+	  osmparser.h.
+
+2011-12-09 [r939]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* web/www/routino/customvisualiser.cgi,
+	  web/www/routino/customrouter.cgi: The custom router uses the
+	  translated router.html or visualiser.html depending on the
+	  browser's Accept-Language header.
+
+2011-12-08 [r936-938]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* web/www/routino/visualiser.html (added): Create a link from
+	  visualiser.html.en to visualiser.html.
+
+	* web/www/routino/visualiser.html (removed),
+	  web/www/routino/visualiser.html.en (added): Rename
+	  visualiser.html to visualiser.html.en.
+
+	* web/www/routino/visualiser.js, web/www/routino/visualiser.html,
+	  web/www/routino/router.js: Move semi-constant strings from the
+	  JavaScript to the HTML so that they can be translated.
+
+2011-12-08 [r935]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* web/www/routino/router.html.en, web/www/routino/router.html.nl,
+	  web/www/routino/router.js: Use the translated total distance from
+	  the summary and not the untranslated one from the CGI.
+
+2011-12-08 [r934]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/visualiser.c: Make limit checking work with one-way streets
+	  and in slim mode.
+
+2011-12-07 [r933]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/html/installation.html, web/www/routino/visualiser.js,
+	  web/www/routino/router.html.en, doc/INSTALL.txt,
+	  web/www/routino/visualiser.html, web/www/routino/router.html.nl,
+	  web/www/routino/router.js, web/www/routino/mapprops.js (added):
+	  Move the map preferences (N/S/E/W range, zoom range and URLs) to
+	  a separate file.
+
+2011-12-07 [r932]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* web/www/routino/page-elements.css,
+	  web/www/routino/router.html.en, web/www/routino/visualiser.html,
+	  web/www/routino/router.html.nl: Replace the "show"/"hide" button
+	  with "+"/"-" buttons.
+
+2011-12-07 [r931]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* web/data/create.sh: Generate an error log.
+
+2011-12-06 [r930]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/TAGGING.txt, doc/html/tagging.html: Describe what the
+	  roundabout and mini-roundabout tags are used for.
+
+2011-12-06 [r929]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/output.c: Mini-roundabouts are now described as roundabouts
+	  instead of junctions.
+
+2011-12-06 [r927-928]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/test/expected/turns-WP09.txt,
+	  src/test/expected/turns-WP10.txt,
+	  src/test/expected/turns-WP11.txt,
+	  src/test/expected/turns-WP12.txt,
+	  src/test/expected/turns-WP13.txt,
+	  src/test/expected/turns-WP14.txt,
+	  src/test/expected/turns-WP15.txt,
+	  src/test/expected/turns-WP07.txt,
+	  src/test/expected/turns-WP08.txt: Updated test case expected
+	  results with the roundabout changes.
+
+	* src/output.c: Use constants for the values of the "important"
+	  variable. Fix the missing junctions on roundabouts.
+
+2011-12-06 [r925-926]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/output.c: Output HTML directions for roundabouts.
+
+	* xml/routino-translations.xml, src/translations.h,
+	  src/translations.c, xml/routino-translations.xsd: Add new
+	  translate-able strings for roundabouts.
+
+2011-12-06 [r924]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/ways.h: Cache three ways not two.
+
+2011-11-26 [r923]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/types.h, doc/TAGGING.txt, src/osmparser.c, src/filedumper.c,
+	  doc/html/tagging.html, src/types.c, xml/routino-tagging.xml:
+	  Parse and store information about roundabouts (to improve routing
+	  instructions).
+
+2011-11-26 [r921-922]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/OUTPUT.txt, src/output.c, doc/html/output.html: Refactor a
+	  lot of the code, simplify it and fix some bugs: Names of highways
+	  in HTML format. Names of highways and bearings for GPX routes.
+	  Change the format of the text file to be more like GPX & HTML.
+
+	* src/ways.h, src/ways.c: Allow space to cache one name for each
+	  cached way (in slim mode).
+
+2011-11-23 [r920]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* xml/routino-tagging-nomodify.xml: Fix the invalid XML.
+
+2011-11-22 [r919]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/osmparser.c, xml/routino-osm.xsd: Check that XML file
+	  contains version='0.6' in 'osm' tag.
+
+2011-11-22 [r918]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/filedumper.c: Refactor the code by moving the dumping of an
+	  OSM region into a separate function.
+
+2011-11-22 [r917]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/filedumper.c: Include a bounding box in the --dump-osm XML
+	  output.
+
+2011-11-21 [r916]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/filedumper.c: Ensure that only segments completely within the
+	  specified region are dumped when using --dump-osm.
+
+2011-11-21 [r914-915]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/TAGGING.txt, doc/html/tagging.html: Document the use of the
+	  area tag.
+
+	* src/osmparser.c, src/segmentsx.c, xml/routino-tagging.xml: When
+	  an area and a way overlap keep the way and discard the area.
+
+2011-11-20 [r913]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/test/Makefile, src/xml/Makefile: Fix some more Makefile
+	  oddities.
+
+2011-11-20 [r912]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* web/www/openlayers/install.sh: Change script to default to
+	  downloading OpenLayers v2.11.
+
+2011-11-19 [r910-911]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* Makefile: Fix some Makefile oddities.
+
+	* src/test/Makefile, src/Makefile, src/xml/Makefile: Fix some
+	  Makefile oddities.
+
+2011-11-19 [r907-909]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/html/tagging.html: Fix heading anchor names.
+
+	* src/xml/test/bad-comment-extra-double-dash.xml (added),
+	  src/xmlparse.l: Fixed bug in XMl parsing that allowed invalid XML
+	  (double dash within comments).
+
+	* src/queue.c: Revert back to r874 (itself the same as r867) but
+	  with the change that should have happened in r883 rather than
+	  being based on r868.
+
+2011-11-12  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	Version 2.1.2 released
+
+2011-11-12 [r903]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/NEWS.txt, doc/README.txt, FILES, doc/html/readme.html:
+	  Updated for version 2.1.2.
+
+2011-11-12 [r902]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* xml/routino-translations.xml, web/www/routino/router.html.en,
+	  web/www/routino/router.html.nl: Added Russian language
+	  translations.
+
+2011-11-12 [r901]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/OUTPUT.txt, doc/TAGGING.txt, doc/ALGORITHM.txt,
+	  doc/INSTALL.txt: Small formatting changes.
+
+2011-11-11 [r900]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/OUTPUT.txt, src/output.c, doc/html/output.html: Change the
+	  names of the variables for the XML and raw versions of the
+	  highway names. Output the text files with translated highway
+	  names. Update the documentation to say that only the header is
+	  untranslated in the text files.
+
+2011-11-11 [r899]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* xml/routino-tagging.xml: Fix invalid XML file.
+
+2011-11-11 [r898]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/TAGGING.txt, doc/html/tagging.html, xml/routino-tagging.xml:
+	  Improve the documentation for the tagging rule configuration
+	  file.
+
+2011-11-11 [r896-897]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* xml/routino-tagging.xml: Add some more tagging rules from the UK
+	  error.log file.
+
+	* web/bin/summarise-log.pl: Summarise segments that are loops.
+
+2011-11-11 [r895]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/relationsx.c: Make the progress messages more consistent.
+
+2011-11-10 [r894]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* web/www/routino/router.pl: Use the same convention to indicate
+	  the user-editable part of the file as used elsewhere.
+
+2011-11-10 [r893]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/translations.h, doc/OUTPUT.txt, src/output.c,
+	  src/translations.c, doc/html/output.html: Change the names of the
+	  variables for the XML and raw versions of the translations.
+	  Output the text files with the raw versions and not the XML
+	  versions of the copyright information. Update the documentation
+	  to say that only the copyright information is translated in the
+	  text files.
+
+2011-11-10 [r892]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/translations.c: Don't convert the highway types to XML
+	  numeric entities here (it is already done in the output
+	  functions).
+
+2011-11-09 [r891]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c: Change the condition used to terminate the
+	  search for the best route.
+
+2011-11-08 [r890]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/superx.c: Improve comment.
+
+2011-11-08 [r889]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* xml/Makefile: Delete the auto-generated profile.js and profile.pl
+	  files with distclean target.
+
+2011-10-31 [r888]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/files.h: Add a #define to disable the use of pread()/pwrite()
+	  but this must be manually configured, there is no configure
+	  script.
+
+2011-10-31 [r887]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.h, src/relations.h, src/files.h, src/relationsx.c,
+	  src/ways.h, src/segments.h, src/waysx.c, src/Makefile,
+	  src/xml/Makefile, src/nodes.h, src/waysx.h, src/segmentsx.h: Use
+	  pread() and pwrite() functions instead of seek() followed by
+	  read() or write().
+
+2011-10-30 [r886]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/nodes.c, src/nodes.h: Copy the node offsets into RAM for the
+	  slim mode since looking them up in the file is the largest single
+	  contributor to the time.
+
+2011-10-29 [r885]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/segments.c, src/visualiser.c, src/nodes.c, src/optimiser.c,
+	  src/filedumper.c, src/nodes.h, src/output.c: Rationalise and
+	  reduce the usage of LookUpNode() function.
+
+2011-10-24 [r884]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/Makefile, src/xml/Makefile: Fix long-standing annoying bug
+	  with dependencies for slim versions.
+
+2011-10-24 [r883]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/queue.c: No need to use uint32_t (just use int).
+
+2011-10-23  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	Version 2.1.1 released
+
+2011-10-23 [r881-882]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/NEWS.txt, FILES, doc/html/readme.html: Update for version
+	  2.1.1.
+
+	* doc/html/configuration.html: Update copyright year.
+
+2011-10-22 [r880]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* Makefile: Fix running 'make test' from the top level.
+
+2011-10-22 [r879]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/filedumper.c: Add some more typecasts before printing the
+	  values.
+
+2011-10-22 [r878]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* xml/Makefile: Fix the installation of the XML files.
+
+2011-10-22 [r876-877]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/test/expected/turns-WP09.txt, src/test/turns.osm,
+	  src/test/expected/turns-WP10.txt,
+	  src/test/expected/turns-WP11.txt,
+	  src/test/expected/turns-WP12.txt,
+	  src/test/expected/turns-WP04.txt,
+	  src/test/expected/turns-WP13.txt,
+	  src/test/expected/turns-WP05.txt,
+	  src/test/expected/turns-WP14.txt,
+	  src/test/expected/turns-WP06.txt,
+	  src/test/expected/turns-WP15.txt,
+	  src/test/expected/turns-WP16.txt (added),
+	  src/test/expected/turns-WP07.txt,
+	  src/test/expected/turns-WP08.txt: Test case for 'except' tags on
+	  turn restrictions.
+
+	* src/osmparser.c, xml/routino-tagging.xml: Fix handling of
+	  'except' tags for turn restrictions.
+
+2011-10-22 [r875]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/sorting.c: Revert back to something very close to r869
+	  because it is fastest by a tiny fraction.
+
+2011-10-22 [r874]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/results.h, src/queue.c: Revert back to r867 because it is
+	  faster (although only by 1%) than any of the other combinations.
+
+2011-10-22 [r873]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/sorting.c, src/queue.c: Revert back to r864 zero-based binary
+	  heap but with r868/r869 refactored code.
+
+2011-10-15 [r872]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/sorting.c, src/queue.c: Change the binary heap to a 3-ary
+	  heap.
+
+2011-10-15 [r871]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/sorting.c: Bug fixes for the previous change.
+
+2011-10-15 [r870]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/sorting.c, src/results.h, src/queue.c: Change the binary heap
+	  to a 4-ary heap.
+
+2011-10-15 [r868-869]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/sorting.c: Refactor the binary heap to reduce the number of
+	  comparisons.
+
+	* src/queue.c: Refactor the binary heap to reduce the number of
+	  comparisons.
+
+2011-10-09 [r867]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/sorting.c: Change to a unity based binary heap rather than
+	  zero based one to save some additions.
+
+2011-10-09 [r866]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/queue.c: Bug fix with previous change.
+
+2011-10-06 [r865]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/results.h, src/queue.c: Change to a unity based binary heap
+	  rather than zero based one to save some additions.
+
+2011-10-06 [r864]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/results.c: Swap the order of two parts of an && statement.
+
+2011-10-06 [r863]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/results.h, src/results.c: Change bin counters to 8-bit
+	  (reduces memory) and pre-allocate first dimension of pointer
+	  array (saves time).
+
+2011-10-06 [r862]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* Makefile, xml/Makefile, doc/Makefile, src/Makefile,
+	  src/xml/Makefile: Makefiles are more consistent with each other
+	  and 'make test' can be run from the top level.
+
+2011-10-06 [r861]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/html/usage.html, src/planetsplitter.c, doc/USAGE.txt: Change
+	  the default number of iterations to 5 since testing shows that
+	  there is negligible improvement beyond here.
+
+2011-10-05 [r860]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c: Optimise the number of hash function bins by
+	  trial and error.
+
+2011-10-05 [r859]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/Makefile, src/xml/Makefile: Add the gcc options for profiling
+	  (coverage) and delete the files generated by it.
+
+2011-10-05 [r858]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/results.c: If there are too many results in one bin then
+	  double the number of bins.
+
+2011-10-05 [r857]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/results.h, src/results.c: Remove the two RESULTS_*_INCREMENT
+	  constants by swapping the dimensions on the 'point' array so that
+	  both have unity value and are pointless.
+
+2011-10-05 [r856]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/superx.c: Optimise the number of hash function bins by trial
+	  and error.
+
+2011-10-04 [r854-855]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/superx.c, src/optimiser.c: Increase the size of the hash
+	  array used to store the results.
+
+	* src/results.h, src/results.c: Change the way that allocated
+	  memory is tracked.
+
+2011-10-04 [r853]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/results.c: Split the data increment constant into two for the
+	  different parts of the data structure.
+
+2011-10-03 [r852]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* web/www/routino/router.cgi: Ensure that the shortest or quickest
+	  option is passed to the router.
+
+2011-10-03  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	Version 2.1 released
+
+2011-10-03 [r851]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* FILES: Remove another .svn directory.
+
+2011-10-03 [r850]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/NEWS.txt, FILES, doc/html/readme.html: Update for version
+	  2.1.
+
+2011-09-07 [r849]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/test/super-or-not.osm, src/optimiser.c,
+	  src/test/expected/super-or-not-WP03.txt (added): Handle the
+	  special case where the start point is a super-node and the finish
+	  point is somewhere within one of the super-segments from that
+	  node.
+
+2011-09-07 [r848]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/nodes.c: Fix for previous binary search change.
+
+2011-09-07 [r847]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/filedumper.c: Fix bug with earlier change to OSM file
+	  creator.
+
+2011-09-07 [r846]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/router.c: Fix confusing, duplicated, output message.
+
+2011-09-07 [r845]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/nodes.c: Make stricter checks for closest nodes just like in
+	  v2.0.3 for segments.
+
+2011-09-07 [r844]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/filedumper.c: Fix formatting problem with dumped OSM file.
+
+2011-09-07 [r842-843]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/nodes.c, src/waysx.c, src/nodesx.c, src/relations.c: Check
+	  binary search functions and improve comments, fix pathological
+	  case with end point and/or improve start point.
+
+	* src/filedumper.c: Use macro test function rather than direct
+	  check.
+
+2011-09-06 [r841]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/test/super-or-not.osm (added), src/test/a-b.sh (added),
+	  src/test/expected/super-or-not-WP01.txt (added),
+	  src/test/expected/super-or-not-WP02.txt (added), src/test,
+	  src/test/super-or-not.sh (added): Added a new test case for the
+	  routing bug-fix in version 2.0.3 (route via super-nodes may not
+	  be shortest).
+
+2011-09-06 [r840]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/test/expected/dead-ends-WP01.txt,
+	  src/test/expected/dead-ends-WP02.txt,
+	  src/test/expected/dead-ends-WP03.txt,
+	  src/test/expected/dead-ends-WP04.txt,
+	  src/test/expected/dead-ends-WP05.txt,
+	  src/test/expected/dead-ends-WP06.txt,
+	  src/test/expected/dead-ends-WP07.txt,
+	  src/test/expected/dead-ends-WP08.txt,
+	  src/test/expected/dead-ends-WP09.txt,
+	  src/test/expected/loops-WP10.txt,
+	  src/test/expected/loops-WP11.txt, src/test/copyright.xml (added),
+	  src/test/expected/no-super-WP01.txt,
+	  src/test/expected/no-super-WP02.txt,
+	  src/test/expected/no-super-WP03.txt,
+	  src/test/expected/no-super-WP04.txt,
+	  src/test/expected/turns-WP01.txt,
+	  src/test/expected/turns-WP02.txt,
+	  src/test/expected/turns-WP03.txt, src/test/start-1-finish.sh,
+	  src/test/expected/turns-WP04.txt,
+	  src/test/expected/turns-WP05.txt,
+	  src/test/expected/turns-WP06.txt,
+	  src/test/expected/turns-WP07.txt,
+	  src/test/expected/turns-WP08.txt,
+	  src/test/expected/turns-WP09.txt, src/test/a-b-c.sh,
+	  src/test/expected/dead-ends-WP10.txt,
+	  src/test/expected/dead-ends-WP11.txt,
+	  src/test/expected/loops-WP01.txt,
+	  src/test/expected/loops-WP02.txt,
+	  src/test/expected/loops-WP03.txt,
+	  src/test/expected/loops-WP04.txt,
+	  src/test/expected/loops-WP05.txt,
+	  src/test/expected/loops-WP06.txt,
+	  src/test/expected/loops-WP07.txt,
+	  src/test/expected/loops-WP08.txt,
+	  src/test/expected/loops-WP09.txt,
+	  src/test/expected/turns-WP10.txt,
+	  src/test/expected/turns-WP11.txt,
+	  src/test/expected/turns-WP12.txt,
+	  src/test/expected/turns-WP13.txt,
+	  src/test/expected/turns-WP14.txt,
+	  src/test/expected/turns-WP15.txt: Ensure that test cases have
+	  correct copyright notice (Routino, AGPL3) in generated data and
+	  not the default one (OSM, CC-SA).
+
+2011-09-06 [r838-839]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/test/expected/dead-ends-WP01.txt (added),
+	  src/test/expected/dead-ends-WP02.txt (added),
+	  src/test/expected/dead-ends-WP03.txt (added),
+	  src/test/expected/dead-ends-WP04.txt (added),
+	  src/test/expected/dead-ends-WP05.txt (added),
+	  src/test/expected/dead-ends-WP06.txt (added),
+	  src/test/expected/dead-ends-WP07.txt (added),
+	  src/test/expected/dead-ends-WP08.txt (added),
+	  src/test/expected/loops-WP10.txt (added),
+	  src/test/expected/dead-ends-WP09.txt (added),
+	  src/test/expected/loops-WP11.txt (added),
+	  src/test/expected/no-super-WP01.txt (added),
+	  src/test/expected/no-super-WP02.txt (added),
+	  src/test/expected/no-super-WP03.txt (added),
+	  src/test/expected/turns-WP01.txt (added),
+	  src/test/expected/no-super-WP04.txt (added),
+	  src/test/expected/turns-WP02.txt (added),
+	  src/test/expected/turns-WP03.txt (added),
+	  src/test/expected/turns-WP04.txt (added),
+	  src/test/expected/turns-WP05.txt (added),
+	  src/test/expected/turns-WP06.txt (added),
+	  src/test/expected/turns-WP07.txt (added),
+	  src/test/expected/turns-WP08.txt (added),
+	  src/test/expected/turns-WP09.txt (added),
+	  src/test/expected/dead-ends-WP10.txt (added),
+	  src/test/expected/dead-ends-WP11.txt (added),
+	  src/test/expected/loops-WP01.txt (added),
+	  src/test/expected/loops-WP02.txt (added),
+	  src/test/expected/loops-WP03.txt (added),
+	  src/test/expected/loops-WP04.txt (added),
+	  src/test/expected/loops-WP05.txt (added),
+	  src/test/expected/loops-WP06.txt (added),
+	  src/test/expected/loops-WP07.txt (added),
+	  src/test/expected/loops-WP08.txt (added),
+	  src/test/expected/loops-WP09.txt (added),
+	  src/test/expected/turns-WP10.txt (added),
+	  src/test/expected/turns-WP11.txt (added),
+	  src/test/expected/turns-WP12.txt (added),
+	  src/test/expected/turns-WP13.txt (added),
+	  src/test/expected/turns-WP14.txt (added),
+	  src/test/expected/turns-WP15.txt (added): Store the expected
+	  results to check for future regressions.
+
+	* src/test/a-b-c.sh, src/test/expected (added),
+	  src/test/start-1-finish.sh: Store the expected results to check
+	  for future regressions.
+
+2011-09-05 [r837]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/relationsx.c: Ignore relations based on all vehicle types
+	  (including bicycles) not just motor vehicles.
+
+2011-09-05 [r836]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* xml/Makefile, xml/scripts/walk.pl (added), xml,
+	  xml/scripts/ride.pl (added), web/data, xml/scripts (added),
+	  xml/scripts/drive.pl (added): Generate special-use sets of
+	  tagging rules for walking, riding and driving
+
+2011-08-27 [r834-835]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* web/bin/summarise-log.pl (added): A script to process the error
+	  log file and summarise it.
+
+	* xml/routino-tagging.xml: Add lots more tagging rules based on
+	  errors logged from parsing UK, add some more error logging.
+
+2011-08-27 [r832-833]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/osmparser.c: Only log errors for highways.
+
+	* src/relationsx.c: Improve the error messages for bad relations.
+
+2011-08-27 [r830-831]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/filedumper.c: Change the 'generator' tag in the dumped XML
+	  file.
+
+	* xml/routino-tagging.xsd: Whitespace change.
+
+2011-08-21 [r828]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/NEWS.txt, doc/README.txt, src/nodes.c, FILES,
+	  src/optimiser.c, src/router.c, doc/html/readme.html: Merge
+	  version 2.0.3 into working version.
+
+2011-08-14 [r827]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/tagging.h, src/tagging.c, xml/routino-tagging.xsd: Add an
+	  unset rule in the tagging processing XML file.
+
+2011-08-13 [r826]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/tagging.h, src/tagmodifier.c, src/osmparser.c, src/tagging.c,
+	  xml/routino-tagging.xsd: Add a logerror rule in the tagging
+	  processing XML file.
+
+2011-08-04 [r825]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/osmparser.c: Add more acceptable number suffixes.
+
+2011-07-23 [r813]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/osmparser.c: Better parsing of width/height/length and weight
+	  and more information about value actually used.
+
+2011-07-21 [r812]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/relationsx.c, src/osmparser.c, src/waysx.c, src/segmentsx.c,
+	  src/nodesx.c: Add logging of parsing and processing errors.
+
+2011-07-21 [r810-811]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/test/a-b-c.sh, src/test/start-1-finish.sh,
+	  src/test/only-split.sh: Use the --errorlog option.
+
+	* doc/html/usage.html, src/planetsplitter.c, doc/USAGE.txt: The
+	  filename is now optional in the --errorlog option.
+
+2011-07-21 [r809]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/planetsplitter.c: Only open/close the error log file if one
+	  was requested.
+
+2011-07-10 [r806-808]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/test: Ignore the auto-generated files from the new test case.
+
+	* src/test/invalid-turn-relations.osm (added),
+	  src/test/invalid-turn-relations.sh (added),
+	  src/test/only-split.sh (added): Add test cases for the new turn
+	  relation validity checks.
+
+	* src/relationsx.c: Check turn relations more carefully and discard
+	  them if they are invalid.
+
+2011-07-04 [r805]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/relationsx.c: Change the termination of route relation
+	  way/relation lists.
+
+2011-07-03 [r804]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/logging.c, doc/html/usage.html, src/planetsplitter.c,
+	  src/logging.h, doc/USAGE.txt: Add framework for logging error
+	  during OSM parsing and subsequent processing.
+
+2011-07-02 [r803]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/nodes.h: Replace over-sized file entry with one of
+	  appropriate size.
+
+2011-08-04  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	Version 2.0.3 released
+
+2011-08-04 [r823]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/NEWS.txt, doc/README.txt, FILES, doc/html/readme.html:
+	  Updated for version 2.0.3.
+
+2011-08-04 [r822]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/router.c: If there is a route that passes super-nodes and one
+	  that doesn't then choose the better one.
+
+2011-08-04 [r820-821]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/router.c: If there is a direct route without passing any
+	  super-nodes then keep it as a backup in case the potential route
+	  that does pass super-nodes doesn't work out.
+
+	* src/optimiser.c: Allow calling FixForwardRoute() more than once.
+
+2011-08-04 [r819]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c: Revert previous change because it breaks the
+	  dead-end handling.
+
+2011-08-03 [r818]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/router.c: Find a valid route if the start and end point are
+	  the same location (it doesn't require a U-turn).
+
+2011-08-03 [r817]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c, src/router.c: Add a new (less confusing) error
+	  message for when the start of the route has no super-nodes and
+	  doesn't include the end node and make clearer the error message
+	  when the combining of routes fails.
+
+2011-08-03 [r816]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/nodes.c: Make more checks on the closest segment to avoid
+	  choosing one that our profile does not allow us to use.
+
+2011-08-02 [r815]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c: Handle the case where the start node is a
+	  super-node and there is no previous segment.
+
+2011-06-26  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	Version 2.0.2 released
+
+2011-06-26 [r800-r801]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/README.txt, doc/html/readme.html: Update for version 2.0.2.
+
+	* doc/NEWS.txt, FILES, doc/html/readme.html: Update for version
+	  2.0.2.
+
+2011-06-25 [r798-799]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/results.c: Fix comment associated with results list memory
+	  handling.
+
+	* src/optimiser.c: Free temporary results that are calculated.
+
+2011-06-25 [r795-797]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/tagging.h, src/planetsplitter.c, src/tagging.c: Add some
+	  functions to free the tagging rules when they have been used.
+
+	* src/osmparser.c: Free some memory allocated when parsing the
+	  file.
+
+	* src/nodesx.c: Free some memory allocated when writing the file.
+
+2011-06-19 [r794]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/tagmodifier.c: Change to unsigned long and ensure that printf
+	  format specifiers are correct.
+
+2011-06-19 [r792-793]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/segmentsx.c: If a node has no segments return a NULL pointer
+	  rather than random junk.
+
+	* xml/routino-tagging.xml: Reinstate the line that makes
+	  roundabouts one-way.
+
+2011-06-18 [r791]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/osmparser.c, src/xmlparse.h, src/xmlparse.l: Don't use the
+	  flex yylineno but keep track with an unsigned long long line
+	  counter instead (if there are more than 2^31 nodes then there are
+	  more than 2^31 lines as well).
+
+2011-06-18 [r790]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/superx.c, src/relationsx.c, src/types.h, src/osmparser.c,
+	  src/waysx.c, src/filedumper.c, src/segmentsx.c, src/nodesx.c,
+	  src/router.c, src/typesx.h: Ensure that when printing numbers of
+	  the index_t type that an appropriate printf format specifier is
+	  used (ready for if it is redefined as 64-bit).
+
+2011-06-18 [r788-789]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/Makefile: Use the -std=c99 option by default.
+
+	* src/relationsx.c, src/waysx.c, src/segmentsx.c, src/nodesx.c,
+	  src/segmentsx.h: Fix some more warnings from -Wextra and/or
+	  -pedantic options.
+
+2011-06-18 [r787]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/xmlparse.l: Use flex %options instead of #defines, force
+	  clean compilation with C99.
+
+2011-06-18 [r786]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/relationsx.c, src/relationsx.h: Rename structure element
+	  "restrict" to "restriction" to avoid C99 error (reserved word).
+
+2011-06-18 [r785]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/superx.c: Removed warning from gcc-4.6.
+
+2011-06-14 [r784]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* xml/routino-tagging.xml: Fix error with handling ferry routes
+	  (patch from Michael Günnewig).
+
+2011-06-07  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	Version 2.0.1 released
+
+2011-06-07 [r782]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/html/readme.html: Update for version 2.0.1.
+
+2011-06-07 [r781]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/NEWS.txt, doc/README.txt, FILES: Update for version 2.0.1.
+
+2011-06-05 [r779-780]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/superx.c, src/visualiser.c, src/nodes.c, src/relationsx.c,
+	  src/waysx.c, src/filedumper.c, src/segmentsx.c, src/nodesx.c,
+	  src/relations.c: Replace int with appropriate defined types
+	  (mostly index_t, ll_bin_t and ll_bin2_t).
+
+	* src/types.h: Add some comments to clarify the latitude/longitude
+	  bin types and a new type for latitude/longitude bins (two
+	  dimensions).
+
+2011-06-05 [r777-778]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/profiles.c: Change unsigned int to int for consistency with
+	  the rest of the code.
+
+	* src/optimiser.c: Remove unused variable (hangover from previous
+	  U-turn searching).
+
+2011-06-04 [r776]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/superx.c, src/osmparser.c: Add missing header file.
+
+2011-06-04 [r773-775]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/osmparser.c: Convert integer and floating point values
+	  inline. Check that node, way and relation IDs don't need to be
+	  long long types.
+
+	* src/translations.c, src/profiles.c: Convert integer and floating
+	  point values inline.
+
+	* src/xmlparse.h, src/xmlparse.l: The
+	  XMLPARSE_ASSERT_(INTEGER|FLOATING) functions now don't return the
+	  converted type.
+
+2011-06-04 [r770-772]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/segments.h: Add a type cast to a macro.
+
+	* src/segmentsx.c, src/segmentsx.h: Change name of function
+	  parameters to clarify what they are.
+
+	* src/relationsx.c, src/segmentsx.c: Fix some more potential
+	  problems with a transition to 64-bit node_t.
+
+2011-06-03 [r761]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/superx.c, src/relationsx.c, src/segmentsx.c: Shorten the
+	  messages when running to avoid going beyond 80 characters.
+
+2011-06-03 [r759-760]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/visualiser.c: Remove hard-coded numeric value and replace
+	  with a #define value.
+
+	* src/superx.c, src/relationsx.c, src/segmentsx.c, src/typesx.h:
+	  Remove hard-coded numeric values and replace with a common
+	  #define value. Handle overflows consistently.
+
+2011-06-03 [r758]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.h, src/typesx.h: Move some macros from nodesx.h to
+	  typesx.h.
+
+2011-06-03 [r757]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/relationsx.c, src/tagmodifier.c, src/optimiser.c,
+	  src/osmparser.c, src/waysx.c: Rationalise the increment of the
+	  numbers used for the output when not --loggable.
+
+2011-06-01 [r756]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/relationsx.c: Delete turn relations that refer to nodes or
+	  ways that don't exist as soon as possible.
+
+2011-05-31 [r755]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.h, src/osmparser.c, src/segmentsx.c, src/waysx.h,
+	  src/typesx.h: Fix some obvious problems with a transition to
+	  64-bit node_t.
+
+2011-05-31 [r754]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/tagging.c, src/translations.c, src/profiles.c: Fix
+	  inconsistent C language version usage.
+
+2011-05-30 Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	Version 2.0 released
+
+2011-05-30 [r742]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/relationsx.c: Don't crash on malformed relations, give better
+	  reporting of number when processing them.
+
+2011-05-30 [r741]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* FILES: Update for release.
+
+2011-05-30 [r740]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/segmentsx.c: Fix spelling mistake in function parameter
+	  comment.
+
+2011-05-30 [r738-739]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/test/Makefile: Make sure that clean really means it.
+
+	* doc/NEWS.txt, doc/README.txt, doc/html/readme.html: Update for
+	  version 2.0 release.
+
+2011-05-30 [r737]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/html/usage.html, doc/html/algorithm.html, doc/TAGGING.txt,
+	  doc/html/index.html, doc/html/data.html, doc/USAGE.txt,
+	  doc/ALGORITHM.txt, doc/DATA.txt, doc/html/tagging.html: Run a
+	  spelling check on the documentation.
+
+2011-05-30 [r736]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/html/algorithm.html: Describe new philosophy of alloing
+	  U-turn at waypoints to avoid dead-ends.
+
+2011-05-30 [r735]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c: Fix problem with test case loops WP11.
+
+2011-05-30 [r734]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c, src/functions.h, src/router.c: Change the
+	  philosophy on dead ends so that now a U-turn is made at the
+	  waypoint if continuing in the previous direction would lead into
+	  a dead-end. This simplifies the algorithm and removes a lot of
+	  special case handling.
+
+2011-05-30 [r731-733]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/test/loops.osm: Give the loops unique names.
+
+	* src/test/a-b-c.sh, src/test/start-1-finish.sh: Print less
+	  information when running.
+
+	* src/fakes.c: Fix error with calculating length of fake segment
+	  and optimise the ExtraFakeSegment function.
+
+2011-05-29 [r730]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/test/a-b-c.sh: Exit on error.
+
+2011-05-21 [r729]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c, src/functions.h, src/router.c: Find all routes
+	  in the no-super.osm test case.
+
+2011-05-20 [r727-728]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/test/no-super.osm: Add new test cases for fake
+	  nodes/segments.
+
+	* src/fakes.c, src/optimiser.c, src/fakes.h: Add a special function
+	  to handle the detection of U-turns between two fake segments that
+	  sit on the same real segment.
+
+2011-05-18 [r725-726]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/test/a-b-c.sh (added), src/test, src/test/no-super.sh
+	  (added), src/test/no-super.osm (added): Add new test cases for
+	  very simple routes with no super-nodes.
+
+	* src/fakes.c: Fix routing between two fake nodes on the same
+	  segment (again).
+
+2011-05-18 [r724]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/test/dead-ends.osm: Add a new waypoint at the very end of a
+	  dead-end (not super-node).
+
+2011-05-18 [r722-723]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c, src/functions.h: Remove the override flag from
+	  FindNormalRoute().
+
+	* src/optimiser.c, src/functions.h, src/router.c: Use the beginning
+	  of the route as the start of the combined route (since it may
+	  have special override segments in it).
+
+2011-05-17 [r721]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c, src/functions.h, src/router.c: Change the order
+	  of the arguments to the routing functions (move profile earlier).
+
+2011-05-17 [r720]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/Makefile: Install the license file in the doc directory.
+
+2011-05-15 [r719]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c, src/router.c: Finally find a way out of
+	  dead-ends, might have some nasty side-effects though.
+
+2011-05-14 [r717-718]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c: Fix slim/non-slim variation.
+
+	* src/test/dead-ends.osm: Add another waypoint at the terminal
+	  super-node.
+
+2011-05-13 [r716]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/test/turns.osm: Force waypoint 13 to go round the roundabout
+	  twice.
+
+2011-05-12 [r714-715]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/test/turns.osm (added), src/test, src/test/turns.sh (added):
+	  Added turn restriction test cases.
+
+	* src/test/start-1-finish.sh: Bug fix for logging.
+
+2011-05-11 [r712-713]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/superx.c, src/segmentsx.c: Add comments to assert statements
+	  that don't already have them.
+
+	* src/optimiser.c: Crash out if infinite loop (usually caused by a
+	  bug elsewhere).
+
+2011-05-08 [r708-711]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/test/start-1-finish.sh: Run filedumper, allow running under a
+	  run-time debugger.
+
+	* src/optimiser.c: Remove clash of cache locations.
+
+	* src/test/Makefile: Print an extra message after comparing the
+	  slim and non-slim results.
+
+	* src/segments.c, src/segments.h: Make the NextSegment function
+	  inline (move from segments.c to segments.h).
+
+2011-05-08 [r707]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/segments.c, src/visualiser.c, src/nodes.c, src/optimiser.c,
+	  src/filedumper.c, src/nodes.h, src/output.c: The FirstSegment
+	  function now takes a cache position argument.
+
+2011-05-08 [r706]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/segments.c, src/nodes.c, src/relations.c, src/ways.c: Ensure
+	  that the correct number of cached nodes, segments, ways or
+	  relations are initialised.
+
+2011-05-08 [r705]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/ways.h, src/filedumper.c, src/ways.c: Remove the unused name
+	  caching for the ways (in slim mode).
+
+2011-05-08 [r704]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/segments.h, src/segmentsx.h: Simplify the lookup of the
+	  segment index in slim mode.
+
+2011-05-07 [r703]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c: Allow the start of a route to double-back to the
+	  initial node even if a super-node.
+
+2011-05-07 [r700-702]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/test/loops.osm: Rename the waypoints.
+
+	* src/files.c: Remove useless assert statement.
+
+	* src/optimiser.c, src/nodes.h, src/segmentsx.c: Fix bugs found by
+	  valgrind.
+
+2011-05-07 [r697-699]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c: Handle things correctly if the
+	  FindSuperSegment() function is called with a fake segment.
+
+	* src/test/Makefile: Ensure that executables are compiled before
+	  running the tests.
+
+	* src/Makefile: Require slim and non-slim versions of fakes.o.
+
+2011-05-07 [r695-696]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/router.c: Calculate an override version of the start of the
+	  route to get out of dead-ends.
+
+	* src/output.c: Use real segments when making comparisons (not
+	  pointers or non-real segments).
+
+2011-05-06 [r690-694]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/test: Ignore files and directories generated by running 'make
+	  test'.
+
+	* src/xml: Ignore files generated by running 'make test'.
+
+	* src/Makefile: Allow running 'make test' in the source directory.
+
+	* src/test/waypoints.pl (added), src/test/loops.osm (added),
+	  src/test/Makefile (added), src/test/dead-ends.sh (added),
+	  src/test/dead-ends.osm (added), src/test/start-1-finish.sh
+	  (added), src/test/loops.sh (added): Routing test cases.
+
+	* src/test (added): A directory for routing test cases.
+
+2011-05-06 [r689]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/xml/test/bad-attr-character-ref.xml (removed): Remove
+	  false-positive test case (a bug in xmlparse.l previously flagged
+	  this as an error).
+
+2011-04-27 [r688]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c: Force going straight on if a waypoint is a
+	  super-node.
+
+2011-04-27 [r686-687]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c: Improve the FindSuperSegment() function when the
+	  existing segment is the right answer.
+
+	* src/optimiser.c, src/router.c: Rename the variables in and around
+	  the CombineRoutes() function for clarity.
+
+2011-04-26 [r685]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c: When starting a super-route ensure that all
+	  starting segments are super-segments to avoid u-turns at the
+	  starting super-node.
+
+2011-04-25 [r683-684]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/output.c: Fix error with turn description.
+
+	* src/output.c: Include a point number (hidden) in the HTML file.
+
+2011-04-24 [r682]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/waysx.c, src/waysx.h: Fix error is last semi-automated
+	  update.
+
+2011-04-24 [r681]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/segments.c, src/superx.c, src/visualiser.c, src/relationsx.c,
+	  src/segments.h, src/superx.h, src/filedumper.c, src/nodesx.c,
+	  src/relations.c, src/nodesx.h, src/relations.h, src/nodes.c,
+	  src/waysx.c, src/nodes.h, src/segmentsx.c, src/waysx.h,
+	  src/segmentsx.h, src/ways.c: Make the comments more consistent.
+
+2011-04-24 [r680]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/translations.h, src/fakes.c, src/filedumper.c, src/fakes.h,
+	  src/nodesx.c, src/output.c, src/results.c, src/files.c,
+	  src/nodesx.h, src/results.h, src/files.h, src/nodes.c,
+	  src/planetsplitter.c, src/osmparser.c, src/nodes.h,
+	  src/profiles.c, src/segments.c, src/sorting.c, src/tagging.h,
+	  src/visualiser.c, src/superx.c, src/logging.c, src/ways.h,
+	  src/profiles.h, src/relationsx.c, src/segments.h, src/sorting.h,
+	  src/tagmodifier.c, src/visualiser.h, src/superx.h, src/logging.h,
+	  src/relationsx.h, src/relations.c, src/functionsx.h,
+	  src/relations.h, src/types.h, src/optimiser.c, src/waysx.c,
+	  src/segmentsx.c, src/functions.h, src/waysx.h, src/router.c,
+	  src/segmentsx.h: Update comments throughout the source code.
+
+2011-04-23 [r679]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/html/algorithm.html, doc/ALGORITHM.txt: Add description of
+	  U-turns at dead-ends.
+
+2011-04-23 [r678]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c, src/functions.h, src/output.c, src/router.c:
+	  Allow U-turns at dead-ends to avoid getting stuck.
+
+2011-04-22 [r677]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c, src/router.c: Handle failure to find route
+	  gracefully.
+
+2011-04-22 [r676]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* web/www/routino/visualiser.cgi: Another change related to turn
+	  restrictions (missed in last checkin).
+
+2011-04-22 [r675]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/segments.c, doc/html/usage.html, web/www/routino/router.cgi,
+	  src/segments.h, doc/USAGE.txt, src/router.c: Add in the option to
+	  specify an initial heading.
+
+2011-04-22 [r674]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/segmentsx.c, src/nodesx.c: Finish off the geographic sorting
+	  of segments.
+
+2011-04-22 [r673]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/filedumper.c: Use the common TurnAngle() function from
+	  segments.c instead of a local one.
+
+2011-04-22 [r672]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/segments.c, src/segments.h, src/output.c: Move the
+	  turn_angle() and bearing_angle() functions from output.c into
+	  segments.c.
+
+2011-04-22 [r671]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/html/algorithm.html, doc/ALGORITHM.txt: Simplify the language
+	  used describing the highway properties.
+
+2011-03-21 [r670]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/relationsx.c: Ignore turn restrictions that ban going the
+	  wrong way down a one-way road.
+
+2011-03-21 [r668-669]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/segments.c, src/filedumper.c, src/profiles.c: Include math.h
+	  for files that use math functions.
+
+	* src/types.h: Round the node latitude/longitude rather than
+	  truncating.
+
+2011-03-21 [r667]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/filedumper.c: Include some of the Routino internal
+	  information when dumping an OSM format output.
+
+2011-03-21 [r666]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/segmentsx.c: Fix bug with segment deduplication.
+
+2011-03-21 [r665]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/relationsx.c, src/planetsplitter.c, src/relationsx.h,
+	  src/nodesx.c: Sort the segments geographically.
+
+2011-03-20 [r664]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.c: Sort nodes strictly by latitude/longitude within
+	  the bins (helps with regresssion testing).
+
+2011-03-20 [r661-663]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* web/www/routino/documentation: Ignore extra image files.
+
+	* src/xmlparse.l: Ensure that UTF-8 is used internally when reading
+	  in a numeric entity.
+
+	* src/router.c: Fix bug found by gcc-4.5.
+
+2011-03-20 [r660]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/segmentsx.c: Return early from the IndexSegments function if
+	  there are no segments.
+
+2011-03-19 [r659]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/html/algorithm.html, doc/html/example0.png,
+	  doc/html/example1.png, doc/ALGORITHM.txt, doc/html/example2.png,
+	  doc/html/example3.png (added), doc/html/example4.png (added):
+	  Update the algorithm documents for turn restrictions.
+
+2011-03-19 [r658]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/segmentsx.c: Deduplicate in pairs only (i.e. if a segment
+	  occurs 4 times then keep 2 of them).
+
+2011-03-19 [r657]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/segmentsx.c: Cache the recently used ways when de-duplicating
+	  segments.
+
+2011-03-19 [r656]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/superx.c: Use previous segment in router rather than looking
+	  at previous node.
+
+2011-03-12 [r655]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/segmentsx.c, src/nodesx.c: Make the used nodes marker
+	  bit-wide rather than byte-wide.
+
+2011-03-12 [r654]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.h, src/superx.c, src/nodesx.c: Make the nodes super
+	  marker bit-wide rather than byte-wide.
+
+2011-03-12 [r653]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.h, src/superx.c, src/planetsplitter.c, src/superx.h,
+	  src/nodesx.c: Make the nodes super marker a boolean.
+
+2011-03-12 [r652]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/superx.c, src/planetsplitter.c, src/superx.h: Optimise the
+	  search for supernodes, consider traffic when counting segments
+	  that meet at a node.
+
+2011-02-27 [r651]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.h, src/superx.c, src/relationsx.c, src/waysx.c,
+	  src/segmentsx.c, src/waysx.h, src/segmentsx.h: Rename the xdata
+	  and xcached members of the nodesx, segmentsx and waysx
+	  structures.
+
+2011-02-27 [r650]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.h, src/relationsx.c, src/planetsplitter.c,
+	  src/waysx.c, src/relationsx.h, src/segmentsx.c, src/nodesx.c,
+	  src/waysx.h, src/segmentsx.h: Don't have both xnumber and number
+	  in the nodesx, segmentsx, waysx and relationsx structures.
+
+2011-02-27 [r649]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/segmentsx.c, src/segmentsx.h: Remove a now unused array of
+	  segment indexes.
+
+2011-02-27 [r648]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/logging.c: Handle the case where the middle string is shorter
+	  than the previous one.
+
+2011-02-26 [r646-647]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/superx.c: Use the OtherNode and IsOneWay* macros when
+	  routing.
+
+	* src/superx.c, src/relationsx.c, src/segmentsx.c, src/segmentsx.h:
+	  Remove a pair of functions that are no longer used and rename the
+	  other pair.
+
+2011-02-26 [r645]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/relationsx.c, src/planetsplitter.c, src/relationsx.h: Fixed
+	  the turn relations with a few more functions.
+
+2011-02-26 [r644]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/planetsplitter.c, src/segmentsx.c, src/segmentsx.h: Renamed a
+	  couple of functions for clarity.
+
+2011-02-26 [r643]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.h, src/superx.c, src/relationsx.c,
+	  src/planetsplitter.c, src/osmparser.c, src/segmentsx.c,
+	  src/nodesx.c, src/segmentsx.h: Go back to the internal structure
+	  used (but reverted) during version 1.2 development where each
+	  segment is stored only once. This halves the memory usage (mmap
+	  files or just files) for planetsplitter. This is allowed because
+	  a new algorithm to create the node to segment indexes makes it
+	  simpler now that it was. This change is required so that
+	  super-node/segment optimisation doesn't remove mutual loops. This
+	  change doesn't handle turn restrictions yet.
+
+2011-02-24 [r642]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/superx.c: Change a variable name to match the one used in
+	  optimiser.c.
+
+2011-02-24 [r641]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/superx.c, src/segmentsx.c: Create super-segments that go in
+	  loops and preserve all such loops.
+
+2011-02-23 [r640]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/segmentsx.c: Fix latent bug that can occur when
+	  de-duplicating segments.
+
+2011-02-23 [r639]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* xml/Makefile: Fix error in creating web files containing
+	  profiles.
+
+2011-02-20 [r638]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c: Allow U-turns at via points for transport types
+	  that ignore turn restrictions.
+
+2011-02-20 [r637]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c, src/functions.h, src/fakes.h: Don't allow
+	  U-turns at via points (but doesn't necessarily include turning
+	  round in the score when searching for optimum).
+
+2011-02-18 [r636]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c: Fix the code that stops routes doubling-back on
+	  themselves.
+
+2011-02-11 [r635]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* web/www/routino/update-profiles.pl (added), xml/Makefile,
+	  web/www/routino, web/www/routino/router.html.en,
+	  web/www/routino/router.pl, web/www/routino/router.html.nl,
+	  web/www/routino/router.js: Move the Javascript and Perl profiles
+	  into separate files.
+
+2011-02-11 [r634]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/html/installation.html, web/www/openlayers/install.sh,
+	  doc/INSTALL.txt: Change to OpenLayers 2.10.
+
+2011-02-11 [r632-633]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/output.c: Don't confuse fake segments with junctions.
+
+	* src/optimiser.c: Fix problem with only one super-node in the
+	  route.
+
+2011-02-11 [r631]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/fakes.c: Fix bug with generating fake segments.
+
+2011-02-11 [r629-630]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* xml/routino-profiles.xml: Wheelchairs do not obey turn
+	  restrictions.
+
+	* web/www/routino/results.cgi, web/www/routino/router.html.en,
+	  src/router.c, web/www/routino/router.pl,
+	  web/www/routino/router.html.nl, web/www/routino/router.js: Print
+	  a message if routed OK, allow web users to see router output (now
+	  logged to file).
+
+2011-02-05 [r628]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/filedumper.c: Fix statistics for ways (broken by change for
+	  relations).
+
+2011-02-05 [r626-627]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/superx.c, src/optimiser.c, src/segmentsx.c, src/nodesx.c:
+	  Change some output printed while running.
+
+	* src/filedumper.c: Fix problem with dumping turn relations.
+
+2011-02-05 [r625]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/filedumper.c: Print out the size of the relations.mem file.
+
+2011-02-05 [r623-624]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* web/www/routino/visualiser.cgi: Updated the visualiser to include
+	  turn restrictions.
+
+	* src/visualiser.c, doc/html/usage.html,
+	  web/www/routino/visualiser.js, src/visualiser.h,
+	  src/filedumper.c, doc/USAGE.txt, web/www/routino/visualiser.html:
+	  Updated the visualiser to include turn restrictions.
+
+2011-02-05 [r622]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/profiles.h, web/www/routino/noscript.cgi,
+	  web/www/routino/customrouter.cgi, xml/routino-profiles.xsd,
+	  web/www/routino/noscript.template.html, xml/routino-profiles.xml,
+	  doc/html/usage.html, web/www/routino/router.cgi, src/optimiser.c,
+	  web/www/routino/router.html.en, doc/USAGE.txt, src/router.c,
+	  web/www/routino/router.pl, src/profiles.c,
+	  web/www/routino/router.html.nl, web/www/routino/router.js:
+	  Include the option to obey turn restrictions in the profile for
+	  each transport type.
+
+2011-01-30 [r620-621]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/html/algorithm.html, doc/ALGORITHM.txt: Update algorithm
+	  description to include turn restrictions and a note about how the
+	  algorithm terminates the search.
+
+	* doc/TAGGING.txt, doc/USAGE.txt: Update text versions of documents
+	  to match HTML.
+
+2011-01-30 [r618-619]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/output.c: Correct comments.
+
+	* src/filedumper.c: Put a "restriction" tag into the turn
+	  restrictions when dumped.
+
+2011-01-30 [r617]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c, src/functions.h, src/router.c: Ensure that the
+	  first/last node and first/last segment of the Results structure
+	  are filled in properly.
+
+2011-01-30 [r616]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c: Fix routing where the final node is a
+	  super-node.
+
+2011-01-29 [r615]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/relationsx.c: All nodes adjacent to a turn restriction must
+	  also be turn restrictions.
+
+2011-01-29 [r613-614]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/files.h: Fix assert problem.
+
+	* src/Makefile, src/xml/Makefile: Make dependency filename based on
+	  object file name (fixes overwriting problem with slim versions).
+
+2011-01-29 [r612]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/superx.c, src/files.h, src/relationsx.c, src/waysx.c,
+	  src/segmentsx.c, src/nodesx.c, src/files.c: Ensure that record of
+	  closed file descriptors are erased.
+
+2011-01-29 [r610-611]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c: Don't check for turn relations in
+	  FindStartRoutes().
+
+	* src/optimiser.c: Add some comments, shuffle a few lines of code.
+
+2011-01-29 [r609]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c: Fix the code that allows overshooting by one
+	  node when finding finish nodes.
+
+2011-01-29 [r608]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/fakes.c, src/optimiser.c, src/Makefile, src/fakes.h,
+	  src/relations.c, src/router.c: When finding a normal route check
+	  for turn relations (considering previous segment). When finding
+	  turn relations convert fake segments into real ones.
+
+2011-01-29 [r607]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/nodes.c: Fix pathological case of rounding error for points
+	  almost exactly on a segment.
+
+2011-01-29 [r606]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/superx.c: Fix for route finding in planetsplitter.
+
+2011-01-24 [r605]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/results.h, src/superx.c, src/optimiser.c, src/functions.h,
+	  src/output.c, src/router.c, src/results.c: Finds routes and obeys
+	  turn restrictions (only tested with very simple route and
+	  restrictions, more turn restriction testing and regression
+	  testing required).
+
+2011-01-16 [r604]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/relations.h, src/relations.c: Fix logic error with searching
+	  for via nodes.
+
+2011-01-15 [r603]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/results.h, src/superx.c, src/optimiser.c, src/output.c,
+	  src/results.c: Change the results structure to contain next
+	  segment and rename elements to clarify prev/next node and
+	  prev/next segment.
+
+2011-01-15 [r602]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/segmentsx.c: Change to comment for clarification.
+
+2011-01-15 [r599-601]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/html/usage.html: Correction and clarification to filedumper
+	  usage.
+
+	* src/nodesx.h: Change to comment for clarification.
+
+	* src/relations.h, src/relationsx.c, src/planetsplitter.c,
+	  src/filedumper.c, src/relationsx.h, src/relations.c: Store the
+	  'from' and 'to' segments and not nodes (to handle fake nodes
+	  inserted in segments).
+
+2011-01-15 [r598]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/visualiser.c, src/output.c: Change the IsSuperNode() macro to
+	  take a single pointer argument.
+
+2011-01-09 [r597]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/superx.c, src/relationsx.c, src/types.h: Make the 'from' and
+	  'to' nodes of turn restrictions super-nodes.
+
+2011-01-09 [r596]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/relations.h, src/optimiser.c, src/nodes.h, src/relations.c:
+	  Check turn relations when finding a route.
+
+2011-01-08 [r595]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c, src/filedumper.c, src/nodes.h: Change the
+	  IsSuperNode() macro to take a single pointer argument.
+
+2011-01-08 [r594]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c: Move the local variables closer to where they
+	  are used.
+
+2011-01-08 [r593]  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/html/tagging.html: Add information about the tags used for
+	  turn relations.
+
+2010-12-29  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	Changed version control environment from RCS to CVS to SVN.
+
+2010-12-29  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* doc/NEWS.txt: Temporary checkin to allow transition from RCS to
+	  CVS to SVN.
+
+	* xml/routino-tagging.xml: Pass through turn relation information.
+
+2010-12-21  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/filedumper.c: Add turn relations to the statistics and dump
+	  outputs.
+
+2010-12-21  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/ways.h, src/segments.h, src/nodes.h, src/ways.c: Optimise the
+	  node, segment, way lookup in slim mode by checking if the
+	  previous index is being requested again.
+
+	* src/relations.h, src/relations.c: Optimise the turn relation
+	  lookup.
+
+2010-12-21  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/relations.h, src/relations.c: Add functions to search for
+	  turn relations that match a particular node.
+
+2010-12-21  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/relations.h (added), src/relations.c (added): Initial
+	  revision
+
+	* src/superx.c, src/relationsx.c, src/types.h: Update the nodes to
+	  force a super-node where there is a turn restriction.
+
+2010-12-21  Andrew M. Bishop <amb@gedanken.demon.co.uk>
+
+	* src/relationsx.c, src/planetsplitter.c, src/relationsx.h: Finish
+	  the processing of the turn relations now that the extra node
+	  lookup table is in place.
+
+2010-12-20  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.c, src/segmentsx.c, src/segmentsx.h:
+	Handle the SegmentX Segment in the same way as the other data structures (map
+	into memory when used, open/close the file if slim).  Create the real nodes
+	without mapping the segments into memory.
+
+	* src/nodesx.c, src/nodesx.h, src/relationsx.c, src/segmentsx.c, src/segmentsx.h,
+	src/waysx.h:
+	Make the PutBack*() functions be no-ops in slim mode and remove the
+	pre-processor guards from around the function calls.
+
+	* src/nodesx.c:
+	Don't map the file into memory for writing out the Nodes file.
+
+	* src/superx.c, src/waysx.c, src/waysx.h, src/nodesx.c, src/relationsx.c, src/segmentsx.c:
+	Close and open the files for the slim case to match the map/unmap of files for
+	the non-slim case.
+
+	* src/nodesx.c, src/segmentsx.c:
+	Make the last two changes work for slim mode.
+
+	* src/nodesx.c, src/nodesx.h:
+	Create the Nodes offset table at the end rather than during the sort process.
+
+	* src/nodesx.c, src/nodesx.h, src/segmentsx.c, src/segmentsx.h:
+	Don't maintain a copy of the whole set of Nodes along with the NodeXs but
+	generate the Node from the NodeX when written to disk.  Create a lookup table
+	between the original index and the geographically sorted index.
+
+2010-12-19  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/planetsplitter.c, src/relationsx.c:
+	Process the turn relations (apart from updating the indexes to the
+	geographically sorted nodes).
+
+	* src/superx.c: Handle the case of no super segments better.
+
+	* src/planetsplitter.c: Change around the order of the functions.
+
+	* src/relationsx.c:
+	A temporary check-in that handles turn restrictions more complicated than
+	actually allowed (ways must start/end at the via node).
+
+	* xml/routino-tagging.xml: Add mini-roundabouts.
+
+	* src/sorting.c: Bug fix for last change.
+
+2010-12-18  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/segmentsx.c:
+	Remove the test for sorting zero segments (now that the sort function doesn't
+	crash).
+
+	* src/nodesx.c, src/segmentsx.c, src/segmentsx.h, src/superx.c:
+	Duplicate the IndexFirstSegmentX() and IndexNextSegmentX() functions to create
+	two distinct one for use at different times.
+
+	* src/sorting.c: Handle the case where there is no data in the file.
+
+	* src/Makefile, src/filedumper.c, src/functions.h, src/optimiser.c, src/planetsplitter.c,
+	src/relationsx.c, src/relationsx.h, src/router.c, src/types.h:
+	Add a Relations data type and write out the turn relations that have been read
+	in.  Still doesn't perform the required processing after reading the data or use
+	the information for routing.
+
+2010-12-12  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/osmparser.c, src/typesx.h:
+	Change the names of the enumerated types for turn restrictions.
+
+2010-12-05  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/osmparser.c, src/relationsx.c, src/relationsx.h, src/typesx.h:
+	Parse turn restriction relations and store ones with a single via node.
+	(Doesn't do anything with them yet).
+
+	* src/nodesx.h, src/segmentsx.h, src/waysx.h:
+	Updated the comments for clarity.
+
+2010-12-04  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/filedumper.c, src/nodesx.c, src/nodesx.h, src/osmparser.c, src/types.h:
+	Improved version of previous change.
+
+2010-11-28  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/filedumper.c, src/nodesx.c, src/nodesx.h, src/osmparser.c, src/types.h:
+	Add parsing of mini-roundabouts.
+
+	* xml/routino-tagging.xml, src/filedumper.c, src/osmparser.c, src/types.c, src/types.h:
+	Remove the roundabout type from the parsing.
+
+	* src/fakes.c:
+	Fix some problems with fake nodes, in particular a route between two fake nodes
+	on the same segment can now be calculated.
+
+	* src/nodes.c:
+	Return the two nodes of a segment in the same order each time.
+
+2010-11-27  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/fakes.h, src/sorting.h: New file.
+
+	* src/fakes.c, src/functions.h, src/nodesx.c, src/optimiser.c, src/output.c,
+	src/relationsx.c, src/router.c, src/segmentsx.c, src/sorting.c, src/types.h, src/waysx.c:
+	Split functions.h into fakes.h, sorting.h and the remainder in functions.h.
+
+	* src/optimiser.c, src/router.c:
+	Move some of the complexity from router.c to optimiser.c.
+
+	* src/types.c, src/types.h, src/ways.h, src/waysx.c:
+	Change the wayprop_t type into properties_t.
+
+	* src/nodesx.h, src/osmparser.c, src/profiles.c, src/profiles.h, src/relationsx.c,
+	src/relationsx.h, src/types.c, src/types.h, src/ways.h, src/waysx.c, src/filedumper.c,
+	src/nodes.h, src/nodesx.c:
+	Change the allow_t type into transports_t (and associated enums and macros).
+
+	* src/types.h, src/ways.h: Change the waytype_t type into highway_t.
+
+2010-11-14  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* xml/routino-tagging.xml:
+	Fix mis-spelling with surface=asphalt tag (patch from Michael Günnewig).
+
+	* src/filedumper.c, src/types.c, src/types.h, src/ways.h, src/waysx.c:
+	Print out statistics about what highways are included in the database.
+
+2010-11-13  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	Version 1.5.1 released
+
+2010-11-13  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* doc/NEWS.txt, doc/README.txt: Updated for version 1.5.1.
+
+	* doc/USAGE.txt: Update program usage for new logging option.
+
+	* xml/routino-translations.xml:
+	Add translation for ferry into German (patch from Michael Günnewig).
+
+	* src/relationsx.c: Fix bug with relation processing.
+
+	* src/logging.h: Add GCC attributes for the logging functions.
+
+	* src/logging.h, src/logging.c: New file.
+
+	* src/Makefile, src/nodesx.c, src/optimiser.c, src/osmparser.c, src/planetsplitter.c,
+	src/relationsx.c, src/router.c, src/segmentsx.c, src/superx.c, src/tagmodifier.c,
+	src/waysx.c:
+	Add an option to make the output more suitable for a log file.
+
+2010-10-31  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/files.c:
+	Ensure that enough memory gets allocated in FileName() function.
+
+2010-10-30  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	Version 1.5 released
+
+2010-10-30  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* doc/README.txt, doc/NEWS.txt: Updated for version 1.5.
+
+2010-10-18  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/profiles.c:
+	Use sqrt() function to reduce the effect of property preferences close to 50%.
+	Ensure that preferences cannot equal zero (error on division).
+
+	* doc/ALGORITHM.txt, doc/INSTALL.txt, doc/USAGE.txt:
+	Updated with information about the new features.
+
+	* doc/CONFIGURATION.txt, doc/TAGGING.txt:
+	Add in the footroute and bicycleroute configuration options and route relation
+	tag processing.
+
+2010-10-16  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/files.c: Fixed some comments for recent changes.
+
+2010-10-09  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* xml/routino-profiles.xml:
+	Add footroute and bicycleroute to the profiles.
+
+	* src/files.c, src/files.h, src/relationsx.c:
+	The ReOpenFile() function cannot be read/write because it stops the router
+	running with read-only access to the database.
+
+	* src/nodesx.c, src/relationsx.c, src/segmentsx.c, src/superx.c:
+	Fix previous check-in on this set of files.
+
+	* src/xmlparse.l: Ensure that comparisons are made with unsigned chars.
+
+2010-10-03  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.c, src/relationsx.c, src/segmentsx.c, src/superx.c:
+	Don't try mapping a file if it is zero length (e.g. no super-segments).
+
+	* src/files.c, src/files.h, src/relationsx.c:
+	Add a function to map a file writeable and use it for updating the ways when
+	processing route relations.
+
+	* src/relationsx.c:
+	Avoid self-recursion and adding route information to relations that already have
+	it.
+
+2010-09-25  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/osmparser.c, src/relationsx.c, src/relationsx.h, src/waysx.h:
+	Apply the route=bicycle or route=foot tags from the relation to all ways
+	contained in it and to all ways in all sub-relations of it (including recursion
+	to depth 5).  This requires all relations to be stored even if not routes
+	because they might be included by another relation that is.
+
+	* src/segmentsx.c: Don't sort the (super-)segments if there are none.
+
+	* src/nodesx.c, src/functions.h, src/sorting.c:
+	Rename the heapsort() function to filesort_heapsort().
+
+2010-09-19  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/files.c, src/files.h, src/nodesx.c, src/segmentsx.c, src/sorting.c, src/waysx.c:
+	Change the names of the functions used to open files, change the ReOpen function
+	to open R/W.
+
+	* src/relationsx.c: Remove the sorting of the route relations.
+
+2010-09-17  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.c, src/segmentsx.c:
+	Zero the NodesFile and SegmentsFile data structures before writing them (zeros
+	unused bytes).
+
+	* src/planetsplitter.c, src/waysx.c, src/waysx.h:
+	Split the sorting of waysx from the compacting so that the route relation
+	information can be included before compacting.
+
+	* xml/routino-tagging.xml, src/functionsx.h, src/osmparser.c, src/planetsplitter.c:
+	Parse relations and extract foot and bicycle routes to be added as properties to
+	the ways.
+
+	* src/types.c, src/types.h: Add footroute and bicycleroute properties.
+
+	* src/relationsx.c, src/relationsx.h: New file.
+
+	* src/typesx.h, src/Makefile:
+	Add files and datatypes for processing relations.
+
+	* xml/routino-tagging-nomodify.xml, xml/routino-tagging.xsd, src/tagging.c:
+	Process tags for relations.
+
+2010-09-16  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/waysx.c, src/segmentsx.c, src/nodesx.c:
+	Fix the comment for the Append...() function.
+
+2010-09-15  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* xml/routino-profiles.xml, xml/routino-tagging.xml, xml/routino-translations.xml,
+	src/output.c, src/translations.c, src/types.c, src/types.h:
+	Add routing on ferries.
+
+	* src/filedumper.c, src/planetsplitter.c, src/router.c:
+	Bug fix for last change.
+
+	* src/filedumper.c, src/planetsplitter.c, src/router.c:
+	Improve the usage information to tell which command line argument was in error.
+
+	* src/profiles.c:
+	Fix --help-profile-perl option and make perl and JSON outputs more pretty.
+
+	* src/router.c, src/planetsplitter.c:
+	Usage message has wrong option name.
+
+	* src/xmlparse.l:
+	Fix last change to make UTF-8 parsing more strict, also added strict conversion
+	to XML-safe character references.
+
+	* src/translations.c:
+	Convert translations read from file into XML-safe encodings before using them.
+
+	* src/output.c: HTML file has UTF-8 meta-tag.
+
+	* xml/routino-translations.xml:
+	Revert to UTF-8 multi-byte representations instead of character references.
+
+2010-09-14  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/xmlparse.l: Stricter checking on XML data (Unicode).
+
+2010-09-05  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* xml/Makefile, src/Makefile, doc/Makefile, Makefile:
+	Move all of the installation pathnames to the top level Makefile and include it
+	into the lower level makefiles.
+
+	* src/planetsplitter.c, src/router.c, src/tagmodifier.c:
+	Use the installed tagging.xml, profiles.xml or translations.xml files as the
+	fallback option if no other given.
+
+2010-09-04  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* xml/routino-translations.xml:
+	Change German translations from named HTML character encodings to numeric ones
+	(works in GPX files as well as HTML).
+
+	* xml/routino-translations.xml:
+	Added Dutch translations (from Jan Jansen).
+
+2010-08-30  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* xml/routino-translations.xml:
+	Change German translation to UTF-8, add comments indicating the origin of the
+	two translations.
+
+	* xml/routino-tagging-nomodify.xml:
+	Relation rules are not allowed at all.
+
+	* xml/Makefile, src/Makefile, doc/Makefile, Makefile:
+	Added 'install' to top level (and lower) Makefiles.
+
+	* src/ways.h, src/output.c:
+	Change the names of the functions used to get the highway names.
+
+	* src/filedumper.c:
+	Only print the way name in OSM output when the way has a name.
+	Change the names of the functions used to get the highway names.
+
+	* src/profiles.c: Fix bug with writing out JSON profile information.
+
+2010-08-30  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/ways.h, src/output.c:
+	Change the names of the functions used to get the highway names.
+
+	* src/filedumper.c:
+	Only print the way name in OSM output when the way has a name.
+	Change the names of the functions used to get the highway names.
+
+	* src/profiles.c: Fix bug with writing out JSON profile information.
+
+2010-08-04  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/output.c, src/segmentsx.c, src/types.h, src/fakes.c, src/functions.h, src/nodesx.c,
+	src/optimiser.c:
+	Change the way that fake nodes and segments are recognised (allows nearly 4G
+	nodes to be stored instead of 2G nodes).
+
+2010-08-03  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/filedumper.c, src/nodes.h, src/nodesx.c, src/optimiser.c, src/types.h:
+	Rename the variables that hold the node allowed transports and flags.
+
+2010-08-02  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* xml/routino-tagging-nomodify.xml, xml/routino-tagging.xml, xml/routino-tagging.xsd,
+	src/filedumper.c, src/nodesx.c, src/nodesx.h, src/optimiser.c, src/osmparser.c,
+	src/superx.c, src/tagging.c, src/types.h:
+	Understand node traffic type restrictions.
+
+2010-07-31  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/profiles.h, src/types.c, src/types.h, src/ways.h, src/waysx.c:
+	Rename the wayallow_t type to allow_t (since it applies to nodes as well now).
+
+	* src/filedumper.c, src/nodes.h, src/nodesx.c, src/segmentsx.c, src/types.h:
+	Add extra information to a node to store turn restrictions and properties.
+	(Move the super-node bit from the first segment to here.)
+
+	* src/nodesx.c, src/segmentsx.c, src/waysx.c:
+	Assert if the number of nodes, segments or ways exceeds the legal range of the
+	index counters.
+
+	* src/nodes.h, src/nodesx.h, src/segments.h, src/segmentsx.h, src/ways.h, src/waysx.h:
+	Change the data types to index_t where they are counting nodes/segments/ways.
+
+	* src/nodes.h, src/nodesx.h, src/segments.h, src/segmentsx.h, src/ways.h, src/waysx.c,
+	src/waysx.h:
+	Ensure that seeking within a file uses a 64-bit offset.
+
+	* src/nodesx.c, src/segmentsx.c, src/superx.c, src/waysx.c:
+	Remove the assert statements that check the order of calling the functions.
+
+2010-07-26  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/filedumper.c, src/nodes.c, src/nodes.h, src/visualiser.c:
+	Final part of slim mode for the router (node offsets).
+
+2010-07-24  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.c, src/segmentsx.c, src/waysx.c:
+	Some tidying up of the writing of the file headers.
+
+	* src/ways.c, src/ways.h, src/waysx.c, src/filedumper.c, src/nodes.c, src/optimiser.c,
+	src/output.c, src/profiles.c, src/visualiser.c:
+	Finished slim mode for the router by adding ways.
+
+2010-07-23  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/filedumper.c, src/nodes.c, src/nodes.h, src/output.c, src/segments.c, src/segments.h,
+	src/segmentsx.c:
+	Added slim mode to the router for segments.
+
+	* src/Makefile: Add the fakes.c file.
+
+	* src/optimiser.c, src/results.c, src/results.h:
+	Change the results structure to hold the index of the segment instead of a
+	pointer to it.
+
+	* src/types.h, src/router.c, src/functions.h:
+	Move the fake nodes and segments to a new file.
+
+	* src/fakes.c: New file.
+
+2010-07-19  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* xml/routino-profiles.xml:
+	Reduce the "multilane" preference for motor vehicles.  Gives too much bias with
+	previous setting.
+
+2010-07-15  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/Makefile, src/filedumper.c, src/nodes.c, src/nodes.h, src/nodesx.c, src/visualiser.c:
+	Added a slim mode to the router (just for nodes to start with).
+
+2010-07-14  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/segmentsx.h, src/superx.c, src/waysx.c, src/waysx.h, src/Makefile, src/nodesx.c,
+	src/nodesx.h, src/planetsplitter.c, src/segmentsx.c:
+	Replaced the runtime selection of slim mode / non-slim mode with compile time
+	selection that gives no runtime overhead but gives two executables.
+
+2010-07-13  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.c, src/nodesx.h, src/segmentsx.c, src/segmentsx.h, src/waysx.c, src/waysx.h:
+	Move the functions for slim mode out into the header file and make it inline.
+
+2010-07-12  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/files.h: New file.
+
+	* src/segmentsx.h, src/sorting.c, src/superx.c, src/tagging.c, src/tagmodifier.c,
+	src/translations.c, src/ways.c, src/waysx.c, src/waysx.h, src/filedumper.c, src/files.c,
+	src/functions.h, src/nodes.c, src/nodesx.c, src/nodesx.h, src/optimiser.c, src/output.c,
+	src/planetsplitter.c, src/profiles.c, src/router.c, src/segments.c, src/segmentsx.c:
+	Create a files.h header and put some of the most heavily used files.c functions
+	into it and make them inline.
+
+2010-07-11  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/segmentsx.c, src/segmentsx.h, src/files.c, src/nodesx.c, src/nodesx.h:
+	Made the planetsplitter slim mode handle the output node and segment data in a
+	slim way as well as in the input data.
+
+	* src/nodesx.c, src/segmentsx.c, src/waysx.c:
+	Change the names of the temporary files.
+
+2010-07-10  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	Version 1.4.1 released
+
+2010-07-10  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* doc/NEWS.txt: Update NEWS for release.
+
+	* doc/ALGORITHM.txt:
+	Update documentation for slight modification to algorithm, also add more
+	information about how preferences etc are handled.
+
+2010-07-09  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/Makefile:
+	Default compilation flags include optimisation and not debugging symbols.
+
+2010-07-08  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/nodes.c:
+	Fix error with finding closest segment to the specified point.
+
+	* src/optimiser.c:
+	Bug fix for not crashing when finding the middle part of the route.
+
+2010-07-07  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/results.c, src/optimiser.c:
+	Changed the amount of memory allocated for intermediate results => routes much
+	faster.
+
+	* src/output.c: Remove compilation warning.
+
+	* src/Makefile:
+	Copy files to web directory like done in other Makefiles.
+
+	* doc/Makefile:
+	Change location of HTML files in web directory and clean up web directory on distclean.
+
+	* src/xml/Makefile: Stop message being printed when make runs.
+
+	* xml/Makefile:
+	Fix error from last checkin and clean up web directory on distclean.
+
+2010-07-06  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c:
+	Don't crash if the middle part of the route can't be found but exit cleanly.
+
+2010-07-05  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/superx.c: Change the algorithm used to determine supernodes.
+
+2010-07-03  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* xml/routino-translations.xml:
+	Added German translation [patch from Christoph Eckert].
+
+	* src/translations.c:
+	Don't crash if more than one language is in translations.xml but --language
+	option is not used.
+
+2010-06-28  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/router.c: Don't crash if start and finish are the same point.
+
+2010-06-27  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* doc/DATA.txt: New file.
+
+	* doc/ALGORITHM.txt, doc/CONFIGURATION.txt, doc/INSTALL.txt, doc/OUTPUT.txt, doc/README.txt,
+	doc/TAGGING.txt, doc/USAGE.txt:
+	Updated documentation to match new web site.
+
+	* doc/Makefile: New file.
+
+	* xml/Makefile: Add some new variables.
+
+2010-06-26  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* xml/routino-profiles.xml, xml/routino-tagging-nomodify.xml, xml/routino-tagging.xml,
+	xml/routino-translations.xml, src/translations.c:
+	Changed URLs to http://www.routino.org/
+
+	* doc/README.txt: *** empty log message ***
+
+	* doc/OUTPUT.txt: Changed URLs to http://www.routino.org/
+
+2010-05-31  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	Version 1.4 released
+
+2010-05-31  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* doc/INSTALL.txt, doc/NEWS.txt, doc/README.txt:
+	Update for version 1.4.
+
+	* src/xml/Makefile: Make sure that distclean really cleans up.
+
+	* Makefile: Make sure that xml sub-directory is made.
+
+	* src/router.c:
+	Fix the code that should stop routing if no segment is found.
+
+2010-05-30  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* doc/USAGE.txt:
+	Add the planetsplitter tagging rules option (and remove the unnecessary options
+	that it replaces), add the filedumper OSM dump option and add the tagmodifier
+	program.
+
+	* doc/TAGGING.txt: Describe the new tagging rules.
+
+	* doc/OUTPUT.txt: Note that the HTML and GPX outputs are translated.
+
+	* doc/CONFIGURATION.txt: Add the tagging rules configuration file.
+
+	* doc/ALGORITHM.txt: An update to the current size of the UK database.
+
+	* xml/routino-tagging-nomodify.xml: New file.
+
+	* src/tagmodifier.c:
+	A tagging XML file must be read (just like planetsplitter).
+
+	* src/filedumper.c:
+	Add the option to dump a region rather than all and to not output super
+	segments.
+
+	* src/optimiser.c: Fix printing the number of super-segments tried.
+
+2010-05-29  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* xml/routino-translations.xml, xml/routino-translations.xsd, src/ways.h, src/filedumper.c,
+	src/osmparser.c, src/output.c, src/translations.c, src/translations.h:
+	Translate the names given to unnamed roads (the highway type).
+
+	* src/profiles.c, src/profiles.h, src/router.c:
+	Stricter check on specified profile before routing.
+
+	* src/router.c: Ensure that if no segment is found the routing stops.
+
+	* src/nodes.c:
+	When finding a closest segment one of the nodes must be within the search
+	distance.
+
+2010-05-28  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/router.c: Make sure that some profiles are loaded.
+
+2010-05-27  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c, src/profiles.c:
+	Fix bug with profile preferences (used incorrectly in route optimisation).
+
+	* src/Makefile, src/filedumper.c, src/types.c, src/types.h:
+	Add an option to filedumper to dump an OSM format file.
+
+2010-05-25  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/xmlparse.l: Fix bug with encoding XML strings.
+
+2010-05-23  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* xml/Makefile:
+	Make sure that modified files are copied to web directory.
+
+	* src/tagmodifier.c:
+	Fix bug when filename is specified on command line.
+
+	* src/tagging.c, src/tagging.h, src/tagmodifier.c, src/xmlparse.l, src/osmparser.c:
+	Fix some memory leaks.
+
+	* src/tagmodifier.c, xml/osm.xsd, xml/routino-osm.xsd, src/osmparser.c:
+	Add the 'bound' element to the XML parser.
+
+2010-05-22  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/functionsx.h, src/osmparser.c, src/planetsplitter.c, src/ways.h, src/waysx.c,
+	src/waysx.h:
+	Remove the --transport=<transport>, --not-highway=<highway> and
+	--not-property=<property> options from planetsplitter because they can be done
+	by the tagging.xml file now.
+
+2010-05-18  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/Makefile: Add tagmodifier program.
+
+	* src/xmlparse.l: Handle floating point numbers in scientific notation.
+
+	* src/planetsplitter.c:
+	Read in the tag transformation rules before calling the OSM parser.
+
+	* src/functionsx.h, src/osmparser.c:
+	Almost completely re-written OSM parser using tagging transformations.
+
+	* src/tagmodifier.c, src/tagging.h, src/tagging.c: New file.
+
+	* xml/Makefile: Copy the tagging rules to the web directory.
+
+	* xml/routino-tagging.xml, xml/routino-tagging.xsd, xml/routino-osm.xsd:
+	New file.
+
+	* xml/osm.xsd: Small fix for OSM schema.
+
+2010-05-14  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/types.c: Remove highway type aliases from HighwayType() function.
+
+	* src/xmlparse.h, src/xmlparse.l: Allow empty strings to be returned.
+
+2010-05-10  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/xmlparse.h, src/xmlparse.l:
+	The line number is now a long integer.
+
+	* src/xml/Makefile: Running 'make test' now compiles everything first.
+
+2010-04-28  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/xml/Makefile: Delete zero length file if xsd-to-xmlparser fails.
+
+	* src/nodes.c, src/nodesx.c, src/segments.c, src/segmentsx.c, src/ways.c, src/waysx.c:
+	Change file format to allow 64-bit off_t type with 32 bit void* type.
+
+	* src/Makefile, src/filedumper.c, src/xml/Makefile:
+	Compile with _FILE_OFFSET_BITS=64 to get 64-bit fopen() and stat().
+
+2010-04-27  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/output.c: Fix mistake of writing GPX information to wrong file.
+
+	* doc/OUTPUT.txt, doc/CONFIGURATION.txt: New file.
+
+	* doc/TAGGING.txt, doc/USAGE.txt, doc/ALGORITHM.txt, doc/INSTALL.txt, doc/NEWS.txt,
+	doc/README.txt:
+	Interim checkin of updated documentation.
+
+2010-04-24  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/router.c:
+	Merged the three functions to output the head/body/tail of the results back into
+	a single function.  Added the '--output-none' option.
+
+	* src/functions.h, src/output.c:
+	Merged the three functions to output the head/body/tail of the results back into
+	a single function.
+
+	* xml/routino-translations.xml, xml/routino-translations.xsd, src/output.c,
+	src/translations.c, src/translations.h:
+	Added translations for the HTML output.
+
+	* src/xmlparse.h, src/xmlparse.l: Changed functions from const.
+
+	* src/output.c:
+	Add the copyright information into the translations.xml file instead of the
+	separate copyright.txt file.  Add the translated copyright strings into the
+	outputs.
+
+	* src/functions.h, src/router.c, src/translations.c, src/translations.h:
+	Add the copyright information into the translations.xml file instead of the
+	separate copyright.txt file.
+
+	* src/xmlparse.h, src/xmlparse.l:
+	Add an option to not convert the XML strings into decoded representations (saves
+	converting them back later for the translated strings).
+
+2010-04-23  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/xml/xsd-to-xmlparser.c, src/translations.c, src/xmlparse.h, src/xmlparse.l,
+	src/profiles.c:
+	Pass the tag name to the tag function.
+
+2010-04-22  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* Makefile: Fix bug in makefile.
+
+	* xml/Makefile: Move the translations into the web directory.
+
+	* xml/routino-translations.xml, xml/routino-translations.xsd: New file.
+
+	* src/output.c: Changed HTML output to be useful in web pages.
+
+	* src/xmlparse.l:
+	Restart properly so that a different file can be read.
+
+2010-04-13  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/xml/xsd-to-xmlparser.c, src/profiles.c, src/translations.c:
+	Name the tag variables and functions after the XSD data type and not the tag
+	name that uses it.
+
+2010-04-12  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/profiles.c, src/translations.c, src/xmlparse.h, src/xmlparse.l,
+	src/xml/xsd-to-xmlparser.c, src/xml/Makefile:
+	Change the last parameter to the ParseXML function to be general options.
+
+	* src/Makefile, src/types.h, src/ways.c, src/ways.h:
+	Move the type checking/printing functions from way.c to type.c.
+
+	* src/types.c: New file.
+
+2010-04-11  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/xml/xsd-to-xmlparser.c, src/profiles.c, src/translations.c, src/xmlparse.h,
+	src/xmlparse.l:
+	Added helper functions for parsing strings into numbers.
+	Added macros to perform common error checking.
+	Change XML parser callback functions to return an error status.
+
+2010-04-10  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/router.c: Fix usage information.
+
+	* src/translations.h, src/translations.c: New file.
+
+	* src/output.c: Added translations for GPX and turn/heading.
+
+	* src/Makefile, src/router.c:
+	Added file of translations and language selection.
+
+2010-04-09  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/functions.h, src/planetsplitter.c, src/sorting.c:
+	Add an option '--sort-ram-size' to specify the RAM to use for sorting - defaults
+	to 256MB if not using slim mode.
+
+2010-04-08  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/xml/Makefile: Fix test program generation and running.
+
+	* src/xmlparse.h, src/xmlparse.l:
+	Make the strings const and add the number of attributes to the xmltag structure.
+	Add functions to convert character entities and character references.
+
+	* src/profiles.c, src/xml/xsd-to-xmlparser.c:
+	Make the strings const and add the number of attributes to the xmltag structure.
+
+2010-04-07  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* xml/Makefile: New file.
+
+2010-04-06  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/Makefile:
+	Remove special lex/flex flags.  Remove profiles.o from planetsplitter.
+
+	* src/xml/xsd-to-xmlparser.c:
+	Don't print anything for attributes that are not set.
+
+	* src/xmlparse.l:
+	Change error message for bad character in a quoted string.
+	Make sure attribute values are cleared before calling tag function (for
+	end-tags).
+
+2010-04-04  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/xml/Makefile: Add some XML parsing test cases.
+
+	* src/xml/xsd-to-xmlparser.c: Rename the XML handling function.
+
+	* src/xmlparse.h, src/xmlparse.l, src/profiles.c: Added error checking.
+
+2010-04-03  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/functionsx.h, src/osmparser.c, src/planetsplitter.c:
+	Rename the old ParseXML() function as ParseOSM().
+
+2010-04-01  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/output.c: Wrap GPX descriptions in CDATA.
+
+2010-03-31  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* xml/routino-profiles.xml: New file.
+
+	* src/xml/xsd-to-xmlparser.c, src/profiles.c, src/xmlparse.h, src/xmlparse.l:
+	Call the XML tag functions for the end tags as well as the start tags.
+
+2010-03-30  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/profiles.c, src/profiles.h:
+	Change the name of the --profile-json and --profile-perl options.
+
+	* src/filedumper.c, src/planetsplitter.c, src/router.c:
+	Improve the program help messages.
+
+2010-03-29  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/files.c, src/functions.h, src/profiles.c, src/profiles.h, src/router.c:
+	Added command line option to specify a file containing profiles.
+	Added command line option to select profile by name from loaded set.
+	Use XML parser to read in the profiles.
+
+	* src/Makefile: Better handling of the xml sub-directory.
+
+	* src/xml/xsd-to-xmlparser.c:
+	Add the option to ignore unknown attributes.
+	Print out the skeleton file using static functions and variables.
+
+	* src/xml/Makefile: Keep the intermediate files.
+
+	* src/xmlparse.h, src/xmlparse.l:
+	Add the option to ignore unknown attributes.
+
+2010-03-28  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/profiles.h, src/router.c, src/profiles.c:
+	Add an option to print out the profiles as XML format.
+
+	* src/xmlparse.h, xml/xsd.xsd, xml/osm.xsd, src/xml/xsd-to-xmlparser.c:
+	New file.
+
+	* src/Makefile: Added the XML subdirectory and xmlparser.c.
+
+	* src/xmlparse.l, src/xml/Makefile: New file.
+
+2010-03-20  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/output.c: Add descriptions to each point in the GPX route file.
+
+	* src/files.c, src/functions.h, src/nodesx.c, src/output.c, src/segmentsx.c, src/waysx.c:
+	Move the stat() calls to find a file size into a helper function in files.c.
+
+	* src/files.c, src/output.c, src/planetsplitter.c:
+	Improve the error messages by adding strerror() to them.
+
+	* src/filedumper.c, src/router.c:
+	Don't check the return value of the functions to load the nodes, segments and
+	ways because those functions will exit in case of an error.
+
+	* src/nodes.c, src/segments.c, src/ways.c:
+	Don't check the return value of MapFile() because it will exit in case of an
+	error.
+
+	* src/planetsplitter.c:
+	Allow filenames on the planetsplitter command line.
+
+2010-03-19  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/waysx.h, src/filedumper.c, src/files.c, src/functions.h, src/nodesx.c, src/nodesx.h,
+	src/planetsplitter.c, src/segmentsx.c, src/segmentsx.h, src/superx.c, src/waysx.c:
+	Allow planetsplitter to be run with a --parse-only or --process-only option and
+	append to existing file or read from existing file.
+
+2010-03-18  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/router.c: Fix usage message error and shuffle order.
+
+	* src/output.c, src/router.c:
+	Allow selection of which outputs are to be created.
+
+2010-03-17  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/output.c: Re-order the code for HTML.
+
+2010-03-15  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/output.c: Create a simple HTML output.
+
+2010-03-06  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/router.c, src/nodes.c:
+	Speed up start/via/stop point search algorithm.
+
+2010-03-05  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/profiles.c:
+	Change the format of the output for the --help-profile-{pl|js} options.
+
+2010-01-21  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	Version 1.3 released
+
+2010-01-21  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* doc/NEWS.txt: Update to latest news.
+
+2010-01-18  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* doc/USAGE.txt, doc/TAGGING.txt, doc/INSTALL.txt:
+	Updated documentation.
+
+2010-01-15  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/router.c, src/functions.h:
+	Change the test output formats to add turn, node type and bearing information.
+
+2010-01-13  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/output.c:
+	Change the test output formats to add turn, node type and bearing information.
+
+2009-12-16  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/router.c:
+	Added an option to use only nodes and not interpolate a point into a segment.
+
+2009-12-15  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/osmparser.c, src/profiles.c, src/types.h, src/ways.c:
+	Added wheelchair as type of transport.
+
+2009-12-13  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/osmparser.c, src/profiles.c, src/types.h, src/ways.c:
+	Add bridge and tunnel to highway properties.
+
+2009-12-12  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/Makefile:
+	Ignore the error if executables cannot be copied after compiling.
+
+	* src/functions.h, src/nodesx.c, src/segmentsx.c, src/sorting.c, src/waysx.c:
+	Add some FILESORT_* #defines and use them.
+
+2009-12-11  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/functions.h, src/nodesx.c, src/planetsplitter.c, src/segmentsx.c, src/sorting.c,
+	src/waysx.c, src/waysx.h:
+	Added a new function to sort variable length data - simplifies the compacting of
+	ways, reduces memory usage potentially required for it and simplifies the code.
+
+2009-12-10  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/waysx.c:
+	Write out the list of ways without memory mapping anything.
+
+2009-11-27  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/osmparser.c, src/profiles.c, src/types.h, src/ways.c:
+	Add in "multilane" as a new highway property.
+
+2009-11-25  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/filedumper.c, src/optimiser.c, src/osmparser.c, src/planetsplitter.c, src/profiles.h,
+	src/router.c, src/ways.h, src/waysx.c, src/waysx.h:
+	Store the selected options when parsing (planetsplitter) and display them in the
+	statistics (filedumper) and check them when routing (router).
+
+2009-11-23  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/osmparser.c, src/output.c, src/profiles.c, src/types.h, src/ways.c:
+	Add in "steps" as a new highway type.
+
+2009-11-19  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c, src/router.c:
+	Made the verbose output consistent between different places.
+
+2009-11-18  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/router.c: Fix bug with previous segment-splitting routing.
+
+2009-11-14  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c, src/output.c, src/router.c, src/segments.h, src/functions.h, src/nodes.c,
+	src/nodes.h:
+	If a selected waypoint is not very close to an existing node then insert a fake
+	node in the segment that comes closest and use that instead.
+
+2009-11-13  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c, src/osmparser.c, src/queue.c, src/results.c, src/results.h, src/types.h:
+	Added in some more constants with the value ~0.
+
+2009-11-06  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/filedumper.c:
+	Check the values for the --node=, --segment= and --way= options.
+
+2009-11-03  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/output.c, src/planetsplitter.c, src/profiles.c, src/profiles.h, src/router.c,
+	src/types.h, src/ways.c:
+	Rename Way_Unknown to Way_Count to make more sense and match the properties.
+
+2009-11-02  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/osmparser.c: Allow the tag "paved" as well as "surface=paved".
+
+	* src/filedumper.c, src/optimiser.c, src/osmparser.c, src/planetsplitter.c, src/profiles.c,
+	src/profiles.h, src/router.c, src/types.h, src/ways.c, src/ways.h:
+	Added the ability to set routing preferences using highway properties.
+	Initially the only choice is either paved or unpaved but the code has been
+	updated to allow any number of properties to be added.
+
+2009-10-27  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/osmparser.c:
+	Handle the "designation=..." tag for bridleway, byway and footpath.  (Also
+	change to using a macro for testing if access is allowed and now allow
+	"destination").
+
+	* src/osmparser.c, src/profiles.c, src/types.h, src/ways.c, src/ways.h:
+	Added Moped to the list of transports (and incidentally increased the transport
+	data type to 16 bits and re-ordered the Way data-type in response).
+
+2009-10-26  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/profiles.c:
+	Ensure that horses and bicycles have a default speed on trunk even though they
+	have a default preference not to use it.
+
+	* src/osmparser.c, src/profiles.c, src/types.h, src/ways.c:
+	Re-ordered the types so that Horse comes before Bicycle.
+
+	* src/osmparser.c, src/output.c, src/profiles.c, src/types.h, src/ways.c:
+	Remove the Bridleway and Footway highway types and use the Path type instead
+	(also re-ordered the types so that Cycleway comes before Path).
+
+	* src/profiles.c: Remove unneeded spaces at the end of the output.
+
+2009-10-25  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/output.c:
+	Fix bug in code that determines waypoints for abbreviated output.
+
+2009-10-24  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/functions.h, src/optimiser.c, src/router.c:
+	Fix missing segments in output if start and finish points are found by the start
+	search.
+
+2009-10-22  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/files.c, src/nodesx.c, src/segmentsx.c, src/sorting.c, src/superx.c, src/waysx.c:
+	Added some missing comments and corrected some existing ones.
+
+2009-10-21  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	Version 1.2 released
+
+2009-10-21  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* doc/README.txt, doc/USAGE.txt, doc/NEWS.txt: Updated for version 1.2.
+
+2009-10-20  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/Makefile: Add sorting.o to the Makefile.
+
+2009-10-12  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/waysx.c: When sorting we cannot have NULL pointers now.
+
+	* src/nodesx.c, src/segmentsx.c, src/waysx.c:
+	Re-order the functions in the file into a more logical order.
+	No functional changes.
+
+	* src/nodesx.c, src/planetsplitter.c, src/segmentsx.c, src/sorting.c, src/waysx.c:
+	Rename the tmpdirname variable.
+
+2009-10-10  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.c, src/osmparser.c, src/segmentsx.c, src/sorting.c, src/waysx.c:
+	Corrections after running with valgrind.
+
+	* src/planetsplitter.c: Fix early termination test.
+
+	* src/nodesx.c, src/nodesx.h, src/segmentsx.c:
+	Remove the nodesx->gdata index.
+
+2009-10-09  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.c, src/segmentsx.c, src/typesx.h, src/waysx.c, src/waysx.h:
+	Free the nodesx->super array and the segmentsx->firstnode array when finished
+	with them.  Remove wayx->cid and overwrite wayx->id instead.  Overwrite
+	nodex[i]->id=i for later geographically sorted use.
+
+2009-10-08  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.c, src/planetsplitter.c, src/segmentsx.c, src/segmentsx.h, src/superx.c:
+	Replace node, segment and way indexes with a single index for a set of segments
+	containing the location of the first segment for each node.
+
+	* src/nodesx.h: Fix comment.
+
+2009-10-07  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/osmparser.c, src/segmentsx.c, src/superx.c:
+	AppendSegment adds a single segment and not a pair.
+
+	* src/waysx.c: Use heapsort() instead of qsort().
+
+	* src/nodesx.c, src/nodesx.h, src/planetsplitter.c, src/segmentsx.c, src/segmentsx.h,
+	src/superx.c, src/waysx.c:
+	Go back to the version 1.1 method of having each segment listed twice.  This
+	simplifies the lookup of first/next segments at no in-RAM index cost and now
+	that slim mode has sorting of file contents the balance has tipped back.
+
+2009-10-04  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/functions.h, src/sorting.c:
+	Change the sort function to allow the indexing callback to veto the write.
+
+	* src/nodesx.c: Remove the duplicates when sorting.
+
+	* src/waysx.c:
+	Sort the ways using the same method as the nodes.  Also remove the duplicates.
+
+	* src/nodesx.c:
+	Use the new sort functions to allow sorting the data in the file without needing
+	to read (or mmap) the whole file into RAM at the same time.
+
+	* src/functions.h: Add some functions to perform sorting.
+
+	* src/sorting.c: New file.
+
+	* src/queue.c: Fix bug with binary heap sort.
+
+2009-09-25  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/queue.c: Add comments describing the algorithm used.
+
+2009-09-23  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.c, src/waysx.c:
+	Simplify the de-duplication when sorting and update some comments.
+
+2009-09-22  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.c, src/nodesx.h:
+	Remove a leftover from the last change on these files.
+
+	* src/segmentsx.c: Improve the super-segment de-duplication.
+
+2009-09-21  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.c, src/nodesx.h, src/planetsplitter.c:
+	Remove the non-highway nodes without re-sorting the whole list again.
+
+2009-09-17  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/osmparser.c, src/planetsplitter.c, src/segmentsx.c, src/superx.c, src/waysx.c,
+	src/waysx.h:
+	Added the slim mode to Ways as well.
+
+	* src/ways.h: Add padding to Ways structure to allow it to be zeroed.
+
+	* src/nodesx.c: Add some comments when closing and re-opening files.
+
+	* src/files.c, src/functions.h:
+	The WriteFile function now has a const parameter.
+
+2009-09-15  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.c, src/nodesx.h, src/planetsplitter.c, src/segmentsx.c:
+	Some bug fixes and some missing unmap function calls.
+
+2009-09-07  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/segmentsx.h, src/superx.c, src/nodesx.c, src/nodesx.h, src/segmentsx.c:
+	Fixed slim mode for segments and nodes (slim now means mapping only one file
+	into RAM at a time and none when creating the final output).
+
+2009-09-06  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.h, src/planetsplitter.c, src/segmentsx.c, src/segmentsx.h, src/superx.c,
+	src/superx.h, src/nodesx.c:
+	Slim version of segments code (still very slow and only works on simple cases).
+
+	* src/files.c, src/functions.h:
+	Remove the delete option from UnmapFile() and make it return NULL.
+
+	* src/filedumper.c: Allow dumping all nodes, segments or ways.
+
+2009-09-05  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.c: Don't re-sort unnecessarily.
+
+	* src/nodesx.c, src/nodesx.h, src/planetsplitter.c, src/segmentsx.c, src/superx.c:
+	Improve slim mode for nodes so that no data is not loaded into RAM at all.
+
+	* src/files.c, src/functions.h: Add some more file functions.
+
+2009-09-03  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.c, src/files.c, src/functions.h:
+	Remove extra argument from MapFile function.
+
+	* src/nodesx.c, src/nodesx.h, src/planetsplitter.c, src/segmentsx.c, src/superx.c:
+	Added slim mode (--slim) to planetsplitter for nodes only.
+
+	* src/files.c, src/functions.h:
+	Changes to mapping and unmapping files for slim mode.
+
+2009-08-25  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/planetsplitter.c: Revert the order that the functions are called.
+
+	* src/nodesx.c: Fix for assert statement.
+
+	* src/files.c: Bug fix for mmap().
+
+2009-08-20  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/osmparser.c: Fix bug with memory allocation.
+
+2009-08-19  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.c, src/nodesx.h, src/planetsplitter.c, src/segmentsx.c, src/segmentsx.h,
+	src/superx.c, src/waysx.c, src/waysx.h:
+	Remove "sorted" parameter in data structure and change assert statements.
+
+2009-08-17  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/router.c:
+	Increase to 99 the number of waypoints that can be specified.
+
+2009-08-15  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/queue.c: Fix comment.
+
+	* src/Makefile:
+	Tidy the compilation options to make it easier to turn them on and off.
+
+	* src/router.c:
+	Remove the --all, --super and --no-output command line options.
+	Handle the renamed routing functions.
+
+	* src/functions.h, src/optimiser.c:
+	Rename the routing functions and make FindRoute only find routes with no
+	super-nodes in them.
+
+	* src/queue.c:
+	When popping from queue make sure that place in queue is cleared.
+
+	* src/optimiser.c, src/queue.c, src/results.c, src/results.h, src/superx.c:
+	Optimise the priority queue used for routing.
+
+	* src/filedumper.c: Fix dumping nodes when they are super-nodes.
+
+2009-07-23  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/Makefile, src/optimiser.c, src/results.c, src/results.h, src/superx.c:
+	Split off queue functions into a separate file.
+
+	* src/queue.c: New file.
+
+2009-07-19  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.c, src/segments.h, src/segmentsx.c, src/ways.h, src/waysx.c, src/filedumper.c,
+	src/nodes.h:
+	Include the number of super-nodes, super-segments etc in the database as useful
+	information to put in the statistics output.
+
+	* src/superx.c: Fix incorrect progress indicator message.
+
+	* src/waysx.c: Fix problem with memory reallocation.
+
+	* src/nodesx.c, src/osmparser.c, src/planetsplitter.c, src/segmentsx.c, src/segmentsx.h,
+	src/superx.c:
+	Store only one copy of each segment but index once for each direction.
+
+2009-07-12  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/functionsx.h, src/nodesx.c, src/nodesx.h, src/osmparser.c, src/output.c,
+	src/planetsplitter.c, src/profiles.c, src/results.c, src/segments.c, src/segmentsx.c,
+	src/segmentsx.h, src/superx.c, src/superx.h, src/ways.h, src/waysx.c, src/waysx.h:
+	Tidy up and fix comments and include files.
+
+	* src/osmparser.c, src/planetsplitter.c, src/router.c, src/segmentsx.c, src/superx.c,
+	src/waysx.c, src/filedumper.c, src/nodesx.c, src/optimiser.c:
+	Check all print statements and made them more consistent and/or accurate.
+
+2009-07-11  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.c, src/nodesx.h, src/planetsplitter.c, src/segmentsx.c, src/waysx.c,
+	src/waysx.h:
+	Free memory at the end of planetsplitter (to aid finding potential leaks
+	earlier).
+
+2009-07-09  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/segmentsx.c: Free memory correctly (really).
+
+	* src/planetsplitter.c, src/waysx.c, src/waysx.h:
+	Separate the sorting of Ways from compacting of Ways.
+
+	* src/nodes.h, src/nodesx.c, src/nodesx.h, src/segmentsx.c, src/visualiser.c,
+	src/filedumper.c, src/nodes.c:
+	Rename structure members after recent changes.
+
+	* src/segmentsx.c: Free memory correctly.
+
+	* src/types.h, src/segmentsx.c: Fix duplicate checking.
+
+	* src/planetsplitter.c: Ensure that variable is reset before using it.
+
+	* src/types.h, src/visualiser.c, src/visualiser.h, src/filedumper.c, src/nodes.c,
+	src/nodes.h, src/nodesx.c, src/nodesx.h, src/optimiser.c, src/osmparser.c, src/output.c,
+	src/router.c, src/segments.c, src/segments.h, src/segmentsx.c:
+	Change from float to double for latitude and longitude.
+	Store latitude and longitude as an integer type rather than float (higher precision).
+
+2009-07-08  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/superx.c: Ensure that variable is reset before using it.
+
+2009-07-06  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/visualiser.c:
+	Print all super-segments within and crossing the border.
+	Don't display speed limits for tracks and paths unless set.
+
+2009-07-04  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/segmentsx.h, src/superx.c, src/waysx.c, src/waysx.h:
+	Change data structure to avoid calling realloc() each time to allocate more
+	memory.
+
+2009-07-02  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/types.h, src/waysx.c, src/waysx.h:
+	Handle duplicate ways.
+
+	* src/nodes.c, src/nodesx.c, src/planetsplitter.c, src/profiles.c, src/results.c,
+	src/segments.c, src/segmentsx.c, src/superx.c, src/superx.h, src/types.h, src/ways.c,
+	src/waysx.c:
+	Fix some gcc pedantic warnings.
+
+	* src/files.c, src/nodesx.c, src/osmparser.c, src/results.c, src/router.c, src/segments.c,
+	src/segmentsx.c, src/superx.c, src/ways.c, src/waysx.c:
+	Removed unused header files, change assert statements, tidy some code.
+
+2009-07-01  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.c, src/nodesx.h, src/planetsplitter.c, src/segmentsx.c, src/segmentsx.h, src/superx.c:
+	Remove the Node structure from the NodeX structure to save memory.
+
+	* src/filedumper.c:
+	Print latitude and longitude in degrees.
+
+2009-06-30  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/segmentsx.h:
+	Re-order the data in the structure.
+
+	* src/nodesx.c, src/nodesx.h, src/osmparser.c, src/planetsplitter.c, src/segmentsx.c,
+	src/segmentsx.h, src/superx.c, src/waysx.h:
+	Remove the Segment structure from the SegmentX structure to save memory.
+
+2009-06-29  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/filedumper.c, src/nodes.h, src/nodesx.c, src/segments.c, src/segments.h,
+	src/segmentsx.c, src/superx.c, src/types.h:
+	Move the super-segment and normal-segment flags from the nodes to the distance.
+	Remove the NODE() macro and rename SUPER_FLAG to NODE_SUPER.
+
+	* src/waysx.c: Replace memmove with structure copy.
+
+	* src/nodesx.c, src/segmentsx.c, src/segmentsx.h, src/superx.c:
+	Rename SegmentsX sdata to ndata.
+
+2009-06-25  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/waysx.c, src/waysx.h: Rename part of the structure.
+
+	* src/nodesx.c, src/nodesx.h, src/planetsplitter.c, src/segmentsx.c, src/segmentsx.h,
+	src/superx.c, src/waysx.h:
+	Undo part of the previous change - only update the Segment way index at the end.
+
+	* src/waysx.h, src/nodesx.c, src/osmparser.c, src/planetsplitter.c, src/segmentsx.c,
+	src/segmentsx.h, src/superx.c, src/superx.h, src/typesx.h, src/waysx.c:
+	Reduce the number of ways in the output by compacting them (sharing the same
+	information between identical ways).
+
+2009-06-24  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/filedumper.c, src/nodes.h:
+	Allow dumping out of nodes, segments and ways.
+
+2009-06-15  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/segmentsx.c, src/superx.c, src/visualiser.c, src/ways.c, src/ways.h:
+	Rename WaysSame() with WaysCompare() and reverse the sense of the output.
+
+	* src/functionsx.h, src/typesx.h: New file.
+
+	* src/functions.h, src/nodesx.h, src/osmparser.c, src/planetsplitter.c, src/segmentsx.h,
+	src/superx.h, src/types.h, src/waysx.h:
+	Put some of types.h into typesx.h (for extended data types).
+	Put some of functions.h into functionsx.h (for OSM parser).
+	Change included files to match.
+
+	* src/filedumper.c, src/osmparser.c, src/output.c, src/router.c, src/types.h, src/visualiser.c:
+	Add a macro for converting degrees to radians and radians to degrees.
+
+	* src/optimiser.c:
+	Fix weight, height, width, length restriction routing.
+
+	* doc/TAGGING.txt, src/osmparser.c:
+	Recognise tags "vehicle" and "motor_vehicle".
+
+2009-06-13  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	Version 1.1 released
+
+2009-06-13  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.c, src/planetsplitter.c, src/segmentsx.c, src/segmentsx.h:
+	Handle nodes that are missing from the .osm file (ignore the segment).
+
+	* src/nodesx.c:
+	Revert the last change (Print an error message and exit if a node cannot be found).
+
+	* doc/NEWS.txt: New file.
+
+	* src/Makefile:
+	Delete the executables from the web directory for 'distclean'.
+
+2009-06-12  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* doc/USAGE.txt, doc/INSTALL.txt, doc/README.txt:
+	Update the documentation.
+
+	* src/Makefile: Copy the executables into the web directory.
+
+2009-06-08  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/filedumper.c: Change help text.
+
+	* src/visualiser.c:
+	Change format of super-node/segment visualiser output.
+
+2009-06-07  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* doc/TAGGING.txt: Updated with imperial to metric conversions.
+
+	* src/Makefile: Added visualiser.c.
+
+	* src/filedumper.c: Now used for data visualisation and statistics.
+
+	* src/visualiser.h, src/visualiser.c: New file.
+
+2009-06-05  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/osmparser.c:
+	Improve parsing of imperial units (mph, feet & inches).
+
+2009-06-03  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.c:
+	Print an error message and exit if a node cannot be found.
+
+2009-05-31  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/ways.c, src/ways.h, src/waysx.c, src/waysx.h:
+	Move function from waysx.c to ways.c.
+
+2009-05-29  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* doc/USAGE.txt:
+	Update usage information with new options and copyright.txt usage.
+
+	* src/nodes.c, src/nodes.h, src/router.c:
+	Make sure that the chosen "nearest point" is a highway that the profile allows.
+
+2009-05-23  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/profiles.c:
+	Change the default profile; horses are slower, bicycles may be allowed on
+	footways (and similar).
+
+2009-05-15  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/files.c, src/output.c:
+	Error checking on opening files (to read/write data and to write output).
+
+2009-05-14  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/output.c, src/results.c, src/router.c, src/segments.c, src/segmentsx.c, src/superx.c,
+	src/types.h, src/nodes.c, src/nodesx.c, src/optimiser.c:
+	Replace ~0 or 0 with NO_NODE value for "no node" condition.
+
+2009-05-13  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/output.c:
+	Remove one more NODE macro and fix an output formatting error.
+
+	* src/nodes.c, src/nodes.h, src/optimiser.c, src/output.c, src/router.c:
+	Remove some node macros, change some node function arguments.
+
+	* src/optimiser.c, src/profiles.c, src/profiles.h:
+	Move some common code into the profile.
+
+	* src/superx.c: Remove distance and duration from Result structure.
+
+	* src/output.c: Better junction detection.
+
+	* src/optimiser.c, src/results.c, src/results.h:
+	Remove distance and duration from Result structure.
+
+2009-05-09  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/output.c:
+	Add better junction detection for deciding on route waypoints.
+
+2009-05-06  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c, src/profiles.c, src/profiles.h, src/types.h:
+	Route using preferences for each highway.
+
+	* src/router.c: Print out longitude then latitude.
+
+2009-04-30  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/results.h, src/router.c, src/superx.c, src/types.h, src/optimiser.c, src/osmparser.c,
+	src/planetsplitter.c, src/profiles.c, src/profiles.h, src/results.c:
+	First attempt at preferences for highways - uses integer arithmetic and doesn't
+	work well.
+
+2009-04-27  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/functions.h, src/optimiser.c, src/output.c, src/results.c, src/results.h, src/router.c:
+	Allow generating a route with intermediate waypoints.
+
+2009-04-24  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/functions.h, src/output.c, src/router.c:
+	Split the output functions into separate head/body/tail.
+	Read in an optional copyright.txt file and include contents in output.
+
+2009-04-23  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/profiles.c: Improve Javascript and perl print out.
+
+	* src/filedumper.c, src/files.c, src/functions.h, src/planetsplitter.c, src/router.c:
+	Move the filename generation to a new function.
+
+2009-04-22  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/Makefile, src/functions.h, src/optimiser.c:
+	Split the function to print the output into a new file.
+
+	* src/output.c: New file.
+
+2009-04-15  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/osmparser.c:
+	Fix for parsing nodes from XML (no effect on results).
+
+2009-04-12  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* doc/USAGE.txt, src/optimiser.c:
+	Create a GPX route as well as a track.
+
+	* src/ways.c: Changed the license to Affero GPLv3.
+
+2009-04-10  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c:
+	Add a waypoint to the GPX file for the start and finish points.
+
+	* doc/USAGE.txt:
+	Include more information about the output file formats.
+
+2009-04-08  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	Version 1.0 released
+
+2009-04-08  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* Makefile: New file.
+
+	* src/Makefile: Fix dependency file generation.
+
+	* doc/USAGE.txt, doc/TAGGING.txt, doc/README.txt, doc/INSTALL.txt, doc/ALGORITHM.txt:
+	New file.
+
+	* src/Makefile, src/filedumper.c, src/files.c, src/functions.h, src/nodes.c, src/nodes.h,
+	src/nodesx.c, src/nodesx.h, src/optimiser.c, src/osmparser.c, src/planetsplitter.c,
+	src/profiles.c, src/profiles.h, src/results.c, src/results.h, src/router.c, src/segments.c,
+	src/segments.h, src/segmentsx.c, src/segmentsx.h, src/superx.c, src/superx.h, src/types.h,
+	src/ways.h, src/waysx.c, src/waysx.h:
+	Changed the license to Affero GPLv3.
+
+2009-04-07  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/planetsplitter.c: Remove the --help-profile command line option.
+
+2009-03-28  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c:
+	Fix file headers (again) and fix segment distance/duration for abbreviated text
+	output.
+
+2009-03-24  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/osmparser.c, src/profiles.c, src/types.h, src/ways.c:
+	Added highway=path; defaults to foot=yes but also is defaulted for bicycle and
+	horse transport.
+
+2009-03-23  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c: Fixed the header in the output text files.
+
+	* src/osmparser.c:
+	Add parsing for *=designated allowing passage along a highway.
+
+	* src/profiles.h, src/router.c, src/profiles.c:
+	Add a function to output default profiles as perl data structures.
+
+2009-03-21  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.c:
+	Handle duplicated nodes (e.g. from concatenated input files).
+
+	* src/optimiser.c: Add a header to the output text files.
+
+2009-03-07  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c:
+	Renamed the *.txt output to *-all.txt and added a new shorted *.txt output.
+
+	* src/router.c: Renamed the --no-print option to --no-output.
+
+2009-03-04  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/nodes.c: Fix bug with finding nearest node.
+
+2009-03-03  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/superx.c: Fix the merging of super-segments.
+
+2009-03-01  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/profiles.c, src/profiles.h:
+	Added more limits (weight, height, width, length).
+
+	* src/segments.c: Use the lower speed from the profile and the way.
+
+	* src/osmparser.c: Added more limits (weight, height, width, length).
+	Added highway=living_street and highway=services.
+
+	* src/ways.c, src/ways.h, src/optimiser.c, src/router.c, src/segmentsx.c, src/superx.c,
+	src/types.h:
+	Added more limits (weight, height, width, length).
+
+	* src/waysx.c, src/waysx.h:
+	Added a function to test if two ways are the same.
+
+2009-02-28  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/nodesx.c:
+	Round the node location to avoid if falling into the wrong bin.
+
+	* src/nodesx.c, src/planetsplitter.c, src/segmentsx.c, src/waysx.c:
+	Move print statements from planetsplitter into individual functions.
+
+	* src/Makefile: Compile with optimisation and no profiling.
+
+	* src/profiles.c, src/router.c:
+	Add new command line options to make it more CGI friendly.
+
+2009-02-27  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/profiles.c, src/profiles.h, src/router.c:
+	Print out Javascript code containing the profiles.
+
+2009-02-24  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/segmentsx.h, src/superx.c, src/nodesx.c, src/segments.c, src/segments.h,
+	src/segmentsx.c:
+	Remove segment->next1 since it always points at the next segment or nowhere.
+
+	* src/profiles.c: Remove track from valid types for most transports.
+
+2009-02-15  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/functions.h, src/optimiser.c, src/router.c:
+	Change some function names.
+
+	* src/osmparser.c: Add in tests for motorcar=1 etc.
+
+	* src/nodes.c, src/nodes.h, src/router.c:
+	The search to find a node given the lat/long now searches harder.
+
+	* src/optimiser.c: Better test for failing to find a route.
+
+	* src/router.c: Change --only-super to --super.
+
+	* src/nodesx.c, src/optimiser.c, src/osmparser.c, src/router.c, src/segments.c,
+	src/segmentsx.c, src/types.h, src/nodes.c:
+	Store radians rather than degrees.
+
+	* src/segments.c, src/segmentsx.c:
+	Change to sinf(), cosf(), sqrtf(), asinf() functions.
+
+	* src/optimiser.c:
+	Set the sortby parameter to the minimum distance/duration consistent with the
+	travelled distance/duration and the remaining straight line distance with the
+	fastest possible speed.
+
+	* src/filedumper.c, src/nodes.c, src/nodes.h, src/nodesx.c, src/types.h:
+	Add macros for handling lat/long to bin conversions.
+
+	* src/osmparser.c: Handle oneway=1 and oneway=-1.
+
+2009-02-10  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/results.c, src/results.h:
+	Added a new 'sortby' entry to the Result.
+	Changed node_t to index_t.
+
+	* src/router.c: Changed node_t to index_t.
+
+	* src/nodes.c, src/segments.c, src/segments.h:
+	Change the Distance() function to return distance_t.
+
+2009-02-08  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c, src/results.c, src/results.h, src/router.c, src/superx.c:
+	Calculate quickest or shortest, not both.
+
+	* src/optimiser.c, src/profiles.c, src/router.c:
+	Give appropriate error messages if start or end of route are not possible.
+
+2009-02-07  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/results.c:
+	Slight speedup by doing a linear search when looking up results and not storing
+	in sorted order.
+
+	* src/superx.h, src/superx.c, src/waysx.h, src/waysx.c, src/segmentsx.h, src/segmentsx.c,
+	src/nodesx.h, src/nodesx.c:
+	New file.
+
+	* src/ways.h, src/Makefile, src/filedumper.c, src/functions.h, src/nodes.c, src/nodes.h,
+	src/optimiser.c, src/osmparser.c, src/planetsplitter.c, src/router.c, src/segments.c,
+	src/segments.h, src/types.h, src/ways.c:
+	Split the extended data types from the normal data types.
+
+	* src/nodes.c: Return NULL if the node cannot be found.
+
+	* src/Makefile, src/filedumper.c, src/optimiser.c, src/router.c:
+	Add new command line options.
+
+	* src/supersegments.c: Fix some status messages.
+
+	* src/optimiser.c, src/types.h: Routing works with super-nodes now.
+
+2009-02-06  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/ways.c, src/segments.c, src/segments.h, src/supersegments.c, src/types.h, src/nodes.c,
+	src/nodes.h, src/optimiser.c, src/osmparser.c, src/planetsplitter.c, src/functions.h:
+	Segments now not duplicated in database.
+	Routing with all nodes works, not with super-nodes.
+
+2009-02-04  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/router.c: Fix usage output.
+
+	* src/ways.c, src/ways.h: Only sort once, don't store the index.
+
+	* src/planetsplitter.c, src/router.c:
+	Use '--*' command line arguments, not '-*'.
+
+	* src/nodes.c, src/router.c, src/segments.c, src/ways.c:
+	Make sure that nodes, segments and ways could be loaded.
+
+	* src/nodes.h, src/optimiser.c, src/router.c, src/segments.c, src/segments.h,
+	src/supersegments.c, src/types.h, src/filedumper.c, src/nodes.c:
+	Sort the nodes geographically and take coordinates as command line arguments.
+
+2009-02-02  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/ways.c, src/ways.h, src/nodes.c, src/nodes.h, src/osmparser.c, src/segments.c,
+	src/segments.h, src/supersegments.c, src/types.h:
+	More variable and function name changes.
+
+2009-02-01  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/profiles.c, src/router.c, src/segments.c, src/segments.h, src/supersegments.c,
+	src/ways.c, src/ways.h, src/files.c, src/functions.h, src/nodes.c, src/nodes.h,
+	src/optimiser.c, src/osmparser.c, src/planetsplitter.c, src/filedumper.c:
+	Rename some variable types.
+
+2009-01-31  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/segments.c, src/segments.h, src/supersegments.c, src/types.h, src/ways.c, src/ways.h,
+	src/functions.h, src/nodes.c, src/nodes.h, src/optimiser.c, src/planetsplitter.c,
+	src/profiles.h, src/router.c:
+	Intermediate version during code cleanup.
+
+	* src/optimiser.c, src/planetsplitter.c, src/router.c, src/segments.c, src/segments.h,
+	src/functions.h, src/nodes.h:
+	Intermediate checkin, routing now working.
+
+	* src/Makefile:
+	Don't print out anything when creating the dependencies directory.
+
+	* src/planetsplitter.c, src/router.c:
+	Add command line options to specify the directory and filename prefix.
+
+2009-01-30  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/results.c, src/planetsplitter.c: Remove gcc warning.
+
+	* src/Makefile: Move dependencies to subdir.
+
+	* src/osmparser.c: Remove gcc warning.
+
+2009-01-29  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/functions.h, src/nodes.c, src/nodes.h, src/optimiser.c, src/planetsplitter.c,
+	src/router.c, src/segments.c, src/segments.h, src/supersegments.c:
+	Intermediate version while transitioning data format for nodes and segments.
+
+2009-01-28  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/Makefile, src/functions.h, src/nodes.c, src/nodes.h, src/optimiser.c, src/osmparser.c,
+	src/planetsplitter.c, src/segments.c, src/segments.h, src/supersegments.c, src/ways.c,
+	src/ways.h:
+	Intermediate version while transitioning data format for nodes and segments.
+
+2009-01-27  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/Makefile, src/functions.h, src/nodes.c, src/nodes.h, src/optimiser.c,
+	src/planetsplitter.c, src/router.c, src/segments.c, src/segments.h, src/supersegments.c,
+	src/ways.c, src/ways.h:
+	Intermediate version while transitioning data format for nodes and segments.
+
+2009-01-26  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/osmparser.c, src/planetsplitter.c, src/segments.c, src/segments.h,
+	src/supersegments.c, src/ways.c, src/ways.h, src/filedumper.c, src/files.c, src/functions.h,
+	src/optimiser.c:
+	Change Segment to contain index of way not its real ID.
+	Don't store the real way ID to save space.
+
+2009-01-25  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/segments.c, src/segments.h:
+	Slightly speed up the Duration calculation by changing the macro.
+
+	* src/osmparser.c, src/profiles.c, src/ways.c, src/ways.h:
+	Fix misspelling of Unclassified.
+
+	* src/planetsplitter.c, src/segments.c, src/segments.h, src/supersegments.c, src/ways.h,
+	src/optimiser.c:
+	Change the segment->way so that it contains the index of the way, not the id.
+
+	* src/profiles.c, src/profiles.h: New file.
+
+	* src/ways.c, src/ways.h, src/Makefile, src/functions.h, src/optimiser.c, src/osmparser.c,
+	src/planetsplitter.c, src/router.c, src/segments.c, src/segments.h:
+	Added profiles to define speed and allowed highways.
+	Added new options to planetsplitter and router to use the profiles.
+
+2009-01-24  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c: Changed some variable names for clarity.
+
+	* src/planetsplitter.c: Print more information about progress.
+	Don't quit until 99.9% unchanged.
+
+	* src/optimiser.c, src/results.c, src/results.h, src/supersegments.c:
+	Change the Results structure so that the real data doesn't need to be realloc().
+	Add functions to access the first and subsequent elements of the Results structure.
+
+2009-01-23  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/osmparser.c, src/planetsplitter.c:
+	Fix bug with not specifying a method of transport.
+
+	* src/optimiser.c, src/router.c: Proper check that it was unroutable.
+
+	* src/functions.h, src/optimiser.c, src/planetsplitter.c, src/supersegments.c:
+	Remove "iteration" as function argument.
+
+	* src/functions.h, src/optimiser.c, src/osmparser.c, src/planetsplitter.c, src/router.c,
+	src/ways.c, src/ways.h:
+	Add command line options to planetsplitter and router.
+	Select transport type (must be allowed on way for parsing).
+	Select highway types (ignore when parsing or routing).
+
+	* src/ways.h, src/functions.h, src/optimiser.c, src/osmparser.c, src/router.c,
+	src/segments.c, src/segments.h, src/ways.c:
+	Add enumerated type Transport.
+	Replace variables of AllowType with Transport where more appropriate.
+	Replace AllowType with Allowed.
+	Replace WayType with Highway.
+
+	* src/osmparser.c: Only include ways that are not Way_Unknown type.
+
+	* src/osmparser.c: Include permissive access.
+
+	* src/functions.h, src/optimiser.c, src/results.c, src/results.h, src/router.c:
+	Create a large or small results structure depending on how many nodes are
+	expected.
+
+2009-01-22  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/results.h: Increase the number of bins to 64k.
+
+	* src/optimiser.c, src/osmparser.c, src/segments.c, src/segments.h, src/supersegments.c:
+	Remove INVALID_DISTANCE and INVALID_DURATION.
+
+	* src/optimiser.c, src/osmparser.c, src/supersegments.c, src/ways.c, src/ways.h:
+	Removed the Way_TYPE() macro.
+
+	* src/results.c, src/results.h, src/optimiser.c:
+	Move queue functions into results.c.
+
+	* src/filedumper.c, src/nodes.c, src/nodes.h, src/planetsplitter.c, src/router.c:
+	Nodes, Segments, Ways - Nodes, Segments, Ways.
+
+	* src/filedumper.c, src/nodes.c, src/nodes.h, src/segments.c, src/segments.h, src/ways.c,
+	src/ways.h:
+	Remove the choice of indexed or non-indexed data structures.
+
+2009-01-21  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c:
+	Various small speed-ups including not-reversing direction.
+
+	* src/functions.h, src/optimiser.c, src/osmparser.c, src/router.c, src/segments.c,
+	src/segments.h, src/supersegments.c, src/ways.c, src/ways.h:
+	Calculate way speeds at routing time.
+
+	* src/supersegments.c:
+	Add reverse-oneway segments when creating supernodes.
+	Check incoming oneway streets as well as outgoing ones.
+
+	* src/osmparser.c: Don't change speed on roundabouts.
+
+2009-01-20  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/planetsplitter.c:
+	Add command line options for skipping parsing and iteration limit.
+
+	* src/optimiser.c, src/osmparser.c, src/segments.c, src/segments.h, src/supersegments.c:
+	Remove duration from segment, calculate duration depending on speed.
+
+2009-01-19  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/functions.h, src/optimiser.c, src/planetsplitter.c, src/supersegments.c:
+	Iteratively calculate the super-segments.
+
+	* src/ways.h: Redefine Way_TYPE() to include one-way status.
+
+2009-01-18  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c, src/supersegments.c:
+	Fix problems with way-type matching and duplicated/missing super-segments.
+
+	* src/functions.h, src/optimiser.c, src/router.c: Print out a GPX file.
+
+	* src/optimiser.c, src/filedumper.c, src/functions.h, src/planetsplitter.c, src/router.c,
+	src/segments.c, src/segments.h, src/supersegments.c, src/ways.c, src/ways.h:
+	Added Super-Ways and allow user to select method of transport.
+
+	* src/segments.c: Fix for changes made to ways.
+
+	* src/supersegments.c:
+	Ensure that supernodes are inserted wherever the way type changes.
+
+	* src/osmparser.c: Fill in the extra way information.
+
+	* src/ways.h:
+	Store more information about a way (allowed modes of transport).
+
+	* src/filedumper.c: Fix output printing.
+
+	* src/router.c: Print an error if no route can be found.
+
+	* src/optimiser.c:
+	Fix bugs when start and/or finish nodes are supernodes.
+
+2009-01-17  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/Makefile: Add the option to create assembler output files.
+
+	* src/optimiser.c, src/results.c, src/results.h, src/supersegments.c:
+	Change the contents of the results data structure.
+
+	* src/router.c: Added an option to not print the result.
+
+2009-01-16  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c, src/results.h, src/router.c:
+	Speed optimisation by changing the contents of the Results structure.
+
+	* src/optimiser.c:
+	Don't bother calculating the distance to go, it takes too long.
+
+2009-01-14  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/planetsplitter.c: Remove bad segments and non-way nodes.
+
+	* src/nodes.c, src/nodes.h: Remove nodes which are not in highways.
+	Fix the sorting and create indexes after sorting, not before saving.
+
+	* src/segments.c, src/segments.h:
+	Remove bad segments (repeated consecutive nodes and duplicate segments).
+	Fix the sorting and create indexes after sorting, not before saving.
+
+	* src/supersegments.c: Use invalid distances properly.
+
+	* src/ways.c:
+	Fix the sort algorithm and update the indexes after sorting, not before saving.
+
+	* src/optimiser.c: Fix the bug with merging the results.
+	Fix the bug with not clearing the results structure properly.
+
+	* src/osmparser.c:
+	Add segments that correspond to the wrong way along one-way routes with an
+	invalid distance.
+
+2009-01-11  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/functions.h, src/optimiser.c, src/router.c:
+	Routes correctly using super-nodes (not Lands End to John O'Groats though).
+
+	* src/filedumper.c, src/functions.h, src/optimiser.c, src/planetsplitter.c, src/router.c,
+	src/segments.h, src/supersegments.c:
+	Replace Junction with SuperNode.
+
+	* src/nodes.c, src/nodes.h, src/segments.h, src/ways.c, src/ways.h:
+	Some small changes to the nodes, segments and ways functions.
+
+	* src/Makefile, src/filedumper.c, src/functions.h, src/optimiser.c, src/planetsplitter.c,
+	src/results.h, src/router.c, src/segments.c, src/segments.h, src/supersegments.c:
+	Working version with supersegments and junctions.
+
+2009-01-10  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/ways.c, src/ways.h, src/osmparser.c, src/segments.c:
+	Store more information about ways.
+
+	* src/results.h, src/results.c: New file.
+
+	* src/Makefile, src/optimiser.c:
+	Move the results data type into new files.
+
+	* src/nodes.h, src/segments.h, src/ways.h:
+	Increase the increment for the indexed array case.
+
+	* src/ways.h, src/Makefile, src/filedumper.c, src/functions.h, src/nodes.c, src/nodes.h,
+	src/optimiser.c, src/osmparser.c, src/planetsplitter.c, src/router.c, src/segments.c,
+	src/segments.h, src/supersegments.c, src/ways.c:
+	About to add the super-segment functionality using Segments data type to hold
+	them.
+
+	* src/functions.h, src/types.h:
+	Changed after nodes, ways and segment changes.
+
+2009-01-09  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/segments.h: New file.
+
+	* src/segments.c:
+	Changed the format of the segments data type to match the nodes.
+
+	* src/nodes.h: Enable indexed arrays.
+
+	* src/ways.h: New file.
+
+	* src/ways.c:
+	Changed the format of the ways data type to match the nodes.
+
+	* src/nodes.c, src/nodes.h:
+	Changed the format of the nodes data type again.
+
+2009-01-07  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/nodes.h: New file.
+
+	* src/nodes.c: Lots of modifications:
+	Two data structures - in memory (pointers) and in file (array).
+	Data is hashed into multiple bins.
+	Each function takes a nodes structure as an argument.
+
+2009-01-06  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/supersegments.c: New file.
+
+	* src/Makefile, src/filedumper.c, src/functions.h, src/planetsplitter.c, src/types.h:
+	Added SuperSegments data type, but it does nothing yet.
+
+	* src/optimiser.c:
+	Tried to optimise the Queue data type.  It was slower than the original.
+
+2009-01-05  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/filedumper.c: Print out the longest segment.
+
+	* src/optimiser.c:
+	Some optimisations.  Increase the number of result bins and change
+	find_insert_result() into insert_result().
+
+2009-01-04  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c: Introduced some new data types to simplify the code.
+
+	* src/filedumper.c: Print more useful information.
+
+	* src/segments.c, src/types.h, src/ways.c, src/filedumper.c, src/functions.h, src/nodes.c,
+	src/optimiser.c, src/osmparser.c, src/planetsplitter.c:
+	Changed the node, way and segment functions and data types.
+	Removed 'alloced', shortened the prototype array.
+	Remove the automatic sorting of the data.
+	Added assert statements.
+
+2009-01-03  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/ways.c: New file.
+
+	* src/router.c, src/types.h, src/Makefile, src/filedumper.c, src/functions.h,
+	src/optimiser.c, src/osmparser.c, src/planetsplitter.c:
+	Added the ways to the output.
+
+2009-01-02  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/optimiser.c, src/osmparser.c, src/segments.c, src/types.h:
+	Added macros to convert between distance/km and duration/hours/minutes.
+	Shortened the Segment data type with shorter distances and durations.
+
+2009-01-01  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/functions.h, src/nodes.c, src/planetsplitter.c, src/segments.c, src/types.h:
+	Remove the functions to initialise the node and segment arrays.
+
+	* src/optimiser.c, src/router.c, src/Makefile: Print out the results.
+
+2008-12-31  Andrew M. Bishop  <amb@gedanken.demon.co.uk>
+
+	* src/types.h, src/segments.c, src/router.c, src/planetsplitter.c, src/osmparser.c,
+	src/optimiser.c, src/nodes.c, src/functions.h, src/files.c, src/filedumper.c, src/Makefile:
+	New file.

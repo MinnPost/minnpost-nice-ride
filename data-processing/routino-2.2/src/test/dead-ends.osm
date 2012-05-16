@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='257' visible='true' version='1' lat='-0.21809858996693385' lon='-0.5191028643883174' />
+  <node id='259' visible='true' version='1' lat='-0.22070178828290346' lon='-0.5194778136559395' />
+  <node id='261' visible='true' version='1' lat='-0.22026348707492585' lon='-0.5193082654147766'>
+    <tag k='name' v='WP01' />
+  </node>
+  <node id='263' visible='true' version='1' lat='-0.2199233360272462' lon='-0.5191790778221413'>
+    <tag k='name' v='WP02' />
+  </node>
+  <node id='265' visible='true' version='1' lat='-0.21887734290530528' lon='-0.5193788335075634' />
+  <node id='267' visible='true' version='1' lat='-0.21923442817890232' lon='-0.519554450499408' />
+  <node id='269' visible='true' version='1' lat='-0.21955455458130574' lon='-0.5193510859959124'>
+    <tag k='name' v='WP03' />
+  </node>
+  <node id='271' visible='true' version='1' lat='-0.21838648826301083' lon='-0.5191374278276153'>
+    <tag k='name' v='WP04' />
+  </node>
+  <node id='273' visible='true' version='1' lat='-0.21967045850547667' lon='-0.5160319121186099'>
+    <tag k='name' v='WP10' />
+  </node>
+  <node id='275' visible='true' version='1' lat='-0.22001919809793816' lon='-0.5158468652583799'>
+    <tag k='name' v='WP09' />
+  </node>
+  <node id='277' visible='true' version='1' lat='-0.2203608205479482' lon='-0.5159607402492906'>
+    <tag k='name' v='WP08' />
+  </node>
+  <node id='279' visible='true' version='1' lat='-0.21999072956008625' lon='-0.5175122870004505'>
+    <tag k='name' v='WP06' />
+  </node>
+  <node id='281' visible='true' version='1' lat='-0.21962194811581368' lon='-0.5176842951742215'>
+    <tag k='name' v='WP07' />
+  </node>
+  <node id='283' visible='true' version='1' lat='-0.21954697775967735' lon='-0.5139082939501117'>
+    <tag k='name' v='WPfinish' />
+  </node>
+  <node id='285' visible='true' version='1' lat='-0.21952490240955844' lon='-0.5211328425348463'>
+    <tag k='name' v='WPstart' />
+  </node>
+  <node id='311' visible='true' version='1' lat='-0.21873259914979318' lon='-0.5139721830599432' />
+  <node id='315' visible='true' version='1' lat='-0.21894473644285053' lon='-0.5177120426858725' />
+  <node id='317' visible='true' version='1' lat='-0.21881956658439772' lon='-0.5209796816567882' />
+  <node id='319' visible='true' version='1' lat='-0.22034447159225826' lon='-0.5140417639627524' />
+  <node id='323' visible='true' version='1' lat='-0.22029573308467093' lon='-0.5176333429804723'>
+    <tag k='name' v='WP05' />
+  </node>
+  <node id='325' visible='true' version='1' lat='-0.22022296242215664' lon='-0.5210519045762619' />
+  <node id='329' visible='true' version='1' lat='-0.218492980018636' lon='-0.5157886455630277' >
+    <tag k='name' v='WP11' />
+  </node>
+  <node id='331' visible='true' version='1' lat='-0.21934091992851262' lon='-0.5162056682348201' />
+  <node id='333' visible='true' version='1' lat='-0.2207820589348417' lon='-0.5161366988387935' />
+  <node id='335' visible='true' version='1' lat='-0.21845388180276712' lon='-0.5174706370059244' />
+  <node id='337' visible='true' version='1' lat='-0.21930182171484336' lon='-0.5178876596777171' />
+  <node id='339' visible='true' version='1' lat='-0.22073883963391433' lon='-0.5178047502907365' />
+  <node id='341' visible='true' version='1' lat='-0.22081738237868836' lon='-0.5140621784576588' />
+  <node id='343' visible='true' version='1' lat='-0.2206667536990629' lon='-0.5210598093726763' />
+  <node id='345' visible='true' version='1' lat='-0.22192916244766508' lon='-0.514332326947849' />
+  <node id='347' visible='true' version='1' lat='-0.2219482141512544' lon='-0.5138620338011963' />
+  <node id='349' visible='true' version='1' lat='-0.22217484074642313' lon='-0.5141041642151607' />
+  <node id='351' visible='true' version='1' lat='-0.22170436926410486' lon='-0.5140901916750656' />
+  <node id='353' visible='true' version='1' lat='-0.21801516712553526' lon='-0.5141909410905267' />
+  <node id='355' visible='true' version='1' lat='-0.2177803096434024' lon='-0.5139345260591944' />
+  <node id='357' visible='true' version='1' lat='-0.2180357522245965' lon='-0.5136983548940309' />
+  <node id='359' visible='true' version='1' lat='-0.21827293796270247' lon='-0.5139541080318566' />
+  <node id='361' visible='true' version='1' lat='-0.22193543526189635' lon='-0.5213371153581924' />
+  <node id='363' visible='true' version='1' lat='-0.22195451857008858' lon='-0.5208670528071448' />
+  <node id='365' visible='true' version='1' lat='-0.2221908395649969' lon='-0.5211083521360607' />
+  <node id='367' visible='true' version='1' lat='-0.21802147020530807' lon='-0.5211953349284685' />
+  <node id='369' visible='true' version='1' lat='-0.21778806952505525' lon='-0.520938503435257' />
+  <node id='371' visible='true' version='1' lat='-0.21804206074333024' lon='-0.5207027586808577' />
+  <node id='373' visible='true' version='1' lat='-0.21828070777942268' lon='-0.5209580800124335' />
+  <node id='375' visible='true' version='1' lat='-0.2217201380129468' lon='-0.5210944057071448' />
+  <way id='377' visible='true' version='1'>
+    <nd ref='259' />
+    <nd ref='261' />
+    <nd ref='263' />
+    <nd ref='267' />
+    <nd ref='265' />
+    <nd ref='271' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='dead-end 1' />
+  </way>
+  <way id='383' visible='true' version='1'>
+    <nd ref='317' />
+    <nd ref='257' />
+    <nd ref='315' />
+    <nd ref='329' />
+    <nd ref='311' />
+    <tag k='highway' v='footway' />
+  </way>
+  <way id='385' visible='true' version='1'>
+    <nd ref='325' />
+    <nd ref='261' />
+    <nd ref='323' />
+    <nd ref='277' />
+    <nd ref='319' />
+    <tag k='highway' v='footway' />
+  </way>
+  <way id='387' visible='true' version='1'>
+    <nd ref='333' />
+    <nd ref='277' />
+    <nd ref='275' />
+    <nd ref='331' />
+    <nd ref='329' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='dead-end 3' />
+  </way>
+  <way id='389' visible='true' version='1'>
+    <nd ref='339' />
+    <nd ref='323' />
+    <nd ref='279' />
+    <nd ref='337' />
+    <nd ref='315' />
+    <nd ref='335' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='dead-end 2' />
+  </way>
+  <way id='391' visible='true' version='1'>
+    <nd ref='343' />
+    <nd ref='259' />
+    <nd ref='339' />
+    <nd ref='333' />
+    <nd ref='341' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='high street' />
+  </way>
+  <way id='393' visible='true' version='1'>
+    <nd ref='349' />
+    <nd ref='347' />
+    <nd ref='351' />
+    <nd ref='345' />
+    <nd ref='349' />
+    <tag k='highway' v='primary' />
+  </way>
+  <way id='395' visible='true' version='1'>
+    <nd ref='351' />
+    <nd ref='341' />
+    <nd ref='319' />
+    <nd ref='311' />
+    <nd ref='359' />
+    <tag k='highway' v='primary' />
+    <tag k='name' v='main 2' />
+  </way>
+  <way id='397' visible='true' version='1'>
+    <nd ref='359' />
+    <nd ref='357' />
+    <nd ref='355' />
+    <nd ref='353' />
+    <nd ref='359' />
+    <tag k='highway' v='primary' />
+  </way>
+  <way id='399' visible='true' version='1'>
+    <nd ref='365' />
+    <nd ref='363' />
+    <nd ref='375' />
+    <nd ref='361' />
+    <nd ref='365' />
+    <tag k='highway' v='primary' />
+  </way>
+  <way id='401' visible='true' version='1'>
+    <nd ref='373' />
+    <nd ref='371' />
+    <nd ref='369' />
+    <nd ref='367' />
+    <nd ref='373' />
+    <tag k='highway' v='primary' />
+  </way>
+  <way id='403' visible='true' version='1'>
+    <nd ref='375' />
+    <nd ref='343' />
+    <nd ref='325' />
+    <nd ref='317' />
+    <nd ref='373' />
+    <tag k='highway' v='primary' />
+    <tag k='name' v='main 1' />
+  </way>
+</osm>

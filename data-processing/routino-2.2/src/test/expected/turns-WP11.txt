@@ -1,0 +1,32 @@
+# Creator : Routino - http://www.routino.org/
+# Source : Routino test cases - (c) Andrew M. Bishop
+# License : GNU Affero General Public License v3 or later
+#
+#Latitude	Longitude	    Node	Type	Segment	Segment	Total	Total  	Speed	Bearing	Highway
+#        	         	        	    	Dist   	Durat'n	Dist 	Durat'n	     	       	       
+ -0.218453	  -0.520799	      -1 	Waypt	0.000	 0.00	 0.00	  0.0			
+ -0.219107	  -0.520828	       6*	Junct	0.072	 0.04	 0.07	  0.0	 96	 182	main 1
+ -0.219123	  -0.520207	      12*	Junct	0.069	 0.09	 0.14	  0.1	 48	  91	top road
+ -0.219131	  -0.519426	      20*	Junct	0.086	 0.11	 0.23	  0.2	 48	  90	top road
+ -0.219135	  -0.518823	      23*	Junct	0.067	 0.08	 0.29	  0.3	 48	  90	top road
+ -0.219145	  -0.517626	      33*	Junct	0.133	 0.17	 0.43	  0.5	 48	  90	top road
+ -0.219144	  -0.517257	      36*	Junct	0.041	 0.05	 0.47	  0.5	 48	  89	top road
+ -0.219291	  -0.517193	      38 	Inter	0.017	 0.02	 0.48	  0.6	 48	 156	roundabout
+ -0.219352	  -0.517060	      42 	Junct	0.016	 0.02	 0.50	  0.6	 48	 114	roundabout
+ -0.219304	  -0.516904	      45 	Inter	0.018	 0.02	 0.52	  0.6	 48	  72	roundabout
+ -0.219153	  -0.516826	      46*	Junct	0.018	 0.02	 0.54	  0.6	 48	  27	roundabout
+ -0.218966	  -0.516910	      44 	Inter	0.022	 0.03	 0.56	  0.6	 48	 335	roundabout
+ -0.218923	  -0.517072	      39 	Junct	0.018	 0.02	 0.58	  0.7	 48	 284	roundabout
+ -0.218998	  -0.517207	      37 	Inter	0.017	 0.02	 0.59	  0.7	 48	 240	roundabout
+ -0.219144	  -0.517257	      36*	Junct	0.017	 0.02	 0.61	  0.7	 48	 199	roundabout
+ -0.219145	  -0.517626	      33*	Junct	0.041	 0.05	 0.65	  0.8	 48	 269	top road
+ -0.219135	  -0.518823	      23*	Junct	0.133	 0.17	 0.79	  0.9	 48	 270	top road
+ -0.219131	  -0.519426	      20*	Junct	0.067	 0.08	 0.85	  1.0	 48	 270	top road
+ -0.218482	  -0.519542	      18*	Inter	0.073	 0.09	 0.93	  1.1	 48	 349	loop 4
+ -0.218258	  -0.519789	      16 	Inter	0.037	 0.04	 0.96	  1.1	 48	 312	loop 4
+ -0.218474	  -0.520060	      14*	Waypt	0.038	 0.05	 1.00	  1.2	 48	 231	loop 4
+ -0.219123	  -0.520207	      12*	Junct	0.074	 0.09	 1.07	  1.3	 48	 192	loop 4
+ -0.219107	  -0.520828	       6*	Junct	0.069	 0.09	 1.14	  1.4	 48	 271	top road
+ -0.220666	  -0.520893	       5*	Junct	0.173	 0.11	 1.32	  1.5	 96	 182	main 1
+ -0.221308	  -0.520914	       4*	Inter	0.071	 0.04	 1.39	  1.5	 96	 181	main 1
+ -0.221561	  -0.520922	      -3 	Waypt	0.027	 0.02	 1.41	  1.5	 96	 181	main 1

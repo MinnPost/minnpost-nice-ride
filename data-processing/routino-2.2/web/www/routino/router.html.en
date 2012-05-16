@@ -1,0 +1,590 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+
+<!--
+ Routino router web page.
+
+ Part of the Routino routing software.
+
+ This file Copyright 2008-2011 Andrew M. Bishop
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU Affero General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Affero General Public License for more details.
+
+ You should have received a copy of the GNU Affero General Public License
+ along with this program.  If not, see http://www.gnu.org/licenses/.
+-->
+
+<HEAD>
+<TITLE>Routino : Route Planner for OpenStreetMap Data</TITLE>
+<META name="keywords" content="openstreetmap routing route planner">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<!-- OpenLayers Javascript library -->
+<script src="../openlayers/OpenLayers.js" type="text/javascript"></script>
+
+<!-- Page elements -->
+<script src="page-elements.js" type="text/javascript"></script>
+<link href="page-elements.css" type="text/css" rel="stylesheet">
+
+<!-- Router and visualiser shared features -->
+<link href="maplayout.css" type="text/css" rel="stylesheet">
+<!--[if IE 6]>
+  <link href="maplayout-ie6-bugfixes.css" type="text/css" rel="stylesheet">
+<![endif]-->
+<!--[if IE 7]>
+  <link href="maplayout-ie7-bugfixes.css" type="text/css" rel="stylesheet">
+<![endif]-->
+
+<!-- Router specific features -->
+<script src="profiles.js" type="text/javascript"></script>
+<script src="mapprops.js" type="text/javascript"></script>
+<script src="router.js" type="text/javascript"></script>
+<link href="router.css" type="text/css" rel="stylesheet">
+
+</HEAD>
+<BODY onload="map_init('lat','lon','zoom');form_init();block_return_key();">
+
+<!-- Left hand side of window - data panel -->
+
+<div class="left_panel">
+
+  <div class="tab_box">
+    <span id="tab_options" onclick="tab_select('options');" class="tab_selected"   title="Set routing options">Options</span>
+    <span id="tab_results" onclick="tab_select('results');" class="tab_unselected" title="See routing results">Results</span>
+    <span id="tab_data"    onclick="tab_select('data');"    class="tab_unselected" title="View database information">Data</span>
+  </div>
+
+  <div class="tab_content" id="tab_options_div">
+
+    <form name="form" id="form" action="router.cgi" method="get">
+      <div class="hideshow_box">
+        <span class="hideshow_title">Routino OpenStreetMap Router</span>
+        This web page allows routing within the data collected by OpenStreetMap.
+        Select start and end points (click on the marker icons below), select routing preferences then find a route.
+        <div align="center">
+          <a target="other" href="http://www.routino.org/">Routino Website</a>
+          |
+          <a target="other" href="documentation/">Documentation</a>
+        </div>
+      </div>
+
+      <div class="hideshow_box">
+        <span id="hideshow_language_show" onclick="hideshow_show('language');" class="hideshow_show">+</span>
+        <span id="hideshow_language_hide" onclick="hideshow_hide('language');" class="hideshow_hide">-</span>
+        <span class="hideshow_title">Language</span>
+
+        <!-- Note for translations: Only this HTML file needs to be translated, the Javascript has
+             no language specific information in it.  Only the body text and title attributes should
+             be changed, the values passed to the JavaScript and the element names must not be changed.
+             The selection below changes the language option passed to the router and selects the
+             output language not the web page language, the links are for that.  The router itself uses
+             the translations.xml file for the translated versions of the output. -->
+
+        <div id="hideshow_language_div" style="display: none;">
+          <table>
+            <tr>
+              <td><a href="router.html.en" title="English language web page">English</a>
+              <td>(EN)
+              <td><input name="language" type="radio" value="en" onchange="formSetLanguage('en')" checked><!-- language -->
+            <tr>
+              <td>German
+              <td>(DE)
+              <td><input name="language" type="radio" value="de" onchange="formSetLanguage('de')"><!-- language -->
+            <tr>
+              <td><a href="router.html.nl" title="Dutch language web page">Dutch</a>
+              <td>(NL)
+              <td><input name="language" type="radio" value="nl" onchange="formSetLanguage('nl')"><!-- language -->
+            <tr>
+              <td>Russian
+              <td>(RU)
+              <td><input name="language" type="radio" value="ru" onchange="formSetLanguage('ru')"><!-- language -->
+          </table>
+        </div>
+      </div>
+
+      <div class="hideshow_box">
+        <span id="hideshow_waypoint_show" onclick="hideshow_show('waypoint');" class="hideshow_hide">+</span>
+        <span id="hideshow_waypoint_hide" onclick="hideshow_hide('waypoint');" class="hideshow_show">-</span>
+        <span class="hideshow_title">Waypoints</span>
+        <div id="hideshow_waypoint_div">
+          <table>
+            <tr id="point1">
+              <td>
+                <img name="waypoint1" src="icons/marker-1-grey.png" title="Waypoint 1 Position - (click to add/remove on map)" alt="Waypoint 1" onmousedown="markerToggleMap(1)">&nbsp;
+              <td>
+                <input name="lon1" type="text" size=7 title="Waypoint 1 Longitude" onchange="formSetCoords(1);"><!-- lon1 --> E&nbsp;
+              <td>
+                <input name="lat1" type="text" size=7 title="Waypoint 1 Latitude"  onchange="formSetCoords(1);"><!-- lat1 --> N&nbsp;
+              <td>
+                <img alt="o" src="icons/waypoint-centre.png" title="Centre this waypoint on map" onmousedown="markerCentre(1);"  >
+                <img alt="^" src="icons/waypoint-up.png"     title="Move this waypoint up"       onmousedown="markerMoveUp(1);"  >
+                <img alt="+" src="icons/waypoint-add.png"    title="Add waypoint after this one" onmousedown="markerAddAfter(1);"><br>
+                <img alt="~" src="icons/waypoint-home.png"   title="Toggle as home location"     onmousedown="markerHome(1);"    >
+                <img alt="v" src="icons/waypoint-down.png"   title="Move this waypoint down"     onmousedown="markerMoveDown(1);">
+                <img alt="-" src="icons/waypoint-remove.png" title="Remove this waypoint"        onmousedown="markerRemove(1);"  >
+            <tr id="point2">
+              <td>
+                <img name="waypoint2" src="icons/marker-2-grey.png" title="Waypoint 2 Position - (click to add/remove on map)" alt="Waypoint 2" onmousedown="markerToggleMap(2)">&nbsp;
+              <td>
+                <input name="lon2" type="text" size=7 title="Waypoint 2 Longitude" onchange="formSetCoords(2);"><!-- lon2 --> E&nbsp;
+              <td>
+                <input name="lat2" type="text" size=7 title="Waypoint 2 Latitude"  onchange="formSetCoords(2);"><!-- lat2 --> N&nbsp;
+              <td>
+                <img alt="o" src="icons/waypoint-centre.png" title="Centre this waypoint on map" onmousedown="markerCentre(2);">
+                <img alt="^" src="icons/waypoint-up.png"     title="Move this waypoint up"       onmousedown="markerMoveUp(2);"  >
+                <img alt="+" src="icons/waypoint-add.png"    title="Add waypoint after this one" onmousedown="markerAddAfter(2);"><br>
+                <img alt="~" src="icons/waypoint-home.png"   title="Toggle as home location"     onmousedown="markerHome(2);"    >
+                <img alt="v" src="icons/waypoint-down.png"   title="Move this waypoint down"     onmousedown="markerMoveDown(2);">
+                <img alt="-" src="icons/waypoint-remove.png" title="Remove this waypoint"        onmousedown="markerRemove(2);"  >
+            <tr id="point3">
+              <td>
+                <img name="waypoint3" src="icons/marker-3-grey.png" title="Waypoint 3 Position - (click to add/remove on map)" alt="Waypoint 3" onmousedown="markerToggleMap(3)">&nbsp;
+              <td>
+                <input name="lon3" type="text" size=7 title="Waypoint 3 Longitude" onchange="formSetCoords(3);"><!-- lon3 --> E&nbsp;
+              <td>
+                <input name="lat3" type="text" size=7 title="Waypoint 3 Latitude"  onchange="formSetCoords(3);"><!-- lat3 --> N&nbsp;
+              <td>
+                <img alt="o" src="icons/waypoint-centre.png" title="Centre this waypoint on map" onmousedown="markerCentre(3);">
+                <img alt="^" src="icons/waypoint-up.png"     title="Move this waypoint up"       onmousedown="markerMoveUp(3);"  >
+                <img alt="+" src="icons/waypoint-add.png"    title="Add waypoint after this one" onmousedown="markerAddAfter(3);"><br>
+                <img alt="~" src="icons/waypoint-home.png"   title="Toggle as home location"     onmousedown="markerHome(3);"    >
+                <img alt="v" src="icons/waypoint-down.png"   title="Move this waypoint down"     onmousedown="markerMoveDown(3);">
+                <img alt="-" src="icons/waypoint-remove.png" title="Remove this waypoint"        onmousedown="markerRemove(3);"  >
+            <tr id="point4">
+              <td>
+                <img name="waypoint4" src="icons/marker-4-grey.png" title="Waypoint 4 Position - (click to add/remove on map)" alt="Waypoint 4" onmousedown="markerToggleMap(4)">&nbsp;
+              <td>
+                <input name="lon4" type="text" size=7 title="Waypoint 4 Longitude" onchange="formSetCoords(4);"><!-- lon4 --> E&nbsp;
+              <td>
+                <input name="lat4" type="text" size=7 title="Waypoint 4 Latitude"  onchange="formSetCoords(4);"><!-- lat4 --> N&nbsp;
+              <td>
+                <img alt="o" src="icons/waypoint-centre.png" title="Centre this waypoint on map" onmousedown="markerCentre(4);">
+                <img alt="^" src="icons/waypoint-up.png"     title="Move this waypoint up"       onmousedown="markerMoveUp(4);"  >
+                <img alt="+" src="icons/waypoint-add.png"    title="Add waypoint after this one" onmousedown="markerAddAfter(4);"><br>
+                <img alt="~" src="icons/waypoint-home.png"   title="Toggle as home location"     onmousedown="markerHome(4);"    >
+                <img alt="v" src="icons/waypoint-down.png"   title="Move this waypoint down"     onmousedown="markerMoveDown(4);">
+                <img alt="-" src="icons/waypoint-remove.png" title="Remove this waypoint"        onmousedown="markerRemove(4);"  >
+            <tr id="point5">
+              <td>
+                <img name="waypoint5" src="icons/marker-5-grey.png" title="Waypoint 5 Position - (click to add/remove on map)" alt="Waypoint 5" onmousedown="markerToggleMap(5)">&nbsp;
+              <td>
+                <input name="lon5" type="text" size=7 title="Waypoint 5 Longitude" onchange="formSetCoords(5);"><!-- lon5 --> E&nbsp;
+              <td>
+                <input name="lat5" type="text" size=7 title="Waypoint 5 Latitude"  onchange="formSetCoords(5);"><!-- lat5 --> N&nbsp;
+              <td>
+                <img alt="o" src="icons/waypoint-centre.png" title="Centre this waypoint on map" onmousedown="markerCentre(5);">
+                <img alt="^" src="icons/waypoint-up.png"     title="Move this waypoint up"       onmousedown="markerMoveUp(5);"  >
+                <img alt="+" src="icons/waypoint-add.png"    title="Add waypoint after this one" onmousedown="markerAddAfter(5);"><br>
+                <img alt="~" src="icons/waypoint-home.png"   title="Toggle as home location"     onmousedown="markerHome(5);"    >
+                <img alt="v" src="icons/waypoint-down.png"   title="Move this waypoint down"     onmousedown="markerMoveDown(5);">
+                <img alt="-" src="icons/waypoint-remove.png" title="Remove this waypoint"        onmousedown="markerRemove(5);"  >
+            <tr id="point6">
+              <td>
+                <img name="waypoint6" src="icons/marker-6-grey.png" title="Waypoint 6 Position - (click to add/remove on map)" alt="Waypoint 6" onmousedown="markerToggleMap(6)">&nbsp;
+              <td>
+                <input name="lon6" type="text" size=7 title="Waypoint 6 Longitude" onchange="formSetCoords(6);"><!-- lon6 --> E&nbsp;
+              <td>
+                <input name="lat6" type="text" size=7 title="Waypoint 6 Latitude"  onchange="formSetCoords(6);"><!-- lat6 --> N&nbsp;
+              <td>
+                <img alt="o" src="icons/waypoint-centre.png" title="Centre this waypoint on map" onmousedown="markerCentre(6);">
+                <img alt="^" src="icons/waypoint-up.png"     title="Move this waypoint up"       onmousedown="markerMoveUp(6);"  >
+                <img alt="+" src="icons/waypoint-add.png"    title="Add waypoint after this one" onmousedown="markerAddAfter(6);"><br>
+                <img alt="~" src="icons/waypoint-home.png"   title="Toggle as home location"     onmousedown="markerHome(6);"    >
+                <img alt="v" src="icons/waypoint-down.png"   title="Move this waypoint down"     onmousedown="markerMoveDown(6);">
+                <img alt="-" src="icons/waypoint-remove.png" title="Remove this waypoint"        onmousedown="markerRemove(6);"  >
+            <tr id="point7">
+              <td>
+                <img name="waypoint7" src="icons/marker-7-grey.png" title="Waypoint 7 Position - (click to add/remove on map)" alt="Waypoint 7" onmousedown="markerToggleMap(7)">&nbsp;
+              <td>
+                <input name="lon7" type="text" size=7 title="Waypoint 7 Longitude" onchange="formSetCoords(7);"><!-- lon7 --> E&nbsp;
+              <td>
+                <input name="lat7" type="text" size=7 title="Waypoint 7 Latitude"  onchange="formSetCoords(7);"><!-- lat7 --> N&nbsp;
+              <td>
+                <img alt="o" src="icons/waypoint-centre.png" title="Centre this waypoint on map" onmousedown="markerCentre(7);">
+                <img alt="^" src="icons/waypoint-up.png"     title="Move this waypoint up"       onmousedown="markerMoveUp(7);"  >
+                <img alt="+" src="icons/waypoint-add.png"    title="Add waypoint after this one" onmousedown="markerAddAfter(7);"><br>
+                <img alt="~" src="icons/waypoint-home.png"   title="Toggle as home location"     onmousedown="markerHome(7);"    >
+                <img alt="v" src="icons/waypoint-down.png"   title="Move this waypoint down"     onmousedown="markerMoveDown(7);">
+                <img alt="-" src="icons/waypoint-remove.png" title="Remove this waypoint"        onmousedown="markerRemove(7);"  >
+            <tr id="point8">
+              <td>
+                <img name="waypoint8" src="icons/marker-8-grey.png" title="Waypoint 8 Position - (click to add/remove on map)" alt="Waypoint 8" onmousedown="markerToggleMap(8)">&nbsp;
+              <td>
+                <input name="lon8" type="text" size=7 title="Waypoint 8 Longitude" onchange="formSetCoords(8);"><!-- lon8 --> E&nbsp;
+              <td>
+                <input name="lat8" type="text" size=7 title="Waypoint 8 Latitude"  onchange="formSetCoords(8);"><!-- lat8 --> N&nbsp;
+              <td>
+                <img alt="o" src="icons/waypoint-centre.png" title="Centre this waypoint on map" onmousedown="markerCentre(8);">
+                <img alt="^" src="icons/waypoint-up.png"     title="Move this waypoint up"       onmousedown="markerMoveUp(8);"  >
+                <img alt="+" src="icons/waypoint-add.png"    title="Add waypoint after this one" onmousedown="markerAddAfter(8);"><br>
+                <img alt="~" src="icons/waypoint-home.png"   title="Toggle as home location"     onmousedown="markerHome(8);"    >
+                <img alt="v" src="icons/waypoint-down.png"   title="Move this waypoint down"     onmousedown="markerMoveDown(8);">
+                <img alt="-" src="icons/waypoint-remove.png" title="Remove this waypoint"        onmousedown="markerRemove(8);"  >
+            <tr id="point9">
+              <td>
+                <img name="waypoint9" src="icons/marker-9-grey.png" title="Waypoint 9 Position - (click to add/remove on map)" alt="Waypoint 9" onmousedown="markerToggleMap(9)">&nbsp;
+              <td>
+                <input name="lon9" type="text" size=7 title="Waypoint 9 Longitude" onchange="formSetCoords(9);"><!-- lon9 --> E&nbsp;
+              <td>
+                <input name="lat9" type="text" size=7 title="Waypoint 9 Latitude"  onchange="formSetCoords(9);"><!-- lat9 --> N&nbsp;
+              <td>
+                <img alt="o" src="icons/waypoint-centre.png" title="Centre this waypoint on map" onmousedown="markerCentre(9);">
+                <img alt="^" src="icons/waypoint-up.png"     title="Move this waypoint up"       onmousedown="markerMoveUp(9);"  >
+                <img alt="+" src="icons/waypoint-add.png"    title="Add waypoint after this one" onmousedown="markerAddAfter(9);"><br>
+                <img alt="~" src="icons/waypoint-home.png"   title="Toggle as home location"     onmousedown="markerHome(9);"    >
+                <img alt="v" src="icons/waypoint-down.png"   title="Move this waypoint down"     onmousedown="markerMoveDown(9);">
+                <img alt="-" src="icons/waypoint-remove.png" title="Remove this waypoint"        onmousedown="markerRemove(9);"  >
+            <!-- Up to 99 markers can be included here in the HTML  -->
+            <tr>
+              <td colspan="4" align="center"><input type="button" title="Reverse order of waypoints" value="Reverse waypoint order" onmousedown="markersReverse();">
+          </table>
+        </div>
+      </div>
+
+      <div class="hideshow_box">
+        <span id="hideshow_transport_show" onclick="hideshow_show('transport');" class="hideshow_hide">+</span>
+        <span id="hideshow_transport_hide" onclick="hideshow_hide('transport');" class="hideshow_show">-</span>
+        <span class="hideshow_title">Transport Type</span>
+        <div id="hideshow_transport_div">
+          <table>
+            <tr><td>Foot      <td><input name="transport" type="radio" value="foot"       onchange="formSetTransport('foot'      )"><!-- transport -->
+            <tr><td>Horse     <td><input name="transport" type="radio" value="horse"      onchange="formSetTransport('horse'     )"><!-- transport -->
+            <tr><td>Wheelchair<td><input name="transport" type="radio" value="wheelchair" onchange="formSetTransport('wheelchair')"><!-- transport -->
+            <tr><td>Bicycle   <td><input name="transport" type="radio" value="bicycle"    onchange="formSetTransport('bicycle'   )"><!-- transport -->
+            <tr><td>Moped     <td><input name="transport" type="radio" value="moped"      onchange="formSetTransport('moped'     )"><!-- transport -->
+            <tr><td>Motorbike <td><input name="transport" type="radio" value="motorbike"  onchange="formSetTransport('motorbike' )"><!-- transport -->
+            <tr><td>Motorcar  <td><input name="transport" type="radio" value="motorcar"   onchange="formSetTransport('motorcar'  )"><!-- transport -->
+            <tr><td>Goods     <td><input name="transport" type="radio" value="goods"      onchange="formSetTransport('goods'     )"><!-- transport -->
+            <tr><td>HGV       <td><input name="transport" type="radio" value="hgv"        onchange="formSetTransport('hgv'       )"><!-- transport -->
+            <tr><td>PSV       <td><input name="transport" type="radio" value="psv"        onchange="formSetTransport('psv'       )"><!-- transport -->
+          </table>
+        </div>
+      </div>
+
+      <div class="hideshow_box">
+        <span id="hideshow_highway_show" onclick="hideshow_show('highway');" class="hideshow_show">+</span>
+        <span id="hideshow_highway_hide" onclick="hideshow_hide('highway');" class="hideshow_hide">-</span>
+        <span class="hideshow_title">Highway Preferences</span>
+        <div id="hideshow_highway_div" style="display: none;">
+          <table>
+            <tr><td>Motorway:    <td><input name="highway-motorway"     type="text" size=3 onchange="formSetHighway('motorway'    )"><!-- highway-motorway     --><td>%
+            <tr><td>Trunk:       <td><input name="highway-trunk"        type="text" size=3 onchange="formSetHighway('trunk'       )"><!-- highway-trunk        --><td>%
+            <tr><td>Primary:     <td><input name="highway-primary"      type="text" size=3 onchange="formSetHighway('primary'     )"><!-- highway-primary      --><td>%
+            <tr><td>Secondary:   <td><input name="highway-secondary"    type="text" size=3 onchange="formSetHighway('secondary'   )"><!-- highway-secondary    --><td>%
+            <tr><td>Tertiary:    <td><input name="highway-tertiary"     type="text" size=3 onchange="formSetHighway('tertiary'    )"><!-- highway-tertiary     --><td>%
+            <tr><td>Unclassified:<td><input name="highway-unclassified" type="text" size=3 onchange="formSetHighway('unclassified')"><!-- highway-unclassified --><td>%
+            <tr><td>Residential: <td><input name="highway-residential"  type="text" size=3 onchange="formSetHighway('residential' )"><!-- highway-residential  --><td>%
+            <tr><td>Service:     <td><input name="highway-service"      type="text" size=3 onchange="formSetHighway('service'     )"><!-- highway-service      --><td>%
+            <tr><td>Track:       <td><input name="highway-track"        type="text" size=3 onchange="formSetHighway('track'       )"><!-- highway-track        --><td>%
+            <tr><td>Cycleway:    <td><input name="highway-cycleway"     type="text" size=3 onchange="formSetHighway('cycleway'    )"><!-- highway-cycleway     --><td>%
+            <tr><td>Path:        <td><input name="highway-path"         type="text" size=3 onchange="formSetHighway('path'        )"><!-- highway-path         --><td>%
+            <tr><td>Steps:       <td><input name="highway-steps"        type="text" size=3 onchange="formSetHighway('steps'       )"><!-- highway-steps        --><td>%
+            <tr><td>Ferry:       <td><input name="highway-ferry"        type="text" size=3 onchange="formSetHighway('ferry'       )"><!-- highway-ferry        --><td>%
+          </table>
+        </div>
+      </div>
+
+      <div class="hideshow_box">
+        <span id="hideshow_speed_show" onclick="hideshow_show('speed');" class="hideshow_show">+</span>
+        <span id="hideshow_speed_hide" onclick="hideshow_hide('speed');" class="hideshow_hide">-</span>
+        <span class="hideshow_title">Speed Limits</span>
+        <div id="hideshow_speed_div" style="display: none;">
+          <table>
+            <tr><td>Motorway:    <td><input name="speed-motorway"     type="text" size=3 onchange="formSetSpeed('motorway'    )"><!-- speed-motorway     --><td>km/hr
+            <tr><td>Trunk:       <td><input name="speed-trunk"        type="text" size=3 onchange="formSetSpeed('trunk'       )"><!-- speed-trunk        --><td>km/hr
+            <tr><td>Primary:     <td><input name="speed-primary"      type="text" size=3 onchange="formSetSpeed('primary'     )"><!-- speed-primary      --><td>km/hr
+            <tr><td>Secondary:   <td><input name="speed-secondary"    type="text" size=3 onchange="formSetSpeed('secondary'   )"><!-- speed-secondary    --><td>km/hr
+            <tr><td>Tertiary:    <td><input name="speed-tertiary"     type="text" size=3 onchange="formSetSpeed('tertiary'    )"><!-- speed-tertiary     --><td>km/hr
+            <tr><td>Unclassified:<td><input name="speed-unclassified" type="text" size=3 onchange="formSetSpeed('unclassified')"><!-- speed-unclassified --><td>km/hr
+            <tr><td>Residential: <td><input name="speed-residential"  type="text" size=3 onchange="formSetSpeed('residential' )"><!-- speed-residential  --><td>km/hr
+            <tr><td>Service:     <td><input name="speed-service"      type="text" size=3 onchange="formSetSpeed('service'     )"><!-- speed-service      --><td>km/hr
+            <tr><td>Track:       <td><input name="speed-track"        type="text" size=3 onchange="formSetSpeed('track'       )"><!-- speed-track        --><td>km/hr
+            <tr><td>Cycleway:    <td><input name="speed-cycleway"     type="text" size=3 onchange="formSetSpeed('cycleway'    )"><!-- speed-cycleway     --><td>km/hr
+            <tr><td>Path:        <td><input name="speed-path"         type="text" size=3 onchange="formSetSpeed('path'        )"><!-- speed-path         --><td>km/hr
+            <tr><td>Steps:       <td><input name="speed-steps"        type="text" size=3 onchange="formSetSpeed('steps'       )"><!-- speed-steps        --><td>km/hr
+            <tr><td>Ferry:       <td><input name="speed-ferry"        type="text" size=3 onchange="formSetSpeed('ferry'       )"><!-- speed-ferry        --><td>km/hr
+          </table>
+        </div>
+      </div>
+
+      <div class="hideshow_box">
+        <span id="hideshow_property_show" onclick="hideshow_show('property');" class="hideshow_show">+</span>
+        <span id="hideshow_property_hide" onclick="hideshow_hide('property');" class="hideshow_hide">-</span>
+        <span class="hideshow_title">Property Preferences</span>
+        <div id="hideshow_property_div" style="display: none;">
+          <table>
+            <tr><td>Paved:         <td><input name="property-paved"        type="text" size=3 onchange="formSetProperty('paved'       )"><!-- property-paved        --><td>%
+            <tr><td>Multiple Lanes:<td><input name="property-multilane"    type="text" size=3 onchange="formSetProperty('multilane'   )"><!-- property-multilane    --><td>%
+            <tr><td>Bridge:        <td><input name="property-bridge"       type="text" size=3 onchange="formSetProperty('bridge'      )"><!-- property-bridge       --><td>%
+            <tr><td>Tunnel:        <td><input name="property-tunnel"       type="text" size=3 onchange="formSetProperty('tunnel'      )"><!-- property-tunnel       --><td>%
+            <tr><td>Walking Route: <td><input name="property-footroute"    type="text" size=3 onchange="formSetProperty('footroute'   )"><!-- property-footroute    --><td>%
+            <tr><td>Bicycle Route: <td><input name="property-bicycleroute" type="text" size=3 onchange="formSetProperty('bicycleroute')"><!-- property-bicycleroute --><td>%
+          </table>
+        </div>
+      </div>
+
+      <div class="hideshow_box">
+        <span id="hideshow_restriction_show" onclick="hideshow_show('restriction');" class="hideshow_show">+</span>
+        <span id="hideshow_restriction_hide" onclick="hideshow_hide('restriction');" class="hideshow_hide">-</span>
+        <span class="hideshow_title">Other Restrictions</span>
+        <div id="hideshow_restriction_div" style="display: none;">
+          <table>
+            <tr><td>Obey oneway:<td><input name="restrict-oneway" type="checkbox"    onchange="formSetRestriction('oneway')"><!-- oneway --><td>
+            <tr><td>Obey turns: <td><input name="restrict-turns"  type="checkbox"    onchange="formSetRestriction('turns' )"><!-- turns  --><td>
+            <tr><td>Weight:     <td><input name="restrict-weight" type="text" size=3 onchange="formSetRestriction('weight')"><!-- weight --><td>tonnes
+            <tr><td>Height:     <td><input name="restrict-height" type="text" size=3 onchange="formSetRestriction('height')"><!-- height --><td>metres
+            <tr><td>Width:      <td><input name="restrict-width"  type="text" size=3 onchange="formSetRestriction('width' )"><!-- width  --><td>metres
+            <tr><td>Length:     <td><input name="restrict-length" type="text" size=3 onchange="formSetRestriction('length')"><!-- length --><td>metres
+          </table>
+        </div>
+      </div>
+
+      <div class="hideshow_box">
+        <span class="hideshow_title">Find</span>
+        <input type="button" title="Find shortest route" id="shortest" value="Shortest" onclick="findRoute('shortest');">
+        <input type="button" title="Find quickest route" id="quickest" value="Quickest" onclick="findRoute('quickest');">
+      </div>
+
+      <div class="hideshow_box">
+        <span class="hideshow_title">Links</span>
+        <a id="link_url"                href="router.html">Permanent link to these parameters</a>
+        <br>
+        <a id="edit_url" target="other" href="http://www.openstreetmap.org/">Edit OSM data in Potlatch</a>
+      </div>
+
+      <div class="hideshow_box">
+        <span id="hideshow_help_options_show" onclick="hideshow_show('help_options');" class="hideshow_hide">+</span>
+        <span id="hideshow_help_options_hide" onclick="hideshow_hide('help_options');" class="hideshow_show">-</span>
+        <span class="hideshow_title">Help</span>
+        <div id="hideshow_help_options_div">
+          <div class="scrollable">
+            <p>
+            <b>Quick Start</b>
+            <br>
+            Click on marker icons (above) to place them on the map (right).  Then
+            drag them to the correct position.  Zooming the map before placing the
+            markers is probably easiest.  Alternatively type the latitude and
+            longitude into the boxes above.
+            <p>
+            Select the transport type, allowed highway types, speed limits, highway
+            properties and other restrictions from the options above.
+            Select "Shortest" or "Quickest" to calculate the route and display it
+            on the map.
+            <p>
+            <b>Waypoints</b>
+            <br>
+            Clicking on the marker icons will toggle the display of them on the map.
+            When a route is calculated it will visit (as close as possible
+            for the selected transport type) each of the waypoints that have
+            markers on the map in the order given.
+            <p>
+            <b>Transport Type</b>
+            <br>
+            Selecting a transport type will restrict the chosen route to
+            those on which it is allowed and set default values for the
+            other parameters.
+            <p>
+            <b>Highway Preferences</b>
+            <br>
+            The highway preference is selected as a percentage and routes are chosen that
+            try to follow the preferred highways.
+            For example if a "Primary" road is given a "110%" preference and a "Secondary"
+            road is given a "100%" preference then it means that a route on a Primary road
+            can be up to 10% longer than on a secondary road and still be selected.
+            <p>
+            <b>Speed Limits</b>
+            <br>
+            The speed limits chosen here for the different types of highway apply if the
+            highway has no other speed limit marked or it is higher than the chosen one.
+            <p>
+            <b>Property Preferences</b>
+            <br>
+            The property preference is selected as a percentage and routes are chosen that
+            try to follow highways with the preferred property.
+            For example if a "Paved" highway is given a "75%" preference then it means that
+            an unpaved highway is automatically given a "25%" preference so that a route on
+            a paved highway can be 3 times the length of an unpaved one and still be
+            selected.
+            <p>
+            <b>Other Restrictions</b>
+            <br>
+            These allow a route to be found that avoids marked limits on
+            weight, height, width or length.  It is also possible to ignore
+            one-way restrictions (e.g. if walking).
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+  <div class="tab_content" id="tab_results_div" style="display: none;">
+
+    <div class="hideshow_box">
+      <span class="hideshow_title">Status</span>
+      <div id="result_status">
+        <div id="result_status_not_run">
+          <b><i>Router not run</i></b>
+        </div>
+        <div id="result_status_running"  style="display: none;">
+          <b>Router running...</b>
+        </div>
+        <div id="result_status_complete" style="display: none;">
+          <b>Routing completed</b>
+          <br>
+          <a id="router_log_complete" target="router_log" href="#">View Details</a>
+        </div>
+        <div id="result_status_error"    style="display: none;">
+          <b>Router error</b>
+          <br>
+          <a id="router_log_error" target="router_log" href="#">View Details</a>
+        </div>
+        <div id="result_status_failed"   style="display: none;">
+          <b>Router failed to run</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="hideshow_box">
+      <span id="hideshow_shortest_show" onclick="hideshow_show('shortest');" class="hideshow_show">+</span>
+      <span id="hideshow_shortest_hide" onclick="hideshow_hide('shortest');" class="hideshow_hide">-</span>
+      <span class="hideshow_title">Shortest Route</span>
+      <div id="shortest_status">
+        <div id="shortest_status_no_info">
+          <b><i>No Information</i></b>
+        </div>
+        <div id="shortest_status_info" style="display: none;">
+        </div>
+      </div>
+      <div id="hideshow_shortest_div" style="display: none;">
+        <div id="shortest_links" style="display: none;">
+          <table>
+            <tr><td>HTML directions:<td><a id="shortest_html"      target="shortest_html"      href="#">Open Popup</a>
+            <tr><td>GPX track file: <td><a id="shortest_gpx_track" target="shortest_gpx_track" href="#">Open Popup</a>
+            <tr><td>GPX route file: <td><a id="shortest_gpx_route" target="shortest_gpx_route" href="#">Open Popup</a>
+            <tr><td>Full text file: <td><a id="shortest_text_all"  target="shortest_text_all"  href="#">Open Popup</a>
+            <tr><td>Text file:      <td><a id="shortest_text"      target="shortest_text"      href="#">Open Popup</a>
+          </table>
+          <hr>
+        </div>
+        <div id="shortest_route">
+        </div>
+      </div>
+    </div>
+
+    <div class="hideshow_box">
+      <span id="hideshow_quickest_show" onclick="hideshow_show('quickest');" class="hideshow_show">+</span>
+      <span id="hideshow_quickest_hide" onclick="hideshow_hide('quickest');" class="hideshow_hide">-</span>
+      <span class="hideshow_title">Quickest Route</span>
+      <div id="quickest_status">
+        <div id="quickest_status_no_info">
+          <b><i>No Information</i></b>
+        </div>
+        <div id="quickest_status_info" style="display: none;">
+        </div>
+      </div>
+      <div id="hideshow_quickest_div" style="display: none;">
+        <div id="quickest_links" style="display: none;">
+          <table>
+            <tr><td>HTML directions:<td><a id="quickest_html"      target="quickest_html"      href="#">Open Popup</a>
+            <tr><td>GPX track file: <td><a id="quickest_gpx_track" target="quickest_gpx_track" href="#">Open Popup</a>
+            <tr><td>GPX route file: <td><a id="quickest_gpx_route" target="quickest_gpx_route" href="#">Open Popup</a>
+            <tr><td>Full text file: <td><a id="quickest_text_all"  target="quickest_text_all"  href="#">Open Popup</a>
+            <tr><td>Text file:      <td><a id="quickest_text"      target="quickest_text"      href="#">Open Popup</a>
+          </table>
+          <hr>
+        </div>
+        <div id="quickest_route">
+        </div>
+      </div>
+    </div>
+
+    <div class="hideshow_box">
+      <span id="hideshow_help_route_show" onclick="hideshow_show('help_route');" class="hideshow_hide">+</span>
+      <span id="hideshow_help_route_hide" onclick="hideshow_hide('help_route');" class="hideshow_show">-</span>
+      <span class="hideshow_title">Help</span>
+      <div id="hideshow_help_route_div">
+        <div class="scrollable">
+          <p>
+          <b>Quick Start</b>
+          <br>
+          After calculating a route you can download the GPX file or plain
+          text route description (summary or detailed version). Also you
+          can view the route description and zoom in to selected parts.
+          <p style="margin-bottom: 0px">
+          <b>Problem Solving</b>
+          <br>
+          If the router completes with an error then the most likely cause is
+          that it is not possible to find a route between the selected points.
+          Moving one or more markers or changing the routing options should
+          allow a route to be found.
+          <p style="margin-bottom: 0px">
+          <b>Output Formats</b>
+          <br>
+          <dl style="margin-top: 0px">
+            <dt>HTML instructions
+            <dd>A description of the route to take with directions at each
+              important junction.
+            <dt>GPX track file
+            <dd>The same information that is displayed on the map with points
+              for every node and lines for every segment.
+            <dt>GPX route file
+            <dd>The same information that is displayed in text for the route
+              with a waypoint for each important junction in the route.
+            <dt>Full text file
+            <dd>A list of all of the nodes visited as well as the distance
+              between them and the cumulative distance for each step of the
+              route.
+            <dt>Text file
+            <dd>The same information that is displayed in text for the route.
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="tab_content" id="tab_data_div" style="display: none;">
+    <div class="hideshow_box">
+      <span class="hideshow_title">Statistics</span>
+      <div id="statistics_data"></div>
+      <a id="statistics_link" href="statistics.cgi" onclick="displayStatistics();return(false);">Display data statistics</a>
+    </div>
+
+    <div class="hideshow_box">
+      <span class="hideshow_title">Visualiser</span>
+      To see Routino's view of the data there is a data visualiser that allows
+      displaying of the underlying data in various ways.
+      <br>
+      <a id="visualiser_url" target="other" href="visualiser.html">Custom link to this map view</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- Right hand side of window - map -->
+
+<div class="right_panel">
+  <div class="map" id="map">
+    <noscript>
+      Javascript is <em>required</em> to use this web page because of the
+      interactive map.
+    </noscript>
+  </div>
+  <div class="attribution">
+    <a target="other" href="http://www.routino.org/" title="Routino">Router: Routino</a>
+    |
+    <a target="other" href="http://www.openstreetmap.org/" title="Copyright: OpenStreetMap.org; License: Creative Commons Attribution-Share Alike 2.0">Geo Data: OpenStreetMap</a>
+  </div>
+</div>
+
+</BODY>
+</HTML>

@@ -1,0 +1,391 @@
+/*
+// Routino web page style sheet.
+//
+// Part of the Routino routing software.
+//
+// This file Copyright 2008-2010 Andrew M. Bishop
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+
+/*----------------------------------*/
+/* Body HTML formatting             */
+/*----------------------------------*/
+
+BODY
+{
+ /* fonts and text styles */
+
+ font-family: sans-serif;
+ font-size:   medium;
+
+ /* margins, borders, padding and sizes */
+
+ padding: 0;
+
+ margin: 0;
+}
+
+A.ext
+{
+ /* fonts and text styles */
+
+ text-decoration: underline;
+}
+
+PRE
+{
+ /* fonts and text styles */
+
+ font-family: monospace;
+}
+
+PRE.boxed
+{
+ /* margins, borders, padding and sizes */
+
+ padding:      0.5em;
+
+ border:       solid;
+ border-width: thin;
+}
+
+
+/*-----------------------------------*/
+/* Header HTML formatting            */
+/*-----------------------------------*/
+
+DIV.header
+{
+ /* margins, borders, padding and sizes */
+
+ padding:        0;
+ padding-top:    0.5em;
+ padding-bottom: 0.5em;
+
+ border-width:        0;
+ border-bottom:       solid;
+ border-bottom-width: thin;
+
+ margin: 0;
+
+ /* floats */
+
+ clear: left;
+}
+
+DIV.header HR  /* Horizontal rule, only visible without CSS */
+{
+ display: none;
+}
+
+DIV.header H1
+{
+ /* fonts and text styles */
+
+ font-size:   xx-large;
+
+ font-weight: bold;
+
+ text-decoration: underline;
+
+ /* margins, borders, padding and sizes */
+
+ padding: 0.25em;
+
+ border: 0;
+
+ margin: 0;
+}
+
+
+/*-----------------------------------*/
+/* Footer HTML formatting            */
+/*-----------------------------------*/
+
+DIV.footer
+{
+ /* fonts and text styles */
+
+ font-size: small;
+
+ /* margins, borders, padding and sizes */
+
+ padding:        0;
+ padding-top:    0.5em;
+ padding-bottom: 0.5em;
+
+ border-width:      0;
+ border-top:        solid;
+ border-top-width:  thin;
+
+ margin: 0;
+
+ /* floats */
+
+ clear: left;
+}
+
+DIV.footer HR  /* Horizontal rule, only visible without CSS */
+{
+ display: none;
+}
+
+
+/*-----------------------------------*/
+/* Content HTML formatting           */
+/*-----------------------------------*/
+
+DIV.content
+{
+ /* margins, borders, padding and sizes */
+
+ padding: 0.5em;
+
+ border-width:  0;
+}
+
+DIV.content H1
+{
+ /* fonts and text styles */
+
+ font-size:   xx-large;
+ font-weight: bold;
+
+ /* margins, borders, padding and sizes */
+
+ padding: 0;
+
+ margin-top:    1em;
+ margin-bottom: 0.25em;
+}
+
+DIV.content H2
+{
+ /* fonts and text styles */
+
+ font-size:   x-large;
+ font-weight: bold;
+
+ /* margins, borders, padding and sizes */
+
+ padding: 0;
+
+ margin-top:    0.75em;
+ margin-bottom: 0.25em;
+}
+
+DIV.content H3
+{
+ /* fonts and text styles */
+
+ font-size:   large;
+ font-weight: bold;
+
+ /* margins, borders, padding and sizes */
+
+ padding: 0;
+
+ margin-top:    0.75em;
+ margin-bottom: 0.25em;
+}
+
+DIV.content H4
+{
+ /* fonts and text styles */
+
+ font-size:   medium;
+ font-weight: bold;
+
+ /* margins, borders, padding and sizes */
+
+ padding: 0;
+
+ margin-top:    0.5em;
+ margin-bottom: 0.125em;
+}
+
+DIV.content OL, DIV.content UL, DIV.content DIR, DIV.content MENU, DIV.content DL
+{
+ /* margins, borders, padding and sizes */
+
+ padding-top:    0;
+ padding-bottom: 0;
+
+ margin-top:    0.25em;
+ margin-bottom: 0.25em;
+}
+
+DIV.content UL UL, DIV.content UL OL, DIV.content UL DL, DIV.content OL UL, DIV.content OL OL, DIV.content OL DL, DIV.content DL UL, DIV.content DL OL, DIV.content DL DL
+{
+ /* margins, borders, padding and sizes */
+
+ padding-top:    0;
+ padding-bottom: 0;
+
+ margin-top:    0;
+ margin-bottom: 0;
+}
+
+DIV.content FORM
+{
+ /* margins, borders, padding and sizes */
+
+ padding: 0.5em;
+
+ margin: 0.5em;
+}
+
+DIV.content INPUT
+{
+ /* margins, borders, padding and sizes */
+
+ padding: 0;
+
+ border:  1px solid;
+
+ margin:  1px;
+}
+
+DIV.content BUTTON
+{
+ /* margins, borders, padding and sizes */
+
+ padding: 0;
+
+ border:  1px solid;
+
+ margin:  1px;
+}
+
+DIV.content INPUT.left
+{
+ /* text alignment */
+
+ text-align: left;
+}
+
+DIV.content INPUT.center
+{
+ /* text alignment */
+
+ text-align: center;
+}
+
+DIV.content INPUT.right
+{
+ /* text alignment */
+
+ text-align: right;
+}
+
+DIV.content TABLE
+{
+ /* margins, borders, padding and sizes */
+
+ padding: 0;
+
+ border:  2px solid;
+
+ margin:  0;
+ margin-left: auto;
+ margin-right: auto;
+
+ border-collapse: collapse;
+}
+
+DIV.content TABLE.noborder
+{
+ /* margins, borders, padding and sizes */
+
+ margin-left: auto;
+ margin-right: auto;
+
+ border:  0;
+}
+
+DIV.content TABLE.noborder-left
+{
+ /* margins, borders, padding and sizes */
+
+ margin-left: 0;
+ margin-right: auto;
+
+ border:  0;
+}
+
+DIV.content CAPTION
+{
+ /* position */
+
+ caption-side: bottom;
+
+ /* text alignment */
+
+ text-align: center;
+
+ /* fonts and text styles */
+
+ font-weight: bold;
+}
+
+DIV.content TD, DIV.content TH
+{
+ /* margins, borders, padding and sizes */
+
+ border:  1px solid;
+}
+
+DIV.content TABLE.noborder TD, DIV.content TABLE.noborder TH
+{
+ /* margins, borders, padding and sizes */
+
+ border:  0;
+}
+
+DIV.content TABLE.noborder-left TD, DIV.content TABLE.noborder-left TH
+{
+ /* margins, borders, padding and sizes */
+
+ border:  0;
+}
+
+DIV.content TD.left, DIV.content TH.left, DIV.content TR.left
+{
+ /* text alignment */
+
+ text-align: left;
+}
+
+DIV.content TD.center, DIV.content TH.center, DIV.content TR.center
+{
+ /* text alignment */
+
+ text-align: center;
+}
+
+DIV.content TD.right, DIV.content TH.right, DIV.content TR.right
+{
+ /* text alignment */
+
+ text-align: right;
+}
+
+DIV.content IMG
+{
+ /* margins, borders, padding and sizes */
+
+ border: 0px;
+}

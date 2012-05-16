@@ -1,0 +1,262 @@
+                              Routino : Output
+                              ================
+
+
+   There are three different formats of output from the router, HTML, GPX
+   (GPS eXchange) XML format and plain text with a total of five possible
+   output files:
+     * HTML route instructions for each interesting junction.
+     * GPX track file containing every node.
+     * GPX route file with waypoints at interesting junctions.
+     * Plain text description with the interesting junctions.
+     * Plain text file with every node.
+
+   The "interesting junctions" referred to above are junctions where the
+   route changes to a different type of highway, more than two highways of
+   the same type meet, or where the route meets but does not take a more
+   major highway. When the route follows a major road this definition
+   eliminates all junctions with minor roads.
+
+   The output files are written to the current directory and are named
+   depending on the selection of shortest or quickest route. For the
+   shortest route the file names are "shortest.html",
+   "shortest-track.gpx", "shortest-route.gpx", "shortest.txt" and
+   "shortest-all.txt", for the quickest route the names are
+   "quickest.html", "quickest-track.gpx", "quickest-route.gpx",
+   "quickest.txt" and "quickest-all.txt".
+
+   The HTML file and GPX files are written out according to the selected
+   language using the translations contained in the translations.xml
+   configuration file. The text files contains untranslated header lines
+   (in English) but the data is translated.
+
+
+HTML Route Instructions
+-----------------------
+
+   The HTML route instructions file contains one line for the description
+   of each of the interesting junctions in the route and one line for each
+   of the highways that connect them. The coordinates are also included in
+   the file but are not visible because of the style definitions.
+
+   An example HTML file output is below (some parts are missing, for
+   example the style definitions):
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+<!-- Creator : Routino - http://www.routino.org/ -->
+<!-- Source : Based on OpenStreetMap data from http://www.openstreetmap.org/ -->
+<!-- License : http://creativecommons.org/licenses/by-sa/2.0/ -->
+<HEAD>
+<TITLE>Shortest Route</TITLE>
+...
+</HEAD>
+<BODY>
+<H1>Shortest Route</H1>
+<table>
+<tr class='c'><td class='l'>1:<td class='r'>51.524658 -0.127877
+<tr class='n'><td class='l'>Start:<td class='r'>At <span class='w'>Waypoint</span>, head <span class='b'>South-East</span>
+<tr class='s'><td class='l'>Follow:<td class='r'><span class='h'>Woburn Place (A4200)</span> for <span class='d'>0.440 km, 0.5 min</span> [<span class='j'>0.4 km, 1 minutes</span>]
+<tr class='c'><td class='l'>2:<td class='r'>51.521460 -0.124099
+<tr class='n'><td class='l'>At:<td class='r'>Junction, go <span class='t'>Straight on</span> heading <span class='b'>South-East</span>
+<tr class='s'><td class='l'>Follow:<td class='r'><span class='h'>Southampton Row (A4200)</span> for <span class='d'>0.34
+...
+<tr class='c'><td class='l'>21:<td class='r'>51.478354 -0.103560
+<tr class='n'><td class='l'>At:<td class='r'>Junction, go <span class='t'>Right</span> heading <span class='b'>South-West</span>
+<tr class='s'><td class='l'>Follow:<td class='r'><span class='h'>Vassall Road</span> for <span class='d'>0.013 km, 0.0 min</span> [<span class='j'>6.4 km, 6 minutes</span>]
+<tr class='c'><td class='l'>22:<td class='r'>51.478244 -0.103651
+<tr class='n'><td class='l'>Stop:<td class='r'>At <span class='w'>Waypoint</span>
+<tr class='t'><td class='l'>Total:<td class='r'><span class='j'>6.4 km, 6 minutes</span>
+</table>
+</BODY>
+</HTML>
+
+
+GPX Track File
+--------------
+
+   The GPX track file contains a track with all of the individual nodes
+   that the route passes through.
+
+   An example GPX track file output is below:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Routino" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                     xmlns="http://www.topografix.com/GPX/1/1"
+                                     xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<metadata>
+<desc>Creator : Routino - http://www.routino.org/</desc>
+<copyright author="Based on OpenStreetMap data from http://www.openstreetmap.org/">
+<license>http://creativecommons.org/licenses/by-sa/2.0/</license>
+</copyright>
+</metadata>
+<trk>
+<name>Shortest route</name>
+<desc>Shortest route between 'start' and 'finish' waypoints</desc>
+<trkpt lat="51.524658" lon="-0.127877"/>
+<trkpt lat="51.523768" lon="-0.126918"/>
+...
+<trkpt lat="51.478354" lon="-0.103560"/>
+<trkpt lat="51.478244" lon="-0.103651"/>
+</trkseg>
+</trk>
+</gpx>
+
+
+GPX Route File
+--------------
+
+   The GPX route file contains a route (ordered set of waypoints) with all
+   of the interesting junctions that the route passes through and a
+   description of the route to take from that point.
+
+   An example GPX route file output is below:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Routino" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                     xmlns="http://www.topografix.com/GPX/1/1"
+                                     xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<metadata>
+<desc>Creator : Routino - http://www.routino.org/</desc>
+<copyright author="Based on OpenStreetMap data from http://www.openstreetmap.org/">
+<license>http://creativecommons.org/licenses/by-sa/2.0/</license>
+</copyright>
+</metadata>
+<rte>
+<name>Shortest route</name>
+<desc>Shortest route between 'start' and 'finish' waypoints</desc>
+<rtept lat="51.524658" lon="-0.127877"><name>START</name>
+<desc>South-East on `Woburn Place (A4200)` for 0.440 km, 0.5 min</desc></rtept>
+<rtept lat="51.521460" lon="-0.124099"><name>TRIP001</name>
+<desc>South-East on `Southampton Row (A4200)` for 0.348 km, 0.4 min</desc></rtept>
+...
+<desc>South-East on `Camberwell New Road (A202)` for 0.597 km, 0.4 min</desc></rtept>
+<rtept lat="51.478354" lon="-0.103560"><name>TRIP020</name>
+<desc>South-West on `Vassall Road` for 0.013 km, 0.0 min</desc></rtept>
+<rtept lat="51.478244" lon="-0.103651"><name>FINISH</name>
+<desc>Total Journey 6.4 km, 6 minutes</desc></rtept>
+</rte>
+</gpx>
+
+
+Text File
+---------
+
+   The text file format contains one entry for all of the interesting
+   junctions in the route and is intended to be easy to interpret, for
+   example for creating other output formats.
+
+   An example text file output is below:
+
+# Creator : Routino - http://www.routino.org/
+# Source : Based on OpenStreetMap data from http://www.openstreetmap.org/
+# License : http://creativecommons.org/licenses/by-sa/2.0/
+#
+#Latitude   Longitude  Section   Section   Total     Total      Point  Turn  Bearing Highway
+#                      Distance  Duration  Distance  Duration   Type                 
+ 51.524658  -0.127877  0.000 km  0.0 min    0.0 km     0 min    Waypt         +3     Woburn Place (A4200)
+ 51.521460  -0.124099  0.440 km  0.5 min    0.4 km     1 min    Junct   +0    +3     Southampton Row (A4200)
+...
+ 51.478354  -0.103560  0.597 km  0.4 min    6.4 km     6 min    Junct   +2    -3     Vassall Road
+ 51.478244  -0.103651  0.013 km  0.0 min    6.4 km     6 min    Waypt               
+
+   The text file output contains a header (indicated by the lines starting
+   with '#') and then one line for each waypoint or junction. Each line
+   contains the information for the current node and the next segment to
+   be followed. For each of the lines the individual fields contain the
+   following:
+
+   Latitude - Location of the node (degrees)
+
+   Longitude - Location of the node (degrees)
+
+   Section Distance - The distance travelled on the section of the journey
+   that ends at this node.
+
+   Section Duration - The duration of travel on the section of the journey
+   that ends at this node.
+
+   Total Distance - The total distance travelled up to this point.
+
+   Total Duration - The total duration of travel up to this point.
+
+   Point Type - The type of point; either a waypoint Waypt or junction
+   Junct.
+
+   Turn - The direction to turn at this point (missing for the first line
+   since the journey has not started yet and for the last line because it
+   has finished). This can take one of nine values between -4 and +4
+   defined by: 0 = Straight, +2 = Right, -2 = Left and +/-4 = Reverse.
+
+   Bearing - The direction to head from this point (missing for the last
+   line since the journey has finished). This can take one of nine values
+   between -4 and +4 defined by: 0 = North, +2 = East, -2 = West and +/-4
+   = South.
+
+   Highway - The name (or description) of the highway to follow from this
+   point (missing on the last line since the journey has finished).
+
+   The individual items are separated by tabs but some of the items
+   contain spaces as well.
+
+
+All Nodes Text File
+-------------------
+
+   The all nodes text file format contains one entry for each of the nodes
+   on the route.
+
+   An example all nodes text file output is below:
+
+# Creator : Routino - http://www.routino.org/
+# Source : Based on OpenStreetMap data from http://www.openstreetmap.org/
+# License : http://creativecommons.org/licenses/by-sa/2.0/
+#
+#Latitude   Longitude  Node       Type   Segment Segment  Total Total   Speed  Bearing Highway
+#                                        Dist    Durat'n  Dist  Durat'n                       
+ 51.524658  -0.127877  12466852*  Waypt  0.000   0.00     0.00   0.0                  
+ 51.523768  -0.126918  12467208*  Junct  0.119   0.15     0.12   0.1    96     146     Woburn Place (A4200)
+...
+ 51.478354  -0.103560  12604345*  Junct  0.104   0.07     6.36   5.6    96     125     Camberwell New Road (A202)
+ 51.478244  -0.103651  12604304   Waypt  0.013   0.01     6.37   5.6    64     207     Vassall Road
+
+   The all nodes text file output contains a header (indicated by the
+   lines starting with '#') and then one line for each node and the
+   segment that was used to reach it. This file therefore contains exactly
+   the same model as is used internally to define a route (a series of
+   results each of which is a node and the segment leading to it). For
+   each of the lines the individual fields contain the following:
+
+   Latitude - Location of the node in degrees.
+
+   Longitude - Location of the node in degrees.
+
+   Node - The internal node number and an indicator "*" if the node is a
+   super-node.
+
+   Type - The type of point; a waypoint Waypt, junction Junct, change of
+   highway Change or intermediate node Inter.
+
+   Segment Distance - The distance travelled on the segment defined on this
+   line.
+
+   Segment Duration - The duration of travel on the segment defined on this
+   line.
+
+   Total Distance - The total distance travelled up to this point.
+
+   Total Duration - The total duration of travel up to this point.
+
+   Speed - The speed of travel on the segment defined on this line (missing
+   on the first line).
+
+   Bearing - The direction that the segment defined on this line travels in
+   degrees (missing on the first line).
+
+   Highway - The name (or description) of the highway segment (missing on
+   the first line).
+
+
+--------
+
+Copyright 2008-2011 Andrew M. Bishop.

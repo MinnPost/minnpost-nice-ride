@@ -1,0 +1,438 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+
+<!--
+ Routino non-Javascript web page.
+
+ Part of the Routino routing software.
+
+ This file Copyright 2008-2011 Andrew M. Bishop
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU Affero General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Affero General Public License for more details.
+
+ You should have received a copy of the GNU Affero General Public License
+ along with this program.  If not, see http://www.gnu.org/licenses/.
+-->
+
+<HEAD>
+<TITLE>Routino : Route Planner for OpenStreetMap Data (non-JavaScript)</TITLE>
+<META name="keywords" content="openstreetmap routing route planner">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<LINK href="../documentation/style.css" type="text/css" rel="stylesheet">
+</HEAD>
+
+<BODY>
+
+<!-- Header Start -->
+
+<div class="header" align="center">
+
+<h1>Routino : Route Planner for OpenStreetMap Data (non-JavaScript)</h1>
+
+<hr>
+</div>
+
+<!-- Header End -->
+
+<!-- Content Start -->
+
+<div class="content">
+
+<h2>Non Javascript Route Finder</h2>
+
+<form name="form" action="noscript.cgi" method="get">
+
+  <h3>Locations</h3>
+
+  When a route is calculated it will visit (as close as possible
+  for the selected transport type) each of the locations that have
+  been specified in the order given.
+
+  <p>
+
+  <table class="noborder-left">
+    <tr>
+      <td><b>Waypoint 1:</b>
+      <td><input name="lon1" type="text" size=8 title="Waypoint 1 Longitude" class="right"><!-- lon1 --> E
+      <td><input name="lat1" type="text" size=8 title="Waypoint 1 Latitude"  class="right"><!-- lat1 --> N
+    <tr>
+      <td><b>Waypoint 2:</b>
+      <td><input name="lon2" type="text" size=8 title="Waypoint 2 Longitude" class="right"><!-- lon2 --> E
+      <td><input name="lat2" type="text" size=8 title="Waypoint 2 Latitude"  class="right"><!-- lat2 --> N
+    <tr>
+      <td><b>Waypoint 3:</b>
+      <td><input name="lon3" type="text" size=8 title="Waypoint 3 Longitude" class="right"><!-- lon3 --> E
+      <td><input name="lat3" type="text" size=8 title="Waypoint 3 Latitude"  class="right"><!-- lat3 --> N
+    <tr>
+      <td><b>Waypoint 4:</b>
+      <td><input name="lon4" type="text" size=8 title="Waypoint 4 Longitude" class="right"><!-- lon4 --> E
+      <td><input name="lat4" type="text" size=8 title="Waypoint 4 Latitude"  class="right"><!-- lat4 --> N
+    <tr>
+      <td><b>Waypoint 5:</b>
+      <td><input name="lon5" type="text" size=8 title="Waypoint 5 Longitude" class="right"><!-- lon5 --> E
+      <td><input name="lat5" type="text" size=8 title="Waypoint 5 Latitude"  class="right"><!-- lat5 --> N
+    <tr>
+      <td><b>Waypoint 6:</b>
+      <td><input name="lon6" type="text" size=8 title="Waypoint 6 Longitude" class="right"><!-- lon6 --> E
+      <td><input name="lat6" type="text" size=8 title="Waypoint 6 Latitude"  class="right"><!-- lat6 --> N
+    <tr>
+      <td><b>Waypoint 7:</b>
+      <td><input name="lon7" type="text" size=8 title="Waypoint 7 Longitude" class="right"><!-- lon7 --> E
+      <td><input name="lat7" type="text" size=8 title="Waypoint 7 Latitude"  class="right"><!-- lat7 --> N
+    <tr>
+      <td><b>Waypoint 8:</b>
+      <td><input name="lon8" type="text" size=8 title="Waypoint 8 Longitude" class="right"><!-- lon8 --> E
+      <td><input name="lat8" type="text" size=8 title="Waypoint 8 Latitude"  class="right"><!-- lat8 --> N
+    <tr>
+      <td><b>Waypoint 9:</b>
+      <td><input name="lon9" type="text" size=8 title="Waypoint 9 Longitude" class="right"><!-- lon9 --> E
+      <td><input name="lat9" type="text" size=8 title="Waypoint 9 Latitude"  class="right"><!-- lat9 --> N
+  </table>
+
+  <p>
+
+  <h3>Transport Type</h3>
+
+  Selecting a transport type will restrict the chosen route to
+  those on which it is allowed.  Selecting one of the links here
+  will set default values for the other parameters.
+
+  <p>
+
+  <table class="noborder-left">
+    <tr>
+      <td><a href="noscript.cgi?transport=foot"       title="Foot profile"      >Foot      </a>
+      <td><input name="transport" type="radio" value="foot"      ><!-- transport -->
+    <tr>
+      <td><a href="noscript.cgi?transport=horse"      title="Horse profile"     >Horse     </a>
+      <td><input name="transport" type="radio" value="horse"     ><!-- transport -->
+    <tr>
+      <td><a href="noscript.cgi?transport=wheelchair" title="Wheelchair profile">Wheelchair</a>
+      <td><input name="transport" type="radio" value="wheelchair"><!-- transport -->
+    <tr>
+      <td><a href="noscript.cgi?transport=bicycle"    title="Bicycle profile"   >Bicycle   </a>
+      <td><input name="transport" type="radio" value="bicycle"   ><!-- transport -->
+    <tr>
+      <td><a href="noscript.cgi?transport=moped"      title="Moped profile"     >Moped     </a>
+      <td><input name="transport" type="radio" value="moped"     ><!-- transport -->
+    <tr>
+      <td><a href="noscript.cgi?transport=motorbike"  title="Motorbike profile" >Motorbike </a>
+      <td><input name="transport" type="radio" value="motorbike" ><!-- transport -->
+    <tr>
+      <td><a href="noscript.cgi?transport=motorcar"   title="Motorcar profile"  >Motorcar  </a>
+      <td><input name="transport" type="radio" value="motorcar"  ><!-- transport -->
+    <tr>
+      <td><a href="noscript.cgi?transport=goods"      title="Goods profile"     >Goods     </a>
+      <td><input name="transport" type="radio" value="goods"     ><!-- transport -->
+    <tr>
+      <td><a href="noscript.cgi?transport=hgv"        title="HGV profile"       >HGV       </a>
+      <td><input name="transport" type="radio" value="hgv"       ><!-- transport -->
+    <tr>
+      <td><a href="noscript.cgi?transport=psv"        title="PSV profile"       >PSV       </a>
+      <td><input name="transport" type="radio" value="psv"       ><!-- transport -->
+  </table>
+
+  <p>
+
+  <h3>Highway Preferences</h3>
+
+  The highway preference is selected as a percentage and routes are chosen that
+  try to follow the preferred highways.
+  For example if a "Primary" road is given a "110%" preference and a "Secondary"
+  road is given a "100%" preference then it means that a route on a Primary road
+  can be up to 10% longer than on a secondary road and still be selected.
+
+  <h3>Speed Limits</h3>
+
+  The speed limits chosen here for the different types of highway apply if the
+  highway has no other speed limit marked or it is higher than the chosen one.
+
+  <p>
+
+  <table class="noborder-left">
+    <tr>
+      <th class="left">
+      <th class="left" colspan=2><b>Preference</b>
+      <th class="left" colspan=2><b>Speed Limit</b>
+    <tr>
+      <td class="left"  >Motorway:
+      <td class="right" ><input name="highway-motorway"     type="text" size=3 class="right"><!-- highway-motorway     -->
+      <td class="left"  >%
+      <td class="right" ><input name="speed-motorway"       type="text" size=3 class="right"><!-- speed-motorway       -->
+      <td class="left"  >km/hr
+    <tr>
+      <td class="left"  >Trunk:
+      <td class="right" ><input name="highway-trunk"        type="text" size=3 class="right"><!-- highway-trunk        -->
+      <td class="left"  >%
+      <td class="right" ><input name="speed-trunk"          type="text" size=3 class="right"><!-- speed-trunk          -->
+      <td class="left"  >km/hr
+    <tr>
+      <td class="left"  >Primary:
+      <td class="right" ><input name="highway-primary"      type="text" size=3 class="right"><!-- highway-primary      -->
+      <td class="left"  >%
+      <td class="right" ><input name="speed-primary"        type="text" size=3 class="right"><!-- speed-primary        -->
+      <td class="left"  >km/hr
+    <tr>
+      <td class="left"  >Secondary:
+      <td class="right" ><input name="highway-secondary"    type="text" size=3 class="right"><!-- highway-secondary    -->
+      <td class="left"  >%
+      <td class="right" ><input name="speed-secondary"      type="text" size=3 class="right"><!-- speed-secondary      -->
+      <td class="left"  >km/hr
+    <tr>
+      <td class="left"  >Tertiary:
+      <td class="right" ><input name="highway-tertiary"     type="text" size=3 class="right"><!-- highway-tertiary     -->
+      <td class="left"  >%
+      <td class="right" ><input name="speed-tertiary"       type="text" size=3 class="right"><!-- speed-tertiary       -->
+      <td class="left"  >km/hr
+    <tr>
+      <td class="left"  >Unclassified:
+      <td class="right" ><input name="highway-unclassified" type="text" size=3 class="right"><!-- highway-unclassified -->
+      <td class="left"  >%
+      <td class="right" ><input name="speed-unclassified"   type="text" size=3 class="right"><!-- speed-unclassified   -->
+      <td class="left"  >km/hr
+    <tr>
+      <td class="left"  >Residential:
+      <td class="right" ><input name="highway-residential"  type="text" size=3 class="right"><!-- highway-residential  -->
+      <td class="left"  >%
+      <td class="right" ><input name="speed-residential"    type="text" size=3 class="right"><!-- speed-residential    -->
+      <td class="left"  >km/hr
+    <tr>
+      <td class="left"  >Service:
+      <td class="right" ><input name="highway-service"      type="text" size=3 class="right"><!-- highway-service      -->
+      <td class="left"  >%
+      <td class="right" ><input name="speed-service"        type="text" size=3 class="right"><!-- speed-service        -->
+      <td class="left"  >km/hr
+    <tr>
+      <td class="left"  >Track:
+      <td class="right" ><input name="highway-track"        type="text" size=3 class="right"><!-- highway-track        -->
+      <td class="left"  >%
+      <td class="right" ><input name="speed-track"          type="text" size=3 class="right"><!-- speed-track          -->
+      <td class="left"  >km/hr
+    <tr>
+      <td class="left"  >Cycleway:
+      <td class="right" ><input name="highway-cycleway"     type="text" size=3 class="right"><!-- highway-cycleway     -->
+      <td class="left"  >%
+      <td class="right" ><input name="speed-cycleway"       type="text" size=3 class="right"><!-- speed-cycleway       -->
+      <td class="left"  >km/hr
+    <tr>
+      <td class="left"  >Path:
+      <td class="right" ><input name="highway-path"         type="text" size=3 class="right"><!-- highway-path         -->
+      <td class="left"  >%
+      <td class="right" ><input name="speed-path"           type="text" size=3 class="right"><!-- speed-path           -->
+      <td class="left"  >km/hr
+    <tr>
+      <td class="left"  >Steps:
+      <td class="right" ><input name="highway-steps"        type="text" size=3 class="right"><!-- highway-steps        -->
+      <td class="left"  >%
+      <td class="right" ><input name="speed-steps"          type="text" size=3 class="right"><!-- speed-steps          -->
+      <td class="left"  >km/hr
+    <tr>
+      <td class="left"  >Ferry:
+      <td class="right" ><input name="highway-ferry"        type="text" size=3 class="right"><!-- highway-ferry        -->
+      <td class="left"  >%
+      <td class="right" ><input name="speed-ferry"          type="text" size=3 class="right"><!-- speed-ferry          -->
+      <td class="left"  >km/hr
+  </table>
+
+  <p>
+
+  <h3>Property Preferences</h3>
+
+  The property preference is selected as a percentage and routes are chosen that
+  try to follow highways with the preferred property.
+  For example if a "Paved" highway is given a "75%" preference then it means that
+  an unpaved highway is automatically given a "25%" preference so that a route on
+  a paved highway can be 3 times the length of an unpaved one and still be
+  selected.
+
+  <p>
+
+  <table class="noborder-left">
+    <tr>
+      <th class="left">
+      <th class="left" colspan=2><b>Preference</b><br>
+    <tr>
+      <td class="left"  >Paved:
+      <td class="right" ><input name="paved"        type="text" size=3 class="right"><!-- property-paved        -->
+      <td class="left"  >%
+    <tr>
+      <td class="left"  >Multiple Lanes:
+      <td class="right" ><input name="multilane"    type="text" size=3 class="right"><!-- property-multilane    -->
+      <td class="left"  >%
+    <tr>
+      <td class="left"  >Bridge:
+      <td class="right" ><input name="bridge"       type="text" size=3 class="right"><!-- property-bridge       -->
+      <td class="left"  >%
+    <tr>
+      <td class="left"  >Tunnel:
+      <td class="right" ><input name="tunnel"       type="text" size=3 class="right"><!-- property-tunnel       -->
+      <td class="left"  >%
+    <tr>
+      <td class="left"  >Walking Route:
+      <td class="right" ><input name="footroute"    type="text" size=3 class="right"><!-- property-footroute    -->
+      <td class="left"  >%
+    <tr>
+      <td class="left"  >Bicycle Route:
+      <td class="right" ><input name="bicycleroute" type="text" size=3 class="right"><!-- property-bicycleroute -->
+      <td class="left"  >%
+  </table>
+
+  <p>
+
+  <h3>Other Restrictions</h3>
+
+  These allow a route to be found that avoids marked limits on
+  weight, height, width or length.  It is also possible to ignore
+  one-way restrictions (e.g. if walking).
+
+  <p>
+
+  <table class="noborder-left">
+    <tr>
+      <td class="left"  >Obey oneway:
+      <td class="right" ><input name="oneway" type="checkbox"><!-- oneway -->
+      <td class="left"  >
+    <tr>
+      <td class="left"  >Obey turn restrictions:
+      <td class="right" ><input name="turns" type="checkbox"><!-- turns -->
+      <td class="left"  >
+    <tr>
+      <td class="left"  >Weight:
+      <td class="right" ><input name="weight" type="text" size=3 class="right"><!-- weight -->
+      <td class="left"  >tonnes
+    <tr>
+      <td class="left"  >Height:
+      <td class="right" ><input name="height" type="text" size=3 class="right"><!-- height -->
+      <td class="left"  >metres
+    <tr>
+      <td class="left"  >Width:
+      <td class="right" ><input name="width"  type="text" size=3 class="right"><!-- width  -->
+      <td class="left"  >metres
+    <tr>
+      <td class="left"  >Length:
+      <td class="right" ><input name="length" type="text" size=3 class="right"><!-- length -->
+      <td class="left"  >metres
+  </table>
+
+  <p>
+
+<h3>Output Format</h3>
+
+  This allows for selection of the language of the generated output.
+
+  <p>
+
+  <table class="noborder-left">
+    <tr>
+      <td class="left">English (en)
+      <td class="left"><input name="language" type="radio" value="en" checked><!-- language -->
+    <tr>
+      <td class="left">German (de) 
+      <td class="left"><input name="language" type="radio" value="de"><!-- language -->
+  </table>
+
+  <p>
+
+  This allows for selection of the format of the generated output.
+
+  <p>
+
+  <table class="noborder-left">
+    <tr>
+      <td class="left"><input name="format" type="radio" value="form" checked>This HTML format
+    <tr>
+      <td class="left"><input name="format" type="radio" value="html">HTML route instructions
+    <tr>
+      <td class="left"><input name="format" type="radio" value="gpx-track">GPX track file
+    <tr>
+      <td class="left"><input name="format" type="radio" value="gpx-route">GPX route file
+    <tr>
+      <td class="left"><input name="format" type="radio" value="text">Text file
+    <tr>
+      <td class="left"><input name="format" type="radio" value="text-all">Full text file
+  </table>
+
+  <p>
+
+  <h3>Calculate Route</h3>
+
+  <button type="submit" name="submit" value="shortest">Shortest</button>
+  <button type="submit" name="submit" value="quickest">Quickest</button>
+
+  <p>
+
+  <!-- result-start -->
+
+  <hr>
+
+  <p>
+
+  <table class="noborder-left">
+    <tr>
+      <th class="left" colspan=2><u><b><!-- result-Type --> Result</b></u>
+    <tr>
+      <td class="left" colspan=2><b><!-- result-message --></b>
+    <tr>
+      <td class="left" colspan=2><b><!-- result-result --></b>
+    <tr>
+      <td class="left">HTML file:
+      <td class="left"><a title="" target="new" href="results.cgi?uuid=<!-- result-uuid -->;type=<!-- result-type -->;format=html">Open</a>
+    <tr>
+      <td class="left">GPX track file:
+      <td class="left"><a title="" target="new" href="results.cgi?uuid=<!-- result-uuid -->;type=<!-- result-type -->;format=gpx-track">Open</a>
+    <tr>
+      <td class="left">GPX route file:
+      <td class="left"><a title="" target="new" href="results.cgi?uuid=<!-- result-uuid -->;type=<!-- result-type -->;format=gpx-route">Open</a>
+    <tr>
+      <td class="left">Text file:
+      <td class="left"><a title="" target="new" href="results.cgi?uuid=<!-- result-uuid -->;type=<!-- result-type -->;format=text">Open</a>
+    <tr>
+      <td class="left">Full text file:
+      <td class="left"><a title="" target="new" href="results.cgi?uuid=<!-- result-uuid -->;type=<!-- result-type -->;format=text-all">Open</a>
+    <tr>
+      <td class="left" colspan=2><i><!-- result-time --></i>
+  </table>
+
+  <p>
+
+  <!-- result-finish -->
+
+  <hr>
+
+  <p>
+
+  <h3>Create Link</h3>
+
+  <button type="submit" name="submit" value="link">Create Link</button>
+  <a title="" href="<!-- custom-url -->">Bookmarkable link with customised parameters</a>
+
+</form>
+
+</div>
+
+<!-- Content End -->
+
+<!-- Footer Start -->
+
+<div class="footer" align="center">
+<hr>
+
+<address>
+&copy; Andrew M. Bishop = &lt;amb "at" gedanken.demon.co.uk&gt;
+</address>
+
+</div>
+
+<!-- Footer End -->
+
+</BODY>
+
+</HTML>

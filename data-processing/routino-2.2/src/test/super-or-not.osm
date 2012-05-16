@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='86' visible='true' version='1' lat='-0.21688045301473516' lon='-0.5151829113120308'>
+    <tag k='name' v='WP02b' />
+  </node>
+  <node id='82' visible='true' version='1' lat='-0.21646963010999992' lon='-0.5174119101486654' />
+  <node id='77' visible='true' version='1' lat='-0.21721431100258048' lon='-0.5141522988242739' />
+  <node id='74' visible='true' version='1' lat='-0.21725785769610798' lon='-0.5202996845787107' />
+  <node id='72' visible='true' version='1' lat='-0.21797637812110027' lon='-0.5199295350232488' />
+  <node id='70' visible='true' version='1' lat='-0.2180562137217683' lon='-0.5149942076170893' />
+  <node id='38' visible='true' version='1' lat='-0.215865729480266' lon='-0.5179307619271613'>
+    <tag k='name' v='WP03b' />
+  </node>
+  <node id='39' visible='true' version='1' lat='-0.2164352406236952' lon='-0.5185150361715245' />
+  <node id='40' visible='true' version='1' lat='-0.21645095962829408' lon='-0.5162207323645169' />
+  <node id='41' visible='true' version='1' lat='-0.2159298460869398' lon='-0.5168230480787187' />
+  <node id='42' visible='true' version='1' lat='-0.21724799056850824' lon='-0.5152064339929149' />
+  <node id='43' visible='true' version='1' lat='-0.215918491230658' lon='-0.5190638359247135' />
+  <node id='44' visible='true' version='1' lat='-0.21594107925441666' lon='-0.5156105875143656' />
+  <node id='45' visible='true' version='1' lat='-0.2172454620011612' lon='-0.5196371203012323'>
+    <tag k='name' v='WP03a' />
+  </node>
+  <node id='60' visible='true' version='1' lat='-0.21608467422596514' lon='-0.5187345090517225'>
+    <tag k='name' v='WP01a' />
+  </node>
+  <node id='64' visible='true' version='1' lat='-0.21623756439742947' lon='-0.515812981213099'>
+    <tag k='name' v='WP01b' />
+  </node>
+  <node id='340' visible='true' version='1' lat='-0.21686615103763912' lon='-0.5193623107116035'>
+    <tag k='name' v='WP02a' />
+  </node>
+  <way id='75' visible='true' version='1'>
+    <nd ref='74' />
+    <nd ref='45' />
+    <nd ref='42' />
+    <nd ref='77' />
+    <tag k='highway' v='primary' />
+    <tag k='name' v='Main road' />
+  </way>
+  <way id='46' visible='true' version='1'>
+    <nd ref='72' />
+    <nd ref='45' />
+    <nd ref='43' />
+    <nd ref='39' />
+    <nd ref='38' />
+    <nd ref='82' />
+    <nd ref='41' />
+    <nd ref='40' />
+    <nd ref='44' />
+    <nd ref='42' />
+    <nd ref='70' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='Local road' />
+  </way>
+</osm>

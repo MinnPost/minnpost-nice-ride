@@ -1,0 +1,179 @@
+                           Routino : Configuration
+                           =======================
+
+
+   New in version 1.4 of Routino is the use of configuration files to
+   allow more information to be provided to the programs at run-time. The
+   configuration files that are used are:
+     * Tagging transformation rules for the planetsplitter program.
+     * Routing profiles for the router program.
+     * Output translations for the router program.
+
+   In keeping with the nature of the input and output files the
+   configuration files are also XML files. Each of the files uses a custom
+   defined XML schema and an XSD file is provided for each of them.
+
+
+Tag Transformation Rules
+------------------------
+
+   The default name of the tagging transformation rules XML configuration
+   file is tagging.xml in the same directory as the generated database
+   files. Other filenames can be specified on the command line using the
+   --tagging option. When processing the input it is possible to have a
+   different set of tagging rules for each file; for example different
+   rules for different countries.
+
+   The tagging rules allow modifying the highway tags in the source file
+   so that the routing can be performed on a simpler set of tags. This
+   removes the special case tagging rules from the source code into the
+   configuration file where they can be easily modified. Part of the
+   provided tagging.xml file showing the rules for motorway_link and
+   motorway highway types.
+
+<?xml version="1.0" encoding="utf-8"?>
+<routino-tagging>
+
+  <way>
+
+    <if k="highway" v="motorway_link">
+      <set v="motorway"/>
+    </if>
+
+    <if k="highway" v="motorway">
+      <output k="highway"/>
+
+      <output k="motorbike"  v="yes"/>
+      <output k="motorcar"   v="yes"/>
+      <output k="goods"      v="yes"/>
+      <output k="hgv"        v="yes"/>
+      <output k="psv"        v="yes"/>
+
+      <output k="paved"      v="yes"/>
+      <output k="multilane"  v="yes"/>
+      <output k="oneway"     v="yes"/>
+    </if>
+...
+  <way>
+
+</routino-tagging>
+
+   The rules all have the same format; an if element for matching the
+   input and some set or output elements to either change the input tags
+   or create an output tag. The k and v attributes have the same meaning
+   as the attributes with the same names in the OSM XML file - the tag key
+   and tag value.
+
+   An if rule that has both k and v specified is only applied if a tag
+   exists in the input that matches both. An if rule that has only the k
+   attribute is applied if a tag with that key exists and an if rule that
+   has only the v attribute is applied to all tags with that value.
+
+   For the set and output elements the tag that is created in the input or
+   output tag set uses the k and v attributes specified. If one or both
+   are not specified then the original ones are used.
+
+
+Routing Profiles
+----------------
+
+   The default name of the routing profiles XML configuration file is
+   profiles.xml in the same directory as the database files. Other
+   filenames can be specified on the command line using the --tagging
+   option.
+
+   The purpose of this configuration file is to allow easy modification of
+   the routing parameters so that they do not all need to be specified on
+   the command line. In versions of Routino before version 1.4 the default
+   routing parameters (preferred highways, preferred speeds etc) were
+   contained in the source code, now they are in a configuration file.
+   When calculating a route the --profile option selects the named profile
+   from the configuration file.
+
+   Part of the provided profiles.xml file showing the parameters for
+   transport on foot is shown below:
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<routino-profiles>
+
+  <profile name="foot" transport="foot">
+    <speeds>
+...
+      <speed highway="cycleway"      kph="4" />
+      <speed highway="path"          kph="4" />
+      <speed highway="steps"         kph="4" />
+    </speeds>
+    <preferences>
+...
+      <preference highway="cycleway"      percent="95" />
+      <preference highway="path"          percent="100" />
+      <preference highway="steps"         percent="80" />
+    </preferences>
+    <properties>
+      <property type="paved"        percent="50" />
+      <property type="multilane"    percent="25" />
+      <property type="bridge"       percent="50" />
+      <property type="tunnel"       percent="50" />
+      <property type="footroute"    percent="55" />
+      <property type="bicycleroute" percent="55" />
+    </properties>
+    <restrictions>
+      <oneway obey="0" />
+      <weight limit="0.0" />
+      <height limit="0.0" />
+      <width  limit="0.0" />
+      <length limit="0.0" />
+    </restrictions>
+  </profile>
+  <profile name="horse" transport="horse">
+...
+  </profile>
+...
+</routino-profiles>
+
+
+Output Translations
+-------------------
+
+   The default name of the output translations XML configuration file is
+   translations.xml in the same directory as the database files. Other
+   filenames can be specified on the command line using the --translations
+   option.
+
+   The generated HTML and GPX output files (described in the next section)
+   are created using the fragments of text that are defined in this file.
+   Additional languages can be added to the file and are selected using
+   the --language option to the router. If no language is specified the
+   first one in the file is used.
+
+   Part of the provided translations.xml file showing some of the English
+   language (en) translations is shown below:
+
+<?xml version="1.0" encoding="utf-8"?>
+<routino-translations>
+
+  <language lang="en">
+...
+    <turn direction="-4" string="Very sharp left" />
+    <turn direction="-3" string="Sharp left" />
+    <turn direction="-2" string="Left" />
+...
+    <heading direction="-4" string="South" />
+    <heading direction="-3" string="South-West" />
+    <heading direction="-2" string="West" />
+...
+    <route type="shortest" string="Shortest" />
+    <route type="quickest" string="Quickest" />
+    <output-html>
+...
+    </output-html>
+    <output-gpx>
+...
+    </output-gpx>
+  </language>
+</routino-translations>
+
+
+--------
+
+Copyright 2010 Andrew M. Bishop.

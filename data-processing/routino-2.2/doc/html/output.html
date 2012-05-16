@@ -1,0 +1,385 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+
+<!--
+ Routino documentation - output
+
+ Part of the Routino routing software.
+
+ This file Copyright 2008-2012 Andrew M. Bishop
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU Affero General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Affero General Public License for more details.
+
+ You should have received a copy of the GNU Affero General Public License
+ along with this program.  If not, see http://www.gnu.org/licenses/.
+-->
+
+<HEAD>
+<TITLE>Routino : Output</TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<LINK href="style.css" type="text/css" rel="stylesheet">
+</HEAD>
+
+<BODY>
+
+<!-- Header Start -->
+
+<div class="header" align="center">
+
+<h1>Routino : Output</h1>
+
+<hr>
+</div>
+
+<!-- Header End -->
+
+<!-- Content Start -->
+
+<div class="content">
+
+<h2><a name="H_1_1"></a>Router Output</h2>
+
+There are three different formats of output from the router, HTML,
+<a class="ext" title="GPX format" href="http://www.topografix.com/gpx.asp">GPX (GPS eXchange) XML format</a>
+and plain text with a total of five possible output files:
+<ul>
+  <li>HTML route instructions for each interesting junction.
+  <li>GPX track file containing every node.
+  <li>GPX route file with waypoints at interesting junctions.
+  <li>Plain text description with the interesting junctions.
+  <li>Plain text file with every node.
+</ul>
+
+The "interesting junctions" referred to above are junctions where the route
+changes to a different type of highway, more than two highways of the same type
+meet, or where the route meets but does not take a more major highway.  When the
+route follows a major road this definition eliminates all junctions with minor
+roads.
+
+<p>
+
+The output files are written to the current directory and are named depending on
+the selection of shortest or quickest route. For the shortest route the file
+names are "shortest.html", "shortest-track.gpx", "shortest-route.gpx",
+"shortest.txt" and "shortest-all.txt", for the quickest route the names are
+"quickest.html", "quickest-track.gpx", "quickest-route.gpx", "quickest.txt" and
+"quickest-all.txt".
+
+<p>
+
+The HTML file and GPX files are written out according to the selected language
+using the translations contained in the translations.xml configuration file.
+The text files contains untranslated header lines (in English) but the data is
+translated.
+
+<!-- For reference the examples were produced from the following URL:
+     http://www.gedanken.org.uk/mapping/routino/customrouter.cgi?transport=motorcar;lon1=-0.12790;lat1=51.52468;lon2=-0.10365;lat2=51.47824 -->
+
+<h3><a name="H_1_1_1" title="HTML file"></a>HTML Route Instructions</h3>
+
+The HTML route instructions file contains one line for the description of each
+of the interesting junctions in the route and one line for each of the highways
+that connect them.  The coordinates are also included in the file but are not
+visible because of the style definitions.
+
+<p>
+
+An example HTML file output is below (some parts are missing, for example the
+style definitions):
+
+<pre class="boxed">
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;
+&lt;HTML&gt;
+&lt;!-- Creator : Routino - http://www.routino.org/ --&gt;
+&lt;!-- Source : Based on OpenStreetMap data from http://www.openstreetmap.org/ --&gt;
+&lt;!-- License : http://creativecommons.org/licenses/by-sa/2.0/ --&gt;
+&lt;HEAD&gt;
+&lt;TITLE&gt;Shortest Route&lt;/TITLE&gt;
+...
+&lt;/HEAD&gt;
+&lt;BODY&gt;
+&lt;H1&gt;Shortest Route&lt;/H1&gt;
+&lt;table&gt;
+&lt;tr class='c'&gt;&lt;td class='l'&gt;1:&lt;td class='r'&gt;51.524658 -0.127877
+&lt;tr class='n'&gt;&lt;td class='l'&gt;Start:&lt;td class='r'&gt;At &lt;span class='w'&gt;Waypoint&lt;/span&gt;, head &lt;span class='b'&gt;South-East&lt;/spa
+n&gt;
+&lt;tr class='s'&gt;&lt;td class='l'&gt;Follow:&lt;td class='r'&gt;&lt;span class='h'&gt;Woburn Place (A4200)&lt;/span&gt; for &lt;span class='d'&gt;0.440 k
+m, 0.5 min&lt;/span&gt; [&lt;span class='j'&gt;0.4 km, 1 minutes&lt;/span&gt;]
+&lt;tr class='c'&gt;&lt;td class='l'&gt;2:&lt;td class='r'&gt;51.521460 -0.124099
+&lt;tr class='n'&gt;&lt;td class='l'&gt;At:&lt;td class='r'&gt;Junction, go &lt;span class='t'&gt;Straight on&lt;/span&gt; heading &lt;span class='b'&gt;Sou
+th-East&lt;/span&gt;
+&lt;tr class='s'&gt;&lt;td class='l'&gt;Follow:&lt;td class='r'&gt;&lt;span class='h'&gt;Southampton Row (A4200)&lt;/span&gt; for &lt;span class='d'&gt;0.34
+...
+&lt;tr class='c'&gt;&lt;td class='l'&gt;21:&lt;td class='r'&gt;51.478354 -0.103560
+&lt;tr class='n'&gt;&lt;td class='l'&gt;At:&lt;td class='r'&gt;Junction, go &lt;span class='t'&gt;Right&lt;/span&gt; heading &lt;span class='b'&gt;South-Wes
+t&lt;/span&gt;
+&lt;tr class='s'&gt;&lt;td class='l'&gt;Follow:&lt;td class='r'&gt;&lt;span class='h'&gt;Vassall Road&lt;/span&gt; for &lt;span class='d'&gt;0.013 km, 0.0 m
+in&lt;/span&gt; [&lt;span class='j'&gt;6.4 km, 6 minutes&lt;/span&gt;]
+&lt;tr class='c'&gt;&lt;td class='l'&gt;22:&lt;td class='r'&gt;51.478244 -0.103651
+&lt;tr class='n'&gt;&lt;td class='l'&gt;Stop:&lt;td class='r'&gt;At &lt;span class='w'&gt;Waypoint&lt;/span&gt;
+&lt;tr class='t'&gt;&lt;td class='l'&gt;Total:&lt;td class='r'&gt;&lt;span class='j'&gt;6.4 km, 6 minutes&lt;/span&gt;
+&lt;/table&gt;
+&lt;/BODY&gt;
+&lt;/HTML&gt;
+</pre>
+
+
+<h3><a name="H_1_1_2" title="GPX track file"></a>GPX Track File</h3>
+
+The GPX track file contains a track with all of the individual nodes that the
+route passes through.
+
+<p>
+
+An example GPX track file output is below:
+
+<pre class="boxed">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;gpx version="1.1" creator="Routino" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.topografix.com/GPX/1/1" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd"&gt;
+&lt;metadata&gt;
+&lt;desc&gt;Creator : Routino - http://www.routino.org/&lt;/desc&gt;
+&lt;copyright author="Based on OpenStreetMap data from http://www.openstreetmap.org/"&gt;
+&lt;license&gt;http://creativecommons.org/licenses/by-sa/2.0/&lt;/license&gt;
+&lt;/copyright&gt;
+&lt;/metadata&gt;
+&lt;trk&gt;
+&lt;name&gt;Shortest route&lt;/name&gt;
+&lt;desc&gt;Shortest route between 'start' and 'finish' waypoints&lt;/desc&gt;
+&lt;trkpt lat="51.524658" lon="-0.127877"/&gt;
+&lt;trkpt lat="51.523768" lon="-0.126918"/&gt;
+...
+&lt;trkpt lat="51.478354" lon="-0.103560"/&gt;
+&lt;trkpt lat="51.478244" lon="-0.103651"/&gt;
+&lt;/trkseg&gt;
+&lt;/trk&gt;
+&lt;/gpx&gt;
+</pre>
+
+
+<h3><a name="H_1_1_3" title="GPX route file"></a>GPX Route File</h3>
+
+The GPX route file contains a route (ordered set of waypoints) with all of the
+interesting junctions that the route passes through and a description of the
+route to take from that point.
+
+<p>
+
+An example GPX route file output is below:
+
+<pre class="boxed">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;gpx version="1.1" creator="Routino" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.topografix.com/GPX/1/1" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd"&gt;
+&lt;metadata&gt;
+&lt;desc&gt;Creator : Routino - http://www.routino.org/&lt;/desc&gt;
+&lt;copyright author="Based on OpenStreetMap data from http://www.openstreetmap.org/"&gt;
+&lt;license&gt;http://creativecommons.org/licenses/by-sa/2.0/&lt;/license&gt;
+&lt;/copyright&gt;
+&lt;/metadata&gt;
+&lt;rte&gt;
+&lt;name&gt;Shortest route&lt;/name&gt;
+&lt;desc&gt;Shortest route between 'start' and 'finish' waypoints&lt;/desc&gt;
+&lt;rtept lat="51.524658" lon="-0.127877"&gt;&lt;name&gt;START&lt;/name&gt;
+&lt;desc&gt;South-East on 'Woburn Place (A4200)' for 0.440 km, 0.5 min&lt;/desc&gt;&lt;/rtept&gt;
+&lt;rtept lat="51.521460" lon="-0.124099"&gt;&lt;name&gt;TRIP001&lt;/name&gt;
+&lt;desc&gt;South-East on 'Southampton Row (A4200)' for 0.348 km, 0.4 min&lt;/desc&gt;&lt;/rtept&gt;
+...
+&lt;desc&gt;South-East on 'Camberwell New Road (A202)' for 0.597 km, 0.4 min&lt;/desc&gt;&lt;/rtept&gt;
+&lt;rtept lat="51.478354" lon="-0.103560"&gt;&lt;name&gt;TRIP020&lt;/name&gt;
+&lt;desc&gt;South-West on 'Vassall Road' for 0.013 km, 0.0 min&lt;/desc&gt;&lt;/rtept&gt;
+&lt;rtept lat="51.478244" lon="-0.103651"&gt;&lt;name&gt;FINISH&lt;/name&gt;
+&lt;desc&gt;Total Journey 6.4 km, 6 minutes&lt;/desc&gt;&lt;/rtept&gt;
+&lt;/rte&gt;
+&lt;/gpx&gt;
+</pre>
+
+
+<h3><a name="H_1_1_4" title="Text file"></a>Text File</h3>
+
+The text file format contains one entry for all of the interesting junctions in
+the route and is intended to be easy to interpret, for example for creating
+other output formats.
+
+<p>
+
+An example text file output is below:
+
+<pre class="boxed">
+# Creator : Routino - http://www.routino.org/
+# Source : Based on OpenStreetMap data from http://www.openstreetmap.org/
+# License : http://creativecommons.org/licenses/by-sa/2.0/
+#
+#Latitude   Longitude  Section   Section   Total     Total      Point  Turn  Bearing Highway
+#                      Distance  Duration  Distance  Duration   Type                 
+ 51.524658  -0.127877  0.000 km  0.0 min    0.0 km     0 min    Waypt         +3     Woburn Place (A4200)
+ 51.521460  -0.124099  0.440 km  0.5 min    0.4 km     1 min    Junct   +0    +3     Southampton Row (A4200)
+...
+ 51.478354  -0.103560  0.597 km  0.4 min    6.4 km     6 min    Junct   +2    -3     Vassall Road
+ 51.478244  -0.103651  0.013 km  0.0 min    6.4 km     6 min    Waypt               
+</pre>
+
+<p>
+
+The text file output contains a header (indicated by the lines starting with
+'#') and then one line for each waypoint or junction.  Each line contains the
+information for the current node and the next segment to be followed.
+
+For each of the lines the individual fields contain the following:
+
+<table>
+  <tr>
+    <th>Item
+    <th class=left>Description
+  <tr>
+    <td>Latitude
+    <td>Location of the node (degrees)
+  <tr>
+    <td>Longitude
+    <td>Location of the node (degrees)
+  <tr>
+    <td>Section Distance
+    <td>The distance travelled on the section of the journey that ends at this
+      node.
+  <tr>
+    <td>Section Duration
+    <td>The duration of travel on the section of the journey that ends at this
+      node.
+  <tr>
+    <td>Total Distance
+    <td>The total distance travelled up to this point.
+  <tr>
+    <td>Total Duration
+    <td>The total duration of travel up to this point.
+  <tr>
+    <td>Point Type
+    <td>The type of point; either a waypoint <em>Waypt</em> or junction
+      <em>Junct</em>.
+  <tr>
+    <td>Turn
+    <td>The direction to turn at this point (missing for the first line since
+      the journey has not started yet and for the last line because it has
+      finished).  This can take one of nine values between -4 and +4 defined by:
+      0 = <em>Straight</em>, +2 = <em>Right</em>, -2 = <em>Left</em> and +/-4
+      = <em>Reverse</em>.
+  <tr>
+    <td>Bearing
+    <td>The direction to head from this point (missing for the last line since
+      the journey has finished).  This can take one of nine values between -4
+      and +4 defined by: 0 = <em>North</em>, +2 = <em>East</em>, -2
+      = <em>West</em> and +/-4 = <em>South</em>.
+  <tr>
+    <td>Highway
+    <td>The name (or description) of the highway to follow from this point
+      (missing on the last line since the journey has finished).
+</table>
+
+<p>
+
+The individual items are separated by tabs but some of the items contain spaces
+as well.
+
+
+<h3><a name="H_1_1_5" title="All nodes text file"></a>All Nodes Text File</h3>
+
+The all nodes text file format contains one entry for each of the nodes on the
+route.
+
+<p>
+
+An example all nodes text file output is below:
+
+<pre class="boxed">
+# Creator : Routino - http://www.routino.org/
+# Source : Based on OpenStreetMap data from http://www.openstreetmap.org/
+# License : http://creativecommons.org/licenses/by-sa/2.0/
+#
+#Latitude   Longitude  Node       Type   Segment Segment  Total Total   Speed  Bearing Highway
+#                                        Dist    Durat'n  Dist  Durat'n                       
+ 51.524658  -0.127877  12466852*  Waypt  0.000   0.00     0.00   0.0                  
+ 51.523768  -0.126918  12467208*  Junct  0.119   0.15     0.12   0.1    96     146     Woburn Place (A4200)
+...
+ 51.478354  -0.103560  12604345*  Junct  0.104   0.07     6.36   5.6    96     125     Camberwell New Road (A202)
+ 51.478244  -0.103651  12604304   Waypt  0.013   0.01     6.37   5.6    64     207     Vassall Road
+</pre>
+
+<p>
+
+The all nodes text file output contains a header (indicated by the lines
+starting with '#') and then one line for each node and the segment that was used
+to reach it.  This file therefore contains exactly the same model as is used
+internally to define a route (a series of results each of which is a node and
+the segment leading to it).
+
+For each of the lines the individual fields contain the following:
+
+<table>
+  <tr>
+    <th>Item
+    <th class=left>Description
+  <tr>
+    <td>Latitude
+    <td>Location of the node in degrees.
+  <tr>
+    <td>Longitude
+    <td>Location of the node in degrees.
+  <tr>
+    <td>Node
+    <td>The internal node number and an indicator "*" if the node is a super-node.
+  <tr>
+    <td>Type
+    <td>The type of point; a waypoint <em>Waypt</em>, junction <em>Junct</em>,
+      change of highway <em>Change</em> or intermediate node <em>Inter</em>.
+  <tr>
+    <td>Segment Distance
+    <td>The distance travelled on the segment defined on this line.
+  <tr>
+    <td>Segment Duration
+    <td>The duration of travel on the segment defined on this line.
+  <tr>
+    <td>Total Distance
+    <td>The total distance travelled up to this point.
+  <tr>
+    <td>Total Duration
+    <td>The total duration of travel up to this point.
+  <tr>
+    <td>Speed
+    <td>The speed of travel on the segment defined on this line (missing on the
+      first line).
+  <tr>
+    <td>Bearing
+    <td>The direction that the segment defined on this line travels in degrees
+      (missing on the first line).
+  <tr>
+    <td>Highway
+    <td>The name (or description) of the highway segment (missing on the first
+      line).
+</table>
+
+
+</div>
+
+<!-- Content End -->
+
+<!-- Footer Start -->
+
+<div class="footer" align="center">
+<hr>
+
+<address>
+&copy; Andrew M. Bishop = &lt;amb "at" gedanken.demon.co.uk&gt;
+</address>
+
+</div>
+
+<!-- Footer End -->
+
+</BODY>
+
+</HTML>

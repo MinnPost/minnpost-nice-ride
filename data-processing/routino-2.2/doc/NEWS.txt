@@ -1,0 +1,432 @@
+Version 2.2 of Routino released : Sat Mar 3 2012
+------------------------------------------------
+
+Bug fixes:
+  Fix some Makefile bugs.
+  Fix XML parsing (previously it allowed invalid XML comments).
+  Fix errors in HTML and GPX output files (highway names and bearings).
+  Fix errors in visualiser CGI related to oneway streets and in slim mode.
+  Ensure that no non-initialised memory is written to disk.
+
+OSM tagging:
+  Parse information about roundabouts and store it in the database.
+
+Documentation:
+  Update documentation to reflect changes in program usage and function.
+
+Web pages:
+  Change to OpenLayers v2.11.
+  Move the map preferences (ranges and URLs) to a separate file.
+  Prepare the visualiser.html web page for translation.
+  The customrouter script should now pick up the preferred language.
+
+planetsplitter:
+  When discarding duplicate segments prefer to discard those that are areas.
+  Ensure that XML file is OSM version 0.6 format.
+  Add a new option to prune nodes and/or segments (enabled by default)
+   - that form a small isolated sub-network.
+   - that are very short.
+   - that are not needed to represent a straight highway.
+
+router:
+  Change the format of the text file output (not the all points text file).
+  Output better HTML directions for roundabouts (e.g. take second exit).
+  Describe mini-roundabouts as "roundabout" rather than "junction".
+
+filedumper:
+  Ensure that all nodes needed for segments are included when dumping a region.
+  Include a bounding box when dumping a region.
+
+*** Important Note: The tagging.xml files from Routino v2.1.1 or earlier   ***
+*** contain invalid XML that will not be allowed by Routino v2.2 or later. ***
+
+Note: The format of the text file output has changed in this version.
+
+Note: This version is not compatible with databases from earlier versions.
+
+
+Version 2.1.2 of Routino released : Sat Nov 12 2011
+---------------------------------------------------
+
+Bug fixes:
+  Speed up the routing by a factor of 3 for slim mode by copying data to RAM.
+  Speed up routing & reduce memory use by a factor of 2.5 by stopping earlier.
+  Delete profiles.js and profiles.pl when cleaning up (make clean).
+  Improve output for translated versions (highway type names and text files).
+  Fix the summarise-log.pl script for segments which are loops.
+  Fix invalid XML syntax in tagging.xml file.
+
+Configuration Files:
+  Add extra tagging rules to handle problems found in the error log for UK.
+  Added Russian translations for output files.
+
+Documentation:
+  Improve the documentation for the tagging rule configuration file.
+
+Note: This version is compatible with databases from version 2.1 or 2.1.1.
+
+
+Version 2.1.1 of Routino released : Sun Oct 23 2011
+---------------------------------------------------
+
+Bug fixes:
+  Speed up the routing by a factor of 5 by improving data handling functions.
+  Speed up database generation by reducing the default number of iterations.
+  Fix the handling of the 'except' tag on turn restrictions.
+  Fix the 'make install' option for the XML files.
+  Add some more typecasts when printing data from filedumper program.
+  Make the CGI script more robust if shortest/fastest is not passed in.
+
+Note: This version is compatible with databases from version 2.1.
+
+
+Version 2.1 of Routino released : Mon Oct 3 2011
+------------------------------------------------
+
+Bug fixes:
+  Fix bug in pathological cases with binary search (don't crash).
+  Make stricter checks for closest nodes just like in v2.0.3 for segments.
+  Fix routing bug where start node is a super-node and finish is close by.
+
+OSM tagging:
+  More testing of turn relations; invalid or useless ones are discarded.
+  An error log file can be generated to record parsing and processing errors.
+
+Configuration Files:
+  Add new options in the tagging rules XML file.
+  Add extra tagging rules to handle many problems found in the error log for UK.
+  Create special-use tagging rule files for walking, riding and driving.
+
+Test cases:
+  Create new test case for bug fixed in v2.0.3.
+  Save expected results to allow future regressions to be found.
+
+Note: This version is not compatible with databases from earlier versions.
+
+
+Version 2.0.3 of Routino released : Thu Aug 4 2011
+--------------------------------------------------
+
+Bug fixes:
+  Handle start node being a super-node with no previous segment (don't crash).
+  Make stricter checks against the profile when finding the closest segment.
+  Find a valid route if the start and end point are the same location.
+  Choose the better route if one with and one without super-nodes are available.
+
+Note: This version is compatible with databases from versions 2.0, 2.0.x.
+
+
+Version 2.0.2 of Routino released : Sun June 26 2011
+----------------------------------------------------
+
+Bug fixes:
+  Fix error with handling ferry routes (were ignored).
+  Force roundabouts to be one-way (was present in v1.5.1).
+  Handle super-nodes with no segments when processing (don't crash).
+
+Code improvements:
+  Use C99 standard by default and fix related warnings.
+  More code tidy-up for 32/64 bit node and index types.
+  Free some memory in various places (not serious leaks).
+
+Note: This version is compatible with databases from versions 2.0, 2.0.1.
+
+
+Version 2.0.1 of Routino released : Tue June 7 2011
+---------------------------------------------------
+
+Bug fixes:
+  Turn relations that specify missing nodes/ways are deleted (don't crash).
+  Shorten the messages printed by planetsplitter to keep below 80 characters.
+
+Code improvements:
+  Various code tidy-ups and 32/64 bit node and index improvements.
+
+OSM Tagging:
+  Check whether node/way/relation IDs fit in 32-bits (code ready for 64-bits).
+
+Note: This version is compatible with databases from version 2.0.
+
+
+Version 2.0 of Routino released : Mon May 30 2011
+-------------------------------------------------
+
+Bug fixes:
+  Fix mis-spelling with surface=asphalt tag
+  Routes between two waypoints on the same segment now work.
+  Fix reading of numeric entities from XML files (store as UTF-8 internally).
+  Fix turn description in HTML file (angles were biased to the right).
+  Fix possibility of occasionally missing turn information from output files.
+
+Test cases:
+  Added test cases for routing in slim and non-slim modes.
+
+Documentation:
+  Update documentation to reflect changes in program usage and function.
+  Install the license file in the documentation directory.
+
+OSM tagging:
+  Process the tags associated with turn restriction relations.
+  Remove the roundabout type from the parsing.
+  Add parsing of mini-roundabouts.
+
+Configuration Files:
+  Update profiles with new options related to turn restrictions.
+
+Web pages:
+  Change to OpenLayers v2.10.
+  Visualiser can display turn restrictions.
+  Put the profile information into separate files and auto-generate them.
+
+planetsplitter:
+  Store information about turn restriction relations.
+  Quite a large code re-organisation - now faster and uses less memory.
+
+router:
+  Take turn restriction relations into account when routing.
+  Continue same direction of travel at each waypoint (unless dead-end).
+  Add a new option to specify an initial direction to start travel.
+
+filedumper:
+  Print out statistics about what highways are included in the database.
+
+
+Version 1.5.1 of Routino released : Sat Nov 13 2010
+---------------------------------------------------
+
+Bug fixes:
+  Ensure that enough memory is allocated for filenames.
+  Fix bug that sometimes causes crash when processing route relations.
+
+Documentation:
+  Update documentation to reflect changes in program usage and function.
+
+Programs:
+  Add an option to make the output more suitable for a log file.
+
+Documentation:
+  Update documentation to reflect changes in program usage.
+
+
+Version 1.5 of Routino released : Sat Oct 30 2010
+-------------------------------------------------
+
+Bug fixes:
+  Check that number of nodes/segments/ways doesn't exceed numerical limits.
+  Allow 32-bit systems to seek within files larger than 4GB.
+  Allow nearly 4G nodes to be stored instead of 2G before.
+  Added rules to makefile for installation (paths specified in top-level).
+  Stricter checking of UTF-8 in XML files and better UTF-8 output.
+  Improve error message if parsing of command line options fail.
+  Fix bugs in router's --help-profile-json and --help-profile-perl options.
+  Rename heapsort function to allow compilation on Mac OS with no change.
+  Reduce impact of property preferences close to 50% by using sqrt().
+
+Documentation:
+  Update documentation to reflect changes in program usage and function.
+
+OSM tagging:
+  Traffic restrictions on nodes are now included in default tagging file.
+  Added processing for ferry routes (as pseudo-highway type 'ferry').
+  Process foot and bicycle route relations to create new properties.
+
+Configuration Files:
+  Added Dutch output translations.
+  Added ferry information to profiles.
+  Added foot and bicycle route relation processing.
+
+planetsplitter:
+  The slim mode now includes the output data as well as the temporary data.
+  The slim mode is now a separate executable and not a command line option.
+  Traffic restrictions on nodes are now understood when parsing OSM files.
+  Falls back to installed tagging.xml configuration file as last resort.
+
+router:
+  Added a slim mode (as a separate executable and not a command line option).
+  Traffic will not be routed through a node that does not allow it.
+  Falls back to installed profiles.xml & translations.xml files as last resort.
+
+filedumper:
+  Added a slim mode (as a separate executable and not a command line option).
+
+Web pages:
+  Added Dutch translation of router.html.
+
+
+Version 1.4.1 of Routino released : Sat Jul 10 2010
+---------------------------------------------------
+
+Bug fixes:
+  Don't crash if start and finish are the same point.
+  Don't crash if several translations but --language option not used.
+  Don't crash if middle part of route cannot be found.
+  Don't allocate so much memory for intermediate nodes; routes much faster.
+  Fix problem with finding closest segment to the specified point.
+
+Documentation:
+  Provide HTML versions of the documentation (copy to web directory at install).
+  Change URL for website to http://www.routino.org/.
+
+Configuration Files:
+  Added German output translations.
+
+planetsplitter
+  Slight change to algorithm for finding super-nodes.
+
+Web pages:
+  Provide HTML versions of the documentation.
+  Change URL for website to http://www.routino.org/.
+  Provide updated HTML files, the same as on the website.
+  Change to OpenLayers v2.9.1 and build custom version if Python available.
+
+
+Version 1.4 of Routino released : Mon May 31 2010
+-------------------------------------------------
+
+Bug fixes:
+  Speed up start/via/stop point within segment search algorithm.
+  If no segment is found don't try routing but exit with error.
+  Improve the error messages by adding operating system error info to them.
+  Rewrite of tagging rules fixes bug with wheelchair access allow/deny.
+  Files greater than 2GB can be read/written on 32-bit systems.
+  Fix bug with profile preferences when optimising a route.
+  Stricter check on profile validity before starting routing.
+
+planetsplitter:
+  Add --parse-only and --process-only options (for incremental parsing).
+  Allow filenames to be specified on command line (default is still stdin).
+  Improved the '--help' information to describe all options.
+  Remove --transport, --not-highway, --not-property options (use config file).
+  Use tag transformation rules in configuration file not hard-coded.
+
+router:
+  Removed compiled-in profiles and use profiles loaded from XML file.
+  Improved the '--help' information to describe all options.
+  Change the name of the --profile-json and --profile-perl options.
+  Allow selection of the outputs to generate (or none).
+  Added HTML route instructions output.
+  GPX route file contains instructions at each waypoint.
+  Read in XML file of translated words/phrases for outputs.
+  Added options to specify file of translations and language to use.
+  Remove copyright.txt file and put information into translations file.
+
+filedumper:
+  Improved the '--help' information to describe all options.
+  Added the option to dump an OSM file containing database contents.
+
+Web Pages:
+  Combined generic map CSS into one file (not copied in two).
+  Much better support for IE6/7/8 with browser detection but not perfect.
+  Re-organised and tidied up the Javascript.
+  Added button next to waypoints to centre it on map.
+  Added button next to waypoints to set as home location (uses browsser cookie).
+  Create shorter URLs for custom map (ignore default values).
+  Reduced and clarified the amount of editing to customise the Javascript.
+  Made it easier to translate by moving text out of Javascript (not visualiser).
+  Prepared for translated versions of web page (Apache Multiviews).
+  Added option to select language of output.
+  Use HTML output from router to get translated instructions.
+
+
+Version 1.3 of Routino released : Thu Jan 21 2010
+-------------------------------------------------
+
+Bug fixes:
+  Ensure output even if the distance between two adjacent route points is small.
+  Correct the determination of waypoints for abbreviated output.
+  Check the command line values for filedumper --dump options.
+  Made the verbose output consistent between different places.
+
+OSM tagging:
+  Recognise "designation" tag to determine designated paths.
+  Recognise "steps" tag to determine the highway type.
+  Recognise "wheelchair" tag to determine if wheelchairs are allowed on highway.
+  Recognise "moped" tag to determine if mopeds are allowed on a highway.
+  Recognise "surface" and "paved" tags to determine if a highway is paved.
+  Recognise "lanes" tag to determine if a highway has multiple lanes.
+  Recognise "bridge" tag to determine if a highway is a bridge.
+  Recognise "tunnel" tag to determine if a highway is a tunnel.
+
+New Features:
+  Remove "bridleway" and "footway" highway types and use "path" highway instead.
+  Added "steps" as a new highway type separate from the "path" type.
+  Added "wheelchair" and "moped" to the list of possible transports.
+  Added "paved", "multilane", "bridge", "tunnel" to list of highway properties.
+
+Web Pages:
+  Updated for new features listed above.
+  Added popup to display instructions for each step in route on mouse-over.
+  Added buttons next to waypoints for: add / remove / move up / move down.
+  Highlight user selectable parts of form in yellow on mouse-over.
+  A few small changes, improved CSS, improved Javascript.
+
+router:
+  For each waypoint choose closest point on a segment and not just closest node.
+  Added the ability to set preferences based on highway properties.
+  Changed the text output formats to include bearing and turn information.
+
+
+Version 1.2 of Routino released : Wed Oct 21 2009
+-------------------------------------------------
+
+OSM tagging:
+  Recognise tags "vehicle" and "motor_vehicle".
+  Handle duplicate ways in the input OSM file (e.g. concatenation of 2 files).
+
+Database:
+  Identical ways are combined to reduce database size (~80% fewer ways stored).
+
+Routing:
+  Fix weight, height, width, length restriction routing.
+  Allow up to 99 waypoints to be specified instead of 9.
+
+Visualiser:
+  Don't display speed limits for tracks and paths unless a value is set.
+  Draw all super-segments that cross the selected boundary.
+
+Web Pages:
+  A few small changes, improved CSS, improved Javascript.
+  Changed marker colour when waypoint not selected.
+
+planetsplitter:
+  Optional slim mode uses minimal memory at the expense of temporary files.
+
+router:
+  Less CPU time for routing (~30% less).
+
+filedumper:
+  Allow dumping individual nodes, segments and ways (for debug).
+
+
+Version 1.1 of Routino released : Sat Jun 13 2009
+-------------------------------------------------
+
+Inputs:
+  Improve parsing of OSM file (imperial units).
+  Ignore nodes that are missing from the input OSM file.
+
+Outputs:
+  Create GPX route files as well as GPX track files.
+  Read in an optional copyright.txt file and include contents in output.
+  Make better choices about what to output in the abbreviated text file.
+
+Routing:
+  Allow generating a route with intermediate waypoints.
+  Use preferences for highway types instead of yes/no choice.
+  Choice of closest node to start/finish points ensures transport allowed.
+
+Visualiser:
+  Added data extraction function for viewing routing database data.
+
+Web Pages:
+  Include full set of web pages for creating customised online router.
+
+Documentation:
+  Included NEWS.txt file.
+  Included documentation for installation of web pages.
+
+
+Version 1.0 of Routino released : Wed Apr 08 2009
+-------------------------------------------------
+
+First version.

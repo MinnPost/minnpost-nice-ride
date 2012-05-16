@@ -1,0 +1,64 @@
+/*
+// Routino Internet Explorer 7 map layout web page style sheet.
+//
+// Part of the Routino routing software.
+//
+// This file Copyright 2010 Andrew M. Bishop
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+
+
+/*-------------*/
+/* Right panel */
+/*-------------*/
+
+/*
+  What seems to happen is that the map div in the right panel picks up the size
+  of the right_panel div itself but won't fill the area unless a width and
+  height are given.  Using 100% width and height is then the whole size of the
+  right_panel and the border makes it bigger still.
+
+  This fix makes the right_panel smaller all round, the map div has its edges
+  moved out to allow the border to be visible all round and has 100% size.  The
+  attribution needs to be given a position outside of the right_panel to make
+  sure that is isn't covered by the map.
+*/
+
+DIV.right_panel
+{
+ top:    3px    !important;
+ bottom: 1.7em  !important;
+ right:  3px    !important;
+ left:   23.7em !important;
+}
+
+DIV.map
+{
+ top:    -3px !important;
+ bottom: -3px !important;
+ right:  -3px !important;
+ left:   -3px !important;
+
+ width:  100% !important;
+ height: 100% !important;
+}
+
+DIV.attribution
+{
+ bottom: -1.7em !important;
+
+ width:  100% !important;
+}

@@ -1,0 +1,40 @@
+##
+## Options for Apache web server for language specific web pages and to run
+## Routino CGI scripts.
+##
+
+# The translated router pages use the MultiViews option to serve up a version of
+# the web page depending on the client language preference.  If the line below
+# is used in a .htaccess file like this one and the "AllowOverride none" option
+# is set in the main Apache configuration file then the entry in the .htaccess
+# file will not work.
+
+#Options +MultiViews
+
+# The English language option will be served if there is no other version
+# present and no errors will be returned to the user in case of problems
+
+LanguagePriority en
+ForceLanguagePriority Prefer Fallback
+
+# The Routino CGI scripts are stored in this directory and use the filename
+# extension ".cgi".  This filename extension needs to be registered with Apache
+# for the scripts to be executed.
+
+AddHandler cgi-script .cgi
+
+# The ExecCGI option must be set for the CGIs in this directory to be executed
+# by Apache.  If the line below is used in a .htaccess file like this one and
+# the "AllowOverride none" option is set in the main Apache configuration file
+# then the entry in the .htaccess file will not work.
+
+#Options +ExecCGI
+
+# The CGI scripts that are used by Routino also call some other Perl scripts, to
+# stop these scripts from being seen by web users they can be denied by the
+# following entry.
+
+<FilesMatch .*\.pl$>
+   Order deny,allow
+   Deny from all
+</FilesMatch>

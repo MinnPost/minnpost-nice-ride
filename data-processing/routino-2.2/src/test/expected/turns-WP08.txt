@@ -1,0 +1,31 @@
+# Creator : Routino - http://www.routino.org/
+# Source : Routino test cases - (c) Andrew M. Bishop
+# License : GNU Affero General Public License v3 or later
+#
+#Latitude	Longitude	    Node	Type	Segment	Segment	Total	Total  	Speed	Bearing	Highway
+#        	         	        	    	Dist   	Durat'n	Dist 	Durat'n	     	       	       
+ -0.218453	  -0.520799	      -1 	Waypt	0.000	 0.00	 0.00	  0.0			
+ -0.219107	  -0.520828	       6*	Junct	0.072	 0.04	 0.07	  0.0	 96	 182	main 1
+ -0.219123	  -0.520207	      12*	Junct	0.069	 0.09	 0.14	  0.1	 48	  91	top road
+ -0.219131	  -0.519426	      20*	Junct	0.086	 0.11	 0.23	  0.2	 48	  90	top road
+ -0.219135	  -0.518823	      23*	Junct	0.067	 0.08	 0.29	  0.3	 48	  90	top road
+ -0.219145	  -0.517626	      33*	Junct	0.133	 0.17	 0.43	  0.5	 48	  90	top road
+ -0.219144	  -0.517257	      36*	Junct	0.041	 0.05	 0.47	  0.5	 48	  89	top road
+ -0.219291	  -0.517193	      38 	Inter	0.017	 0.02	 0.48	  0.6	 48	 156	roundabout
+ -0.219352	  -0.517060	      42 	Junct	0.016	 0.02	 0.50	  0.6	 48	 114	roundabout
+ -0.219304	  -0.516904	      45 	Inter	0.018	 0.02	 0.52	  0.6	 48	  72	roundabout
+ -0.219153	  -0.516826	      46*	Junct	0.018	 0.02	 0.54	  0.6	 48	  27	roundabout
+ -0.219184	  -0.515968	      55*	Junct	0.095	 0.12	 0.63	  0.7	 48	  92	top road
+ -0.220784	  -0.516035	      54*	Junct	0.178	 0.11	 0.81	  0.8	 96	 182	main 2
+ -0.220760	  -0.516647	      48*	Junct	0.068	 0.09	 0.88	  0.9	 48	 272	high street
+ -0.220097	  -0.516762	      47*	Inter	0.074	 0.09	 0.95	  1.0	 48	 350	loop 3
+ -0.219872	  -0.517009	      43 	Inter	0.037	 0.04	 0.99	  1.1	 48	 312	loop 3
+ -0.220089	  -0.517279	      35*	Waypt	0.038	 0.05	 1.03	  1.1	 48	 231	loop 3
+ -0.220739	  -0.517425	      34*	Junct	0.074	 0.09	 1.10	  1.2	 48	 192	loop 3
+ -0.220724	  -0.518071	      31*	Junct	0.071	 0.09	 1.17	  1.3	 48	 271	high street
+ -0.220708	  -0.518842	      22*	Junct	0.085	 0.10	 1.26	  1.4	 48	 271	high street
+ -0.220691	  -0.519461	      19*	Junct	0.069	 0.09	 1.33	  1.5	 48	 271	high street
+ -0.220671	  -0.520223	      11*	Junct	0.084	 0.10	 1.41	  1.6	 48	 271	high street
+ -0.220666	  -0.520893	       5*	Junct	0.074	 0.09	 1.48	  1.7	 48	 270	high street
+ -0.221308	  -0.520914	       4*	Inter	0.071	 0.04	 1.55	  1.7	 96	 181	main 1
+ -0.221561	  -0.520922	      -3 	Waypt	0.027	 0.02	 1.58	  1.7	 96	 181	main 1

@@ -1,0 +1,83 @@
+/*
+// Routino Internet Explorer 6 map layout web page style sheet.
+//
+// Part of the Routino routing software.
+//
+// This file Copyright 2010 Andrew M. Bishop
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+
+/*----------------------------------*/
+/* Body HTML formatting             */
+/*----------------------------------*/
+
+/*
+  Internet Explorer 6 doesn't understand 'postion: fixed' styles.  The best that
+  can be done is the following to make it the equivalent of absolute positioning.
+  This is "well-known" problem, you can find details on the internet.
+*/
+
+* HTML
+{
+ overflow-x: auto;
+}
+
+* HTML BODY
+{
+ height: 100%;
+ width:  100%;
+ overflow: auto;
+}
+
+
+/*-------------*/
+/* Right panel */
+/*-------------*/
+
+
+/*
+  Internet Explorer 6 ignores the fact that the map and attribution divs are
+  within the right_panel and positions them all over everything (probably due
+  to the previous hacks).  The fix for this is to make the left edges of these
+  divs line up with where the edge of the right_panel is.
+*/
+
+DIV.map
+{
+ left:  23.5em !important;
+}
+
+DIV.attribution
+{
+ left:  23.5em !important;
+}
+
+
+/*
+  In addition to the poor positioning we need to set a height and width of the
+  map so we guess what fits in the user's window.
+*/
+
+DIV.map
+{
+ width:  65%;
+ height: 90%;
+}
+
+DIV.attribution
+{
+ width:  65%;
+}

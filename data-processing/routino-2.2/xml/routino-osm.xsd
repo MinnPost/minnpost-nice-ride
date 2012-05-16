@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- ============================================================
+     An XML Schema Definition for the part of the OSM XML format read by Routino.
+
+     Part of the Routino routing software.
+     ============================================================
+     This file Copyright 2010-2011 Andrew M. Bishop
+
+     This program is free software: you can redistribute it and/or modify
+     it under the terms of the GNU Affero General Public License as published by
+     the Free Software Foundation, either version 3 of the License, or
+     (at your option) any later version.
+     ============================================================ -->
+
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <!-- The top level osm element -->
+
+  <xsd:element name="osm" type="osmType"/>
+
+  <xsd:complexType name="osmType">
+    <xsd:sequence>
+      <xsd:element name="bounds"    type="boundsType"   minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="bound"     type="boundType"    minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="node"      type="nodeType"     minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="way"       type="wayType"      minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="relation"  type="relationType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="version"   type="xsd:string"/>
+    <!--
+    <xsd:attribute name="generator" type="xsd:string"/>
+    -->
+  </xsd:complexType>
+
+  <!-- The second level bounds, node, way and relation elements -->
+
+  <xsd:complexType name="boundsType">
+    <!--
+    <xsd:attribute name="minlat"    type="xsd:string"/>
+    <xsd:attribute name="minlon"    type="xsd:string"/>
+    <xsd:attribute name="maxlat"    type="xsd:string"/>
+    <xsd:attribute name="maxlon"    type="xsd:string"/>
+    <xsd:attribute name="origin"    type="xsd:string"/>
+    -->
+  </xsd:complexType>
+
+  <xsd:complexType name="boundType">
+    <!--
+    <xsd:attribute name="box"       type="xsd:string"/>
+    <xsd:attribute name="origin"    type="xsd:string"/>
+    -->
+  </xsd:complexType>
+
+  <xsd:complexType name="nodeType">
+    <xsd:sequence>
+      <xsd:element name="tag"       type="tagType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="id"        type="xsd:string"/>
+    <xsd:attribute name="lat"       type="xsd:string"/>
+    <xsd:attribute name="lon"       type="xsd:string"/>
+    <!--
+    <xsd:attribute name="timestamp" type="xsd:string"/>
+    <xsd:attribute name="uid"       type="xsd:string"/>
+    <xsd:attribute name="user"      type="xsd:string"/>
+    <xsd:attribute name="visible"   type="xsd:string"/>
+    <xsd:attribute name="version"   type="xsd:string"/>
+    <xsd:attribute name="action"    type="xsd:string"/>
+    -->
+  </xsd:complexType>
+
+  <xsd:complexType name="wayType">
+    <xsd:sequence>
+      <xsd:element name="nd"        type="ndType"  minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="tag"       type="tagType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="id"        type="xsd:string"/>
+    <!--
+    <xsd:attribute name="timestamp" type="xsd:string"/>
+    <xsd:attribute name="uid"       type="xsd:string"/>
+    <xsd:attribute name="user"      type="xsd:string"/>
+    <xsd:attribute name="visible"   type="xsd:string"/>
+    <xsd:attribute name="version"   type="xsd:string"/>
+    <xsd:attribute name="action"    type="xsd:string"/>
+    -->
+  </xsd:complexType>
+
+  <xsd:complexType name="relationType">
+    <xsd:sequence>
+      <xsd:element name="member"    type="memberType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="tag"       type="tagType"    minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="id"        type="xsd:string"/>
+    <!--
+    <xsd:attribute name="timestamp" type="xsd:string"/>
+    <xsd:attribute name="uid"       type="xsd:string"/>
+    <xsd:attribute name="user"      type="xsd:string"/>
+    <xsd:attribute name="visible"   type="xsd:string"/>
+    <xsd:attribute name="version"   type="xsd:string"/>
+    <xsd:attribute name="action"    type="xsd:string"/>
+    -->
+  </xsd:complexType>
+
+  <!-- The third level elements and their contents -->
+
+  <xsd:complexType name="tagType">
+    <xsd:attribute name="k"         type="xsd:string"/>
+    <xsd:attribute name="v"         type="xsd:string"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="ndType">
+    <xsd:attribute name="ref"       type="xsd:string"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="memberType">
+    <xsd:attribute name="type"      type="xsd:string"/>
+    <xsd:attribute name="ref"       type="xsd:string"/>
+    <xsd:attribute name="role"      type="xsd:string"/>
+  </xsd:complexType>
+
+</xsd:schema>

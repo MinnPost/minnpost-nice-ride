@@ -1,0 +1,456 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='3' version='1' visible='true' lat='-0.2217201380129468' lon='-0.5209275966384278' />
+  <node id='4' version='1' visible='true' lat='-0.21828070777942268' lon='-0.5207912709437164' />
+  <node id='6' version='1' visible='true' lat='-0.21804206074333024' lon='-0.5205359496121407' />
+  <node id='8' version='1' visible='true' lat='-0.21778806952505525' lon='-0.52077169436654' />
+  <node id='10' version='1' visible='true' lat='-0.21802147020530807' lon='-0.5210285258597515' />
+  <node id='21' version='1' visible='true' lat='-0.2221908395649969' lon='-0.5209415430673436' />
+  <node id='22' version='1' visible='true' lat='-0.22195451857008858' lon='-0.5207002437384278' />
+  <node id='24' version='1' visible='true' lat='-0.22193543526189635' lon='-0.5211703062894754' />
+  <node id='44' version='1' visible='true' lat='-0.21823992390738106' lon='-0.5159271465477753' />
+  <node id='45' version='1' visible='true' lat='-0.2180027381687473' lon='-0.5156713934099496' />
+  <node id='46' version='1' visible='true' lat='-0.21774729558699316' lon='-0.515907564575113' />
+  <node id='47' version='1' visible='true' lat='-0.21798215306964172' lon='-0.5161639796064453' />
+  <node id='48' version='1' visible='true' lat='-0.2216713552163718' lon='-0.5160632301909843' />
+  <node id='49' version='1' visible='true' lat='-0.22214182669974075' lon='-0.5160772027310793' />
+  <node id='50' version='1' visible='true' lat='-0.22191520010406854' lon='-0.515835072317115' />
+  <node id='51' version='1' visible='true' lat='-0.22189614840042465' lon='-0.5163053654637676' />
+  <node id='52' version='1' visible='true' lat='-0.2206667536990629' lon='-0.5208930003039592' />
+  <node id='54' version='1' visible='true' lat='-0.22078436832897996' lon='-0.5160352169735775' />
+  <node id='113' version='1' visible='true' lat='-0.22135974620623747' lon='-0.518860446158009' />
+  <node id='115' version='1' visible='true' lat='-0.22171077830316824' lon='-0.5185110945906238'>
+    <tag k='name' v='WP16' />
+  </node>
+  <node id='117' version='1' visible='true' lat='-0.22137564544507876' lon='-0.5182342364502396' />
+  <node id='144' version='1' visible='true' lat='-0.22067170616836507' lon='-0.5202228983841708' />
+  <node id='146' version='1' visible='true' lat='-0.2206914242782775' lon='-0.5194618767809532' />
+  <node id='204' version='1' visible='true' lat='-0.21845168535119228' lon='-0.5209389065396647'>
+    <tag k='name' v='WPstart' />
+  </node>
+  <node id='208' version='1' visible='true' lat='-0.22155124019804942' lon='-0.5210546105815851'>
+    <tag k='name' v='WPfinish' />
+  </node>
+  <node id='345' version='1' visible='true' lat='-0.22130760599946336' lon='-0.5209140478361174' />
+  <node id='347' version='1' visible='true' lat='-0.22143095927716896' lon='-0.5160556378985264' />
+  <node id='366' version='1' visible='true' lat='-0.22006717109132917' lon='-0.5201090583078041'>
+    <tag k='name' v='WP02' />
+  </node>
+  <node id='368' version='1' visible='true' lat='-0.22011041864306613' lon='-0.5195530416788935' />
+  <node id='381' version='1' visible='true' lat='-0.22018081579726256' lon='-0.5201767078687767'>
+    <tag k='name' v='WP01' />
+  </node>
+  <node id='407' version='1' visible='true' lat='-0.2201433541990108' lon='-0.5181618144888986' />
+  <node id='408' version='1' visible='true' lat='-0.2201952178944254' lon='-0.518785480678782'>
+    <tag k='name' v='WP04' />
+  </node>
+  <node id='409' version='1' visible='true' lat='-0.22072435983293912' lon='-0.5180706495909584' />
+  <node id='410' version='1' visible='true' lat='-0.22010010664738394' lon='-0.5187178311178092'>
+    <tag k='name' v='WP05' />
+  </node>
+  <node id='411' version='1' visible='true' lat='-0.21985014157743876' lon='-0.5184157667048493'>
+    <tag k='name' v='WP06' />
+  </node>
+  <node id='414' version='1' visible='true' lat='-0.22070825072718983' lon='-0.5188415195272463' />
+  <node id='438' version='1' visible='true' lat='-0.21910696568370078' lon='-0.5208274567527769' />
+  <node id='440' version='1' visible='true' lat='-0.21914411941337283' lon='-0.517257414288283' />
+  <node id='442' version='1' visible='true' lat='-0.21915357836853688' lon='-0.5168261331058486' />
+  <node id='444' version='1' visible='true' lat='-0.21918392662304603' lon='-0.5159682545255313' />
+  <node id='450' version='1' visible='true' lat='-0.21935243417579808' lon='-0.5170599796507417' />
+  <node id='452' version='1' visible='true' lat='-0.2189233360894271' lon='-0.5170717085106757' />
+  <node id='460' version='1' visible='true' lat='-0.21981720602084437' lon='-0.5198069938948442'>
+    <tag k='name' v='WP03' />
+  </node>
+  <node id='462' version='1' visible='true' lat='-0.21956544771737352' lon='-0.5170629802253586' />
+  <node id='464' version='1' visible='true' lat='-0.21868575166121326' lon='-0.5170645248638079' />
+  <node id='466' version='1' visible='true' lat='-0.21899764600703492' lon='-0.5172063739650437' />
+  <node id='468' version='1' visible='true' lat='-0.21896530807951195' lon='-0.5169107352309166' />
+  <node id='470' version='1' visible='true' lat='-0.21930401615320513' lon='-0.5169042698221518' />
+  <node id='472' version='1' visible='true' lat='-0.2192913238300286' lon='-0.5171928800099428' />
+  <node id='476' version='1' visible='true' lat='-0.21912267853817124' lon='-0.520206478114032' />
+  <node id='478' version='1' visible='true' lat='-0.21847413773357155' lon='-0.5200595788170104'>
+    <tag k='name' v='WP11' />
+  </node>
+  <node id='480' version='1' visible='true' lat='-0.21825788992119952' lon='-0.5197892670883819'>
+    <tag k='name' v='WP12' />
+  </node>
+  <node id='482' version='1' visible='true' lat='-0.218481860869659' lon='-0.5195421249364931' />
+  <node id='484' version='1' visible='true' lat='-0.21913151893031774' lon='-0.5194265277011769' />
+  <node id='501' version='1' visible='true' lat='-0.218591557635407' lon='-0.5201383629528404'>
+    <tag k='name' v='WP10' />
+  </node>
+  <node id='523' version='1' visible='true' lat='-0.21865858904503085' lon='-0.5186744365873915'>
+    <tag k='name' v='WP13' />
+  </node>
+  <node id='524' version='1' visible='true' lat='-0.21913455501068563' lon='-0.5188231434133839' />
+  <node id='525' version='1' visible='true' lat='-0.21860054470950374' lon='-0.5185573641050701'>
+    <tag k='name' v='WP14' />
+  </node>
+  <node id='526' version='1' visible='true' lat='-0.21843089127829385' lon='-0.5182429439617734'>
+    <tag k='name' v='WP15' />
+  </node>
+  <node id='527' version='1' visible='true' lat='-0.21861908098471325' lon='-0.5179210352289688' />
+  <node id='528' version='1' visible='true' lat='-0.2191444862981745' lon='-0.5176260007804667' />
+  <node id='561' version='1' visible='true' lat='-0.22008888465226106' lon='-0.517279352425253'>
+    <tag k='name' v='WP08' />
+  </node>
+  <node id='564' version='1' visible='true' lat='-0.22022483800004092' lon='-0.5173643144262515'>
+    <tag k='name' v='WP07' />
+  </node>
+  <node id='565' version='1' visible='true' lat='-0.220096607787534' lon='-0.5167618985447355' />
+  <node id='566' version='1' visible='true' lat='-0.219872636863204' lon='-0.5170090406966246'>
+    <tag k='name' v='WP09' />
+  </node>
+  <node id='571' version='1' visible='true' lat='-0.22073868008618305' lon='-0.5174253809858272' />
+  <node id='575' version='1' visible='true' lat='-0.22076041278528005' lon='-0.5166462582606399' />
+  <way id='5' version='1' visible='true'>
+    <nd ref='3' />
+    <nd ref='345' />
+    <nd ref='52' />
+    <nd ref='438' />
+    <nd ref='4' />
+    <tag k='highway' v='primary' />
+    <tag k='name' v='main 1' />
+  </way>
+  <way id='13' version='1' visible='true'>
+    <nd ref='4' />
+    <nd ref='6' />
+    <nd ref='8' />
+    <nd ref='10' />
+    <nd ref='4' />
+    <tag k='highway' v='primary' />
+  </way>
+  <way id='20' version='1' visible='true'>
+    <nd ref='21' />
+    <nd ref='22' />
+    <nd ref='3' />
+    <nd ref='24' />
+    <nd ref='21' />
+    <tag k='highway' v='primary' />
+  </way>
+  <way id='41' version='1' visible='true'>
+    <nd ref='44' />
+    <nd ref='45' />
+    <nd ref='46' />
+    <nd ref='47' />
+    <nd ref='44' />
+    <tag k='highway' v='primary' />
+  </way>
+  <way id='42' version='1' visible='true'>
+    <nd ref='48' />
+    <nd ref='347' />
+    <nd ref='54' />
+    <nd ref='444' />
+    <nd ref='44' />
+    <tag k='highway' v='primary' />
+    <tag k='name' v='main 2' />
+  </way>
+  <way id='43' version='1' visible='true'>
+    <nd ref='49' />
+    <nd ref='50' />
+    <nd ref='48' />
+    <nd ref='51' />
+    <nd ref='49' />
+    <tag k='highway' v='primary' />
+  </way>
+  <way id='55' version='1' visible='true'>
+    <nd ref='52' />
+    <nd ref='144' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='high street' />
+  </way>
+  <way id='116' action='modify' visible='true'>
+    <nd ref='113' />
+    <nd ref='115' />
+    <nd ref='117' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='loop 6' />
+  </way>
+  <way id='128' visible='true'>
+    <nd ref='113' />
+    <nd ref='117' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='bottom road' />
+  </way>
+  <way id='129' visible='true'>
+    <nd ref='117' />
+    <nd ref='347' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='bottom road' />
+  </way>
+  <way id='143' version='1' visible='true'>
+    <nd ref='144' />
+    <nd ref='366' />
+    <nd ref='460' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='loop 1' />
+  </way>
+  <way id='348' version='1' visible='true'>
+    <nd ref='345' />
+    <nd ref='113' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='bottom road' />
+  </way>
+  <way id='370' version='1' visible='true'>
+    <nd ref='144' />
+    <nd ref='146' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='high street' />
+  </way>
+  <way id='372' version='1' visible='true'>
+    <nd ref='460' />
+    <nd ref='368' />
+    <nd ref='146' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='loop 1' />
+  </way>
+  <way id='412' version='1' visible='true'>
+    <nd ref='411' />
+    <nd ref='407' />
+    <nd ref='409' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='loop 2' />
+  </way>
+  <way id='413' version='1' visible='true'>
+    <nd ref='414' />
+    <nd ref='410' />
+    <nd ref='411' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='loop 2' />
+  </way>
+  <way id='425' version='1' visible='true'>
+    <nd ref='146' />
+    <nd ref='414' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='high street' />
+  </way>
+  <way id='426' version='1' visible='true'>
+    <nd ref='414' />
+    <nd ref='409' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='high street' />
+  </way>
+  <way id='427' version='1' visible='true'>
+    <nd ref='409' />
+    <nd ref='571' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='high street' />
+  </way>
+  <way id='441' version='1' visible='true'>
+    <nd ref='438' />
+    <nd ref='476' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='top road' />
+  </way>
+  <way id='447' version='1' visible='true'>
+    <nd ref='440' />
+    <nd ref='472' />
+    <nd ref='450' />
+    <nd ref='470' />
+    <nd ref='442' />
+    <nd ref='468' />
+    <nd ref='452' />
+    <nd ref='466' />
+    <nd ref='440' />
+    <tag k='highway' v='residential' />
+    <tag k='junction' v='roundabout' />
+    <tag k='name' v='roundabout' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='448' version='1' visible='true'>
+    <nd ref='442' />
+    <nd ref='444' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='top road' />
+  </way>
+  <way id='463' version='1' visible='true'>
+    <nd ref='450' />
+    <nd ref='462' />
+    <tag k='highway' v='residential' />
+  </way>
+  <way id='465' version='1' visible='true'>
+    <nd ref='452' />
+    <nd ref='464' />
+    <tag k='highway' v='residential' />
+  </way>
+  <way id='479' version='1' visible='true'>
+    <nd ref='476' />
+    <nd ref='478' />
+    <nd ref='480' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='loop 4' />
+  </way>
+  <way id='493' version='1' visible='true'>
+    <nd ref='476' />
+    <nd ref='484' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='top road' />
+  </way>
+  <way id='494' version='1' visible='true'>
+    <nd ref='484' />
+    <nd ref='524' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='top road' />
+  </way>
+  <way id='521' version='1' visible='true'>
+    <nd ref='524' />
+    <nd ref='525' />
+    <nd ref='526' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='loop 5' />
+  </way>
+  <way id='522' version='1' visible='true'>
+    <nd ref='526' />
+    <nd ref='527' />
+    <nd ref='528' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='loop 5' />
+  </way>
+  <way id='533' version='1' visible='true'>
+    <nd ref='524' />
+    <nd ref='528' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='top road' />
+  </way>
+  <way id='534' version='1' visible='true'>
+    <nd ref='528' />
+    <nd ref='440' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='top road' />
+  </way>
+  <way id='546' version='1' visible='true'>
+    <nd ref='480' />
+    <nd ref='482' />
+    <nd ref='484' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='loop 4' />
+  </way>
+  <way id='567' version='1' visible='true'>
+    <nd ref='566' />
+    <nd ref='565' />
+    <nd ref='575' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='loop 3' />
+  </way>
+  <way id='568' version='1' visible='true'>
+    <nd ref='571' />
+    <nd ref='561' />
+    <nd ref='566' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='loop 3' />
+  </way>
+  <way id='579' version='1' visible='true'>
+    <nd ref='571' />
+    <nd ref='575' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='high street' />
+  </way>
+  <way id='580' version='1' visible='true'>
+    <nd ref='575' />
+    <nd ref='54' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='high street' />
+  </way>
+  <relation id='132' version='1' visible='true'>
+    <member type='node' ref='113' role='via' />
+    <member type='way' ref='348' role='from' />
+    <member type='way' ref='128' role='to' />
+    <tag k='except' v='motorcar' />
+    <tag k='restriction' v='only_straight_on' />
+    <tag k='type' v='restriction' />
+  </relation>
+  <relation id='135' version='1' visible='true'>
+    <member type='node' ref='113' role='via' />
+    <member type='way' ref='348' role='to' />
+    <member type='way' ref='128' role='from' />
+    <tag k='except' v='motorcar' />
+    <tag k='restriction' v='only_straight_on' />
+    <tag k='type' v='restriction' />
+  </relation>
+  <relation id='140' version='1' visible='true'>
+    <member type='node' ref='117' role='via' />
+    <member type='way' ref='129' role='to' />
+    <member type='way' ref='128' role='from' />
+    <tag k='except' v='motorcar' />
+    <tag k='restriction' v='only_straight_on' />
+    <tag k='type' v='restriction' />
+  </relation>
+  <relation id='143' visible='true'>
+    <member type='node' ref='117' role='via' />
+    <member type='way' ref='129' role='from' />
+    <member type='way' ref='128' role='to' />
+    <tag k='except' v='motorcar' />
+    <tag k='restriction' v='only_straight_on' />
+    <tag k='type' v='restriction' />
+  </relation>
+  <relation id='377' version='1' visible='true'>
+    <member type='way' ref='55' role='from' />
+    <member type='node' ref='144' role='via' />
+    <member type='way' ref='143' role='to' />
+    <tag k='restriction' v='no_left_turn' />
+    <tag k='type' v='restriction' />
+  </relation>
+  <relation id='430' version='1' visible='true'>
+    <member type='way' ref='425' role='from' />
+    <member type='node' ref='414' role='via' />
+    <member type='way' ref='413' role='to' />
+    <tag k='restriction' v='no_left_turn' />
+    <tag k='type' v='restriction' />
+  </relation>
+  <relation id='436' version='1' visible='true'>
+    <member type='way' ref='413' role='from' />
+    <member type='node' ref='414' role='via' />
+    <member type='way' ref='426' role='to' />
+    <tag k='restriction' v='only_left_turn' />
+    <tag k='type' v='restriction' />
+  </relation>
+  <relation id='497' version='1' visible='true'>
+    <member type='way' ref='441' role='from' />
+    <member type='node' ref='476' role='via' />
+    <member type='way' ref='479' role='to' />
+    <tag k='restriction' v='no_left_turn' />
+    <tag k='type' v='restriction' />
+  </relation>
+  <relation id='499' version='1' visible='true'>
+    <member type='way' ref='493' role='from' />
+    <member type='node' ref='484' role='via' />
+    <member type='way' ref='546' role='to' />
+    <tag k='restriction' v='no_left_turn' />
+    <tag k='type' v='restriction' />
+  </relation>
+  <relation id='540' version='1' visible='true'>
+    <member type='way' ref='521' role='from' />
+    <member type='node' ref='524' role='via' />
+    <member type='way' ref='533' role='to' />
+    <tag k='restriction' v='only_left_turn' />
+    <tag k='type' v='restriction' />
+  </relation>
+  <relation id='542' version='1' visible='true'>
+    <member type='way' ref='533' role='from' />
+    <member type='node' ref='528' role='via' />
+    <member type='way' ref='534' role='to' />
+    <tag k='restriction' v='only_straight_on' />
+    <tag k='type' v='restriction' />
+  </relation>
+  <relation id='551' version='1' visible='true'>
+    <member type='way' ref='494' role='from' />
+    <member type='node' ref='524' role='via' />
+    <member type='way' ref='521' role='to' />
+    <tag k='restriction' v='no_left_turn' />
+    <tag k='type' v='restriction' />
+  </relation>
+  <relation id='583' version='1' visible='true'>
+    <member type='way' ref='427' role='from' />
+    <member type='node' ref='571' role='via' />
+    <member type='way' ref='568' role='to' />
+    <tag k='restriction' v='no_left_turn' />
+    <tag k='type' v='restriction' />
+  </relation>
+  <relation id='585' version='1' visible='true'>
+    <member type='way' ref='579' role='from' />
+    <member type='node' ref='575' role='via' />
+    <member type='way' ref='567' role='to' />
+    <tag k='restriction' v='no_left_turn' />
+    <tag k='type' v='restriction' />
+  </relation>
+</osm>

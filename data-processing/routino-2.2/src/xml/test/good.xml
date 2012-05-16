@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- good comment -->
+
+<test>
+
+  <level1 attr1="value1 &amp; value2 &lt; &#32;">
+    <level2>
+      <![CDATA[ <angle brackets> ]]>
+    </level2>
+  </level1>
+
+</test>

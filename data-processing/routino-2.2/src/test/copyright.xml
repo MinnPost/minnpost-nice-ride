@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- ============================================================
+     An XML format file containing Routino output translations.
+
+     Part of the Routino routing software.
+     ============================================================
+     This file Copyright 2010-2011 Andrew M. Bishop
+
+     This program is free software: you can redistribute it and/or modify
+     it under the terms of the GNU Affero General Public License as published by
+     the Free Software Foundation, either version 3 of the License, or
+     (at your option) any later version.
+     ============================================================ -->
+
+<routino-translations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                      xsi:noNamespaceSchemaLocation="http://www.routino.org/xml/routino-translations.xsd">
+
+  <language lang="en">
+
+    <!-- Copyright of the data being routed, not of this file  -->
+    <copyright>
+      <creator string="Creator" text="Routino - http://www.routino.org/" />
+      <source  string="Source"  text="Routino test cases - (c) Andrew M. Bishop" />
+      <license string="License" text="GNU Affero General Public License v3 or later" />
+    </copyright>
+
+  </language>
+
+</routino-translations>

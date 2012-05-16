@@ -1,0 +1,516 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+
+<!--
+ Routino documentation - usage
+
+ Part of the Routino routing software.
+
+ This file Copyright 2008-2012 Andrew M. Bishop
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU Affero General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Affero General Public License for more details.
+
+ You should have received a copy of the GNU Affero General Public License
+ along with this program.  If not, see http://www.gnu.org/licenses/.
+-->
+
+<HEAD>
+<TITLE>Routino : Usage</TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<LINK href="style.css" type="text/css" rel="stylesheet">
+</HEAD>
+
+<BODY>
+
+<!-- Header Start -->
+
+<div class="header" align="center">
+
+<h1>Routino : Usage</h1>
+
+<hr>
+</div>
+
+<!-- Header End -->
+
+<!-- Content Start -->
+
+<div class="content">
+
+<h2><a name="H_1_1"></a>Program Usage</h2>
+
+There are four programs that make up this software.  The first one takes the
+planet.osm datafile from OpenStreetMap (or other source of data using the same
+formats) and converts it into a local database.  The second program uses the
+database to determine an optimum route between two points.  The third program
+allows visualisation of the data and statistics to be extracted.  The fourth
+program is a test program for the tag transformations.
+
+<h3><a name="H_1_1_1"></a>planetsplitter</h3>
+
+This program reads in the OSM format XML file and splits it up to create the
+database that is used for routing.
+
+<pre class="boxed">
+Usage: planetsplitter [--help]
+                      [--dir=&lt;dirname&gt;] [--prefix=&lt;name&gt;]
+                      [--sort-ram-size=&lt;size&gt;]
+                      [--tmpdir=&lt;dirname&gt;]
+                      [--tagging=&lt;filename&gt;]
+                      [--loggable] [--errorlog[=&lt;name&gt;]]
+                      [--parse-only | --process-only]
+                      [--max-iterations=&lt;number&gt;]
+                      [--prune-none]
+                      [--prune-isolated=&lt;len&gt;]
+                      [--prune-short=&lt;len&gt;]
+                      [--prune-straight=&lt;len&gt;]
+                      [&lt;filename.osm&gt; ...]
+</pre>
+
+<dl>
+  <dt>--help
+  <dd>Prints out the help information.
+  <dt>--dir=&lt;dirname&gt;
+  <dd>Sets the directory name in which to save the results.
+    Defaults to the current directory.
+  <dt>--prefix=&lt;name&gt;
+  <dd>Sets the filename prefix for the files that are created.
+    Defaults to no prefix.
+  <dt>--sort-ram-size=&lt;size&gt;
+  <dd>Specifies the amount of RAM (in MB) to use for sorting the data.  If not
+    specified then 64 MB will be used in slim mode or 256 MB otherwise.
+  <dt>--tmpdir=&lt;dirname&gt;
+  <dd>Specifies the name of the directory to store the temporary disk files.  If
+    not specified then it defaults to either the value of the --dir option or the
+    current directory.
+  <dt>--tagging=&lt;filename&gt;
+  <dd>Sets the filename containing the list of tagging rules in XML format for
+    the parsing the input files.  If the file doesn't exist then dirname, prefix
+    and "profiles.xml" will be combined and used, if that doesn't exist then the
+    file '/usr/local/share/routino/profiles.xml' (or custom installation
+    location) will be used.
+  <dt>--loggable
+  <dd>Print progress messages that are suitable for logging to a file; normally
+    an incrementing counter is printed which is more suitable for real-time
+    display than logging.
+  <dt>--errorlog[=&lt;name&gt;]
+  <dd>Log OSM parsing and processing errors to 'error.log' or the specified file
+    name (the '--dir' and '--prefix' options are applied).
+  <dt>--parse-only
+  <dd>Parse the input files and store them in a temporary file but don't process
+    the data into a routing database.
+  <dt>--process-only
+  <dd>Don't read in any files but process the existing temporary file into the
+    routing database.
+  <dt>--max-iterations=&lt;number&gt;
+  <dd>The maximum number of iterations to use when generating super-nodes and
+    super-segments.  Defaults to 5 which is normally enough.
+  <dt>--prune-none
+  <dd>Disable the prune options below, they can be re-enabled by adding them to
+    the command line after this option.
+  <dt>--prune-isolated=&lt;length&gt;
+  <dd>Remove small disconnected groups of segments (defaults to removing groups
+    under 500m).
+  <dt>--prune-short=&lt;length&gt;
+  <dd>Remove short segments (defaults to removing segments up to a maximum
+    length of 5m).
+  <dt>--prune-straight=&lt;length&gt;
+  <dd>Remove nodes in almost straight highways (defaults to removing nodes up to
+    3m offset from a straight line).
+  <dt>&lt;filename.osm&gt; ...
+  <dd>Specifies the filename(s) to read data from, by default data is read from
+    the standard input.
+</dl>
+
+<p>
+<i>Note: In version 1.4 of Routino the --transport, --not-highway and
+--not-property options have been removed.  The same functionality can be
+achieved by editing the tagging rules file to not output unwanted data.</i>
+
+<p>
+<i>Note: In version 1.5 of Routino the --slim option has been removed but at
+compilation time a separate program called <em>planetsplitter-slim</em> is
+created that operates in slim mode.  In slim mode the temporary files and
+database files are read as needed rather than being mapped into memory.  This
+allows a database size greater than 2 GB on 32-bit machines or usage with little
+or no virtual memory (e.g. some virtual machines).  The penalty for this is that
+the program takes about twice as long to run.</i>
+
+<p>
+Example usage:
+
+<pre class="boxed">
+./planetsplitter --dir=data --prefix=gb great_britain.osm
+</pre>
+
+This will generate the output files 'data/gb-nodes.mem', 'data/gb-segments.mem'
+and 'data/gb-ways.mem'.
+
+
+<h3><a name="H_1_1_2"></a>router</h3>
+
+This program performs the calculation of the optimum routes using the database
+generated by the planetsplitter program.
+
+<pre class="boxed">
+Usage: router [--help | --help-profile | --help-profile-xml |
+                        --help-profile-json | --help-profile-perl ]
+              [--dir=&lt;dirname&gt;] [--prefix=&lt;name&gt;]
+              [--profiles=&lt;filename&gt;] [--translations=&lt;filename&gt;]
+              [--exact-nodes-only]
+              [--loggable | --quiet]
+              [--output-html]
+              [--output-gpx-track] [--output-gpx-route]
+              [--output-text] [--output-text-all]
+              [--output-none]
+              [--profile=&lt;name&gt;]
+              [--transport=&lt;transport&gt;]
+              [--shortest | --quickest]
+              --lon1=&lt;longitude&gt; --lat1=&lt;latitude&gt;
+              --lon2=&lt;longitude&gt; --lon2=&lt;latitude&gt;
+              [ ... --lon99=&lt;longitude&gt; --lon99=&lt;latitude&gt;]
+              [--heading=&lt;bearing&gt;]
+              [--highway-&lt;highway&gt;=&lt;preference&gt; ...]
+              [--speed-&lt;highway&gt;=&lt;speed&gt; ...]
+              [--property-&lt;property&gt;=&lt;preference&gt; ...]
+              [--oneway=(0|1)] [--turns=(0|1)]
+              [--weight=&lt;weight&gt;]
+              [--height=&lt;height&gt;] [--width=&lt;width&gt;] [--length=&lt;length&gt;]
+</pre>
+
+<dl>
+  <dt>--help
+  <dd>Prints out the help information.
+  <dt>--help-profile
+  <dd>Prints out the selected transport profile (type, speed limits, highway
+    preferences etc.)
+  <dt>--help-profile-xml
+  <dd>Prints out all the loaded profiles as an XML file in the same format that
+    can be loaded in.
+  <dt>--help-profile-json
+  <dd>Prints out all the loaded profiles in JavaScript Object Notation (JSON)
+    format for use in the interactive webpage.
+  <dt>--help-profile-perl
+  <dd>Prints out all the loaded profiles as a Perl object for use in the router
+    CGI.
+  <dt>--dir=&lt;dirname&gt;
+  <dd>Sets the directory name in which to read the local database.
+    Defaults to the current directory.
+  <dt>--prefix=&lt;name&gt;
+  <dd>Sets the filename prefix for the files in the local database.
+    Defaults to no prefix.
+  <dt>--profiles=&lt;filename&gt;
+  <dd>Sets the filename containing the list of routing profiles in XML format.
+    If the file doesn't exist then dirname, prefix and "profiles.xml" will be
+    combined and used, if that doesn't exist then the file
+    '/usr/local/share/routino/profiles.xml' (or custom installation location)
+    will be used.
+  <dt>--translations=&lt;filename&gt;
+  <dd>Sets the filename containing the list of translations in XML format for
+    the output files.  If the file doesn't exist then dirname, prefix and
+    "translations.xml" will be combined and used, if that doesn't exist then the
+    file '/usr/local/share/routino/translations.xml' (or custom installation
+    location) will be used.
+  <dt>--exact-nodes-only
+  <dd>When processing the specified latitude and longitude points only select
+    the nearest node instead of finding the nearest point within a segment
+    (quicker but less accurate unless the points are already near nodes).
+  <dt>--loggable
+  <dd>Print progress messages that are suitable for logging to a file; normally
+    an incrementing counter is printed which is more suitable for real-time
+    display than logging.
+  <dt>--quiet
+  <dd>Don't generate any screen output while running (useful for running in a script).
+  <dt>--language=&lt;lang&gt;
+  <dd>Select the language specified from the file of translations.  If this
+    option is not given and the file exists then the first language in the file
+    will be used.  If this option is not given and no file exists the
+    compiled-in default language (English) will be used.
+  <dt>--output-html
+  <dt>--output-gpx-track
+  <dt>--output-gpx-route
+  <dt>--output-text
+  <dt>--output-text-all
+  <dd>Generate the selected output file formats (HTML, GPX track file, GPX route
+  file, plain text route and/or plain text with all nodes).  If no output is
+  specified then all are generated, specifying any automatically disables those
+  not specified.
+  <dt>--output-none
+  <dd>Do not generate any output or read in any translations files.
+  <dt>--profile=&lt;name&gt;
+  <dd>Specifies the name of the profile to use.
+  <dt>--transport=&lt;transport&gt;
+  <dd>Select the type of transport to use, &lt;transport&gt; can be set to:
+    <ul>
+      <li>foot       = Foot
+      <li>horse      = Horse
+      <li>wheelchair = Wheelchair
+      <li>bicycle    = Bicycle
+      <li>moped      = Moped     (Small motorbike, limited speed)
+      <li>motorbike  = Motorbike
+      <li>motorcar   = Motorcar
+      <li>goods      = Goods     (Small lorry, van)
+      <li>hgv        = HGV       (Heavy Goods Vehicle - large lorry)
+      <li>psv        = PSV       (Public Service Vehicle - bus, coach)
+    </ul>
+    Defaults to 'motorcar', this option also selects the default profile
+    information if the '--profile' option is not given and a profile matching
+    the transport name is found.
+  <dt>--shortest
+  <dd>Find the shortest route between the waypoints.
+  <dt>--quickest
+  <dd>Find the quickest route between the waypoints.
+  <dt>--lon1=&lt;longitude&gt;, --lat1=&lt;latitude&gt;
+  <dt>--lon2=&lt;longitude&gt;, --lat2=&lt;latitude&gt;
+  <dt>... --lon99=&lt;longitude&gt;, --lat99=&lt;latitude&gt;
+  <dd>The location of the waypoints that make up the start, middle and end
+  points of the route.  Up to 99 waypoints can be specified and the route will
+  pass through each of the specified ones in sequence.  The algorithm will use
+  the closest node or point within a segment that allows the specified traffic
+  type.
+  <dt>--heading=&lt;bearing&gt;
+  <dd>Specifies the initial direction of travel at the start of the route (from
+  the lowest numbered waypoint) as a compass bearing from 0 to 360 degrees.
+  <dt>--highway-&lt;highway&gt;=&lt;preference&gt;
+  <dd>Selects the percentage preference for using each particular type of
+      highway.  The value of &lt;highway&gt; can be selected from:
+    <ul>
+      <li>motorway     = Motorway
+      <li>trunk        = Trunk
+      <li>primary      = Primary
+      <li>secondary    = Secondary
+      <li>tertiary     = Tertiary
+      <li>unclassified = Unclassified
+      <li>residential  = Residential
+      <li>service      = Service
+      <li>track        = Track
+      <li>cycleway     = Cycleway
+      <li>path         = Path
+      <li>steps        = Steps
+      <li>ferry        = Ferry
+    </ul>
+    Default value depends on the profile selected by the --transport option.
+  <dt>--speed-&lt;highway&gt;=&lt;speed&gt;
+  <dd>Selects the speed limit in km/hour for each type of highway.  Default
+      value depends on the profile selected by the --transport option.
+  <dt>--property-&lt;property&gt;=&lt;preference&gt;
+  <dd>Selects the percentage preference for using each particular highway
+      property
+    The value of &lt;property&gt; can be selected from:
+    <ul>
+      <li>paved        = Paved (suitable for normal wheels)
+      <li>multilane    = Multiple lanes
+      <li>bridge       = Bridge
+      <li>tunnel       = Tunnel
+      <li>footroute    = A route marked for foot travel
+      <li>bicycleroute = A route marked for bicycle travel
+    </ul>
+    Default value depends on the profile selected by the --transport option.
+  <dt>--oneway=[0|1]
+  <dd>Selects if the direction of oneway streets are to be obeyed (useful to not
+      obey them when walking).  Default value depends on the profile selected by
+      the --transport option.
+  <dt>--turns=[0|1]
+  <dd>Selects if turn restrictions are to be obeyed (useful to not obey them
+      when walking).  Default value depends on the profile selected by the
+      --transport option.
+  <dt>--weight=&lt;weight&gt;
+  <dd>Specifies the weight of the mode of transport in tonnes; ensures that the
+      weight limit on the highway is not exceeded.  Default value depends on the
+      profile selected by the --transport option.
+  <dt>--height=&lt;height&gt;
+  <dd>Specifies the height of the mode of transport in metres; ensures that the
+      height limit on the highway is not exceeded.  Default value depends on the
+      profile selected by the --transport option.
+  <dt>--width=&lt;width&gt;
+  <dd>Specifies the width of the mode of transport in metres; ensures that the
+      width limit on the highway is not exceeded.  Default value depends on the
+      profile selected by the --transport option.
+  <dt>--length=&lt;length&gt;
+  <dd>Specifies the length of the mode of transport in metres; ensures that the
+      length limit on the highway is not exceeded.  Default value depends on the
+      profile selected by the --transport option.
+</dl>
+
+<p>
+<i>Note: In version 1.5 of Routino a slim option has been added and at
+compilation time a separate program called <em>router-slim</em> is created that
+operates in slim mode.  In slim mode the database files are read as needed
+rather than being mapped into memory.</i>
+
+<p>
+The meaning of the &lt;preference&gt; parameter in the command line options is
+slightly different for the highway preferences and the property preferences.
+For the highway preference consider the choice between two possible highways
+between the start and finish when looking for the shortest route.  If highway A
+has a preference of 100% and highway B has a preference of 90% then highway A
+will be chosen even if it is up to 11% longer (100/90 = 111%).  For the highway
+properties each highway either has a particular property or not.  If the
+preference for the property is 60% then a highway with the property has a
+preference of 77% (sqrt(60%)) and one without has a preference of 63%
+(sqrt(100-60%)).  A highway with the property will be chosen even if it is up to
+22% longer than one without the property (77/63 = 122%).  The overall preference
+for each highway segment is the product of the preference for the highway type
+and all of the preferences for the highway properties.
+
+<p>
+Example usage (motorbike journey, scenic route, not very fast):
+
+<pre class="boxed">
+./router --dir=data --prefix=gb --transport=motorbike --highway-motorway=0 \
+         --highway-trunk=0 --speed-primary=80 --speed-secondary=80 --quickest
+</pre>
+
+This will use the files 'data/gb-nodes.mem', 'data/gb-segments.mem' and
+'data/gb-ways.mem' to find the quickest route by motorbike not using motorways
+or trunk roads and not exceeding 80 km/hr.
+
+
+<h3><a name="H_1_1_3"></a>filedumper</h3>
+
+This program is used to extract statistics from the database, extract particular
+information for visualisation purposes or for dumping the database contents.
+
+<pre class="boxed">
+Usage: filedumper [--help]
+                  [--dir=&lt;dirname&gt;] [--prefix=&lt;name&gt;]
+                  [--statistics]
+                  [--visualiser --latmin=&lt;latmin&gt; --latmax=&lt;latmax&gt;
+                                --lonmin=&lt;lonmin&gt; --lonmax=&lt;lonmax&gt;
+                                --data=&lt;data-type&gt;]
+                  [--dump [--node=&lt;node&gt; ...]
+                          [--segment=&lt;segment&gt; ...]
+                          [--way=&lt;way&gt; ...]
+                          [--turn-relation=&lt;relation&gt; ...]]
+                  [--dump-osm [--no-super]
+                              [--latmin=&lt;latmin&gt; --latmax=&lt;latmax&gt;
+                               --lonmin=&lt;lonmin&gt; --lonmax=&lt;lonmax&gt;]]
+</pre>
+
+<dl>
+  <dt>--help
+  <dd>Prints out the help information.
+  <dt>--dir=&lt;dirname&gt;
+  <dd>Sets the directory name in which to read the local database.
+    Defaults to the current directory.
+  <dt>--prefix=&lt;name&gt;
+  <dd>Sets the filename prefix for the files in the local database.
+  <dt>--statistics
+  <dd>Prints out statistics about the database files.
+  <dt>--visualiser
+  <dd>Selects a data visualiser mode which will output a set of data according
+    to the other parameters below.
+    <dl>
+      <dt>--latmin=&lt;latmin&gt; --latmax=&lt;latmax&gt;
+      <dd>The range of latitudes to print the data for.
+      <dt>--lonmin=&lt;lonmin&gt; --lonmax=&lt;lonmax&gt;
+      <dd>The range of longitudes to print the data for.
+      <dt>--data=&lt;data-type&gt;
+      <dd>The type of data to output, &lt;data-type&gt; can be selected from:
+        <ul>
+          <li>junctions = segment count at each junction.
+          <li>super     = super-node and super-segments.
+          <li>oneway    = oneway segments.
+          <li>turns     = turn restrictions.
+          <li>speed     = speed limits.
+          <li>weight    = weight limits.
+          <li>height    = height limits.
+          <li>width     = width limits.
+          <li>length    = length limits.
+        </ul>
+    </dl>
+  <dt>--dump
+  <dd>Selects a data dumping mode which allows looking at individual items in
+    the databases (specifying 'all' instead of a number dumps all of them).
+    More than one of the following parameters can be specified on the command
+    line.
+    <dl>
+      <dt>--node=&lt;node&gt;
+      <dd>Prints the information about the selected node number (internal
+        number, not the node id number in the original source file).
+      <dt>--segment=&lt;segment&gt;
+      <dd>Prints the information about the selected segment number.
+      <dt>--way=&lt;way&gt;
+      <dd>Prints the information about the selected way number (internal
+        number, not the way id number in the original source file).
+      <dt>--turn-relation=&lt;relation&gt;
+      <dd>Prints the information about the selected turn relation number
+        (internal number, not the relation id number in the original source
+        file).
+    </dl>
+  <dt>--osm-dump
+  <dd>Dumps the contents of the database as an OSM format XML file, the whole
+    database will be dumped unless the latitude and longitude ranges are
+    specified.
+    <dl>
+      <dt>--no-super
+      <dd>The super segments will not be output.
+      <dt>--latmin=&lt;latmin&gt; --latmax=&lt;latmax&gt;
+      <dd>The range of latitudes to dump the data for.
+      <dt>--lonmin=&lt;lonmin&gt; --lonmax=&lt;lonmax&gt;
+      <dd>The range of longitudes to dump the data for.
+    </dl>
+</dl>
+
+<p>
+<i>Note: In version 1.5 of Routino a slim option has been added and at
+compilation time a separate program called <em>filedumper-slim</em> is created
+that operates in slim mode.  In slim mode the database files are read as needed
+rather than being mapped into memory.</i>
+
+
+<h3><a name="H_1_1_4"></a>tagmodifier</h3>
+
+This program is used to run the tag transformation process on an OSM XML file
+for test purposes.
+
+<pre class="boxed">
+Usage: tagmodifier [--help]
+                   [--loggable]
+                   [--tagging=&lt;filename&gt;]
+                   [&lt;filename.osm&gt;]
+</pre>
+
+<dl>
+  <dt>--help
+  <dd>Prints out the help information.
+  <dt>--loggable
+  <dd>Print progress messages that are suitable for logging to a file; normally
+    an incrementing counter is printed which is more suitable for real-time
+    display than logging.
+  <dt>--tagging=&lt;filename&gt;
+  <dd>The name of the XML file containing the tagging rules (defaults to
+    'tagging.xml' in the current directory).
+  <dt>&lt;filename.osm&gt; ...
+  <dd>Specifies the filename to read data from, by default data is read from
+    the standard input.
+</dl>
+
+</div>
+
+<!-- Content End -->
+
+<!-- Footer Start -->
+
+<div class="footer" align="center">
+<hr>
+
+<address>
+&copy; Andrew M. Bishop = &lt;amb "at" gedanken.demon.co.uk&gt;
+</address>
+
+</div>
+
+<!-- Footer End -->
+
+</BODY>
+
+</HTML>

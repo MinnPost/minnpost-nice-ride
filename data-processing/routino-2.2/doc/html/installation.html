@@ -1,0 +1,241 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+
+<!--
+ Routino documentation - installation
+
+ Part of the Routino routing software.
+
+ This file Copyright 2008-2011 Andrew M. Bishop
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU Affero General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Affero General Public License for more details.
+
+ You should have received a copy of the GNU Affero General Public License
+ along with this program.  If not, see http://www.gnu.org/licenses/.
+-->
+
+<HEAD>
+<TITLE>Routino : Installation</TITLE>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<LINK href="style.css" type="text/css" rel="stylesheet">
+</HEAD>
+
+<BODY>
+
+<!-- Header Start -->
+
+<div class="header" align="center">
+
+<h1>Routino : Installation</h1>
+
+<hr>
+</div>
+
+<!-- Header End -->
+
+<!-- Content Start -->
+
+<div class="content">
+
+
+<h2><a name="H_1_1"></a>Compilation</h2>
+
+This program has been written to run on Linux, no cross-platform compatibility
+has been specifically included but on the other hand nothing platform specific
+has been knowingly included either.
+
+<p>
+
+Any information on improving the compilation process on anything other than
+32-bit x86 Linux is welcome.
+
+<p>
+
+No external libraries are required and the programs are written in standard C
+language.
+
+<p>
+
+To compile the programs just type 'make'.
+
+
+<h2><a name="H_1_2"></a>Installation</h2>
+
+After compilation the executable files are copied into the directory
+<tt>web/bin</tt> and the default XML configuration files are copied into the
+directory <tt>web/data</tt>.  This is in preparation for using the supplied
+example web pages but is also a useful location to copy the files from for
+normal use.
+
+<p>
+
+The executable files are called <tt>planetsplitter</tt>, <tt>router</tt> and
+<tt>filedumper</tt> (also <tt>tagmodifier</tt> for debugging tag modifications).
+They can be copied to any location and need no special installation environment.
+
+<p>
+
+The default configuration files are called <tt>profiles.xml</tt>,
+<tt>tagging.xml</tt> and <tt>translations.xml</tt>.  The names of the
+configuration files can be specified on the command line but by default are also
+looked for in the directory that contains the routing database.
+
+
+<h2><a name="H_1_3"></a>Example Web Page</h2>
+
+The directory <tt>web</tt> contains a set of files that can be used to create a
+working set of web pages with interfaces to the routing algorithm.
+
+<p>
+
+The files in the <tt>web</tt> directory will require copying to a location that
+is accessible by a web server.  After copying the files some of them need to be
+edited; search through the files for lines that contain the words "EDIT THIS"
+and make appropriate edits.  The files that need editing are <tt>paths.pl</tt>
+(to set the directory paths) and <tt>router.js</tt> and <tt>visualiser.js</tt>
+to limit the range of the visible map (latitude, longitude and zoom).
+
+
+<h3><a name="H_1_3_1"></a>Configuration of web files</h3>
+
+The assumption in this description is that the whole of the directory called
+<tt>web</tt> is copied into a directory that is accessible by an Apache web
+server.
+
+<p>
+
+<em>This is not a secure configuration but an easy one to configure.</em>
+<br>
+<em>Only the directory <tt>www</tt> should be accessible by the web server.</em>
+<br>
+<em>Do not use this configuration unmodified in a public web server.</em>
+
+<p>
+
+The directory structure is as follows:
+
+<pre>
+   web/
+    |
+    + /bin/                    <- The Routino executable files (when compiled).
+    |
+    + /data/                   <- The Routino database and default configuration
+    |                             files.
+    |
+    + /results/                <- An empty directory to store the results.
+    |
+    + /www/                    <- The files that must be available to the web
+        |                         server are below this level.
+        |
+        + /openlayers/         <- A directory to hold the OpenLayers scripts.
+        |
+        + /routino/            <- The main HTML, Javascript, CSS and CGI files.
+            |
+            + /documentation/  <- The HTML version of the Routino documentation.
+</pre>
+
+The directory <tt>bin</tt> will be filled by running the compilation process.
+For a secure installation the <tt>bin</tt> directory should be outside of the
+web server, the file <tt>www/routino/paths.pl</tt> contains the path to
+the <tt>bin</tt> directory.
+
+<p>
+
+The directory <tt>data</tt> must contain the Routino database and is also the
+default location for the configuration files.  The routing database is created
+by downloading the OSM files for the region of interest and running the
+planetsplitter program.  There is a script in the directory that will download
+the OSM files and create the required database.  The script should be edited to
+set the names of the files to be downloaded.  For a secure installation
+the <tt>data</tt> directory should be outside of the web server, the
+file <tt>www/routino/paths.pl</tt> contains the path to the <tt>data</tt>
+directory.
+
+<p>
+
+The directory <tt>results</tt> is a temporary directory that it used to hold the
+GPX and text files generated by the Routino router.  The directory must be
+writable by the web server process since it is the CGI scripts that are run by
+the web server that writes the results here.  For a secure installation
+the <tt>results</tt> directory should be outside of the web server, the file
+<tt>www/routino/paths.pl</tt> contains the path to the <tt>results</tt> directory.
+
+<p>
+
+The directory <tt>www</tt> and its sub-directories are the only ones that need
+to be within the web server accessible directory.
+
+<p>
+
+The directory <tt>www/openlayers</tt> must be filled with the openlayers
+Javascript library that can be downloaded from http://www.openlayers.org/.
+(This version of Routino has been tested with OpenLayers library version 2.11).
+The files must be installed so that the file <tt>www/openlayers/OpenLayers.js</tt>
+and the directories <tt>www/openlayers/img/</tt>, <tt>www/openlayers/theme/</tt>
+all exist.  There is a script in the directory that will automatically download
+the files, create an optimised "OpenLayers.js" and copy the files to the required
+locations.
+
+<p>
+
+The directory <tt>www/routino</tt> contains the main HTML, Javascript and CSS
+files as well as the CGI scripts that perform the server-side routing functions.
+The description below lists all of the files that contain editable information.
+
+<dl>
+  <dt>paths.pl
+  <dd>This contains the names of the directories that contain the executable
+      files, router database and temporary results.
+  <dt>router.pl
+  <dd>This file contains the filename prefix for the routing database files
+      (only needed if planetsplitter is run with the --prefix option).
+  <dt>mapprefs.js
+  <dd>The parameters in this file control the boundary of the visible map
+      (defaults to UK), the minimum and maximum zoom levels (defaults to between
+      4 and 15 inclusive) and the source of map tiles (defaults to the main
+      OpenStreetMap tile server).
+</dl>
+
+<p>
+
+The directory <tt>www/routino/documentation</tt> contains the HTML version of
+the Routino documentation.
+
+
+<h3><a name="H_1_3_2"></a>Configuration of web server</h3>
+
+The file <tt>www/routino/.htaccess</tt> contains all of the Apache configuration
+options that are required to get the example web pages running.  The only
+problem is that because of the way that the <tt>AllowOverride</tt> option works
+one of the configuration options has been commented out.  This must be enabled
+in the main Apache server configuration file.
+
+
+</div>
+
+<!-- Content End -->
+
+<!-- Footer Start -->
+
+<div class="footer" align="center">
+<hr>
+
+<address>
+&copy; Andrew M. Bishop = &lt;amb "at" gedanken.demon.co.uk&gt;
+</address>
+
+</div>
+
+<!-- Footer End -->
+
+</BODY>
+
+</HTML>

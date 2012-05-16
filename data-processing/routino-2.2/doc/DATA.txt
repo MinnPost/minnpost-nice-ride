@@ -1,0 +1,116 @@
+                               Routino : Data
+                               ==============
+
+
+   A router relies on data to be able to find a route.
+
+
+OpenStreetMap Data
+------------------
+
+   The data that is collected by the OpenStreetMap project consists of
+   nodes, ways and relations.
+
+   Node
+          A node is a point that has a latitude and longitude and
+          attributes that describe what type of point it is (part of a way
+          or a place of interest for example).
+
+   Way
+          A way is a collection of nodes that when joined together define
+          something (for example a road, a railway, a boundary, a
+          building, a lake etc). The ways also have attributes that define
+          them (speed limits, type of road and restrictions for example).
+
+   Relation
+          A relation is a collection of items (usually ways) that are
+          related to each other for some reason (highways that make up a
+          route for example).
+
+   The OpenStreetMap Wiki explains the data much better than I can.
+
+
+Router Data
+-----------
+
+   The information that is needed by a routing algorithm is only a subset
+   of the information that is collected by the OpenStreetMap project. For
+   routing what is required is information about the location of roads (or
+   other highways), the connections between the highways and the
+   properties of those highways.
+
+   Location of highways (nodes)
+          The locations of things is provided by the nodes from the
+          OpenStreetMap data. The nodes are the only things that have
+          coordinates in OpenStreetMap and everything else is made up by
+          reference to them. Not all of the nodes are useful, only the
+          ones that are part of highways. The location of the nodes is
+          stored but none of the other attributes are currently used by
+          the router.
+
+   Location of highways (ways)
+          The location of the highways is defined in the OpenStreetMap
+          data by the ways. Only the highway ways are useful and the other
+          ways are discarded. What remains is lists of nodes that join
+          together to form a section of highway. This is further split
+          into segments which are individual parts of a way connected by
+          two nodes.
+
+   Properties of highways (tags)
+          The ways that belong to highways are extracted from the data in
+          the previous step and for each way the useful information for
+          routing is stored. For the router the useful information is the
+          type of highway, the speed limit, the allowed types of transport
+          and other restrictions (one-way, minimum height, maximum weight
+          etc).
+
+   Connections between highways
+          The connections between highways are defined in the
+          OpenStreetMap data by ways that share nodes. Since the ways may
+          join in the middle and not just the ends it is the segments
+          defined above that are not part of the OpenStreetMap data that
+          are most important.
+
+   The information that is extracted from the OpenStreetMap data is stored
+   in an optimised way that allows the routing to be performed quickly.
+
+
+Interpreting Data Tags
+----------------------
+
+   The tags are the information that is attached to the nodes and ways in
+   OpenStreetMap. The router needs to interpret these tags and use them
+   when deciding what type of traffic can use a highway (for example).
+
+   There are no well defined rules in OpenStreetMap about tagging, but
+   there is guidance on the OpenStreetMap Wiki "Map_Features" page. This
+   describes a set of recommended tags but these are not universally used
+   so it is up to each application how to interpret them.
+
+   The tagging rules that the router uses are very important in
+   controlling how the router works. With Routino the data tags can be
+   modified when the data is imported to allow customisation of the
+   information used for routing.
+
+
+Problems With OpenStreetMap Data
+--------------------------------
+
+   The route that can be found is only as good as the data that is
+   available. This is not intended as a criticism of the OpenStreetMap
+   data; it is generally good.
+
+   There are some problems that are well known and which affect the
+   router. For example highways might be missing because nobody has mapped
+   them. A highway may be wrongly tagged with incorrect properties, or a
+   highway might be missing important tags for routing (e.g. speed
+   limits). There can also be problems with highways that should join but
+   don't because they do not share nodes.
+
+   A lot of these problems can be found using the interactive data
+   visualiser that uses the same Routino routing database.
+
+
+--------
+
+Copyright 2008-2010 Andrew M. Bishop.

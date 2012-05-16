@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- ============================================================
+     An XML Schema Definition for the Routino profile XML format
+
+     Part of the Routino routing software.
+     ============================================================
+     This file Copyright 2010-2011 Andrew M. Bishop
+
+     This program is free software: you can redistribute it and/or modify
+     it under the terms of the GNU Affero General Public License as published by
+     the Free Software Foundation, either version 3 of the License, or
+     (at your option) any later version.
+     ============================================================ -->
+
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <!-- The top level Routino profiles -->
+
+  <xsd:element name="routino-profiles" type="RoutinoProfilesType"/>
+
+  <xsd:complexType name="RoutinoProfilesType">
+    <xsd:sequence>
+      <xsd:element name="profile" type="profileType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="profileType">
+    <xsd:sequence>
+      <xsd:element name="speeds"       type="speedsType"      />
+      <xsd:element name="preferences"  type="preferencesType" />
+      <xsd:element name="properties"   type="propertiesType"  />
+      <xsd:element name="restrictions" type="restrictionsType"/>
+    </xsd:sequence>
+    <xsd:attribute name="name"         type="xsd:string"/>
+    <xsd:attribute name="transport"    type="xsd:string"/>
+  </xsd:complexType>
+
+  <!-- The second level preferences, speed, properties and restrictions -->
+
+  <xsd:complexType name="speedsType">
+    <xsd:sequence>
+      <xsd:element name="speed" type="speedType" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="preferencesType">
+    <xsd:sequence>
+      <xsd:element name="preference" type="preferenceType" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="propertiesType">
+    <xsd:sequence>
+      <xsd:element name="property" type="propertyType" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="restrictionsType">
+    <xsd:sequence>
+      <xsd:element name="oneway" type="onewayType"/>
+      <xsd:element name="turns"  type="turnsType"/>
+      <xsd:element name="weight" type="weightType"/>
+      <xsd:element name="height" type="heightType"/>
+      <xsd:element name="width"  type="widthType"/>
+      <xsd:element name="length" type="lengthType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <!-- The lowest level elements containing the real information -->
+
+  <xsd:complexType name="speedType">
+    <xsd:attribute name="highway" type="xsd:string"/>
+    <xsd:attribute name="kph"     type="xsd:string"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="preferenceType">
+    <xsd:attribute name="highway" type="xsd:string"/>
+    <xsd:attribute name="percent" type="xsd:string"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="propertyType">
+    <xsd:attribute name="type"    type="xsd:string"/>
+    <xsd:attribute name="percent" type="xsd:string"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="onewayType">
+    <xsd:attribute name="obey"    type="xsd:string"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="turnsType">
+    <xsd:attribute name="obey"    type="xsd:string"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="weightType">
+    <xsd:attribute name="limit"   type="xsd:string"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="heightType">
+    <xsd:attribute name="limit"   type="xsd:string"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="widthType">
+    <xsd:attribute name="limit"   type="xsd:string"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="lengthType">
+    <xsd:attribute name="limit"   type="xsd:string"/>
+  </xsd:complexType>
+
+</xsd:schema>

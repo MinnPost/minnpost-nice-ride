@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- ============================================================
+     An XML format file containing Routino tagging rules - copy the input file
+     directly to the output with no modifications (e.g. importing a file dumped
+     by filedumper).
+
+     Part of the Routino routing software.
+     ============================================================
+     This file Copyright 2010, 2011 Andrew M. Bishop
+
+     This program is free software: you can redistribute it and/or modify
+     it under the terms of the GNU Affero General Public License as published by
+     the Free Software Foundation, either version 3 of the License, or
+     (at your option) any later version.
+     ============================================================ -->
+
+<routino-tagging xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:noNamespaceSchemaLocation="http://www.routino.org/xml/routino-tagging.xsd">
+
+  <!-- - - - - - - - - - - Node rules - - - - - - - - - - -->
+
+  <node>
+
+    <!-- Copy everything from input to output -->
+
+    <if>
+      <output />
+    </if>
+
+  </node>
+
+  <!-- - - - - - - - - - - Way rules - - - - - - - - - - -->
+
+  <way>
+
+    <!-- Copy everything from input to output -->
+
+    <if>
+      <output />
+    </if>
+
+  </way>
+
+  <!-- - - - - - - - - - - Relation rules - - - - - - - - - - -->
+
+  <relation>
+
+    <!-- Copy everything from input to output -->
+
+    <if>
+      <output />
+    </if>
+
+  </relation>
+
+</routino-tagging>

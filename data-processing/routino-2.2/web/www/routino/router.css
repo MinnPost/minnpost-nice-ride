@@ -1,0 +1,171 @@
+/*
+// Routino router web page style sheet.
+//
+// Part of the Routino routing software.
+//
+// This file Copyright 2008-2010 Andrew M. Bishop
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+
+/*--------------------------------*/
+/* Left panel - override defaults */
+/*--------------------------------*/
+
+DIV.hideshow_box
+{
+ overflow-x: auto;
+}
+
+
+/*------------------------------*/
+/* Left panel - generic options */
+/*------------------------------*/
+
+DIV.scrollable
+{
+ overflow: auto;
+
+ height: 20em;
+}
+
+
+/*-----------------------------------*/
+/* Left panel - specific tab options */
+/*-----------------------------------*/
+
+DIV#tab_options_div IMG
+{
+ cursor: pointer;
+ vertical-align: bottom;
+}
+
+DIV#tab_options_div IMG:hover
+{
+ background: #F0F000;
+}
+
+DIV#tab_options_div TABLE
+{
+ padding: 0;
+ border:  0 hidden;
+ margin:  0;
+}
+
+DIV#tab_options_div TABLE TD
+{
+ padding: 0;
+ border:  0;
+ margin:  0;
+}
+
+DIV#tab_options_div INPUT
+{
+ padding: 0;
+ border:  1px solid;
+ margin:  0;
+
+ text-align: right;
+}
+
+DIV#tab_options_div INPUT:hover
+{
+ background: #F0F0C0;
+}
+
+DIV#tab_options_div INPUT#shortest
+{
+ margin: 3px;
+ border: 3px solid;
+
+ border-color: #00FF00;
+
+ background: #C0F0C0;
+
+ text-align: center;
+}
+
+DIV#tab_options_div INPUT#quickest
+{
+ margin: 3px;
+ border: 3px solid;
+
+ border-color: #0000FF;
+
+ background: #C0C0F0;
+
+ text-align: center;
+}
+
+DIV#tab_results_div TABLE
+{
+ border-collapse: collapse;
+ border: hidden;
+}
+
+DIV#tab_results_div TD.distance
+{
+ text-align: left;
+}
+
+DIV#tab_results_div TD.highway
+{
+ text-align: left;
+ padding-left: 10px;
+}
+
+DIV#tab_results_div DIV#shortest_links A:hover
+{
+ background: #C0F0C0;
+}
+
+DIV#tab_results_div DIV#shortest_route TR:hover
+{
+ cursor: pointer;
+
+ background: #C0F0C0;
+}
+
+DIV#tab_results_div DIV#quickest_links A:hover
+{
+ background: #C0C0F0;
+}
+
+DIV#tab_results_div DIV#quickest_route TR:hover
+{
+ cursor: pointer;
+
+ background: #C0C0F0;
+}
+
+
+/*-------------------------------------------------*/
+/* Popup - using the styles defined in HTML output */
+/*-------------------------------------------------*/
+
+DIV.popup table  {table-layout: fixed; border: none; border-collapse: collapse;}
+DIV.popup tr     {border: 0px;}
+DIV.popup tr.c   {display: none;} /* coords */
+DIV.popup tr.n   {} /* node */
+DIV.popup tr.s   {} /* segment */
+DIV.popup tr.t   {font-weight: bold;} /* total */
+DIV.popup td.l   {font-weight: bold;}
+DIV.popup td.r   {}
+DIV.popup span.w {font-weight: bold;} /* waypoint */
+DIV.popup span.h {text-decoration: underline;} /* highway */
+DIV.popup span.d {} /* segment distance */
+DIV.popup span.j {font-style: italic;} /* total journey distance */
+DIV.popup span.t {font-variant: small-caps;} /* turn */
+DIV.popup span.b {font-variant: small-caps;} /* bearing */

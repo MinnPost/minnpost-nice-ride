@@ -1,0 +1,292 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+
+<!--
+ Routino data visualiser web page.
+
+ Part of the Routino routing software.
+
+ This file Copyright 2008-2011 Andrew M. Bishop
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU Affero General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Affero General Public License for more details.
+
+ You should have received a copy of the GNU Affero General Public License
+ along with this program.  If not, see http://www.gnu.org/licenses/.
+-->
+
+<HEAD>
+<TITLE>Routino : Data Visualiser for Routino OpenStreetMap Data</TITLE>
+<META name="keywords" content="openstreetmap routino verifier">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<!-- OpenLayers Javascript library -->
+<script src="../openlayers/OpenLayers.js" type="text/javascript"></script>
+
+<!-- Page elements -->
+<script src="page-elements.js" type="text/javascript"></script>
+<link href="page-elements.css" type="text/css" rel="stylesheet">
+
+<!-- Router and visualiser shared features -->
+<link href="maplayout.css" type="text/css" rel="stylesheet">
+<!--[if IE 6]>
+  <link href="maplayout-ie6-bugfixes.css" type="text/css" rel="stylesheet">
+<![endif]-->
+<!--[if IE 7]>
+  <link href="maplayout-ie7-bugfixes.css" type="text/css" rel="stylesheet">
+<![endif]-->
+
+<!-- Visualiser specific features -->
+<script src="mapprops.js" type="text/javascript"></script>
+<script src="visualiser.js" type="text/javascript"></script>
+<link href="visualiser.css" type="text/css" rel="stylesheet">
+
+</HEAD>
+<BODY onload="map_init('lat','lon','zoom');">
+
+<!-- Left hand side of window - data panel -->
+
+<div class="left_panel">
+
+  <div class="tab_box">
+    <span id="tab_visualiser" onclick="tab_select('visualiser');" class="tab_selected"   title="Select data options">Visualiser</span>
+    <span id="tab_router"     onclick="tab_select('router');"     class="tab_unselected" title="Plan a route">Router</span>
+    <span id="tab_data"       onclick="tab_select('data');"       class="tab_unselected" title="View database information">Data</span>
+  </div>
+
+  <div class="tab_content" id="tab_visualiser_div">
+
+    <div class="hideshow_box">
+      <span class="hideshow_title">Routino Data Visualiser</span>
+      This web page allows visualisation of the data that Routino uses for routing.
+      Only data relevant for routing is displayed and some will therefore be excluded.
+      <div align="center">
+        <a target="other" href="http://www.routino.org/">Routino Website</a>
+        |
+        <a target="other" href="../documentation/">Documentation</a>
+      </div>
+    </div>
+
+    <div class="hideshow_box">
+      <span class="hideshow_title">Instructions</span>
+      Zoom in and then use the buttons below to download the data.  The
+      server will only return data if the selected area is small enough.
+    </div>
+
+    <div class="hideshow_box">
+      <span class="hideshow_title">Status</span>
+      <div id="result_status">
+        <div id="result_status_no_data">
+          <b><i>No data displayed</i></b>
+        </div>
+        <div id="result_status_data" style="display: none;">
+        </div>
+        <div id="result_status_error" style="display: none;">
+          <b>Failed to get visualiser data!</b>
+        </div>
+        <div id="result_status_junctions" style="display: none;">
+          <b>Processed # junctions</b>
+        </div>
+        <div id="result_status_super"     style="display: none;">
+          <b>Processed # super-nodes/segments</b>
+        </div>
+        <div id="result_status_oneway"    style="display: none;">
+          <b>Processed # oneway segments</b>
+        </div>
+        <div id="result_status_turns"     style="display: none;">
+          <b>Processed # turn restrictions</b>
+        </div>
+        <div id="result_status_limit"     style="display: none;">
+          <b>Processed # limits</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="hideshow_box">
+      <span id="hideshow_junctions_show" onclick="hideshow_show('junctions');" class="hideshow_show">+</span>
+      <span id="hideshow_junctions_hide" onclick="hideshow_hide('junctions');" class="hideshow_hide">-</span>
+      <input type="button" id="junctions" onclick="displayData('junctions');" value="Display Junctions">
+      <div id="hideshow_junctions_div" style="display: none;">
+        Each node that is a dead-end, a junction of two highways of different
+        types (or different properties) or a junction where more than two segments
+        join are shown colour-coded:
+        <br>
+        <table>
+          <tr><td><img src="icons/ball-1.png" alt="Red"   ><td>only one highway - a dead-end.
+          <tr><td><img src="icons/ball-2.png" alt="Yellow"><td>two highways of different types meet.
+          <tr><td><img src="icons/ball-3.png" alt="Green" ><td>three highways meet.
+          <tr><td><img src="icons/ball-4.png" alt="Brown" ><td>four highways meet.
+          <tr><td><img src="icons/ball-5.png" alt="Blue"  ><td>five highways meet.
+          <tr><td><img src="icons/ball-6.png" alt="Pink"  ><td>six highways meet.
+          <tr><td><img src="icons/ball-7.png" alt="Black" ><td>seven (or more) highways meet.
+        </table>
+      </div>
+    </div>
+
+    <div class="hideshow_box">
+      <span id="hideshow_super_show" onclick="hideshow_show('super');" class="hideshow_show">+</span>
+      <span id="hideshow_super_hide" onclick="hideshow_hide('super');" class="hideshow_hide">-</span>
+      <input type="button" id="super" onclick="displayData('super');" value="Display Super Segments">
+      <div id="hideshow_super_div" style="display: none;">
+        Each super-node and the associated super-segments are shown (see
+        algorithm page for description).
+      </div>
+    </div>
+
+    <div class="hideshow_box">
+      <span id="hideshow_oneway_show" onclick="hideshow_show('oneway');" class="hideshow_show">+</span>
+      <span id="hideshow_oneway_hide" onclick="hideshow_hide('oneway');" class="hideshow_hide">-</span>
+      <input type="button" id="oneway" onclick="displayData('oneway');" value="Display One-way Segments">
+      <div id="hideshow_oneway_div" style="display: none;">
+        Each one-way segment is shown with a coloured triangle indicating the
+        allowed direction.  The colours of the triangles depend on the bearing
+        of the highway segment.
+      </div>
+    </div>
+
+    <div class="hideshow_box">
+      <span id="hideshow_turns_show" onclick="hideshow_show('turns');" class="hideshow_show">+</span>
+      <span id="hideshow_turns_hide" onclick="hideshow_hide('turns');" class="hideshow_hide">-</span>
+      <input type="button" id="turns" onclick="displayData('turns');" value="Display Turn Restrictions">
+      <div id="hideshow_turns_div" style="display: none;">
+        Each turn restrictions is shown with a line indicating the disallowed
+        turn.
+      </div>
+    </div>
+
+    <div class="hideshow_box">
+      <span id="hideshow_speed_show" onclick="hideshow_show('speed');" class="hideshow_show">+</span>
+      <span id="hideshow_speed_hide" onclick="hideshow_hide('speed');" class="hideshow_hide">-</span>
+      <input type="button" id="speed" onclick="displayData('speed');" value="Display Speed Limits">
+      <div id="hideshow_speed_div" style="display: none;">
+        Each node that joins segments with different speed limits is shown
+        along with the speed limit on relevant segments.
+        <br>
+        <table>
+          <tr><td><img src="icons/ball-1.png"   alt="Red dot"><td>Change of limit
+          <tr><td><img src="icons/limit-no.png" alt="(no)"   ><td>No specified speed limit
+          <tr><td><img src="icons/limit-80.png" alt="(80)"   ><td>80 km/hour speed limit
+        </table>
+      </div>
+    </div>
+
+    <div class="hideshow_box">
+      <span id="hideshow_weight_show" onclick="hideshow_show('weight');" class="hideshow_show">+</span>
+      <span id="hideshow_weight_hide" onclick="hideshow_hide('weight');" class="hideshow_hide">-</span>
+      <input type="button" id="weight" onclick="displayData('weight');" value="Display Weight Limits">
+      <div id="hideshow_weight_div" style="display: none;">
+        Each node that joins segments with different weight limits is shown
+        along with the weight limit on relevant segments.  For example:
+        <br>
+        <table>
+          <tr><td><img src="icons/ball-1.png"    alt="Red dot"><td>Change of limit
+          <tr><td><img src="icons/limit-no.png"  alt="(no)"   ><td>No specified weight limit
+          <tr><td><img src="icons/limit-8.0.png" alt="(8.0)"  ><td>8.0 tonnes weight limit
+        </table>
+      </div>
+    </div>
+
+    <div class="hideshow_box">
+      <span id="hideshow_height_show" onclick="hideshow_show('height');" class="hideshow_show">+</span>
+      <span id="hideshow_height_hide" onclick="hideshow_hide('height');" class="hideshow_hide">-</span>
+      <input type="button" id="height" onclick="displayData('height');" value="Display Height Limits">
+      <div id="hideshow_height_div" style="display: none;">
+        Each node that joins segments with different height limits is shown
+        along with the height limit on relevant segments.  For example:
+        <br>
+        <table>
+          <tr><td><img src="icons/ball-1.png"    alt="Red dot"><td>Change of limit
+          <tr><td><img src="icons/limit-no.png"  alt="(no)"   ><td>No specified height limit
+          <tr><td><img src="icons/limit-4.0.png" alt="(4.0)"  ><td>4.0 m height limit
+        </table>
+      </div>
+    </div>
+
+    <div class="hideshow_box">
+      <span id="hideshow_width_show" onclick="hideshow_show('width');" class="hideshow_show">+</span>
+      <span id="hideshow_width_hide" onclick="hideshow_hide('width');" class="hideshow_hide">-</span>
+      <input type="button" id="width" onclick="displayData('width');" value="Display Width Limits">
+      <div id="hideshow_width_div" style="display: none;">
+        Each node that joins segments with different width limits is shown
+        along with the width limit on relevant segments.  For example:
+        <br>
+        <table>
+          <tr><td><img src="icons/ball-1.png"    alt="Red dot"><td>Change of limit
+          <tr><td><img src="icons/limit-no.png"  alt="(no)"   ><td>No specified width limit
+          <tr><td><img src="icons/limit-3.0.png" alt="(3.0)"  ><td>3.0 m width limit
+        </table>
+      </div>
+    </div>
+
+    <div class="hideshow_box">
+      <span id="hideshow_length_show" onclick="hideshow_show('length');" class="hideshow_show">+</span>
+      <span id="hideshow_length_hide" onclick="hideshow_hide('length');" class="hideshow_hide">-</span>
+      <input type="button" id="length" onclick="displayData('length');" value="Display Length Limits">
+      <div id="hideshow_length_div" style="display: none;">
+        Each node that joins segments with different length limits is shown
+        along with the length limit on relevant segments.  For example:
+        <br>
+        <table>
+          <tr><td><img src="icons/ball-1.png"    alt="Red dot"><td>Change of limit
+          <tr><td><img src="icons/limit-no.png"  alt="(no)"   ><td>No specified length limit
+          <tr><td><img src="icons/limit-9.0.png" alt="(9.0)"  ><td>9.0 m length limit
+        </table>
+      </div>
+    </div>
+
+    <div class="hideshow_box">
+      <input type="button" id="clear" onclick="displayData('');" value="Clear data">
+    </div>
+
+    <div class="hideshow_box">
+      <span class="hideshow_title">Links</span>
+      <a id="link_url"                href="visualiser.html">Permanent link to this view</a>
+      <br>
+      <a id="edit_url" target="other" href="http://www.openstreetmap.org/">Edit OSM data in Potlatch</a>
+    </div>
+  </div>
+
+  <div class="tab_content" id="tab_router_div" style="display: none;">
+    <div class="hideshow_box">
+      <span class="hideshow_title">Router</span>
+      To perform routing on the map use the link below.
+      <br>
+      <a id="router_url" target="other" href="router.html">Custom link to this map view</a>
+    </div>
+  </div>
+
+  <div class="tab_content" id="tab_data_div" style="display: none;">
+    <div class="hideshow_box">
+      <span class="hideshow_title">Statistics</span>
+      <div id="statistics_data"></div>
+      <a id="statistics_link" href="statistics.cgi" onclick="displayStatistics();return(false);">Display data statistics</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- Right hand side of window - map -->
+
+<div class="right_panel">
+  <div class="map" id="map">
+    <noscript>
+      Javascript is <em>required</em> to use this web page because of the
+      interactive map.
+    </noscript>
+  </div>
+  <div class="attribution">
+    <a target="other" href="http://www.routino.org/" title="Routino">Data Manipulation: Routino</a>
+    |
+    <a target="other" href="http://www.openstreetmap.org/" title="Copyright: OpenStreetMap.org; License: Creative Commons Attribution-Share Alike 2.0">Geo Data: OpenStreetMap</a>
+  </div>
+</div>
+
+</BODY>
+</HTML>

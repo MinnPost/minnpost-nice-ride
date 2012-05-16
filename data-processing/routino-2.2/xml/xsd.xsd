@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- ============================================================
+     $Header: /home/amb/CVS/routino/xml/xsd.xsd,v 1.1 2010-03-28 15:27:05 amb Exp $
+
+     An XML Schema Definition for the XML Schema Definition XML format
+
+     Not a full definition but sufficient to allow the xsd-to-xmlparser to
+     read it to bootstrap itself - a program to read in other files in the
+     same format to create more XML parsers for other useful things.
+     ============================================================
+     This file Copyright 2010 Andrew M. Bishop
+
+     This program is free software: you can redistribute it and/or modify
+     it under the terms of the GNU Affero General Public License as published by
+     the Free Software Foundation, either version 3 of the License, or
+     (at your option) any later version.
+     ============================================================ -->
+
+<xsd:schema elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <!-- The top level xsd:schema element -->
+
+  <xsd:element name="xsd:schema" type="schemaType"/>
+
+  <xsd:complexType name="schemaType">
+    <xsd:sequence>
+      <xsd:element name="xsd:element"        type="elementType"/>
+      <xsd:element name="xsd:complexType"    type="complexType"    minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="elementFormDefault" type="xsd:string"/>
+    <xsd:attribute name="xmlns:xsd"          type="xsd:string"/>
+  </xsd:complexType>
+
+  <!-- The second level xsd:element and xsd:complexType elements -->
+
+  <xsd:complexType name="elementType">
+    <xsd:attribute name="name"               type="xsd:string"/>
+    <xsd:attribute name="type"               type="xsd:string"/>
+    <xsd:attribute name="minOccurs"          type="xsd:string"/>
+    <xsd:attribute name="maxOccurs"          type="xsd:string"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="complexType">
+    <xsd:sequence>
+      <xsd:element name="xsd:sequence"       type="sequenceType"   minOccurs="0"/>
+      <xsd:element name="xsd:attribute"      type="attributeType"  minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="name"               type="xsd:string"/>
+  </xsd:complexType>
+
+  <!-- The third level elements and their contents -->
+
+  <xsd:complexType name="sequenceType">
+    <xsd:sequence>
+      <xsd:element name="xsd:element"        type="elementType"    minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="attributeType">
+    <xsd:attribute name="name"               type="xsd:string"/>
+    <xsd:attribute name="type"               type="xsd:string"/>
+  </xsd:complexType>
+
+</xsd:schema>
