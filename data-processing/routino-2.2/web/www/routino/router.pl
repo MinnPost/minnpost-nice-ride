@@ -104,7 +104,7 @@ sub RunRouter
 
    # Create a unique output directory
 
-   chomp($uuid=`echo '$params' $$ | md5sum | cut -f1 '-d '`);
+   chomp($uuid=`echo '$params' $$ | md5 | cut -f1 '-d '`);
 
    mkdir $uuid;
    chmod 0775, $uuid;
