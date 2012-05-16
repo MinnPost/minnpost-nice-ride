@@ -25,9 +25,8 @@ cd data; unzip -d NRMN_2011_reports NRMN_2011_reports.zip;
     1. ```brew install cmake```
     1. ```brew install boost```
     1. ```brew install cgal```
-    1. ```git submodule init; git submodule update;```
-    1. ```cd data-processing/pgrouting```
-    1. ```cmake -DWITH_TSP=ON -DWITH_DD=ON .```
+    1. ```cp data-processing/pgrouting/pgrouting.rb /usr/local/Library/Formula/pgrouting.rb```
+    1. ```brew install pgrouting```
 * Install [osm2pgrouting](http://www.pgrouting.org/docs/tools/osm2pgrouting.html).  We are using a [custom Mac version](git clone git://github.com/zzolo/osm2pgrouting-mac.git).
     1. ```brew install expat```
     1. If you had not done this for pgrouting: ```git submodule init; git submodule update;```
