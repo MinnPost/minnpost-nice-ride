@@ -23,7 +23,7 @@ included in this repository for convenience.
 
 1. Build [Routino](http://www.routino.org/).  We'll set things up in the web directory so that we can use the included web app to test our data.  The web app is not secure and has been modified to work on Mac.  The webapp should work in any directory that is hosted by Apache.
     * ```cd data-processing/routino-2.2 && make; cd -;```
-    * Setup routing database: ```./data-processing/routino-2.2/web/bin/planetsplitter --tagging=data-processing/routino-2.2/web/data/tagging-ride.xml --dir=data-processing/routino-2.2/web/data data/mpls-stpaul.osm```
+    * Setup routing database: ```./data-processing/routino-2.2/web/bin/planetsplitter --tagging=data-processing/routino-2.2/web/data/tagging.xml --dir=data-processing/routino-2.2/web/data data/mpls-stpaul.osm```
     * (optional) For setting up web app for testing, install OpenLayers: ```cd data-processing/routino-2.2/web/www/openlayers && bash install.sh; cd -;```
     * (optional) Open ```data-processing/routino-2.2/web/www/routino/router.html``` in a browser to test some routes.  The database was made for bicycles so that is the only type of route that will work.
     
