@@ -1,3 +1,4 @@
+# data
 data/NRMN_2011_reports/*
 data/mpls-stpaul.osm
 data/mpls-stpaul.osm.bz2
@@ -9,3 +10,6 @@ data-processing/routino-2.2/web/bin/*
 data-processing/routino-2.2/web/data/*
 data-processing/routino-2.2/web/results/*
 data-processing/routino-2.2/web/www/*
+
+# data-processing
+shortest-track.gpx
