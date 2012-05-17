@@ -28,18 +28,17 @@ db = conn.cursor()
 # First calculate how many.
 db.execute("SELECT * FROM stations")
 rows = db.fetchall()
-combination_total = 0;
-for i in range(len(rows), 0, -1):
-  combination_total += i
+total = len(rows)
 
-pp('%s possible combinations. \n' % (combination_total))
+pp('%s possible combinations. \n' % (total * (total - 1)))
 
-# Go through each combination.  First determine combinations.
+# First determine combinations.  We can have "duplicates" as one ways will
+# affect actual routes.
 combinations = {}
 matching = rows
 for row in rows:
   for match in matching:
-    if (row[1] == match[1]) or ('%s-%s' % (row[1], match[1]) in combinations) or ('%s-%s' % (match[1], row[1]) in combinations):
+    if (row[1] == match[1]) or ('%s-%s' % (row[1], match[1]) in combinations):
       # found, so do nothing
       pp('')
     else:
@@ -59,14 +58,16 @@ committed = conn.commit()
   
 # Now go through each match, call routino, save entry in router.
 # Note that routino saves the output files in current directory.
+# super_bicycle is bike without one-way or turn restrictions.
+route_type = 'quickest'
 check_route_output = True
 routes_committed = 0
 routes_not_committed = 0
-transport_priority = ['bicycle', 'foot', 'moped']
+transport_priority = ['bicycle', 'super_bicycle', 'foot', 'moped', 'motorbike', 'motorcar']
 r_path = os.path.join(path, 'routino-2.2/web')
 conf_path = os.path.join(path, 'routino-conf')
-command = '%(path)s/bin/router --dir=%(path)s/data --profiles=%(c_path)s/profiles.xml  --translations=%(path)s/data/translations.xml --lat1=%(lat1)s --lon1=%(lon1)s --lat2=%(lat2)s --lon2=%(lon2)s --output-gpx-track --shortest --profile=%(transport)s --transport=%(transport)s'
-out_gpx = 'shortest-track.gpx'
+command = '%(path)s/bin/router --dir=%(path)s/data --profiles=%(c_path)s/profiles.xml  --translations=%(path)s/data/translations.xml --lat1=%(lat1)s --lon1=%(lon1)s --lat2=%(lat2)s --lon2=%(lon2)s --output-gpx-track --%(type)s --profile=%(transport)s --transport=bicycle'
+out_gpx = '%s-track.gpx' % (route_type)
 
 for c, v in combinations.items():
   pp('Analyzing route: %s    ' % c)
@@ -79,7 +80,7 @@ for c, v in combinations.items():
       break
     
     # Create that special command
-    route_this = command % { 'path': r_path, 'c_path': conf_path, 'lat1': v['start_lat'], 'lon1': v['start_lon'], 'lat2': v['end_lat'], 'lon2': v['end_lon'], 'transport': transport}
+    route_this = command % { 'path': r_path, 'c_path': conf_path, 'lat1': v['start_lat'], 'lon1': v['start_lon'], 'lat2': v['end_lat'], 'lon2': v['end_lon'], 'transport': transport, 'type': route_type }
     out = commands.getstatusoutput(route_this)
     
     # Check if route was alright, if not mark and try new one.
@@ -117,6 +118,7 @@ for c, v in combinations.items():
   # Did we find a valid transport
   if transported == False:
     pp('[NOT TRANSPORTED] \n')
+    pp('Attempted: \n %s \n' % route_this)
     break;
       
   # Remove gpx output file

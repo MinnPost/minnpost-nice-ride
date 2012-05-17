@@ -38,6 +38,5 @@ In order to better work with the data, we will put the Nice Ride data into a Pos
     
 ### Calculate routes
  
-
-./router --dir=data --transport=bicycle --profiles=../data/profiles.xml  --translations=../data/translations.xml --shortest --output-text --lat1=44.989608 --lon1=-93.24206099999998 --lat2=44.939714 --lon2=-93.29049900000001
+1. Once everything is in the database, we can create all possible routes with: ```python data-processing/create-routes.py```
 
