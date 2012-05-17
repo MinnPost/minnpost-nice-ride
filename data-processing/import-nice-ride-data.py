@@ -8,6 +8,7 @@ import psycopg2
 import sys
 from datetime import *
 import dateutil.parser
+import ppygis
 
 
 def ct(value):
@@ -31,6 +32,14 @@ def dt(value, return_type):
       return dateutil.parser.parse(value).date()
     else:
       return dateutil.parser.parse(value)
+
+
+def pp(value):
+  """
+  Wrapper for printing to the screen without a buffer.
+  """
+  sys.stdout.write(value)
+  sys.stdout.flush()
     
 
 # Paths
@@ -41,7 +50,7 @@ conn = psycopg2.connect('dbname=minnpost_nice_ride user=postgres host=localhost'
 db = conn.cursor()
 
 # Read locations file and insert into DB.  Clear DB first
-sys.stdout.write("\nImporting to stations.")
+pp("\nImporting to stations.")
 db.execute("TRUNCATE TABLE stations")
 committed = conn.commit()
         
@@ -53,17 +62,17 @@ for row in reader:
       if row[0]:
         # terminal_id character varying(16), common_name character varying(128), 
         # station character varying(128), lat numeric, lon numeric, install_date date,
-        db.execute("INSERT INTO stations (terminal_id, common_name, station, lat, lon, install_date) VALUES (%s, %s, %s, %s, %s, %s)",
-          (ct(row[0]), ct(row[1]), ct(row[2]), float(row[3]), float(row[4]), dt(row[5], 'date')))
+        db.execute("INSERT INTO stations (terminal_id, common_name, station, lat, lon, install_date, location_geom) VALUES (%s, %s, %s, %s, %s, %s, %s)",
+          (ct(row[0]), ct(row[1]), ct(row[2]), float(row[3]), float(row[4]), dt(row[5], 'date'), ppygis.Point(float(row[4]), float(row[3]), srid=4326)))
         committed = conn.commit()
         
   row_count += 1
   
-sys.stdout.write("\nCommited %s rows to stations.\n" % (row_count))
+pp("\nCommited %s rows to stations.\n" % (row_count))
 
 
 # Read casual_subscriptions file and insert into DB.  Clear DB first
-sys.stdout.write("\nImporting to casual_subscriptions.")
+pp("\nImporting to casual_subscriptions.")
 db.execute("TRUNCATE TABLE casual_subscriptions")
 committed = conn.commit()
 
@@ -82,15 +91,15 @@ for row in reader:
           (int(row[0]), float(row[1]), ct(row[2]), ct(row[3]), ct(row[4]), ct(row[5]), dt(row[6], ''), dt(row[7], ''), ct(row[8]), int(row[9])))
         committed = conn.commit()
         if row_count % 1000 == 0:
-          sys.stdout.write('.')
+          pp('.')
         
   row_count += 1
   
-sys.stdout.write("\nCommited %s rows to casual_subscriptions.\n" % (row_count))
+pp("\nCommited %s rows to casual_subscriptions.\n" % (row_count))
 
 
 # Read rentals file and insert into DB.  Clear DB first
-sys.stdout.write("\nImporting to rentals.")
+pp("\nImporting to rentals.")
 db.execute("TRUNCATE TABLE rentals")
 committed = conn.commit()
 
@@ -123,11 +132,50 @@ for row in reader:
           ct(row[12]), ct(row[13]), ct(row[14]), dt(row[15], 'date')))
         committed = conn.commit()
         if row_count % 1000 == 0:
-          sys.stdout.write('.')
+          pp('.')
         
   row_count += 1
   
-sys.stdout.write("\nCommited %s rows to rentals.\n" % (row_count))
+pp("\nCommited %s rows to rentals.\n" % (row_count))
+
+
+# Read subscribers file and insert into DB.  Clear DB first
+pp("\nImporting to subscribers.")
+db.execute("TRUNCATE TABLE subscribers")
+committed = conn.commit()
+
+locations_file = os.path.join(path, '../data/NRMN_2011_reports/Subscribers_2011_Season.csv')
+reader = csv.reader(open(locations_file, 'rU'), delimiter=',', dialect=csv.excel_tab)
+row_count = 0
+for row in reader:
+  if row_count > 0:
+      if row[0]:
+        # 14
+        # gender character varying(8),
+        # number_rentals integer,
+        # duration_minutes numeric,
+        # account_number character varying(32),
+        # subscriber_id character varying(32),
+        # subscription_type character varying(128),
+        # activation_status character varying(16),
+        # city character varying(128),
+        # state character varying(32),
+        # zip character varying(16),
+        # status character varying(16),
+        # birth_date date,
+        # start_date timestamp without time zone,
+        # end_date timestamp without time zone,
+        db.execute("INSERT INTO subscribers (gender, number_rentals, duration_minutes, account_number, subscriber_id, subscription_type, activation_status, city, state, zip, status, birth_date, start_date, end_date) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+          (ct(row[0]), int(row[1]), float(row[2]), ct(row[3]), ct(row[4]), ct(row[5]), 
+          ct(row[6]), ct(row[7]), ct(row[8]), ct(row[9]), ct(row[10]), dt(row[11], 'date'),
+          dt(row[12], ''), dt(row[13], '')))
+        committed = conn.commit()
+        if row_count % 1000 == 0:
+          pp('.')
+        
+  row_count += 1
+  
+pp("\nCommited %s rows to subscribers.\n" % (row_count))
   
 
 # Close db connections

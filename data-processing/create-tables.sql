@@ -92,3 +92,22 @@ CREATE TABLE stations
 WITH (
   OIDS=FALSE
 );
+SELECT AddGeometryColumn('stations', 'location_geom', 4326, 'POINT', 2);
+
+
+-- Table: routing
+
+DROP TABLE IF EXISTS routes;
+CREATE TABLE routes
+(
+  id serial NOT NULL,
+  terminal_id_start character varying(16),
+  terminal_id_end character varying(16),
+  CONSTRAINT routes_id PRIMARY KEY (id )
+)
+WITH (
+  OIDS=FALSE
+);
+SELECT AddGeometryColumn('routes', 'start_geom', 4326, 'POINT', 2);
+SELECT AddGeometryColumn('routes', 'end_geom', 4326, 'POINT', 2);
+SELECT AddGeometryColumn('routes', 'route_geom', 4326, 'LINESTRING', 2);
