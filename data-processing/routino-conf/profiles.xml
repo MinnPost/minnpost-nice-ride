@@ -174,8 +174,8 @@
       <speed highway="residential"   kph="40" />
       <speed highway="service"       kph="20" />
       <speed highway="track"         kph="20" />
-      <speed highway="cycleway"      kph="80" />
-      <speed highway="path"          kph="40" />
+      <speed highway="cycleway"      kph="40" />
+      <speed highway="path"          kph="30" />
       <speed highway="steps"         kph="0" />
       <speed highway="ferry"         kph="10" />
     </speeds>
