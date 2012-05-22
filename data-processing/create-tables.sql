@@ -111,3 +111,34 @@ WITH (
 SELECT AddGeometryColumn('routes', 'start_geom', 4326, 'POINT', 2);
 SELECT AddGeometryColumn('routes', 'end_geom', 4326, 'POINT', 2);
 SELECT AddGeometryColumn('routes', 'route_geom', 4326, 'LINESTRING', 2);
+
+-- Table: average_day
+DROP TABLE IF EXISTS average_day;
+CREATE TABLE average_day
+(
+  id serial NOT NULL,
+  start_time time without time zone,
+  end_time time without time zone,
+  total integer,
+  average numeric,
+  CONSTRAINT average_day_id PRIMARY KEY (id )
+)
+WITH (
+  OIDS=FALSE
+);
+
+-- Table: average_all_days
+DROP TABLE IF EXISTS average_all_days;
+CREATE TABLE average_all_days
+(
+  id serial NOT NULL,
+  day date,
+  start_time time without time zone,
+  end_time time without time zone,
+  total integer,
+  difference numeric,
+  CONSTRAINT average_all_days_id PRIMARY KEY (id )
+)
+WITH (
+  OIDS=FALSE
+);
