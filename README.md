@@ -44,4 +44,5 @@ In order to better work with the data, we will put the Nice Ride data into a Pos
 
 1. Find the average of all days and the counts for each individual day: ```python data-processing/average-days.py```
     * This will take some serious time and energy.
+1. Use the ```data-processing/visualize-days.py``` script to visualize days on the command line.
 
