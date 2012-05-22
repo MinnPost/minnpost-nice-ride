@@ -40,3 +40,8 @@ In order to better work with the data, we will put the Nice Ride data into a Pos
  
 1. Once everything is in the database, we can create all possible routes with: ```python data-processing/create-routes.py```
 
+### Averaging
+
+1. Find the average of all days and the counts for each individual day: ```python data-processing/average-days.py```
+    * This will take some serious time and energy.
+

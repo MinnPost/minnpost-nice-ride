@@ -32,15 +32,15 @@ result = db.fetchone()
 pp("Least difference: is date: %s with difference of %s \n" % (result[0], result[1]))
 
 # Date to visualize, use 'average' for average table
-#v_date = date(2011, 4, 26)
+#v_date = date(2011, 9, 3)
 #v_date = 'average'
 v_date = result[0]
 
 
 # Visualize
-stagger = 5
+stagger = 3
 counting = 0
-pp("Visualize %s: \n" % v_date)
+pp("Visualizing %s: \n" % v_date)
 
 if v_date == 'average':
   db.execute("SELECT * FROM average_day")
@@ -69,6 +69,7 @@ else:
   
   pp("Total difference: %s \n" % total_diff)
 
+pp("Visualized %s: \n" % v_date)
 
 # Close db connections
 db.close()
