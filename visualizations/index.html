@@ -171,10 +171,17 @@
           for (var i in example_paths) {
             var closureAnimation = (function(path, m, L, mapE, A) {
               return function() {
+                var circleOptions = {
+                  stroke: false,
+                  fillColor: '#168',
+                  fillOpacity: 0.9,
+                  clickable: false,
+                  radius: 10
+                };
                 var speed = (0.0001056 / 6371); // ?
                 var d = mapE.lineDistance(path);
                 var time = d / speed;
-                var marker = new L.Marker(new L.LatLng(0, 0));
+                var marker = new L.CircleMarker(new L.LatLng(0, 0), circleOptions);
                 
                 m.addLayer(marker);
                 animation = new A({
