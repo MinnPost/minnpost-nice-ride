@@ -26,9 +26,12 @@ srid = 4326
 conn = psycopg2.connect('dbname=minnpost_nice_ride user=postgres host=localhost')
 db = conn.cursor()
 
-# Clear out average route table
+# Clear out average tabled
 pp("Truncate average_day table. \n")
 db.execute("TRUNCATE TABLE average_day")
+committed = conn.commit()
+pp("Truncate average_all_days table. \n")
+db.execute("TRUNCATE TABLE average_all_days")
 committed = conn.commit()
 
 # Let's get the total number of rides
@@ -88,25 +91,15 @@ while count < times:
   count += 1
 
 pp("\n")
-
-# Visualize
-stagger = 5
-counting = 0
-pp("Visualize: \n")
-db.execute("SELECT * FROM average_day")
-average_days = db.fetchall()
-for r in average_days:
-  if counting % stagger == 0:
-    pp("%s - %s: " % (r[1], r[2]))
-    for dot in range(int(r[4])):
-      pp(".")
-      
-    pp("\n")
-  counting += 1
   
 # Figure out what day is "most average"
 pp("Compare all days to find the most average. \n")
+
+db.execute("SELECT * FROM average_day")
+average_days = db.fetchall()
+diffs = {}
 current_date = min_date
+
 while current_date <= max_date:
   pp("Compare %s: " % current_date)
   total_diff = 0;
@@ -134,16 +127,19 @@ while current_date <= max_date:
       )
     """, (avg[2], avg[1], avg[2], avg[1], current_date, current_date))
     rides = db.fetchone()[0]
+    
+    # Calculate difference as absolute difference of bikes.  This is the
+    # total area of difference
+    interval_diff = abs(float(rides) - float(avg[4]))
   
     # Save into all days table
-    db.execute("INSERT INTO average_all_days (day, start_time, end_time, total, difference) VALUES (%s, %s, %s, %s, %s)", (current_date, interval_start, interval_end, rides, float(float(rides) / float(season_days))))
+    db.execute("INSERT INTO average_all_days (day, start_time, end_time, total, difference) VALUES (%s, %s, %s, %s, %s)", (current_date, avg[1], avg[2], rides, interval_diff))
     committed = conn.commit()
+    total_diff += interval_diff
   
   # Output difference and increment day
   pp("%s difference \n" % total_diff)
   current_date += timedelta(days = 1)
-  
-
 
 # Close db connections
 db.close()
