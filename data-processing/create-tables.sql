@@ -95,7 +95,7 @@ WITH (
 SELECT AddGeometryColumn('stations', 'location_geom', 4326, 'POINT', 2);
 
 
--- Table: routing
+-- Table: routes
 
 DROP TABLE IF EXISTS routes;
 CREATE TABLE routes
