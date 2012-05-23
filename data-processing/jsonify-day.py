@@ -52,7 +52,7 @@ for r in rentals:
   rentals_dict[r[0]] = nice_object
 
 # Create JSON to write
-rentals_json = json.dumps(rentals_dict, sort_keys=True, indent=2)
+rentals_json = json.dumps(rentals_dict, sort_keys=True)
 
 # Output to JSON file
 rentals_output = open(rentals_file, 'w')
@@ -89,7 +89,7 @@ for r in routes:
   routes_dict[r[0]] = nice_object
 
 # Create JSON to write
-routes_json = json.dumps(routes_dict, sort_keys=True, indent=2)
+routes_json = json.dumps(routes_dict, sort_keys=True)
 
 # Output to JSON file
 routes_output = open(routes_file, 'w')
