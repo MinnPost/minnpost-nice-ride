@@ -84,7 +84,7 @@ routes_dict = {}
 
 for r in routes:
   nice_object = {
-    'r': r[1],
+    'r': json.loads(r[1]),
   }
   routes_dict[r[0]] = nice_object
 
