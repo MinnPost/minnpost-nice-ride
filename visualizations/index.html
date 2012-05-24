@@ -52,9 +52,13 @@
     <div id="map"></div>
     
     <div class="loading"></div>
-    <div class="action"></div>
+    <div class="time_day"></div>
+    <div class="controls">
+      <a href="#play" class="play">Play</a>
+      <a href="#pause" class="pause">Pause</a>
+    </div>
     
-    <p class="footnote">.</p>
+    <p class="footnote"></p>
   
     <script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/jquery-1.7.2/jquery-1.7.2.min.js"><\/script>')</script>
     
@@ -141,6 +145,20 @@
         return v * 6371 * 1000;
       };
       
+      // Object for dealing with time
+      var timeExtender = {};
+      timeExtender.secondsToTime = function(secs) {
+        var hours = Math.floor(secs / (60 * 60));
+        var divisor_for_minutes = secs % (60 * 60);
+        var minutes = Math.floor(divisor_for_minutes / 60);
+        var seconds = Math.ceil(divisor_for_minutes % 60);
+        
+        return {
+          'h': hours,
+          'm': minutes,
+          's': seconds
+        };
+      };
       
       // Namespace jQuery
       (function($) {
@@ -156,10 +174,11 @@
             scheme: 'tms' });
         	map.addLayer(minnpost);
         	
-        	// Tilemill testing layer
-          var url ='http://localhost:20008/tile/minnpost-nice-ride-testing/{z}/{x}/{y}.png';
-          layer = new L.TileLayer(url, { maxZoom: 15, minZoom: 8, scheme: 'xyz' });
-          map.addLayer(layer);
+        	// Route layer
+          routes = new L.TileLayer('http://{s}.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.png', 
+            { attribution: 'Data provided by <a target="_blank" href="https://www.niceridemn.org/">Nice Ride MN</a>; ',
+            scheme: 'tms' });
+          map.addLayer(routes);
           
           // Labels
         	minnpost_l = new L.TileLayer('http://{s}.tiles.minnpost.com/minnpost-basemaps/minnpost-minnesota-greyscale-labels/{z}/{x}/{y}.png', 
@@ -176,53 +195,129 @@
           
           // Callback once animations and routes have been loaded.
           var loadAnimations = function() {
-            // Create an object of all the animations.
+            // Time in seconds
+            var time_day = 24 * 60 * 60;
+            var time_anim = 2 * 60; // 20 minute animation
+            var time_ratio = time_anim / time_day;
+            var anim_date = { // 2011-05-18
+              'y': 2011,
+              'm': 4,
+              'd': 18
+            };
+            var day_offset = ((4 * 60) + 30) * 60; // 4:30
+            
+            // Animation options
+            var anim_interval = 100;
+            var circleOptions = {
+              stroke: false,
+              fillColor: '#10517F',
+              fillOpacity: 0.98,
+              clickable: false,
+              radius: 8
+            };
+          
+            // Create each animation up front.
             var i;
             for (i in rentals_loaded) {
               // TODO: Not taking into account X to X routes
               if (typeof routes_loaded[rentals_loaded[i].st + '-' + rentals_loaded[i].et] != 'undefined') {
-              
-                var closureAnimation = (function(rent, rout, m, L, mapE, A) {
+                var closureAnimation = (function(rent, rout) {
                   return function() {
-                    var circleOptions = {
-                      stroke: false,
-                      fillColor: '#168',
-                      fillOpacity: 0.9,
-                      clickable: false,
-                      radius: 10
-                    };
-                    var speed = (0.0001056 / 6371); // ?
-                    var d = mapE.lineDistance(rout.r);
-                    var time = d / speed;
+                    // Time should be in milliseconds
+                    var time = rent.d * time_ratio * 1000;
+                    var d = mapExtender.lineDistance(rout.r);
                     var marker = new L.CircleMarker(new L.LatLng(0, 0), circleOptions);
-                    
-                    m.addLayer(marker);
-                    animation = new A({
+
+                    map.addLayer(marker);
+                    animation = new Animator({
                       duration: time,
-                      interval: 100
+                      interval: anim_interval,
+                      transition: Animator.tx.linear,
+                      onComplete: function() {
+                        // As stop will call this as well, check for state
+                        if (this.state == 1) {
+                          map.removeLayer(marker);
+                        }
+                      }
                     });
-                    animation.addSubject(animateMarker);
                     function animateMarker(interval) {
                       var dist = interval * d;
-                      var coord = mapE.coordAtDistance(rout.r, dist);
+                      var coord = mapExtender.coordAtDistance(rout.r, dist);
                       marker.setLatLng(new L.LatLng(coord[1], coord[0]));
                     };
-                    
-                    // Add start time
-                    animation.st = rent.s
+                    animation.addSubject(animateMarker);
+
+                    // Add some meta data
+                    animation.st = rent.s;
+                    animation.en = rent.e;
+                    animation.dur = rent.d;
                     
                     return animation;
                   }
-                })(rentals_loaded[i], routes_loaded[rentals_loaded[i].st + '-' + rentals_loaded[i].et], map, L, mapExtender, Animator);
+                })(rentals_loaded[i], routes_loaded[rentals_loaded[i].st + '-' + rentals_loaded[i].et]);
                 
                 animations[i] = closureAnimation();
-                $('.loading').html('loaded rentals.  loaded routes.  loaded animations.');
-                
-                // Cleanup
-                delete rentals_loaded;
-                delete routes_loaded;
               }
             }
+            $('.loading').html('loaded rentals.  loaded routes.  loaded animations.');
+            
+            // Cleanup
+            delete rentals_loaded;
+            delete routes_loaded;
+            
+            // Create day animation to fire off different events
+            var day = new Animator({
+              duration: time_anim * 1000,
+              interval: anim_interval,
+              transition: Animator.tx.linear,
+              onComplete: function() {
+                // Shown when stopped as well as complete.
+              }
+            });
+            var handleDay = function(interval) {
+              // Determine the time of day it is in the animation
+              var totalSecElapsed = interval * time_day + day_offset;
+              var timeObj = timeExtender.secondsToTime(totalSecElapsed);
+              var currentTime = new Date(anim_date.y, anim_date.m, anim_date.d, timeObj.h, timeObj.m, timeObj.s);
+              var a;
+
+              // Show time
+              $('.time_day').html(currentTime.toTimeString());
+              
+              // Find any animations that have not been played yet
+              // that start before now and end after now.  Animation 
+              // state is between 0 and 1.
+              for (a in animations) {
+                var animateStart = new Date(animations[a].st);
+                var animateEnd = new Date(animations[a].en);
+                if (animateStart <= currentTime && animateEnd > currentTime && animations[a].state == 0) {
+                  animations[a].play();
+                }
+              }
+            };
+            day.addSubject(handleDay);
+            
+            // Animation controls
+            $('.play').click(function(e) {
+              e.preventDefault();
+              day.seekTo(1);
+              // Start all already started animations
+              for (a in animations) {
+                if (animations[a].state > 0 && animations[a].state < 1) {
+                  animations[a].seekTo(1);
+                }
+              }
+            });
+            $('.pause').click(function(e) {
+              e.preventDefault();
+              day.stop();
+              // Pause all animations.  Sometimes this misses??
+              for (a in animations) {
+                if (animations[a].state > 0 && animations[a].state < 1) {
+                  animations[a].stop();
+                }
+              }
+            });
           };
           
           // Call back for routes
@@ -250,19 +345,6 @@
             dataType: 'jsonp',
             url: 'data/rentals.jsonp?callback=callback_rentals',
             jsonp: 'callback'
-          });
-          
-          $('.loading').click(function(e) {
-            
-            console.log(animations);
-            var count = 0;
-            var a;
-            for (a in animations) {
-              if (count < 10) {
-                animations[a].play();
-              }
-              count++;
-            }
           });
         });
       })(jQuery);
