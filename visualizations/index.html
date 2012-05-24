@@ -45,7 +45,7 @@
       }
       
       #density-average-graph {
-        height: 200px;
+        height: 100px;
         width: 600px;
       }
       
@@ -67,7 +67,7 @@
     <p class="footnote"></p>
   
     <script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/jquery-1.7.2/jquery-1.7.2.min.js"><\/script>')</script>
-    
+    <script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/xdate.js-0.7/xdate.js"></script>
     <script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/leaflet-0.3.1/leaflet.js"></script>
     <script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/berniecode-animator-20120521/animator.min.js"></script>
     
@@ -290,18 +290,18 @@
               // Determine the time of day it is in the animation
               var totalSecElapsed = interval * time_day + day_offset;
               var timeObj = timeExtender.secondsToTime(totalSecElapsed);
-              var currentTime = new Date(anim_date.y, anim_date.m, anim_date.d, timeObj.h, timeObj.m, timeObj.s);
+              var currentTime = new XDate(anim_date.y, anim_date.m, anim_date.d, timeObj.h, timeObj.m, timeObj.s, 0, true);
               var a;
 
               // Show time
-              $('.time_day').html(currentTime.toTimeString());
+              $('.time_day').html(currentTime.getUTCHours() + ':' + currentTime.getUTCMinutes());
               
               // Find any animations that have not been played yet
               // that start before now and end after now.  Animation 
               // state is between 0 and 1.
               for (a in animations) {
-                var animateStart = new Date(animations[a].st);
-                var animateEnd = new Date(animations[a].en);
+                var animateStart = new XDate(animations[a].st, true);
+                var animateEnd = new XDate(animations[a].en, true);
                 if (animateStart <= currentTime && animateEnd > currentTime && animations[a].state == 0) {
                   animations[a].play();
                 }
