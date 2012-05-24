@@ -46,3 +46,17 @@ In order to better work with the data, we will put the Nice Ride data into a Pos
     * This will take some serious time and energy.
 1. Use the ```data-processing/visualize-days.py``` script to visualize days on the command line.
 
+### Route tiles
+
+There is a layer of routes we want to produce for our main visualization.
+
+1. Link the Tilemill project to where Tilemill expects it.  This is really only needed for working on it in TileMill.  ```cd data-processing/tiles && fab map:minnpost-nice-ride link;```
+
+### Data for visualization
+
+In order to use the data that in the main applicaiton, we convert things to JSON.  Run the following:
+
+1. ```data-processing/python data-processing/jsonify-day.py```
+
+## Visualization
+

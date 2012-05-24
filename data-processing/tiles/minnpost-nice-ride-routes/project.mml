@@ -66,8 +66,8 @@
       "name": "route_counts"
     }
   ],
-  "name": "MinnPost NR Testing",
-  "description": "",
-  "attribution": "",
+  "name": "MinnPost Nice Ride Routes and Stations",
+  "description": "2011 Nice Ride MN stations and projected routes taken for all rentals in 2011.",
+  "attribution": "Data provided by Nice Ride MN.",
   "legend": ""
 }
