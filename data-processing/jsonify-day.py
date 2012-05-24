@@ -5,8 +5,9 @@ File to produce JSON from a specific day of rides.
 import os
 import psycopg2
 import sys
-from datetime import *
+import datetime
 import time
+import calendar
 import ppygis
 import json
 
@@ -42,9 +43,9 @@ conn = psycopg2.connect('dbname=minnpost_nice_ride user=postgres host=localhost'
 db = conn.cursor()
 
 # Edit these values as need
-export_date = date(2011, 5, 18)
-start = datetime(2011, 5, 18, 4, 30)
-end = datetime(2011, 5, 19, 4, 30)
+export_date = datetime.date(2011, 5, 18)
+start = datetime.datetime(2011, 5, 18, 4, 30)
+end = datetime.datetime(2011, 5, 19, 4, 30)
 
 # First get all the basic rentals in that period.
 rentals_file = 'visualizations/data/rentals.json'
@@ -112,9 +113,9 @@ d_avg_array = []
 for r in d_avg:
   # Flot uses UTC timestamps (milliseconds) to deal with time
   # so we should use that.  First we add the time to our
-  # export date.
-  avg_timestamp = datetime.combine(export_date, r[1])
-  avg_timestamp = time.mktime(avg_timestamp.timetuple()) * 1000
+  # export date.  We use timegm to force UTC.
+  avg_timestamp = datetime.datetime.combine(export_date, r[1])
+  avg_timestamp = calendar.timegm(avg_timestamp.timetuple()) * 1000
   d_avg_array.append([int(avg_timestamp), float(r[4])])
 
 # Write out
