@@ -44,6 +44,11 @@
         height: 550px;
       }
       
+      #density-average-graph {
+        height: 200px;
+        width: 600px;
+      }
+      
       /** Media queries **/
       @media all and (max-width: 750px) {
       }
@@ -57,6 +62,7 @@
       <a href="#play" class="play">Play</a>
       <a href="#pause" class="pause">Pause</a>
     </div>
+    <div id="density-average-graph"></div>
     
     <p class="footnote"></p>
   
@@ -64,6 +70,10 @@
     
     <script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/leaflet-0.3.1/leaflet.js"></script>
     <script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/berniecode-animator-20120521/animator.min.js"></script>
+    
+    <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/flot-0.7/excanvas.min.js"></script><![endif]-->
+    <script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/flot-0.7/jquery.flot.min.js"></script>
+    <script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/flot-0.7/jquery.flot.crosshair.min.js"></script>
     <script type="text/javascript">
       // Converts numeric degrees to radians
       if (typeof(Number.prototype.toRad) === "undefined") {
@@ -193,6 +203,8 @@
           var rentals_loaded = {};
           var routes_loaded = {};
           
+          var da_flot = {};
+          
           // Callback once animations and routes have been loaded.
           var loadAnimations = function() {
             // Time in seconds
@@ -294,6 +306,9 @@
                   animations[a].play();
                 }
               }
+              
+              // Update graph
+              da_flot.setCrosshair({ x: currentTime.getTime() });
             };
             day.addSubject(handleDay);
             
@@ -317,6 +332,35 @@
                   animations[a].stop();
                 }
               }
+            });
+            
+            
+            // Graphing
+            callback_density_average = function(graph) {
+              var options = {
+                xaxis: { mode: 'time', tickLength: 5 },
+                crosshair: { mode: 'x' },
+                series: {
+                  lines: { show: true }
+                },
+                grid: { hoverable: true, autoHighlight: true }
+              };
+              var data = [{
+                label: 'Average',
+                data: graph,
+                bars: { show: true }
+              }];
+              
+              da_flot = $.plot($('#density-average-graph'), data, options);
+              //da_flot.setCrosshair({ x: 1305711072000  });
+              da_flot.setCrosshair();
+              da_flot.lockCrosshair();
+            };
+            $.ajax({
+              type: 'GET',
+              dataType: 'jsonp',
+              url: 'data/density_average.jsonp?callback=callback_density_average',
+              jsonp: 'callback'
             });
           };
           
