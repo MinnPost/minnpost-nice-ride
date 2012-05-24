@@ -13,3 +13,9 @@ data-processing/routino-2.2/web/www/*
 
 # data-processing
 shortest-track.gpx
+
+# Tile exporting
+visualizations/tiles/*/tiles
+visualizations/tiles/*/tiles-tmp
+visualizations/tiles/*/exports
+visualizations/tiles/*/cache

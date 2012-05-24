@@ -1,0 +1,73 @@
+{
+  "bounds": [
+    -93.4497,
+    44.8753,
+    -92.9773,
+    45.1007
+  ],
+  "center": [
+    -93.2513,
+    44.9745,
+    11
+  ],
+  "format": "png",
+  "interactivity": {
+    "layer": "stations",
+    "template_teaser": "Station: {{{station}}}",
+    "template_full": "Station: {{{station}}}"
+  },
+  "minzoom": 10,
+  "maxzoom": 15,
+  "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+  "Stylesheet": [
+    "style.mss"
+  ],
+  "Layer": [
+    {
+      "geometry": "point",
+      "Datasource": {
+        "type": "postgis",
+        "table": "(SELECT * FROM stations) AS data",
+        "extent": "",
+        "key_field": "id",
+        "geometry_field": "location_geom",
+        "host": "localhost",
+        "dbname": "minnpost_nice_ride",
+        "user": "postgres",
+        "id": "stations",
+        "project": "minnpost-nice-ride-testing",
+        "srs": null
+      },
+      "id": "stations",
+      "class": "",
+      "srs-name": "WGS84",
+      "srs": "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",
+      "name": "stations"
+    },
+    {
+      "geometry": "linestring",
+      "Datasource": {
+        "type": "postgis",
+        "table": "(\nSELECT DISTINCT\n\tro.id as id,\n\tro.route_geom as route_geom,\n\tCOUNT(r.id) as c\nFROM routes AS ro\nINNER JOIN rentals AS r\n\tON ro.terminal_id_start = r.start_terminal AND ro.terminal_id_end = r.end_terminal\nGROUP BY r.start_terminal, r.end_terminal, ro.id, ro.route_geom\nORDER BY ro.id\n) AS data",
+        "extent": "-93.4497,44.8753,-92.9773,45.1007",
+        "key_field": "id",
+        "geometry_field": "route_geom",
+        "host": "localhost",
+        "dbname": "minnpost_nice_ride",
+        "user": "postgres",
+        "id": "route_counts",
+        "project": "minnpost-nice-ride-testing",
+        "srs": null
+      },
+      "id": "route_counts",
+      "class": "",
+      "srs-name": "WGS84",
+      "srs": "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",
+      "name": "route_counts"
+    }
+  ],
+  "name": "MinnPost NR Testing",
+  "description": "",
+  "attribution": "",
+  "legend": ""
+}
