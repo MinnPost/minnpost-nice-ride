@@ -6,6 +6,7 @@ import os
 import psycopg2
 import sys
 from datetime import *
+import time
 import ppygis
 import json
 
@@ -15,6 +16,21 @@ def pp(value):
   """
   sys.stdout.write(value)
   sys.stdout.flush()
+  
+def write_json(obj, file_path, callback):
+  """
+  Function to handle outputing to JSON and JSONP files.
+  """
+  json_output = json.dumps(obj, sort_keys=True)
+
+  # Output to JSON file
+  output = open(file_path, 'w')
+  output.write(json_output + "\n")
+  output.close()
+  # Output to JSONP file
+  output = open(file_path + 'p', 'w')
+  output.write('%s(%s)\n' % (callback, json_output))
+  output.close()
     
 
 # Paths
@@ -26,6 +42,7 @@ conn = psycopg2.connect('dbname=minnpost_nice_ride user=postgres host=localhost'
 db = conn.cursor()
 
 # Edit these values as need
+export_date = date(2011, 5, 18)
 start = datetime(2011, 5, 18, 4, 30)
 end = datetime(2011, 5, 19, 4, 30)
 
@@ -51,17 +68,8 @@ for r in rentals:
   }
   rentals_dict[r[0]] = nice_object
 
-# Create JSON to write
-rentals_json = json.dumps(rentals_dict, sort_keys=True)
-
-# Output to JSON file
-rentals_output = open(rentals_file, 'w')
-rentals_output.write(rentals_json + "\n")
-rentals_output.close()
-# Output to JSONP file
-rentals_output = open(rentals_file + 'p', 'w')
-rentals_output.write('callback_rentals(' + rentals_json + ")\n")
-rentals_output.close()
+# Write out
+write_json(rentals_dict, rentals_file, 'callback_rentals')
 
 
 # Then get each unique route.  There may be some
@@ -88,17 +96,29 @@ for r in routes:
   }
   routes_dict[r[0]] = nice_object
 
-# Create JSON to write
-routes_json = json.dumps(routes_dict, sort_keys=True)
+# Write out
+write_json(routes_dict, routes_file, 'callback_routes')
 
-# Output to JSON file
-routes_output = open(routes_file, 'w')
-routes_output.write(routes_json + "\n")
-routes_output.close()
-# Output to JSONP file
-routes_output = open(routes_file + 'p', 'w')
-routes_output.write('callback_routes(' + routes_json + ")\n")
-routes_output.close()
+# Create density graph data
+d_avg_file = 'visualizations/data/density_average.json'
+d_avg_file = os.path.join(path, '../' + d_avg_file)
+
+db.execute("""
+  SELECT * FROM average_day
+  """, (end, start))
+d_avg = db.fetchall()
+d_avg_array = []
+
+for r in d_avg:
+  # Flot uses UTC timestamps (milliseconds) to deal with time
+  # so we should use that.  First we add the time to our
+  # export date.
+  avg_timestamp = datetime.combine(export_date, r[1])
+  avg_timestamp = time.mktime(avg_timestamp.timetuple()) * 1000
+  d_avg_array.append([int(avg_timestamp), float(r[4])])
+
+# Write out
+write_json(d_avg_array, d_avg_file, 'callback_density_average')
 
 # Close db connections
 db.close()
