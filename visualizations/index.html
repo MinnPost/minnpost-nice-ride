@@ -307,7 +307,10 @@
                 }
               }
               
-              // Update graph
+              // Update graph.  TODO: Pull in bike density dat and overlay it
+              // as it goes.
+              //var graph_data = da_flot.getData();
+              //graph_data[1].data.push([])
               da_flot.setCrosshair({ x: currentTime.getTime() });
             };
             day.addSubject(handleDay);
@@ -338,17 +341,14 @@
             // Graphing
             callback_density_average = function(graph) {
               var options = {
-                xaxis: { mode: 'time', tickLength: 5 },
-                crosshair: { mode: 'x' },
-                series: {
-                  lines: { show: true }
-                },
-                grid: { hoverable: true, autoHighlight: true }
+                xaxis: { mode: 'time' },
+                crosshair: { mode: 'x', color: '#1B8ADA' }
               };
               var data = [{
                 label: 'Average',
                 data: graph,
-                bars: { show: true }
+                bars: { show: true },
+                color: '#7F3E10'
               }];
               
               da_flot = $.plot($('#density-average-graph'), data, options);
