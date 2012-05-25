@@ -235,8 +235,10 @@
               if (typeof routes_loaded[rentals_loaded[i].st + '-' + rentals_loaded[i].et] != 'undefined') {
                 var closureAnimation = (function(rent, rout) {
                   return function() {
-                    // Time should be in milliseconds
-                    var time = rent.d * time_ratio * 1000;
+                    // Time should be in milliseconds.  If time is above
+                    // 10 hours, then cap it as it will take so long.
+                    var cap = 5 * 60 * 60;
+                    var time = (rent.d < cap) ? rent.d * time_ratio * 1000 : cap * time_ratio * 1000;
                     var d = mapExtender.lineDistance(rout.r);
                     var marker = new L.CircleMarker(new L.LatLng(0, 0), circleOptions);
 
