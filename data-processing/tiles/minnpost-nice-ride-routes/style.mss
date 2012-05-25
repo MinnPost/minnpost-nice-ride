@@ -1,4 +1,4 @@
-@station: #1673B6;
+@station: #517F10;
 @routes: #10517F;
 @rw: 0.3; // Route width
 @ro: 0.4; // Route opacity
@@ -6,33 +6,7 @@
 @mag2: 3;
 @mag3: 5;
 
-#stations {
-  marker-fill: @station;
-  marker-opacity: 1;
-  marker-line-width: 0;
-  marker-allow-overlap:true;
-  marker-width: 4;
-  ::glow {
-    marker-fill: @station;
-    marker-opacity: 0.5;
-    marker-width: 8;
-  }
-  [zoom >= 13] {
-    marker-width: 10;
-    ::glow {
-      marker-width: 16;
-    }
-  }
-  [zoom >= 15] {
-    marker-width: 15;
-    ::glow {
-      marker-width: 24;
-    }
-  }
-}
-
 #route_counts {
-  line-join: round;
   line-smooth: 0.1;
   line-width: @rw;
   line-color: @routes;
@@ -60,3 +34,22 @@
   [c > 300] { line-width: @rw * @mag3 * 4.0; line-opacity: @ro * 1.5; }
   [c > 500] { line-width: @rw * @mag3 * 5.6; line-opacity: @ro * 1.6; }
 }
+
+#stations {
+  marker-fill: @station;
+  marker-opacity: 1;
+  marker-line-width: 0;
+  marker-allow-overlap: true;
+  marker-width: 2;
+ }
+ #stations::glowing {
+    marker-fill: @station;
+    marker-opacity: 0.7;
+    marker-width: 4;
+    marker-line-width: 0;
+    marker-allow-overlap: true;
+ }
+ #stations[zoom >= 13] { marker-width: 6; }
+ #stations::glowing[zoom >= 13] { marker-width: 11; }
+ #stations[zoom >= 15] { marker-width: 12; }
+ #stations::glowing[zoom >= 15] { marker-width: 21; }

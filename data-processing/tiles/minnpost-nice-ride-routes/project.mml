@@ -14,7 +14,11 @@
   "interactivity": {
     "layer": "stations",
     "template_teaser": "Station: {{{station}}}",
-    "template_full": "Station: {{{station}}}"
+    "template_full": "Station: {{{station}}}",
+    "fields": [
+      "station",
+      "id"
+    ]
   },
   "minzoom": 10,
   "maxzoom": 15,
@@ -23,27 +27,6 @@
     "style.mss"
   ],
   "Layer": [
-    {
-      "geometry": "point",
-      "Datasource": {
-        "type": "postgis",
-        "table": "(SELECT * FROM stations) AS data",
-        "extent": "",
-        "key_field": "id",
-        "geometry_field": "location_geom",
-        "host": "localhost",
-        "dbname": "minnpost_nice_ride",
-        "user": "postgres",
-        "id": "stations",
-        "project": "minnpost-nice-ride-testing",
-        "srs": null
-      },
-      "id": "stations",
-      "class": "",
-      "srs-name": "WGS84",
-      "srs": "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",
-      "name": "stations"
-    },
     {
       "geometry": "linestring",
       "Datasource": {
@@ -64,10 +47,31 @@
       "srs-name": "WGS84",
       "srs": "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",
       "name": "route_counts"
+    },
+    {
+      "geometry": "point",
+      "Datasource": {
+        "type": "postgis",
+        "table": "(SELECT * FROM stations) AS data",
+        "extent": "",
+        "key_field": "id",
+        "geometry_field": "location_geom",
+        "host": "localhost",
+        "dbname": "minnpost_nice_ride",
+        "user": "postgres",
+        "id": "stations",
+        "project": "minnpost-nice-ride-testing",
+        "srs": null
+      },
+      "id": "stations",
+      "class": "",
+      "srs-name": "WGS84",
+      "srs": "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",
+      "name": "stations"
     }
   ],
   "name": "MinnPost Nice Ride Routes and Stations",
   "description": "2011 Nice Ride MN stations and projected routes taken for all rentals in 2011.",
   "attribution": "Data provided by Nice Ride MN.",
-  "legend": ""
+  "legend": "<ul>\n<li><span style=\"color:#517F10; font-size: 300%;\">●</span> Nice Ride MN bike station</li>\n<li><span style=\"color:#10517F; font-size: 300%;\">●</span> Bike</li>\n<li><span style=\"color:#10517F; font-size: 200%; font-weight: bold; line-height: 10px;\">-</span> Least popular route</li>\n<li><span style=\"color:#10517F; font-size: 600%; font-weight: bold; line-height: 10px;\">-</span> More popular route</li>\n\n</ul>"
 }
