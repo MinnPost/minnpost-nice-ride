@@ -1,0 +1,28 @@
+/**
+ * CSS Styles for the application.
+*/
+.js-dependent,
+.hide {
+  display: none;
+}
+
+.footnote {
+  font-size: .75em;
+  font-style: italic;
+  color: #414141;
+  margin-top: 1em;
+}
+
+#map {
+  width: 100%;
+  height: 550px;
+}
+
+#density-average-graph {
+  height: 100px;
+  width: 600px;
+}
+
+/** Media queries **/
+@media all and (max-width: 750px) {
+}
