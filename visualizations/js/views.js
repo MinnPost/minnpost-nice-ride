@@ -138,6 +138,7 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
     var ba;
     var route;
     var ratio = (this.options.timeAnimLengthSecs / this.options.timeAnimDaySecs);
+    var count = 0;
     
     // Go through rentals, match route, make a bike animation then add to collection
     for (i in this.rentals) {
@@ -148,10 +149,15 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
         // Add some data
         this.rentals[i].timeRatio = ratio;
         this.rentals[i].animInterval = this.options.timeAnimInterval;
+        this.rentals[i].map = this.map;
         
         // Create model and add to collection.  Model initializes stuff.
         var ba = new MinnPost.BikeAnimation(this.rentals[i], route);
         this.bikeAnimations.add(ba, { silent: true });
+        
+        if (count < 10) ba.animation.play();
+        
+        count++;
       }
     }
     
