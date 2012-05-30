@@ -10,24 +10,24 @@
     // Start map
     var map = new L.Map('map', { maxZoom: 15, minZoom: 8 });
     
-  	// Minnnpost base map
-  	minnpost = new L.TileLayer('http://{s}.tiles.minnpost.com/minnpost-basemaps/minnpost-minnesota-greyscale-no-labels/{z}/{x}/{y}.png', 
-  	 { attribution: 'Map imagery from <a target="_blank" href="http://minnpost.com">MinnPost</a>; Map data from <a target="_blank" href="http://openstreetmap.org">OpenStreetMap</a>.',
+    // Minnnpost base map
+    minnpost = new L.TileLayer('http://{s}.tiles.minnpost.com/minnpost-basemaps/minnpost-minnesota-greyscale-no-labels/{z}/{x}/{y}.png', 
+     { attribution: 'Map imagery from <a target="_blank" href="http://minnpost.com">MinnPost</a>; Map data from <a target="_blank" href="http://openstreetmap.org">OpenStreetMap</a>.',
       scheme: 'tms' });
-  	map.addLayer(minnpost);
-  	
-  	// Route layer
+    map.addLayer(minnpost);
+    
+    // Route layer
     routes = new L.TileLayer('http://{s}.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.png', 
       { attribution: 'Data provided by <a target="_blank" href="https://www.niceridemn.org/">Nice Ride MN</a>; ',
       scheme: 'tms' });
     map.addLayer(routes);
     
     // Labels
-  	minnpost_l = new L.TileLayer('http://{s}.tiles.minnpost.com/minnpost-basemaps/minnpost-minnesota-greyscale-labels/{z}/{x}/{y}.png', 
-  	 { scheme: 'tms' });
-  	map.addLayer(minnpost_l);
-  	
-  	// Set view
+    minnpost_l = new L.TileLayer('http://{s}.tiles.minnpost.com/minnpost-basemaps/minnpost-minnesota-greyscale-labels/{z}/{x}/{y}.png', 
+     { scheme: 'tms' });
+    map.addLayer(minnpost_l);
+    
+    // Set view
     map.setView(new L.LatLng(44.9745, -93.2513), 13);
     
     // A place for animations, rentals, and routes.  (seekFromTo(0.25, 0.75))
@@ -90,7 +90,7 @@
                 var dist = interval * d;
                 var coord = mapExtender.coordAtDistance(rout.r, dist);
                 marker.setLatLng(new L.LatLng(coord[1], coord[0]));
-              };
+              }
               animation.addSubject(animateMarker);
 
               // Add some meta data
@@ -99,17 +99,13 @@
               animation.dur = rent.d;
               
               return animation;
-            }
+            };
           })(rentals_loaded[i], routes_loaded[rentals_loaded[i].st + '-' + rentals_loaded[i].et]);
           
           animations[i] = closureAnimation();
         }
       }
       $('.loading').html('loaded rentals.  loaded routes.  loaded animations.');
-      
-      // Cleanup
-      delete rentals_loaded;
-      delete routes_loaded;
       
       // Create day animation to fire off different events
       var day = new Animator({
@@ -136,7 +132,7 @@
         for (a in animations) {
           var animateStart = new XDate(animations[a].st, true);
           var animateEnd = new XDate(animations[a].en, true);
-          if (animateStart <= currentTime && animateEnd > currentTime && animations[a].state == 0) {
+          if (animateStart <= currentTime && animateEnd > currentTime && animations[a].state === 0) {
             animations[a].play();
           }
         }
@@ -151,6 +147,7 @@
       
       // Animation controls
       $('.play').click(function(e) {
+        var a;
         e.preventDefault();
         day.seekTo(1);
         // Start all already started animations
@@ -161,6 +158,7 @@
         }
       });
       $('.pause').click(function(e) {
+        var a;
         e.preventDefault();
         day.stop();
         // Pause all animations.  Sometimes this misses??
