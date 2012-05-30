@@ -18,7 +18,19 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
     'mapID': 'map',
     'mapDefaultCenter': new L.LatLng(44.9745, -93.2513),
     'mapDefaultZoom': 13,
-    'dataDir': 'data'
+    'dataDir': 'data',
+    'loadingSelector': '.loading',
+    'flotOptions': {
+      xaxis: { mode: 'time' },
+      crosshair: { mode: 'x', color: '#1B8ADA' }
+    },
+    'flotAverageData': {
+      label: 'Average',
+      data: [],
+      bars: { show: true },
+      color: '#7F3E10'
+    },
+    'flotSelector': '#density-average-graph'
   },
   
   // Default objects for holding data.
@@ -30,15 +42,12 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
 
   // Initialize function when View is first initialized.
   initialize: function() {
-    // Mark a loading
-    this.isLoading();
-    // Create and intialize map
-    this.createMap();
-    
-    // Load data.  All of it is asynchronous.
-    this.loadDataRentals();
-    this.loadDataRoutes();
-    this.loadDataDensityAverage();
+    // Mark a loading; create map; load data;
+    this.isLoading()
+      .createMap()
+      .loadDataRentals()
+      .loadDataRoutes()
+      .loadDataDensityAverage();
   },
 
   // Render function.
@@ -48,14 +57,14 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
   
   // Mark as loading
   isLoading: function() {
-    $('.loading').html('Loading...');
+    $(this.options.loadingSelector).html('Loading...');
     
     return this;
   },
   
   // Done loading
   doneLoading: function() {
-    $('.loading').html('loaded.');
+    $(this.options.loadingSelector).html('loaded.');
     
     return this;
   },
@@ -95,9 +104,19 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
   // what is done yet, so check adn then fire if all is loaded.
   dataLoaded: function() {
     if (!_.isEmpty(this.rentals) && !_.isEmpty(this.routes) && !_.isEmpty(this.densityAverage)) {
-      
+      this.drawGraph();
       this.doneLoading();
     }
+    
+    return this;
+  },
+  
+  // Create flot graph
+  drawGraph: function() {
+    this.options.flotAverageData.data = this.densityAverage;
+    this.timelineFlot = $.plot($(this.options.flotSelector), [this.options.flotAverageData], this.options.flotOptions);
+    this.timelineFlot.setCrosshair();
+    this.timelineFlot.lockCrosshair();
     
     return this;
   },
