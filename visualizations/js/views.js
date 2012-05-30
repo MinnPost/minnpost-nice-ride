@@ -30,7 +30,16 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
       bars: { show: true },
       color: '#7F3E10'
     },
-    'flotSelector': '#density-average-graph'
+    'flotSelector': '#density-average-graph',
+    'timeAnimDaySecs': 24 * 60 * 60,
+    'timeAnimLengthSecs': 2 * 60,
+    'timeAnimInterval': 100,
+    'timeAnimDate': {
+      'y': 2011,
+      'm': 4, // Month is zero based
+      'd': 18
+    },
+    'timeAnimTimeOffsetSecs': ((4 * 60) + 30) * 60 // 4:30
   },
   
   // Default objects for holding data.
@@ -39,6 +48,7 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
   routes: {},
   densityAverage: {},
   timelineFlot: {},
+  bikeAnimations: new MinnPost.BikeAnimations(),
 
   // Initialize function when View is first initialized.
   initialize: function() {
@@ -105,6 +115,7 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
   dataLoaded: function() {
     if (!_.isEmpty(this.rentals) && !_.isEmpty(this.routes) && !_.isEmpty(this.densityAverage)) {
       this.drawGraph();
+      this.makeBikeAnimations();
       this.doneLoading();
     }
     
@@ -117,6 +128,32 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
     this.timelineFlot = $.plot($(this.options.flotSelector), [this.options.flotAverageData], this.options.flotOptions);
     this.timelineFlot.setCrosshair();
     this.timelineFlot.lockCrosshair();
+    
+    return this;
+  },
+  
+  // Make bike animations
+  makeBikeAnimations: function() {
+    var i;
+    var ba;
+    var route;
+    var ratio = (this.options.timeAnimLengthSecs / this.options.timeAnimDaySecs);
+    
+    // Go through rentals, match route, make a bike animation then add to collection
+    for (i in this.rentals) {
+      // Check for the route
+      if (this.routes[this.rentals[i].st + '-' + this.rentals[i].et] !== undefined) {
+        route = this.routes[this.rentals[i].st + '-' + this.rentals[i].et];
+        
+        // Add some data
+        this.rentals[i].timeRatio = ratio;
+        this.rentals[i].animInterval = this.options.timeAnimInterval;
+        
+        // Create model and add to collection.  Model initializes stuff.
+        var ba = new MinnPost.BikeAnimation(this.rentals[i], route);
+        this.bikeAnimations.add(ba, { silent: true });
+      }
+    }
     
     return this;
   },
