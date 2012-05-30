@@ -16,7 +16,7 @@
 <body class="front logged-in page-home one-sidebar sidebar-right admin-nw admin-vertical admin-df  one-sidebar sidebar-right">
 
 
-  <!-- Embed Start -->
+  <!-- START: Embeddable -->
   <div class="node-body fieldlayout node-field-body">
     <style type="text/css">
       @import url('http://data.minnpost.s3.amazonaws.com/js/leaflet-0.3.1/leaflet.css');
@@ -66,337 +66,27 @@
     
     <p class="footnote"></p>
   
+  
+    <!-- jQuery -->
     <script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/jquery-1.7.2/jquery-1.7.2.min.js"><\/script>')</script>
+    <!-- XDate for better UTC date handling -->
     <script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/xdate.js-0.7/xdate.js"></script>
+    <!-- Leaflet for mapping -->
     <script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/leaflet-0.3.1/leaflet.js"></script>
+    <!-- Animator.js for simple animation handling -->
     <script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/berniecode-animator-20120521/animator.min.js"></script>
-    
+    <!-- Flor for graphs and timeline viewing -->
     <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/flot-0.7/excanvas.min.js"></script><![endif]-->
     <script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/flot-0.7/jquery.flot.min.js"></script>
     <script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/flot-0.7/jquery.flot.crosshair.min.js"></script>
-    <script type="text/javascript">
-      // Converts numeric degrees to radians
-      if (typeof(Number.prototype.toRad) === "undefined") {
-        Number.prototype.toRad = function() {
-          return this * Math.PI / 180;
-        }
-      }
-      // Converts radians to numeric (signed) degrees
-      if (typeof(Number.prototype.toDeg) === "undefined") {
-        Number.prototype.toDeg = function() {
-          return this * 180 / Math.PI;
-        }
-      }
     
-      // Object for dealing with map data
-      var mapExtender = {};
-      mapExtender.lineDistance = function(line) {
-        // Get distance of geojson object
-        var dist = 0;
-        
-        if (typeof line.type != 'undefined' && line.type == 'LineString') {
-          for (var i = 1; i < line.coordinates.length; i++) {
-            dist += mapExtender.coordDistance(line.coordinates[i], line.coordinates[i - 1]);
-          }
-          
-          return dist;
-        }
-        else {
-          return dist;
-        }
-      };
-      mapExtender.coordDistance = function(coord1, coord2) {
-        // Get Haversine distance between two Geojson coordinates
-        var dLat = (coord2[1] - coord1[1]).toRad();
-        var dLon = (coord2[0] - coord1[0]).toRad();
-        var lat1 = coord1[1].toRad();
-        var lat2 = coord2[1].toRad();
-        
-        var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-        return c;
-      };
-      mapExtender.coordAtDistance = function(line, dist) {
-        // Gets coordinate at specific place along path
-        var coord = [];
-        var distCurrent = 0;
-        var distOld = 0;
-        
-        // If 0, then just give the first coordinate back.
-        if (dist == 0) {
-          return line.coordinates[0];
-        }
-
-        // Got to each coordinate and check if we need to go to next;
-        for (var i = 1; (i < line.coordinates.length && distCurrent < dist); i++) {
-          distOld = distCurrent;
-          distCurrent += mapExtender.coordDistance(line.coordinates[i], line.coordinates[i - 1]);
-        }
-        
-        // Check if we did not make it
-        if (distCurrent < dist) {
-          return coord;
-        }
-        var p1 = line.coordinates[i - 2];
-        var p2 = line.coordinates[i - 1];
-        var part = (dist - distOld) / (distCurrent - distOld);
-
-        // Lon
-        coord[0] = p1[0] + (p2[0] - p1[0]) * part;
-        coord[1] = p1[1] + (p2[1] - p1[1]) * part;
-        return coord;
-      }
-      mapExtender.toKM = function(v) {
-        // Returns KM from a lat/lon distance;
-        return v * 6371;
-      };
-      mapExtender.toM = function(v) {
-        // Returns M from a lat/lon distance;
-        return v * 6371 * 1000;
-      };
-      
-      // Object for dealing with time
-      var timeExtender = {};
-      timeExtender.secondsToTime = function(secs) {
-        var hours = Math.floor(secs / (60 * 60));
-        var divisor_for_minutes = secs % (60 * 60);
-        var minutes = Math.floor(divisor_for_minutes / 60);
-        var seconds = Math.ceil(divisor_for_minutes % 60);
-        
-        return {
-          'h': hours,
-          'm': minutes,
-          's': seconds
-        };
-      };
-      
-      // Namespace jQuery
-      (function($) {
-        $(document).ready(function() {
-          $('.loading').html('Loading map..');
-          
-          // Start map
-          var map = new L.Map('map', { maxZoom: 15, minZoom: 8 });
-          
-        	// Minnnpost base map
-        	minnpost = new L.TileLayer('http://{s}.tiles.minnpost.com/minnpost-basemaps/minnpost-minnesota-greyscale-no-labels/{z}/{x}/{y}.png', 
-        	 { attribution: 'Map imagery from <a target="_blank" href="http://minnpost.com">MinnPost</a>; Map data from <a target="_blank" href="http://openstreetmap.org">OpenStreetMap</a>.',
-            scheme: 'tms' });
-        	map.addLayer(minnpost);
-        	
-        	// Route layer
-          routes = new L.TileLayer('http://{s}.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.png', 
-            { attribution: 'Data provided by <a target="_blank" href="https://www.niceridemn.org/">Nice Ride MN</a>; ',
-            scheme: 'tms' });
-          map.addLayer(routes);
-          
-          // Labels
-        	minnpost_l = new L.TileLayer('http://{s}.tiles.minnpost.com/minnpost-basemaps/minnpost-minnesota-greyscale-labels/{z}/{x}/{y}.png', 
-        	 { scheme: 'tms' });
-        	map.addLayer(minnpost_l);
-        	
-        	// Set view
-          map.setView(new L.LatLng(44.9745, -93.2513), 13);
-          
-          // A place for animations, rentals, and routes.  (seekFromTo(0.25, 0.75))
-          var animations = {};
-          var rentals_loaded = {};
-          var routes_loaded = {};
-          
-          var da_flot = {};
-          
-          // Callback once animations and routes have been loaded.
-          var loadAnimations = function() {
-            // Time in seconds
-            var time_day = 24 * 60 * 60;
-            var time_anim = 2 * 60; // 20 minute animation
-            var time_ratio = time_anim / time_day;
-            var anim_date = { // 2011-05-18
-              'y': 2011,
-              'm': 4,
-              'd': 18
-            };
-            var day_offset = ((4 * 60) + 30) * 60; // 4:30
-            
-            // Animation options
-            var anim_interval = 100;
-            var circleOptions = {
-              stroke: false,
-              fillColor: '#10517F',
-              fillOpacity: 0.98,
-              clickable: false,
-              radius: 8
-            };
-          
-            // Create each animation up front.
-            var i;
-            for (i in rentals_loaded) {
-              // TODO: Not taking into account X to X routes
-              if (typeof routes_loaded[rentals_loaded[i].st + '-' + rentals_loaded[i].et] != 'undefined') {
-                var closureAnimation = (function(rent, rout) {
-                  return function() {
-                    // Time should be in milliseconds.  If time is above
-                    // 10 hours, then cap it as it will take so long.
-                    var cap = 5 * 60 * 60;
-                    var time = (rent.d < cap) ? rent.d * time_ratio * 1000 : cap * time_ratio * 1000;
-                    var d = mapExtender.lineDistance(rout.r);
-                    var marker = new L.CircleMarker(new L.LatLng(0, 0), circleOptions);
-
-                    map.addLayer(marker);
-                    animation = new Animator({
-                      duration: time,
-                      interval: anim_interval,
-                      transition: Animator.tx.linear,
-                      onComplete: function() {
-                        // As stop will call this as well, check for state
-                        if (this.state == 1) {
-                          map.removeLayer(marker);
-                        }
-                      }
-                    });
-                    function animateMarker(interval) {
-                      var dist = interval * d;
-                      var coord = mapExtender.coordAtDistance(rout.r, dist);
-                      marker.setLatLng(new L.LatLng(coord[1], coord[0]));
-                    };
-                    animation.addSubject(animateMarker);
-
-                    // Add some meta data
-                    animation.st = rent.s;
-                    animation.en = rent.e;
-                    animation.dur = rent.d;
-                    
-                    return animation;
-                  }
-                })(rentals_loaded[i], routes_loaded[rentals_loaded[i].st + '-' + rentals_loaded[i].et]);
-                
-                animations[i] = closureAnimation();
-              }
-            }
-            $('.loading').html('loaded rentals.  loaded routes.  loaded animations.');
-            
-            // Cleanup
-            delete rentals_loaded;
-            delete routes_loaded;
-            
-            // Create day animation to fire off different events
-            var day = new Animator({
-              duration: time_anim * 1000,
-              interval: anim_interval,
-              transition: Animator.tx.linear,
-              onComplete: function() {
-                // Shown when stopped as well as complete.
-              }
-            });
-            var handleDay = function(interval) {
-              // Determine the time of day it is in the animation
-              var totalSecElapsed = interval * time_day + day_offset;
-              var timeObj = timeExtender.secondsToTime(totalSecElapsed);
-              var currentTime = new XDate(anim_date.y, anim_date.m, anim_date.d, timeObj.h, timeObj.m, timeObj.s, 0, true);
-              var a;
-
-              // Show time
-              $('.time_day').html(currentTime.getUTCHours() + ':' + currentTime.getUTCMinutes());
-              
-              // Find any animations that have not been played yet
-              // that start before now and end after now.  Animation 
-              // state is between 0 and 1.
-              for (a in animations) {
-                var animateStart = new XDate(animations[a].st, true);
-                var animateEnd = new XDate(animations[a].en, true);
-                if (animateStart <= currentTime && animateEnd > currentTime && animations[a].state == 0) {
-                  animations[a].play();
-                }
-              }
-              
-              // Update graph.  TODO: Pull in bike density dat and overlay it
-              // as it goes.
-              //var graph_data = da_flot.getData();
-              //graph_data[1].data.push([])
-              da_flot.setCrosshair({ x: currentTime.getTime() });
-            };
-            day.addSubject(handleDay);
-            
-            // Animation controls
-            $('.play').click(function(e) {
-              e.preventDefault();
-              day.seekTo(1);
-              // Start all already started animations
-              for (a in animations) {
-                if (animations[a].state > 0 && animations[a].state < 1) {
-                  animations[a].seekTo(1);
-                }
-              }
-            });
-            $('.pause').click(function(e) {
-              e.preventDefault();
-              day.stop();
-              // Pause all animations.  Sometimes this misses??
-              for (a in animations) {
-                if (animations[a].state > 0 && animations[a].state < 1) {
-                  animations[a].stop();
-                }
-              }
-            });
-            
-            
-            // Graphing
-            callback_density_average = function(graph) {
-              var options = {
-                xaxis: { mode: 'time' },
-                crosshair: { mode: 'x', color: '#1B8ADA' }
-              };
-              var data = [{
-                label: 'Average',
-                data: graph,
-                bars: { show: true },
-                color: '#7F3E10'
-              }];
-              
-              da_flot = $.plot($('#density-average-graph'), data, options);
-              //da_flot.setCrosshair({ x: 1305711072000  });
-              da_flot.setCrosshair();
-              da_flot.lockCrosshair();
-            };
-            $.ajax({
-              type: 'GET',
-              dataType: 'jsonp',
-              url: 'data/density_average.jsonp?callback=callback_density_average',
-              jsonp: 'callback'
-            });
-          };
-          
-          // Call back for routes
-          callback_routes = function(routes) {
-            $('.loading').html('loaded rentals.  loaded routes.  loading animations.');
-            routes_loaded = routes;
-            loadAnimations();
-          };
-          
-          // Call back for rentals
-          callback_rentals = function(rentals) {
-            $('.loading').html('loaded rentals.  loading routes..');
-            rentals_loaded = rentals;
-            $.ajax({
-              type: 'GET',
-              dataType: 'jsonp',
-              url: 'data/routes.jsonp?callback=callback_routes',
-              jsonp: 'callback'
-            });
-          };
-          
-          // Load data
-          $.ajax({
-            type: 'GET',
-            dataType: 'jsonp',
-            url: 'data/rentals.jsonp?callback=callback_rentals',
-            jsonp: 'callback'
-          });
-        });
-      })(jQuery);
-    </script>
+    <!-- START: To be inline JS -->
+    <script type="text/javascript" src="js/utilities.js"></script>
+    <script type="text/javascript" src="js/application.js"></script>
+    <!-- END: To be inline JS -->
+    
   </div>
-  <!-- Embed End -->
+  <!-- END: Embeddable -->
 
 
 </body>
