@@ -16,8 +16,8 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
       'maxZoom': 15
     },
     'mapID': 'map',
-    'mapDefaultCenter': new L.LatLng(44.9745, -93.2513),
-    'mapDefaultZoom': 13,
+    'mapDefaultCenter': new L.LatLng(44.9745, -93.2013),
+    'mapDefaultZoom': 12,
     'dataDir': 'data',
     'loadingSelector': '.loading',
     'flotOptions': {
@@ -25,7 +25,7 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
       crosshair: { mode: 'x', color: '#1B8ADA' }
     },
     'flotAverageData': {
-      label: 'Average',
+      label: 'Average bike density',
       data: [],
       bars: { show: true },
       color: '#7F3E10'
@@ -49,6 +49,12 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
   densityAverage: {},
   timelineFlot: {},
   bikeAnimations: new MinnPost.BikeAnimations(),
+  
+  // Events
+  events: {
+    'click .play': 'play',
+    'click .pause': 'pause'
+  },
 
   // Initialize function when View is first initialized.
   initialize: function() {
@@ -80,32 +86,38 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
   },
 
   // Play main animation
-  play: function() {
-    this.animation.seekTo(1);
-    // Start all already started animations
-    this.bikeAnimations.each(function(anim) {
-      if (anim.animation.state > 0 && anim.animation.state < 1) {
-        anim.animation.seekTo(1);
-      }
-    });
+  play: function(e) {
+  console.log('yo');
+    e.preventDefault();
+  
+    // Ensure that the animation is loaded
+    if (this.animation !== undefined && !_.isEmpty(this.animation)) {
+      this.animation.seekTo(1);
+      // Start all already started animations
+      this.bikeAnimations.each(function(anim) {
+        if (anim.animation.state > 0 && anim.animation.state < 1) {
+          anim.animation.seekTo(1);
+        }
+      });
+    }
   },
 
   // Pause animation
-  pause: function() {
-    this.animation.stop();
-    // Pause all animations.  Do all as some are missed in the mixed
-    this.bikeAnimations.each(function(anim) {
-      anim.animation.stop();
-    });
+  pause: function(e) {
+    e.preventDefault();
+  
+    // Ensure that the animation is loaded
+    if (this.animation !== undefined && !_.isEmpty(this.animation)) {
+      this.animation.stop();
+      // Pause all animations.  Do all as some are missed in the mixed
+      this.bikeAnimations.each(function(anim) {
+        anim.animation.stop();
+      });
+    }
   },
   
   // Controls
   addControls: function() {
-    var thisView = this;
-    $('.play').click(function(e) {
-      e.preventDefault();
-      thisView.play();
-    });
     
     return this;
   },

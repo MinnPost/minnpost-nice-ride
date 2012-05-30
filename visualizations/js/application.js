@@ -7,7 +7,7 @@
   $(document).ready(function() {
 
     // Create and kick off the application.    
-    var app = new MinnPost.BikeApplication();
+    var app = new MinnPost.BikeApplication({ el: $('#minnpost-nice-ride-application') });
     
   });
 })(jQuery, window);
