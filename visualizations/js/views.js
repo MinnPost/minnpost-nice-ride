@@ -65,6 +65,51 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
     
   },
   
+  // Called when loading all data.  We are not actually sure
+  // what is done yet, so check and then fire if all is loaded.
+  dataLoaded: function() {
+    if (!_.isEmpty(this.rentals) && !_.isEmpty(this.routes) && !_.isEmpty(this.densityAverage)) {
+      this.drawGraph()
+        .makeBikeAnimations()
+        .makeAnimator()
+        .addControls()
+        .doneLoading();
+    }
+    
+    return this;
+  },
+
+  // Play main animation
+  play: function() {
+    this.animation.seekTo(1);
+    // Start all already started animations
+    this.bikeAnimations.each(function(anim) {
+      if (anim.animation.state > 0 && anim.animation.state < 1) {
+        anim.animation.seekTo(1);
+      }
+    });
+  },
+
+  // Pause animation
+  pause: function() {
+    this.animation.stop();
+    // Pause all animations.  Do all as some are missed in the mixed
+    this.bikeAnimations.each(function(anim) {
+      anim.animation.stop();
+    });
+  },
+  
+  // Controls
+  addControls: function() {
+    var thisView = this;
+    $('.play').click(function(e) {
+      e.preventDefault();
+      thisView.play();
+    });
+    
+    return this;
+  },
+  
   // Mark as loading
   isLoading: function() {
     $(this.options.loadingSelector).html('Loading...');
@@ -110,18 +155,6 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
     return this;
   },
   
-  // Called when loading all data.  We are not actually sure
-  // what is done yet, so check adn then fire if all is loaded.
-  dataLoaded: function() {
-    if (!_.isEmpty(this.rentals) && !_.isEmpty(this.routes) && !_.isEmpty(this.densityAverage)) {
-      this.drawGraph();
-      this.makeBikeAnimations();
-      this.doneLoading();
-    }
-    
-    return this;
-  },
-  
   // Create flot graph
   drawGraph: function() {
     this.options.flotAverageData.data = this.densityAverage;
@@ -138,7 +171,6 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
     var ba;
     var route;
     var ratio = (this.options.timeAnimLengthSecs / this.options.timeAnimDaySecs);
-    var count = 0;
     
     // Go through rentals, match route, make a bike animation then add to collection
     for (i in this.rentals) {
@@ -154,12 +186,56 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
         // Create model and add to collection.  Model initializes stuff.
         var ba = new MinnPost.BikeAnimation(this.rentals[i], route);
         this.bikeAnimations.add(ba, { silent: true });
-        
-        if (count < 10) ba.animation.play();
-        
-        count++;
       }
     }
+    
+    return this;
+  },
+  
+  // Makes fulls animator
+  makeAnimator: function() {
+    var thisView = this;
+  
+    this.animation = new Animator({
+      duration: this.options.timeAnimLengthSecs * 1000,
+      interval: this.options.timeAnimInterval,
+      transition: Animator.tx.linear,
+      onComplete: function() {
+        // Shown when stopped as well as complete.
+      }
+    });
+    
+    this.animation.addSubject(function(interval) {
+      // Determine the time of day it is in the animation
+      var totalSecElapsed = interval * thisView.options.timeAnimDaySecs + thisView.options.timeAnimTimeOffsetSecs;
+      var aD = thisView.options.timeAnimDate;
+      var timeObj = timeExtender.secondsToTime(totalSecElapsed);
+      var currentTime = new XDate(aD.y, aD.m, aD.d, timeObj.h, timeObj.m, timeObj.s, 0, true);
+
+      // Show time
+      thisView.showTime(currentTime.getUTCHours(), currentTime.getUTCMinutes());
+      
+      // Find any animations that have not been played yet
+      // that start before now and end after now.  Animation 
+      // state is between 0 and 1.
+      thisView.bikeAnimations.each(function(anim) {
+        if (anim.get('s') <= currentTime && anim.get('e') > currentTime && anim.animation.state === 0) {
+          anim.animation.play();
+        }
+      });
+      
+      // Update graph.  TODO: Pull in bike density dat and overlay it
+      // as it goes.
+      //var graph_data = da_flot.getData();
+      //graph_data[1].data.push([])
+      thisView.timelineFlot.setCrosshair({ x: currentTime.getTime() });
+    });
+    
+    return this;
+  },
+  
+  showTime: function(h, m) {
+    $('.time_day').html(h + ':' + m);
     
     return this;
   },

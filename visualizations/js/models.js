@@ -32,6 +32,10 @@ var BikeAnimation = window.MinnPost.BikeAnimation = Backbone.Model.extend({
     this.set('dist', mapExtender.lineDistance(route.r));
     this.set('marker', new L.CircleMarker(new L.LatLng(0, 0), this.options.markerCircleOptions));
     
+    // Use XDate as it handles UTC better
+    this.set('s', new XDate(this.get('s'), true));
+    this.set('e', new XDate(this.get('e'), true));
+    
     // Add marker to map
     if (this.get('map') !== undefined) {
       this.get('map').addLayer(this.get('marker'));

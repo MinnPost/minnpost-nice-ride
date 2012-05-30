@@ -15,12 +15,12 @@
 
 #map {
   width: 100%;
-  height: 550px;
+  height: 400px;
 }
 
 #density-average-graph {
   height: 100px;
-  width: 600px;
+  width: 100%;
 }
 
 /** Media queries **/
