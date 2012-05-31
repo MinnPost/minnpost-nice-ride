@@ -6,9 +6,11 @@
   <title>MinnPost</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   
+  <!--
   <link type="text/css" rel="stylesheet" media="all" href="http://www.minnpost.com/sites/default/files/css/css_efc75eaad579035887d5e1ac11c00b78.css" />
 <link type="text/css" rel="stylesheet" media="screen" href="http://www.minnpost.com/sites/default/files/css/css_b444460873a77de36d695396b0924929.css" />
 <link type="text/css" rel="stylesheet" media="print" href="http://www.minnpost.com/sites/default/files/css/css_f3f76e4e053f459547daa56b3627cfe3.css" />
+-->
 
   <!--[if IE]>
       <link rel="stylesheet" href="http://www.minnpost.com/sites/default/themes/derma/inc/css/ie.css?d" type="text/css" />
@@ -47,10 +49,6 @@
       <div id="map"></div>
       
       <div class="time_day"></div>
-      <div class="controls">
-        <a href="#play" class="play">Play</a>
-        <a href="#pause" class="pause">Pause</a>
-      </div>
     </div>
     
     <p class="footnote"></p>
@@ -61,7 +59,11 @@
         <div id="density-average-graph"></div>
       </div>
     </script>
-  
+    <script id="template-controls" type="text/template">
+      <div class="control-play-pause-container leaflet-control">
+        <a class="control-play-pause control-play" href="#" title="Play"></a>
+      </div>
+    </script>
   
     <!-- jQuery -->
     <script type="text/javascript">

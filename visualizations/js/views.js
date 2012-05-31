@@ -21,6 +21,7 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
     'dataDir': 'data',
     'loadingSelector': '.loading',
     'loadingMessageSelector': '.loading .loading-message',
+    'controlsContainerSelector': '.leaflet-top.leaflet-left',
     'flotOptions': {
       xaxis: { mode: 'time', timeformat: '%h:%M %p' },
       yaxis: { ticks: 2 },
@@ -57,8 +58,8 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
   
   // Events
   events: {
-    'click .play': 'play',
-    'click .pause': 'pause'
+    'click .control-play': 'play',
+    'click .control-pause': 'pause'
   },
 
   // Initialize function when View is first initialized.
@@ -93,6 +94,9 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
   // Play main animation
   play: function(e) {
     e.preventDefault();
+    
+    // Change button to pause
+    $('.control-play-pause').addClass('control-pause').removeClass('control-play').attr('title', 'Pause');
   
     // Ensure that the animation is loaded
     if (this.animation !== undefined && !_.isEmpty(this.animation)) {
@@ -104,12 +108,17 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
         }
       });
     }
+    
+    return this;
   },
 
   // Pause animation
   pause: function(e) {
     e.preventDefault();
   
+    // Change button to play
+    $('.control-play-pause').removeClass('control-pause').addClass('control-play').attr('title', 'Play');
+    
     // Ensure that the animation is loaded
     if (this.animation !== undefined && !_.isEmpty(this.animation)) {
       this.animation.stop();
@@ -118,10 +127,14 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
         anim.animation.stop();
       });
     }
+    
+    return this;
   },
   
   // Controls
   addControls: function() {
+    var template = _.template($("#template-controls").html(), { });
+    $(this.options.controlsContainerSelector).append(template);
     
     return this;
   },
