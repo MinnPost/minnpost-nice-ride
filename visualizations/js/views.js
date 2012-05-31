@@ -141,6 +141,12 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
     this.map = new L.Map(this.options.mapID, this.options.mapOptions);
     this.addMapLayers();
     this.map.setView(this.options.mapDefaultCenter, this.options.mapDefaultZoom);
+    this.map.addControl(new L.Control.Fullscreen());
+    
+    // Move attributioin to footnotes
+    this.map.attributionControl.setPrefix('');
+    $('.footnote').html($('.footnote').html() + ' ' + this.map.attributionControl._container.innerHTML);
+    this.map.removeControl(this.map.attributionControl);
     
     return this;
   },
