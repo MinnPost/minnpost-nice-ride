@@ -20,11 +20,12 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
     'mapDefaultZoom': 12,
     'dataDir': 'data',
     'loadingSelector': '.loading',
+    'loadingMessageSelector': '.loading .loading-message',
     'flotOptions': {
       xaxis: { mode: 'time', timeformat: '%h:%M %p' },
       yaxis: { ticks: 2 },
       crosshair: { mode: 'x', color: '#1B8ADA' },
-      legend: { backgroundColor: 'inherit' },
+      legend: { backgroundColor: 'inherit', border: null },
       grid: { borderWidth: 1, borderColor: '#BBBBBB' }
     },
     'flotAverageData': {
@@ -127,14 +128,16 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
   
   // Mark as loading
   isLoading: function() {
-    $(this.options.loadingSelector).html('Loading...');
+    $(this.options.loadingSelector).addClass('is-loading');
+    $(this.options.loadingMessageSelector).html('Loading data and animations...');
     
     return this;
   },
   
   // Done loading
   doneLoading: function() {
-    $(this.options.loadingSelector).html('loaded.');
+    $(this.options.loadingMessageSelector).html('Loaded.');
+    $(this.options.loadingSelector).fadeOut('slow').removeClass('is-loading');
     
     return this;
   },
