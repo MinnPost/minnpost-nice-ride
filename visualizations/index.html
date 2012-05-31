@@ -28,18 +28,29 @@
       @import url('https://s3.amazonaws.com/data.minnpost/js/leaflet-master-20120531/leaflet.css');
       @import url('https://s3.amazonaws.com/data.minnpost/js/leaflet-addons-master-20120531/leaflet-addons.css');
     </style>
-    <!--[if lte IE 8]>
-      <style type="text/css">
-        @import url('https://s3.amazonaws.com/data.minnpost/js/leaflet-master-20120531/leaflet.ie.css');
-        @import url('https://s3.amazonaws.com/data.minnpost/js/leaflet-addons-master-20120531/leaflet-addons.ie.css');
-      </style>
-    <![endif]-->
     
     <!-- START: To be inline CSS -->
     <style type="text/css">
       @import url('css/styles.css');
     </style>
     <!-- END: To be inline CSS -->
+    
+    <!--[if lte IE 8]>
+      <style type="text/css">
+        @import url('https://s3.amazonaws.com/data.minnpost/js/leaflet-master-20120531/leaflet.ie.css');
+        @import url('https://s3.amazonaws.com/data.minnpost/js/leaflet-addons-master-20120531/leaflet-addons.ie.css');
+        
+        .control-play-pause-container {
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#3F000000',EndColorStr='#3F000000');
+        }
+        .control-play-pause-container a {
+          background-color: #eee;
+        }
+        .control-play-pause-container a:hover {
+          background-color: #fff;
+        }
+      </style>
+    <![endif]-->
     
     <div id="minnpost-nice-ride-application">
       <div class="loading is-loading">

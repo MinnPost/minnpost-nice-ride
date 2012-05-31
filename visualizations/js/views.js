@@ -25,7 +25,7 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
     'flotOptions': {
       xaxis: { mode: 'time', timeformat: '%h:%M %p' },
       yaxis: { ticks: 2 },
-      crosshair: { mode: 'x', color: '#1B8ADA' },
+      crosshair: { mode: 'x', lineWidth: 3, color: '#1B8ADA' },
       legend: { backgroundColor: 'inherit', border: null },
       grid: { borderWidth: 1, borderColor: '#BBBBBB' }
     },
