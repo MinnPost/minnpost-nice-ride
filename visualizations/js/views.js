@@ -130,6 +130,22 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
     
     return this;
   },
+
+  // Pause animation
+  resetAnimations: function() {
+    // Change button to play
+    $('.control-play-pause').removeClass('control-pause').addClass('control-play').attr('title', 'Play');
+    
+    // Stop and change all states to 0.
+    if (this.animation !== undefined && !_.isEmpty(this.animation)) {
+      this.animation.state = 0;
+      this.bikeAnimations.each(function(anim) {
+        anim.resetAnimation();
+      });
+    }
+    
+    return this;
+  },
   
   // Controls
   addControls: function() {
@@ -242,7 +258,10 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
       interval: this.options.timeAnimInterval,
       transition: Animator.tx.linear,
       onComplete: function() {
-        // Shown when stopped as well as complete.
+        // As stop will call this as well, check for state
+        if (this.state == 1) {
+          thisView.resetAnimations();
+        }
       }
     });
     
