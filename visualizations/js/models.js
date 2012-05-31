@@ -50,7 +50,9 @@ var BikeAnimation = window.MinnPost.BikeAnimation = Backbone.Model.extend({
       onComplete: function() {
         // As stop will call this as well, check for state
         if (this.state == 1 && thisModel.get('map') !== undefined) {
-          thisModel.get('map').removeLayer(thisModel.get('marker'));
+          // We actually just move the marker way off so that if the
+          // the animation is run again, we are not doing so much.
+          thisModel.get('marker').setLatLng(thisModel.options.startLatLon);
         }
       }
     });
@@ -66,9 +68,8 @@ var BikeAnimation = window.MinnPost.BikeAnimation = Backbone.Model.extend({
   // Reload animation
   resetAnimation: function() {
     // We need to move back the marker to start place (off the viewport).
-    this.get('map').removeLayer(this.get('marker'));
+    this.animation.stop();
     this.get('marker').setLatLng(this.options.startLatLon);
-    this.get('map').addLayer(this.get('marker'));
     this.animation.state = 0;
     
     return this;

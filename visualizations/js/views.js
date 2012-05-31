@@ -138,6 +138,7 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
     
     // Stop and change all states to 0.
     if (this.animation !== undefined && !_.isEmpty(this.animation)) {
+      this.animation.stop();
       this.animation.state = 0;
       this.bikeAnimations.each(function(anim) {
         anim.resetAnimation();
