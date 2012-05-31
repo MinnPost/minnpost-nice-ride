@@ -91,7 +91,6 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
 
   // Play main animation
   play: function(e) {
-  console.log('yo');
     e.preventDefault();
   
     // Ensure that the animation is loaded
