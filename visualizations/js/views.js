@@ -332,7 +332,7 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
   
   // Check the host
   checkHost: function() {
-    if (location.host.indexOf('localhost') == 0) {
+    if (location.host.indexOf('localhost') == -1) {
       this.options.dataDir = this.options.dataDirRemote;
     }
     
