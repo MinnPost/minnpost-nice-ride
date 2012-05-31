@@ -39,7 +39,7 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
     'flotContainerSelector': '.leaflet-bottom.leaflet-left',
     'timeContainerSelector': '.leaflet-bottom.leaflet-right',
     'timeAnimDaySecs': 24 * 60 * 60,
-    'timeAnimLengthSecs': 2 * 60,
+    'timeAnimLengthSecs': 5 * 60,
     'timeAnimInterval': 100,
     'timeAnimDate': {
       'y': 2011,
@@ -195,22 +195,43 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
   
   // Add layers to map.
   addMapLayers: function() {
+    var thisView = this;
+  
     // Minnnpost base map
     var minnpost = new L.TileLayer('http://{s}.tiles.minnpost.com/minnpost-basemaps/minnpost-minnesota-greyscale-no-labels/{z}/{x}/{y}.png', 
      { attribution: 'Map imagery from <a target="_blank" href="http://minnpost.com">MinnPost</a>; Map data from <a target="_blank" href="http://openstreetmap.org">OpenStreetMap</a>.',
       scheme: 'tms' });
     this.map.addLayer(minnpost);
     
-    // Route layer
-    var routes = new L.TileLayer('http://{s}.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.png', 
-      { attribution: 'Data provided by <a target="_blank" href="https://www.niceridemn.org/">Nice Ride MN</a>; ',
-      scheme: 'tms' });
-    this.map.addLayer(routes);
-    
     // Labels
     var minnpostLabels = new L.TileLayer('http://{s}.tiles.minnpost.com/minnpost-basemaps/minnpost-minnesota-greyscale-labels/{z}/{x}/{y}.png', 
      { scheme: 'tms' });
-    this.map.addLayer(minnpostLabels);
+    
+    // Add route layer with TileJSON, then add labels on top
+    wax.tilejson('http://a.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/tilejson.jsonp', function(tilejson) {
+      // Hackaround
+      tilejson.tiles = [
+        'http://a.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.png',
+        'http://b.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.png',
+        'http://c.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.png',
+        'http://d.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.png',
+      ];
+      tilejson.grids = [
+        'http://a.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.grid.json',
+        'http://b.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.grid.json',
+        'http://c.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.grid.json',
+        'http://d.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.grid.json',
+      ];
+      tilejson.scheme = 'tms';
+      tilejson.attribution = 'Data provided by <a target="_blank" href="https://www.niceridemn.org/">Nice Ride MN</a>; ';
+    
+      thisView.map.addLayer(new wax.leaf.connector(tilejson));
+      thisView.map.addLayer(minnpostLabels);
+      wax.leaf.interaction()
+        .map(thisView.map)
+        .tilejson(tilejson)
+        .on(wax.tooltip().parent(thisView.map._container).events());
+    });
     
     return this;
   },
