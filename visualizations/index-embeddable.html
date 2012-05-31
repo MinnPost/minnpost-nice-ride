@@ -1,0 +1,920 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>MinnPost</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  
+  <!--
+  <link type="text/css" rel="stylesheet" media="all" href="http://www.minnpost.com/sites/default/files/css/css_efc75eaad579035887d5e1ac11c00b78.css" />
+<link type="text/css" rel="stylesheet" media="screen" href="http://www.minnpost.com/sites/default/files/css/css_b444460873a77de36d695396b0924929.css" />
+<link type="text/css" rel="stylesheet" media="print" href="http://www.minnpost.com/sites/default/files/css/css_f3f76e4e053f459547daa56b3627cfe3.css" />
+-->
+
+  <!--[if IE]>
+      <link rel="stylesheet" href="http://www.minnpost.com/sites/default/themes/derma/inc/css/ie.css?d" type="text/css" />
+  <![endif]-->
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+</head>
+<body class="not-front logged-in page-node node-type-article one-sidebar sidebar-right admin-nw admin-vertical admin-df  section-data section-data-id-2012 section-data-id-2012-id-05 section-data-id-2012-id-05-how-we-built-legislative-bill-explorer one-sidebar sidebar-right">
+<div class="outside-embeddable-container">
+
+  <!-- START: Embeddable -->
+  <div class="node-body fieldlayout node-field-body">
+    <style type="text/css">
+      @import url('https://s3.amazonaws.com/data.minnpost/js/leaflet-master-20120531/leaflet.css');
+      @import url('https://s3.amazonaws.com/data.minnpost/js/leaflet-addons-master-20120531/leaflet-addons.css');
+    </style>
+    
+    <!-- START: To be inline CSS -->
+<style type="text/css">
+
+
+/**
+ * CSS Styles for the application.
+*/
+.outside-embeddable-container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.js-dependent,
+.hide {
+  display: none;
+}
+
+.footnote {
+  font-size: .75em;
+  font-style: italic;
+  color: #414141;
+  margin-top: 1em;
+}
+
+#minnpost-nice-ride-application {
+  position: relative;
+}
+
+.loading {
+  display: none;
+}
+.loading.is-loading {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #FFFFFF;
+  background: rgba(255, 255, 255, 0.9);
+  z-index: 99999999;
+}
+.loading .loading-message {
+  width: 40%;
+  margin: 0 auto;
+  padding: 3em 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#map {
+  width: 100%;
+  height: 500px;
+}
+
+.leaflet-bottom.leaflet-left {
+  background: #FFFFFF;
+  background: rgba(255, 255, 255, 0.8);
+  height: 90px;
+  width: 100%;
+  border-top: 2px solid #AAAAAA;
+  z-index: 999999;
+}
+.flot-timeline-wrapper {
+  margin: 10px;
+}
+#density-average-graph {
+  height: 75px;
+  width: 100%;
+}
+#density-average-graph table {
+  margin: 0;
+  border: none;
+}
+#density-average-graph table td {
+  padding: 0 5px 0 0;
+  margin: 0;
+  vertical-align: middle;
+  border: none;
+}
+
+.leaflet-bottom.leaflet-right {
+  z-index: 999999;
+}
+.time-day {
+  margin-bottom: 100px;
+  margin-right: 10px;
+  padding: 5px 10px;
+  text-align: right;
+  background: #BBBBBB;
+  background: rgba(255, 255, 255, 0.8);
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  z-index: 999999;
+}
+ 
+.control-play-pause-container {
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.25);
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+}
+   
+.control-play-pause-container a.control-play-pause {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  width: 19px;
+  height: 19px;
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.leaflet-touch .control-play-pause-container a.control-play-pause {
+  width: 27px;
+  height: 27px;
+}
+.control-play-pause-container a.control-play-pause {
+  display: block;
+  display: inline-block;
+  vertical-align: text-top;
+  background-image: url("https://s3.amazonaws.com/data.minnpost/js/bootstrap-2.0.3/img/glyphicons-halflings.png");
+  background-repeat: no-repeat;
+  background-position: -262px -70px;
+  opacity: 0.9;
+}
+.control-play-pause-container a.control-pause {
+  background-position: -285px -70px;
+}
+	
+.control-play-pause-container a.control-play-pause:hover {
+  background-color: #FFFFFF;
+}
+
+.leaflet-control-zoom + .control-play-pause-container,
+.leaflet-control-fullscreen + .control-play-pause-container {
+  margin-top: 5px;
+}
+
+.wax-tooltip {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 5px 10px;
+  background: #BBBBBB;
+  background: rgba(255, 255, 255, 0.8);
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  z-index: 999999;
+}
+
+.wax-tooltip a.close {
+  background: #BBBBBB;
+  background: rgba(0, 0, 0, 0.25);
+  text-indent:-3000px;
+  overflow: hidden;
+  display: block;
+  display: inline-block;
+  vertical-align: text-top;
+  background-image: url("https://s3.amazonaws.com/data.minnpost/js/bootstrap-2.0.3/img/glyphicons-halflings.png");
+  background-repeat: no-repeat;
+  background-position: -310px 2px;
+  opacity: 0.9;
+  width: 19px;
+  height: 19px;
+  margin: 0 0 0 5px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+
+/** Media queries **/
+@media all and (max-width: 750px) {
+}
+</style>
+<!-- END: To be inline CSS -->
+    
+    <!--[if lte IE 8]>
+      <style type="text/css">
+        @import url('https://s3.amazonaws.com/data.minnpost/js/leaflet-master-20120531/leaflet.ie.css');
+        @import url('https://s3.amazonaws.com/data.minnpost/js/leaflet-addons-master-20120531/leaflet-addons.ie.css');
+        
+        .control-play-pause-container {
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#3F000000',EndColorStr='#3F000000');
+        }
+        .control-play-pause-container a {
+          background-color: #eee;
+        }
+        .control-play-pause-container a:hover {
+          background-color: #fff;
+        }
+      </style>
+    <![endif]-->
+    
+    <div id="minnpost-nice-ride-application">
+      <div class="loading is-loading">
+        <div class="loading-message">Loading...</div>
+      </div>
+      
+      <div id="map"></div>
+    </div>
+    
+    <p class="footnote"></p>
+    
+    <!-- Templates to be used in client side processing. -->
+    <script id="template-flot-timeline" type="text/template">
+      <div class="flot-timeline-wrapper">
+        <div id="density-average-graph"></div>
+      </div>
+    </script>
+    <script id="template-controls" type="text/template">
+      <div class="control-play-pause-container leaflet-control">
+        <a class="control-play-pause control-play" href="#" title="Play"></a>
+      </div>
+    </script>
+    <script id="template-time" type="text/template">
+      <div class="time-day"></div>
+    </script>
+  
+    <!-- jQuery -->
+    <script type="text/javascript">
+      window.jQuery || document.write('<script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/jquery-1.7.2/jquery-1.7.2.min.js"><\/script>')
+    </script>
+    <!-- XDate for better UTC date handling -->
+    <script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/xdate.js-0.7/xdate.js"></script>
+    <!-- Leaflet and wax for mapping -->
+    <script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/leaflet-master-20120531/leaflet.js"></script>
+    <script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/leaflet-addons-master-20120531/leaflet-addons.min.js"></script>
+    <script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/wax-v6.0.4/wax.leaf.min.js"></script>
+    <!-- Animator.js for simple animation handling -->
+    <script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/berniecode-animator-20120521/animator.min.js"></script>
+    <!-- Flor for graphs and timeline viewing -->
+    <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/flot-0.7/excanvas.min.js"></script><![endif]-->
+    <script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/flot-0.7/jquery.flot.min.js"></script>
+    <script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/flot-0.7/jquery.flot.crosshair.min.js"></script>
+    <script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/flot-0.7/jquery.flot.resize.min.js"></script>
+    <!-- Underscore and Backbone for application management -->
+    <script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/underscore-1.3.3/underscore-min.js"></script>
+    <script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/js/backbone-0.9.2/backbone-min.js"></script>
+    
+    <!-- START: To be inline JS -->
+<script type="text/javascript">
+
+
+/**
+ * Utilities for use in the Nice Ride applicaiton.
+ */
+
+// Converts numeric degrees to radians
+if (typeof Number.prototype.toRad === 'undefined') {
+  Number.prototype.toRad = function() {
+    return this * Math.PI / 180;
+  };
+}
+// Converts radians to numeric (signed) degrees
+if (typeof Number.prototype.toDeg === 'undefined') {
+  Number.prototype.toDeg = function() {
+    return this * 180 / Math.PI;
+  };
+}
+    
+/**
+ * Namespace some things
+ */
+(function($, window, undefined) {
+
+// Check our namespace
+window.MinnPost = window.MinnPost || {};
+
+// Object for dealing with map data
+var mapExtender = window.mapExtender = window.mapExtender || {};
+var timeExtender = window.timeExtender = window.timeExtender || {};
+
+mapExtender.lineDistance = function(line) {
+  // Get distance of geojson object
+  var dist = 0;
+  
+  if (typeof line.type != 'undefined' && line.type == 'LineString') {
+    for (var i = 1; i < line.coordinates.length; i++) {
+      dist += mapExtender.coordDistance(line.coordinates[i], line.coordinates[i - 1]);
+    }
+    
+    return dist;
+  }
+  else {
+    return dist;
+  }
+};
+
+mapExtender.coordDistance = function(coord1, coord2) {
+  // Get Haversine distance between two Geojson coordinates
+  var dLat = (coord2[1] - coord1[1]).toRad();
+  var dLon = (coord2[0] - coord1[0]).toRad();
+  var lat1 = coord1[1].toRad();
+  var lat2 = coord2[1].toRad();
+  
+  var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  return c;
+};
+
+mapExtender.coordAtDistance = function(line, dist) {
+  // Gets coordinate at specific place along path
+  var coord = [];
+  var distCurrent = 0;
+  var distOld = 0;
+  
+  // If 0, then just give the first coordinate back.
+  if (dist === 0) {
+    return line.coordinates[0];
+  }
+
+  // Got to each coordinate and check if we need to go to next;
+  for (var i = 1; (i < line.coordinates.length && distCurrent < dist); i++) {
+    distOld = distCurrent;
+    distCurrent += mapExtender.coordDistance(line.coordinates[i], line.coordinates[i - 1]);
+  }
+  
+  // Check if we did not make it
+  if (distCurrent < dist) {
+    return coord;
+  }
+  var p1 = line.coordinates[i - 2];
+  var p2 = line.coordinates[i - 1];
+  var part = (dist - distOld) / (distCurrent - distOld);
+
+  // Lon
+  coord[0] = p1[0] + (p2[0] - p1[0]) * part;
+  coord[1] = p1[1] + (p2[1] - p1[1]) * part;
+  return coord;
+};
+
+mapExtender.toKM = function(v) {
+  // Returns KM from a lat/lon distance;
+  return v * 6371;
+};
+
+mapExtender.toM = function(v) {
+  // Returns M from a lat/lon distance;
+  return v * 6371 * 1000;
+};
+
+// Object for dealing with time
+timeExtender.secondsToTime = function(secs) {
+  var hours = Math.floor(secs / (60 * 60));
+  var divisorForMinutes = secs % (60 * 60);
+  var minutes = Math.floor(divisorForMinutes / 60);
+  var seconds = Math.ceil(divisorForMinutes % 60);
+  
+  return {
+    'h': hours,
+    'm': minutes,
+    's': seconds
+  };
+};
+
+})(jQuery, window);
+
+/**
+ * Models for application.  Specifically for a bike animation.
+ */
+(function($, window, undefined) {
+
+// Check our namespace
+window.MinnPost = window.MinnPost || {};
+
+var BikeAnimation = window.MinnPost.BikeAnimation = Backbone.Model.extend({
+
+  options: {
+    'markerCircleOptions': {
+      stroke: false,
+      fillColor: '#10517F',
+      fillOpacity: 0.98,
+      clickable: false,
+      radius: 8
+    },
+    'timeAnimLengthCapSecs': 5 * 60 * 60,
+    'startLatLon': new L.LatLng(0, 0)
+  },
+
+  initialize: function(attr, route) {
+    var thisModel = this;
+  
+    // Initialize some values.  Note .d is durection, and JS wants milliseconds.
+    var time = (this.get('d') < this.options.timeAnimLengthCapSecs) 
+      ? this.get('d') * this.get('timeRatio') * 1000 
+      : this.options.timeAnimLengthCapSecs * this.get('timeRatio') * 1000;
+    
+    this.set('route', route.r);
+    this.set('time', time);
+    this.set('dist', mapExtender.lineDistance(route.r));
+    this.set('marker', new L.CircleMarker(this.options.startLatLon, this.options.markerCircleOptions));
+    
+    // Use XDate as it handles UTC better
+    this.set('s', new XDate(this.get('s'), true));
+    this.set('e', new XDate(this.get('e'), true));
+    
+    // Add marker to map
+    if (this.get('map') !== undefined) {
+      this.get('map').addLayer(this.get('marker'));
+    }
+    
+    // Create animation object
+    this.animation = new Animator({
+      duration: time,
+      interval: this.get('animInterval'),
+      transition: Animator.tx.linear,
+      onComplete: function() {
+        // As stop will call this as well, check for state
+        if (this.state == 1 && thisModel.get('map') !== undefined) {
+          // We actually just move the marker way off so that if the
+          // the animation is run again, we are not doing so much.
+          thisModel.get('marker').setLatLng(thisModel.options.startLatLon);
+        }
+      }
+    });
+    this.animation.addSubject(function(interval) {
+      var dist = interval * thisModel.get('dist');
+      var coord = mapExtender.coordAtDistance(thisModel.get('route'), dist);
+      thisModel.get('marker').setLatLng(new L.LatLng(coord[1], coord[0]));
+    });
+    
+    return this;
+  },
+  
+  // Reload animation
+  resetAnimation: function() {
+    // We need to move back the marker to start place (off the viewport).
+    this.animation.stop();
+    this.get('marker').setLatLng(this.options.startLatLon);
+    this.animation.state = 0;
+    
+    return this;
+  }
+});
+
+})(jQuery, window);
+
+/**
+ * Collections for the application.  Specifically a collection
+ * of bike animations.
+ */
+(function($, window, undefined) {
+
+// Check our namespace
+window.MinnPost = window.MinnPost || {};
+
+var BikeAnimations = window.MinnPost.BikeAnimations = Backbone.Collection.extend({
+  
+  model: window.MinnPost.BikeAnimation
+
+});
+
+})(jQuery, window);
+
+/**
+ * Routes for the application.
+ */
+(function($, window, undefined) {
+
+// Check our namespace
+window.MinnPost = window.MinnPost || {};
+
+var BikeApplicationRoute = window.MinnPost.BikeApplicationRoute = Backbone.Router.extend({
+
+  routes: {
+    'slow': 'slow',
+    'fast': 'fast',
+  },
+
+  slow: function() {
+
+  },
+
+  fast: function() {
+
+  }
+
+});
+
+})(jQuery, window);
+
+/**
+ * Views for applicaiton.  A single View to handle most of
+ * the applicaiton logic as the model side is light.
+ */
+(function($, window, undefined) {
+
+// Check our namespace
+window.MinnPost = window.MinnPost || {};
+
+var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
+  
+  // Various options, easy to set and change.
+  options: {
+    'mapOptions': {
+      'minZoom': 8,
+      'maxZoom': 15
+    },
+    'mapID': 'map',
+    'mapDefaultCenter': new L.LatLng(44.96552667056723, -93.25298309326172),
+    'mapDefaultZoom': 12,
+    'dataDir': 'data',
+    'loadingSelector': '.loading',
+    'loadingMessageSelector': '.loading .loading-message',
+    'controlsContainerSelector': '.leaflet-top.leaflet-left',
+    'flotOptions': {
+      xaxis: { mode: 'time', timeformat: '%h:%M %p' },
+      yaxis: { ticks: 2 },
+      crosshair: { mode: 'x', lineWidth: 3, color: '#1B8ADA' },
+      legend: { backgroundColor: 'inherit', border: null },
+      grid: { borderWidth: 1, borderColor: '#BBBBBB' }
+    },
+    'flotAverageData': {
+      label: 'Avg bike density',
+      data: [],
+      color: '#7F3E10',
+      lines: { show: true, fill: true }
+    },
+    'flotSelector': '#density-average-graph',
+    'flotContainerSelector': '.leaflet-bottom.leaflet-left',
+    'timeContainerSelector': '.leaflet-bottom.leaflet-right',
+    'timeAnimDaySecs': 24 * 60 * 60,
+    'timeAnimLengthSecs': 5 * 60,
+    'timeAnimInterval': 100,
+    'timeAnimDate': {
+      'y': 2011,
+      'm': 4, // Month is zero based
+      'd': 18
+    },
+    'timeAnimTimeOffsetSecs': ((4 * 60) + 30) * 60 // 4:30
+  },
+  
+  // Default objects for holding data.
+  bikeAnimations: {},
+  rentals: {},
+  routes: {},
+  densityAverage: {},
+  timelineFlot: {},
+  bikeAnimations: new MinnPost.BikeAnimations(),
+  
+  // Events
+  events: {
+    'click .control-play': 'play',
+    'click .control-pause': 'pause'
+  },
+
+  // Initialize function when View is first initialized.
+  initialize: function() {
+    // Mark a loading; create map; load data;
+    this.isLoading()
+      .createMap()
+      .loadDataRentals()
+      .loadDataRoutes()
+      .loadDataDensityAverage();
+  },
+
+  // Render function.
+  render: function() {
+    
+  },
+  
+  // Called when loading all data.  We are not actually sure
+  // what is done yet, so check and then fire if all is loaded.
+  dataLoaded: function() {
+    if (!_.isEmpty(this.rentals) && !_.isEmpty(this.routes) && !_.isEmpty(this.densityAverage)) {
+      this.drawGraph()
+        .makeBikeAnimations()
+        .makeAnimator()
+        .addControls()
+        .doneLoading();
+    }
+    
+    return this;
+  },
+
+  // Play main animation
+  play: function(e) {
+    e.preventDefault();
+    
+    // Change button to pause
+    $('.control-play-pause').addClass('control-pause').removeClass('control-play').attr('title', 'Pause');
+  
+    // Ensure that the animation is loaded
+    if (this.animation !== undefined && !_.isEmpty(this.animation)) {
+      this.animation.seekTo(1);
+      // Start all already started animations
+      this.bikeAnimations.each(function(anim) {
+        if (anim.animation.state > 0 && anim.animation.state < 1) {
+          anim.animation.seekTo(1);
+        }
+      });
+    }
+    
+    return this;
+  },
+
+  // Pause animation
+  pause: function(e) {
+    e.preventDefault();
+  
+    // Change button to play
+    $('.control-play-pause').removeClass('control-pause').addClass('control-play').attr('title', 'Play');
+    
+    // Ensure that the animation is loaded
+    if (this.animation !== undefined && !_.isEmpty(this.animation)) {
+      this.animation.stop();
+      // Pause all animations.  Do all as some are missed in the mixed
+      this.bikeAnimations.each(function(anim) {
+        anim.animation.stop();
+      });
+    }
+    
+    return this;
+  },
+
+  // Pause animation
+  resetAnimations: function() {
+    // Change button to play
+    $('.control-play-pause').removeClass('control-pause').addClass('control-play').attr('title', 'Play');
+    
+    // Stop and change all states to 0.
+    if (this.animation !== undefined && !_.isEmpty(this.animation)) {
+      this.animation.stop();
+      this.animation.state = 0;
+      this.bikeAnimations.each(function(anim) {
+        anim.resetAnimation();
+      });
+    }
+    
+    return this;
+  },
+  
+  // Controls
+  addControls: function() {
+    // Play pause buttons
+    var template = _.template($("#template-controls").html(), { });
+    $(this.options.controlsContainerSelector).append(template);
+    
+    // Time
+    template = _.template($("#template-time").html(), { });
+    $(this.options.timeContainerSelector).append(template);
+    
+    return this;
+  },
+  
+  // Mark as loading
+  isLoading: function() {
+    $(this.options.loadingSelector).addClass('is-loading');
+    $(this.options.loadingMessageSelector).html('Loading data and animations...');
+    
+    return this;
+  },
+  
+  // Done loading
+  doneLoading: function() {
+    $(this.options.loadingMessageSelector).html('Loaded.');
+    $(this.options.loadingSelector).fadeOut('slow').removeClass('is-loading');
+    
+    return this;
+  },
+  
+  // Create map.
+  createMap: function() {
+    this.map = new L.Map(this.options.mapID, this.options.mapOptions);
+    this.addMapLayers();
+    this.map.setView(this.options.mapDefaultCenter, this.options.mapDefaultZoom);
+    this.map.addControl(new L.Control.Fullscreen());
+    
+    // Move attributioin to footnotes
+    this.map.attributionControl.setPrefix('');
+    $('.footnote').html($('.footnote').html() + ' ' + this.map.attributionControl._container.innerHTML);
+    this.map.removeControl(this.map.attributionControl);
+    
+    return this;
+  },
+  
+  // Add layers to map.
+  addMapLayers: function() {
+    var thisView = this;
+  
+    // Minnnpost base map
+    var minnpost = new L.TileLayer('http://{s}.tiles.minnpost.com/minnpost-basemaps/minnpost-minnesota-greyscale-no-labels/{z}/{x}/{y}.png', 
+     { attribution: 'Map imagery from <a target="_blank" href="http://minnpost.com">MinnPost</a>; Map data from <a target="_blank" href="http://openstreetmap.org">OpenStreetMap</a>.',
+      scheme: 'tms' });
+    this.map.addLayer(minnpost);
+    
+    // Labels
+    var minnpostLabels = new L.TileLayer('http://{s}.tiles.minnpost.com/minnpost-basemaps/minnpost-minnesota-greyscale-labels/{z}/{x}/{y}.png', 
+     { scheme: 'tms' });
+    
+    // Add route layer with TileJSON, then add labels on top
+    wax.tilejson('http://a.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/tilejson.jsonp', function(tilejson) {
+      // Hackaround
+      tilejson.tiles = [
+        'http://a.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.png',
+        'http://b.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.png',
+        'http://c.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.png',
+        'http://d.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.png',
+      ];
+      tilejson.grids = [
+        'http://a.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.grid.json',
+        'http://b.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.grid.json',
+        'http://c.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.grid.json',
+        'http://d.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.grid.json',
+      ];
+      tilejson.scheme = 'tms';
+      tilejson.attribution = 'Data provided by <a target="_blank" href="https://www.niceridemn.org/">Nice Ride MN</a>; ';
+    
+      thisView.map.addLayer(new wax.leaf.connector(tilejson));
+      thisView.map.addLayer(minnpostLabels);
+      wax.leaf.interaction()
+        .map(thisView.map)
+        .tilejson(tilejson)
+        .on(wax.tooltip().parent(thisView.map._container).events());
+    });
+    
+    return this;
+  },
+  
+  // Create flot graph
+  drawGraph: function() {
+    // We want to insert this in the leaflet map container
+    var template = _.template($("#template-flot-timeline").html(), { });
+    $(this.options.flotContainerSelector).append(template);
+  
+    this.options.flotAverageData.data = this.densityAverage;
+    this.timelineFlot = $.plot($(this.options.flotSelector), [this.options.flotAverageData], this.options.flotOptions);
+    this.timelineFlot.setCrosshair();
+    this.timelineFlot.lockCrosshair();
+    
+    return this;
+  },
+  
+  // Make bike animations
+  makeBikeAnimations: function() {
+    var i;
+    var ba;
+    var route;
+    var ratio = (this.options.timeAnimLengthSecs / this.options.timeAnimDaySecs);
+    
+    // Go through rentals, match route, make a bike animation then add to collection
+    for (i in this.rentals) {
+      // Check for the route
+      if (this.routes[this.rentals[i].st + '-' + this.rentals[i].et] !== undefined) {
+        route = this.routes[this.rentals[i].st + '-' + this.rentals[i].et];
+        
+        // Add some data
+        this.rentals[i].timeRatio = ratio;
+        this.rentals[i].animInterval = this.options.timeAnimInterval;
+        this.rentals[i].map = this.map;
+        
+        // Create model and add to collection.  Model initializes stuff.
+        var ba = new MinnPost.BikeAnimation(this.rentals[i], route);
+        this.bikeAnimations.add(ba, { silent: true });
+      }
+    }
+    
+    return this;
+  },
+  
+  // Makes fulls animator
+  makeAnimator: function() {
+    var thisView = this;
+  
+    this.animation = new Animator({
+      duration: this.options.timeAnimLengthSecs * 1000,
+      interval: this.options.timeAnimInterval,
+      transition: Animator.tx.linear,
+      onComplete: function() {
+        // As stop will call this as well, check for state
+        if (this.state == 1) {
+          thisView.resetAnimations();
+        }
+      }
+    });
+    
+    this.animation.addSubject(function(interval) {
+      // Determine the time of day it is in the animation
+      var totalSecElapsed = interval * thisView.options.timeAnimDaySecs + thisView.options.timeAnimTimeOffsetSecs;
+      var aD = thisView.options.timeAnimDate;
+      var timeObj = timeExtender.secondsToTime(totalSecElapsed);
+      var currentTime = new XDate(aD.y, aD.m, aD.d, timeObj.h, timeObj.m, timeObj.s, 0, true);
+
+      // Show time
+      thisView.showTime(currentTime);
+      
+      // Find any animations that have not been played yet
+      // that start before now and end after now.  Animation 
+      // state is between 0 and 1.
+      thisView.bikeAnimations.each(function(anim) {
+        if (anim.get('s') <= currentTime && anim.get('e') > currentTime && anim.animation.state === 0) {
+          anim.animation.play();
+        }
+      });
+      
+      // Update graph.  TODO: Pull in bike density dat and overlay it
+      // as it goes.
+      //var graph_data = da_flot.getData();
+      //graph_data[1].data.push([])
+      thisView.timelineFlot.setCrosshair({ x: currentTime.getTime() });
+    });
+    
+    return this;
+  },
+  
+  showTime: function(date) {
+    $('.time-day').html(date.toUTCString('h:ss tt'));
+    
+    return this;
+  },
+  
+  // Load rental data.
+  loadDataRentals: function() {
+    var thisView = this;
+    window.callback_rentals = function(rentals) {
+      thisView.rentals = rentals;
+      thisView.dataLoaded();
+    }
+    $.ajax({
+      type: 'GET',
+      dataType: 'jsonp',
+      url: thisView.options.dataDir + '/rentals.jsonp?callback=callback_rentals',
+      jsonp: 'callback'
+    });
+    
+    return this;
+  },
+  
+  // Load routes data.
+  loadDataRoutes: function() {
+    var thisView = this;
+    window.callback_routes = function(routes) {
+      thisView.routes = routes;
+      thisView.dataLoaded();
+    }
+    $.ajax({
+      type: 'GET',
+      dataType: 'jsonp',
+      url: thisView.options.dataDir + '/routes.jsonp?callback=callback_routes',
+      jsonp: 'callback'
+    });
+    
+    return this;
+  },
+  
+  // Load density average data.
+  loadDataDensityAverage: function() {
+    var thisView = this;
+    window.callback_density_average = function(avgs) {
+      thisView.densityAverage = avgs;
+      thisView.dataLoaded();
+    }
+    $.ajax({
+      type: 'GET',
+      dataType: 'jsonp',
+      url: thisView.options.dataDir + '/density_average.jsonp?callback=callback_density_average',
+      jsonp: 'callback'
+    });
+    
+    return this;
+  }
+
+});
+
+})(jQuery, window);
+
+/**
+ * Main application for Nice Ride app.
+ */
+      
+// Namespace some things
+(function($, window, undefined) {
+  $(document).ready(function() {
+
+    // Create and kick off the application.    
+    var app = new MinnPost.BikeApplication({ el: $('#minnpost-nice-ride-application') });
+    
+  });
+})(jQuery, window);
+</script>
+<!-- END: To be inline JS -->
+    
+  </div>
+  <!-- END: Embeddable -->
+
+</div>
+</body>
+</html>
