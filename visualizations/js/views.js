@@ -16,7 +16,7 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
       'maxZoom': 15
     },
     'mapID': 'map',
-    'mapDefaultCenter': new L.LatLng(44.9745, -93.2013),
+    'mapDefaultCenter': new L.LatLng(44.96552667056723, -93.25298309326172),
     'mapDefaultZoom': 12,
     'dataDir': 'data',
     'loadingSelector': '.loading',
@@ -28,7 +28,7 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
       grid: { borderWidth: 1, borderColor: '#BBBBBB' }
     },
     'flotAverageData': {
-      label: 'Average bike density',
+      label: 'Avg bike density',
       data: [],
       color: '#7F3E10',
       lines: { show: true, fill: true }
