@@ -61,3 +61,4 @@ In order to use the data that in the main applicaiton, we convert things to JSON
 
 ## Visualization
 
+1. Work on visualization is separated out into different files, but needs to be embeddable for deployment.  Run the following to update the embeddable version: ```python visualizations/compile-embedded.py```
