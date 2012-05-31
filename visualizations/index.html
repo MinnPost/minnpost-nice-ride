@@ -6,9 +6,11 @@
   <title>MinnPost</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   
+  <!--
   <link type="text/css" rel="stylesheet" media="all" href="http://www.minnpost.com/sites/default/files/css/css_4d4752504f025b9436b287b344d25a2b.css" />
 <link type="text/css" rel="stylesheet" media="screen" href="http://www.minnpost.com/sites/default/files/css/css_b444460873a77de36d695396b0924929.css" />
 <link type="text/css" rel="stylesheet" media="print" href="http://www.minnpost.com/sites/default/files/css/css_f3f76e4e053f459547daa56b3627cfe3.css" />
+-->
 
   <!--[if IE]>
       <link rel="stylesheet" href="http://www.minnpost.com/sites/default/themes/derma/inc/css/ie.css?d" type="text/css">
@@ -48,10 +50,16 @@
         <a href="#play" class="play">Play</a>
         <a href="#pause" class="pause">Pause</a>
       </div>
-      <div id="density-average-graph"></div>
     </div>
     
     <p class="footnote"></p>
+    
+    <!-- Templates to be used in client side processing. -->
+    <script id="template-flot-timeline" type="text/template">
+      <div class="flot-timeline-wrapper">
+        <div id="density-average-graph"></div>
+      </div>
+    </script>
   
   
     <!-- jQuery -->

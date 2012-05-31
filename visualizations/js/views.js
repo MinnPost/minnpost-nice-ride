@@ -21,16 +21,20 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
     'dataDir': 'data',
     'loadingSelector': '.loading',
     'flotOptions': {
-      xaxis: { mode: 'time' },
-      crosshair: { mode: 'x', color: '#1B8ADA' }
+      xaxis: { mode: 'time', timeformat: '%h:%M %p' },
+      yaxis: { ticks: 2 },
+      crosshair: { mode: 'x', color: '#1B8ADA' },
+      legend: { backgroundColor: 'inherit' },
+      grid: { borderWidth: 1, borderColor: '#BBBBBB' }
     },
     'flotAverageData': {
       label: 'Average bike density',
       data: [],
-      bars: { show: true },
-      color: '#7F3E10'
+      color: '#7F3E10',
+      lines: { show: true, fill: true }
     },
     'flotSelector': '#density-average-graph',
+    'flotContainerSelector': '.leaflet-bottom.leaflet-left',
     'timeAnimDaySecs': 24 * 60 * 60,
     'timeAnimLengthSecs': 2 * 60,
     'timeAnimInterval': 100,
@@ -175,6 +179,10 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
   
   // Create flot graph
   drawGraph: function() {
+    // We want to insert this in the leaflet map container
+    var template = _.template($("#template-flot-timeline").html(), { });
+    $(this.options.flotContainerSelector).append(template);
+  
     this.options.flotAverageData.data = this.densityAverage;
     this.timelineFlot = $.plot($(this.options.flotSelector), [this.options.flotAverageData], this.options.flotOptions);
     this.timelineFlot.setCrosshair();

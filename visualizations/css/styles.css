@@ -18,8 +18,19 @@
   height: 400px;
 }
 
+
+.leaflet-bottom.leaflet-left {
+  background: #FFFFFF;
+  background: rgba(255, 255, 255, 0.8);
+  height: 90px;
+  width: 100%;
+  border-top: 2px solid #AAAAAA;
+}
+.flot-timeline-wrapper {
+  margin: 10px;
+}
 #density-average-graph {
-  height: 100px;
+  height: 75px;
   width: 100%;
 }
 
