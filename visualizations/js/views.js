@@ -37,6 +37,7 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
     },
     'flotSelector': '#density-average-graph',
     'flotContainerSelector': '.leaflet-bottom.leaflet-left',
+    'timeContainerSelector': '.leaflet-bottom.leaflet-right',
     'timeAnimDaySecs': 24 * 60 * 60,
     'timeAnimLengthSecs': 2 * 60,
     'timeAnimInterval': 100,
@@ -150,8 +151,13 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
   
   // Controls
   addControls: function() {
+    // Play pause buttons
     var template = _.template($("#template-controls").html(), { });
     $(this.options.controlsContainerSelector).append(template);
+    
+    // Time
+    template = _.template($("#template-time").html(), { });
+    $(this.options.timeContainerSelector).append(template);
     
     return this;
   },
@@ -274,7 +280,7 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
       var currentTime = new XDate(aD.y, aD.m, aD.d, timeObj.h, timeObj.m, timeObj.s, 0, true);
 
       // Show time
-      thisView.showTime(currentTime.getUTCHours(), currentTime.getUTCMinutes());
+      thisView.showTime(currentTime);
       
       // Find any animations that have not been played yet
       // that start before now and end after now.  Animation 
@@ -295,8 +301,8 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
     return this;
   },
   
-  showTime: function(h, m) {
-    $('.time_day').html(h + ':' + m);
+  showTime: function(date) {
+    $('.time-day').html(date.toUTCString('h:ss tt'));
     
     return this;
   },
