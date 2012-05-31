@@ -19,6 +19,7 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
     'mapDefaultCenter': new L.LatLng(44.96552667056723, -93.25298309326172),
     'mapDefaultZoom': 12,
     'dataDir': 'data',
+    'dateDirRemote': 'https://s3.amazonaws.com/data.minnpost/projects/minnpost-nice-ride/data',
     'loadingSelector': '.loading',
     'loadingMessageSelector': '.loading .loading-message',
     'controlsContainerSelector': '.leaflet-top.leaflet-left',
@@ -67,6 +68,7 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
   initialize: function() {
     // Mark a loading; create map; load data;
     this.isLoading()
+      .checkHost()
       .createMap()
       .loadDataRentals()
       .loadDataRoutes()
@@ -324,6 +326,15 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
   
   showTime: function(date) {
     $('.time-day').html(date.toUTCString('h:ss tt'));
+    
+    return this;
+  },
+  
+  // Check the host
+  checkHost: function() {
+    if (location.host.indexOf('localhost') == -1) {
+      this.dataDir = this.dateDirRemote;
+    }
     
     return this;
   },
