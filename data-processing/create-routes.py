@@ -17,7 +17,7 @@ def pp(value):
   sys.stdout.flush()
     
 
-# Paths
+# Vars
 path = os.path.dirname(__file__)
 srid = 4326
 
@@ -38,8 +38,8 @@ combinations = {}
 matching = rows
 for row in rows:
   for match in matching:
-    if (row[1] == match[1]) or ('%s-%s' % (row[1], match[1]) in combinations):
-      # found, so do nothing
+    if '%s-%s' % (row[1], match[1]) in combinations:
+      # Already in combinations
       pp('')
     else:
       combinations['%s-%s' % (row[1], match[1])] = {
@@ -59,14 +59,20 @@ committed = conn.commit()
 # Now go through each match, call routino, save entry in router.
 # Note that routino saves the output files in current directory.
 # super_bicycle is bike without one-way or turn restrictions.
-route_type = 'quickest'
+route_type = 'shortest'
 check_route_output = True
 routes_committed = 0
 routes_not_committed = 0
 transport_priority = ['bicycle', 'super_bicycle', 'foot', 'moped', 'motorbike', 'motorcar']
 r_path = os.path.join(path, 'routino-2.2/web')
 conf_path = os.path.join(path, 'routino-conf')
+# Assume all routes that start and stop at same station
+# go to the library downtown
+popular_location_lat = 44.98064594145076
+popular_location_lon = -93.27032089233398
+
 command = '%(path)s/bin/router --dir=%(path)s/data --profiles=%(c_path)s/profiles.xml  --translations=%(path)s/data/translations.xml --lat1=%(lat1)s --lon1=%(lon1)s --lat2=%(lat2)s --lon2=%(lon2)s --output-gpx-track --%(type)s --profile=%(transport)s --transport=bicycle'
+command_circle = '%(path)s/bin/router --dir=%(path)s/data --profiles=%(c_path)s/profiles.xml  --translations=%(path)s/data/translations.xml --lat1=%(lat1)s --lon1=%(lon1)s --lat2=%(lat2)s --lon2=%(lon2)s --lat3=%(lat3)s --lon3=%(lon3)s --output-gpx-track --%(type)s --profile=%(transport)s --transport=bicycle'
 out_gpx = '%s-track.gpx' % (route_type)
 
 for c, v in combinations.items():
@@ -79,8 +85,13 @@ for c, v in combinations.items():
     if transported == True:
       break
     
-    # Create that special command
-    route_this = command % { 'path': r_path, 'c_path': conf_path, 'lat1': v['start_lat'], 'lon1': v['start_lon'], 'lat2': v['end_lat'], 'lon2': v['end_lon'], 'transport': transport, 'type': route_type }
+    # Create that special command, check for circle path
+    if v['start'] == v['end']:
+      pp('[Circle route]    ')
+      route_this = command_circle % { 'path': r_path, 'c_path': conf_path, 'lat1': v['start_lat'], 'lon1': v['start_lon'], 'lat2': popular_location_lat, 'lon2': popular_location_lon, 'lat3': v['end_lat'], 'lon3': v['end_lon'], 'transport': transport, 'type': route_type }
+    else:
+      route_this = command % { 'path': r_path, 'c_path': conf_path, 'lat1': v['start_lat'], 'lon1': v['start_lon'], 'lat2': v['end_lat'], 'lon2': v['end_lon'], 'transport': transport, 'type': route_type }
+      
     out = commands.getstatusoutput(route_this)
     
     # Check if route was alright, if not mark and try new one.
