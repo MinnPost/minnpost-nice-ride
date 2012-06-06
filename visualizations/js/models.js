@@ -14,7 +14,7 @@ var BikeAnimation = window.MinnPost.BikeAnimation = Backbone.Model.extend({
       fillColor: '#10517F',
       fillOpacity: 0.98,
       clickable: false,
-      radius: 8
+      radius: 7.5
     },
     'timeAnimLengthCapSecs': 5 * 60 * 60,
     'startLatLon': new L.LatLng(0, 0)
