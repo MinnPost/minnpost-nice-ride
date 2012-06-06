@@ -201,4 +201,12 @@
 
 /** Media queries **/
 @media all and (max-width: 750px) {
+  #map {
+    height: 300px;
+  }
+}
+@media all and (max-width: 300px) {
+  #map {
+    height: 200px;
+  }
 }
