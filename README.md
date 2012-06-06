@@ -57,7 +57,7 @@ There is a layer of routes we want to produce for our main visualization.
 
 In order to use the data that in the main applicaiton, we convert things to JSON.  Run the following:
 
-1. ```data-processing/python data-processing/jsonify-day.py```
+1. ```python data-processing/jsonify-day.py```
 
 ## Visualization
 
