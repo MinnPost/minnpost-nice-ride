@@ -39,13 +39,16 @@
         @import url('https://s3.amazonaws.com/data.minnpost/js/leaflet-addons-master-20120531/leaflet-addons.ie.css');
         
         .control-play-pause-container {
-          filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#3F000000',EndColorStr='#3F000000');
+          background: transparent;
+          -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#BF78ED6E,endColorstr=#BF78ED6E)"; /* IE8 */
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#BF78ED6E,endColorstr=#BF78ED6E);   /* IE6 & 7 */
+          zoom: 1;
         }
         .control-play-pause-container a {
-          background-color: #eee;
+          background-color: #2BDA1B;
         }
         .control-play-pause-container a:hover {
-          background-color: #fff;
+          background-color: #2BDA1B;
         }
       </style>
     <![endif]-->
