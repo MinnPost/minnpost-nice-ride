@@ -24,9 +24,7 @@ var BikeAnimation = window.MinnPost.BikeAnimation = Backbone.Model.extend({
     var thisModel = this;
   
     // Initialize some values.  Note .d is durection, and JS wants milliseconds.
-    var time = (this.get('d') < this.options.timeAnimLengthCapSecs) 
-      ? this.get('d') * this.get('timeRatio') * 1000 
-      : this.options.timeAnimLengthCapSecs * this.get('timeRatio') * 1000;
+    var time = (this.get('d') < this.options.timeAnimLengthCapSecs) ? this.get('d') * this.get('timeRatio') * 1000 : this.options.timeAnimLengthCapSecs * this.get('timeRatio') * 1000;
     
     this.set('route', route.r);
     this.set('time', time);

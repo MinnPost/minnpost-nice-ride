@@ -10,7 +10,7 @@ var BikeApplicationRoute = window.MinnPost.BikeApplicationRoute = Backbone.Route
 
   routes: {
     'slow': 'slow',
-    'fast': 'fast',
+    'fast': 'fast'
   },
 
   slow: function() {

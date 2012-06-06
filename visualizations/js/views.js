@@ -216,18 +216,18 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
         'http://a.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.png',
         'http://b.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.png',
         'http://c.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.png',
-        'http://d.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.png',
+        'http://d.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.png'
       ];
       tilejson.grids = [
         'http://a.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.grid.json',
         'http://b.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.grid.json',
         'http://c.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.grid.json',
-        'http://d.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.grid.json',
+        'http://d.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.grid.json'
       ];
       tilejson.scheme = 'tms';
       tilejson.attribution = 'Data provided by <a target="_blank" href="https://www.niceridemn.org/">Nice Ride MN</a>; ';
     
-      thisView.map.addLayer(new wax.leaf.connector(tilejson));
+      thisView.map.addLayer(new L.TileLayer('http://{s}.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.png', tilejson));
       thisView.map.addLayer(minnpostLabels);
       wax.leaf.interaction()
         .map(thisView.map)
@@ -271,7 +271,7 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
         this.rentals[i].map = this.map;
         
         // Create model and add to collection.  Model initializes stuff.
-        var ba = new MinnPost.BikeAnimation(this.rentals[i], route);
+        ba = new MinnPost.BikeAnimation(this.rentals[i], route);
         this.bikeAnimations.add(ba, { silent: true });
       }
     }
@@ -345,7 +345,7 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
     window.callback_rentals = function(rentals) {
       thisView.rentals = rentals;
       thisView.dataLoaded();
-    }
+    };
     $.ajax({
       type: 'GET',
       dataType: 'jsonp',
@@ -362,7 +362,7 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
     window.callback_routes = function(routes) {
       thisView.routes = routes;
       thisView.dataLoaded();
-    }
+    };
     $.ajax({
       type: 'GET',
       dataType: 'jsonp',
@@ -379,7 +379,7 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
     window.callback_density_average = function(avgs) {
       thisView.densityAverage = avgs;
       thisView.dataLoaded();
-    }
+    };
     $.ajax({
       type: 'GET',
       dataType: 'jsonp',
