@@ -325,7 +325,7 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
   },
   
   showTime: function(date) {
-    $('.time-day').html(date.toUTCString('h:ss tt'));
+    $('.time-day').html(date.toUTCString('h:mm tt'));
     
     return this;
   },
