@@ -118,12 +118,14 @@ for r in d_avg:
   # Flot uses UTC timestamps (milliseconds) to deal with time
   # so we should use that.  First we add the time to our
   # export date.  We use timegm to force UTC.
-  if r[1] >= interval_time:
+  #
+  # Check for zero to hack around some bad data analysis
+  if r[1] >= interval_time and r[4] != 0:
     avg_timestamp = datetime.datetime.combine(export_date, r[1])
     avg_timestamp = calendar.timegm(avg_timestamp.timetuple()) * 1000
     d_avg_array.append([int(avg_timestamp), float(r[4])])
 for r in d_avg:
-  if r[1] < interval_time:
+  if r[1] < interval_time and r[4] != 0:
     avg_timestamp = datetime.datetime.combine(export_date + add_day, r[1])
     avg_timestamp = calendar.timegm(avg_timestamp.timetuple()) * 1000
     d_avg_array.append([int(avg_timestamp), float(r[4])])
