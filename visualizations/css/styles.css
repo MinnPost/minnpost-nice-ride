@@ -91,7 +91,7 @@
  
 .control-play-pause-container {
   padding: 5px;
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(120, 237, 110, 0.75); /* #78ED6E */
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
   border-radius: 7px;
@@ -103,7 +103,7 @@
   border-radius: 4px;
   width: 19px;
   height: 19px;
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(43, 218, 27, 0.75); /* #2BDA1B */
 }
 
 .leaflet-touch .control-play-pause-container a.control-play-pause {
@@ -124,7 +124,7 @@
 }
 	
 .control-play-pause-container a.control-play-pause:hover {
-  background-color: #FFFFFF;
+  background-color: #78ED6E;
 }
 
 .leaflet-control-zoom + .control-play-pause-container,
