@@ -65,7 +65,8 @@ while count < times:
   interval_start = interval_end
   interval_end = (datetime.combine(date.today(), interval_start) + interval).time()
   
-  # Determine counts and average.  Tkae into account rides that go over midnight
+  # Determine counts and average.  Tkae into account rides that go over midnight,
+  # assuming less than 24 hour rides
   db.execute("""
     SELECT COUNT(id) AS interval_count FROM rentals 
     WHERE ((
@@ -75,8 +76,8 @@ while count < times:
     ) 
     OR (
       CAST(start_date AS time) > CAST(end_date AS time)
-      AND CAST(start_date AS time) < %s 
-      AND CAST(end_date AS time) < %s
+      AND CAST(start_date AS time) > %s 
+      AND CAST(end_date AS time) > %s
     ))
     AND CAST(start_date AS time) <> CAST(end_date AS time)
     AND start_date IS NOT NULL
