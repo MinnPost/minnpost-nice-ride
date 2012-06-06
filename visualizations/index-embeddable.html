@@ -6,11 +6,9 @@
   <title>MinnPost</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   
-  <!--
-  <link type="text/css" rel="stylesheet" media="all" href="http://www.minnpost.com/sites/default/files/css/css_efc75eaad579035887d5e1ac11c00b78.css" />
-<link type="text/css" rel="stylesheet" media="screen" href="http://www.minnpost.com/sites/default/files/css/css_b444460873a77de36d695396b0924929.css" />
-<link type="text/css" rel="stylesheet" media="print" href="http://www.minnpost.com/sites/default/files/css/css_f3f76e4e053f459547daa56b3627cfe3.css" />
--->
+  <link type="text/css" rel="stylesheet" media="all" href="http://www.minnpost.com/sites/default/files/css/css_897efb6d6ab1b9493387993c479b5760.css" />
+  <link type="text/css" rel="stylesheet" media="screen" href="http://www.minnpost.com/sites/default/files/css/css_3b9128a206079d05707d08a5098dd82c.css" />
+  <link type="text/css" rel="stylesheet" media="print" href="http://www.minnpost.com/sites/default/files/css/css_de1cc6f6bd0846ffe89b17adf1e510de.css" />
 
   <!--[if IE]>
       <link rel="stylesheet" href="http://www.minnpost.com/sites/default/themes/derma/inc/css/ie.css?d" type="text/css" />
@@ -51,6 +49,10 @@
   font-style: italic;
   color: #414141;
   margin-top: 1em;
+}
+
+.clear {
+  cleare: both;
 }
 
 #minnpost-nice-ride-application {
@@ -126,7 +128,7 @@
  
 .control-play-pause-container {
   padding: 5px;
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(120, 237, 110, 0.75); /* #78ED6E */
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
   border-radius: 7px;
@@ -138,7 +140,7 @@
   border-radius: 4px;
   width: 19px;
   height: 19px;
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(43, 218, 27, 0.75); /* #2BDA1B */
 }
 
 .leaflet-touch .control-play-pause-container a.control-play-pause {
@@ -159,7 +161,7 @@
 }
 	
 .control-play-pause-container a.control-play-pause:hover {
-  background-color: #FFFFFF;
+  background-color: #2BDA1B;
 }
 
 .leaflet-control-zoom + .control-play-pause-container,
@@ -200,6 +202,36 @@
   border-radius: 4px;
 }
 
+.legend {
+  margin: 1em 0;
+}
+.legend ul,
+.legend li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.legend ul {
+  width: 100%;
+  float: left;
+  clear: both;
+  display: block;
+}
+.legend ul li {
+  width: 30%;
+  float: left;
+  display: block;
+  padding: 0 .5em .5em 0;
+  vertical-align: top;
+  font-size: .85em;
+}
+
+.legend ul li img {
+  width: 30px;
+  float: left;
+  padding: 0 .5em .25em 0;
+}
+
 /** Media queries **/
 @media all and (max-width: 750px) {
 }
@@ -212,13 +244,16 @@
         @import url('https://s3.amazonaws.com/data.minnpost/js/leaflet-addons-master-20120531/leaflet-addons.ie.css');
         
         .control-play-pause-container {
-          filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#3F000000',EndColorStr='#3F000000');
+          background: transparent;
+          -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#BF78ED6E,endColorstr=#BF78ED6E)"; /* IE8 */
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#BF78ED6E,endColorstr=#BF78ED6E);   /* IE6 & 7 */
+          zoom: 1;
         }
         .control-play-pause-container a {
-          background-color: #eee;
+          background-color: #2BDA1B;
         }
         .control-play-pause-container a:hover {
-          background-color: #fff;
+          background-color: #2BDA1B;
         }
       </style>
     <![endif]-->
@@ -231,7 +266,22 @@
       <div id="map"></div>
     </div>
     
-    <p class="footnote"></p>
+    <hr class="clear" />
+    
+    <div class="legend">
+      <ul>
+        <li><img src="https://s3.amazonaws.com/data.minnpost/projects/minnpost-nice-ride/images/minnpost-nice-ride-play.png" /> Press to start or pause the animation.</li>
+        <li><img src="https://s3.amazonaws.com/data.minnpost/projects/minnpost-nice-ride/images/minnpost-nice-ride-fullscreen.png" /> Press for fullscreen version.</li>
+        <li><img src="https://s3.amazonaws.com/data.minnpost/projects/minnpost-nice-ride/images/minnpost-nice-ride-station.png" /> 2011 station; press to see name.</li>
+        <li><img src="https://s3.amazonaws.com/data.minnpost/projects/minnpost-nice-ride/images/minnpost-nice-ride-zoom-out.png" /> Press to zoom out map.</li>
+        <li><img src="https://s3.amazonaws.com/data.minnpost/projects/minnpost-nice-ride/images/minnpost-nice-ride-zoom-in.png" /> Press to zoom in map.</li>
+        <li><img src="https://s3.amazonaws.com/data.minnpost/projects/minnpost-nice-ride/images/minnpost-nice-ride-routes.png" /> Model routes taken by cyclists over 2011, weighted by popularity.</li>
+      </ul>
+    </div>
+    
+    <hr class="clear" />
+    
+    <p class="footnote">Bike routing is not actual; the routes are modeled with <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a> data weighted for cyclists.  The animation is a model of what was determined to be the "most average" day of 2011 which was May 18, 2011 at 4:30AM to May 19, 2011 at 4:30AM.  </p>
     
     <!-- Templates to be used in client side processing. -->
     <script id="template-flot-timeline" type="text/template">
@@ -403,7 +453,7 @@ var BikeAnimation = window.MinnPost.BikeAnimation = Backbone.Model.extend({
       fillColor: '#10517F',
       fillOpacity: 0.98,
       clickable: false,
-      radius: 8
+      radius: 7.5
     },
     'timeAnimLengthCapSecs': 5 * 60 * 60,
     'startLatLon': new L.LatLng(0, 0)
@@ -838,7 +888,7 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
   },
   
   showTime: function(date) {
-    $('.time-day').html(date.toUTCString('h:ss tt'));
+    $('.time-day').html(date.toUTCString('h:mm tt'));
     
     return this;
   },
