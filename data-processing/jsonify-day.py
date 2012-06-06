@@ -46,6 +46,7 @@ db = conn.cursor()
 export_date = datetime.date(2011, 5, 18)
 start = datetime.datetime(2011, 5, 18, 4, 30)
 end = datetime.datetime(2011, 5, 19, 4, 30)
+interval_time = datetime.time(4, 30, 0, 0)
 
 # First get all the basic rentals in that period.
 rentals_file = 'visualizations/data/rentals.json'
@@ -106,17 +107,26 @@ d_avg_file = os.path.join(path, '../' + d_avg_file)
 
 db.execute("""
   SELECT * FROM average_day
-  """, (end, start))
+  """)
 d_avg = db.fetchall()
 d_avg_array = []
 
+# We do this twice, once for everything above the interval, then
+# everythiing below
+add_day = datetime.timedelta(days=1)
 for r in d_avg:
   # Flot uses UTC timestamps (milliseconds) to deal with time
   # so we should use that.  First we add the time to our
   # export date.  We use timegm to force UTC.
-  avg_timestamp = datetime.datetime.combine(export_date, r[1])
-  avg_timestamp = calendar.timegm(avg_timestamp.timetuple()) * 1000
-  d_avg_array.append([int(avg_timestamp), float(r[4])])
+  if r[1] >= interval_time:
+    avg_timestamp = datetime.datetime.combine(export_date, r[1])
+    avg_timestamp = calendar.timegm(avg_timestamp.timetuple()) * 1000
+    d_avg_array.append([int(avg_timestamp), float(r[4])])
+for r in d_avg:
+  if r[1] < interval_time:
+    avg_timestamp = datetime.datetime.combine(export_date + add_day, r[1])
+    avg_timestamp = calendar.timegm(avg_timestamp.timetuple()) * 1000
+    d_avg_array.append([int(avg_timestamp), float(r[4])])
 
 # Write out
 write_json(d_avg_array, d_avg_file, 'callback_density_average')
