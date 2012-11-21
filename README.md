@@ -4,12 +4,15 @@
 
 ### Nice Ride data
 
-Nice Ride MN released all of its 2011 data.  It is available at
-[here](http://velotraffic.com/2012/01/nice-ride-mn-data-set-made-public/); 
-included in this repository for convenience.
+Nice Ride MN released all of its 2011 and 2012 data.  Included in this repository for convenience.
+
+* [2011](http://velotraffic.com/2012/01/nice-ride-mn-data-set-made-public/)
+* [2012](https://niceridemn.egnyte.com/h-s/20121120/739840e2f74045be)
+
 
 1. Unzip the data to work with:
     * ```cd data && unzip -d NRMN_2011_reports NRMN_2011_reports.zip; cd -;```
+    * ```cd data && unzip -d NRMN-2012-usage NRMN-2012-usage.zip; cd -;```
 
 ### Get OSM Data
 
@@ -33,7 +36,7 @@ In order to better work with the data, we will put the Nice Ride data into a Pos
 
 1. Get Python requirements: ```pip install -r requirements.txt```
 1. Create a new database from a PostGIS template: ```createdb -U postgres -h localhost -T template_postgis minnpost_nice_ride```
-1. Create tables (not that this is destructive): ```psql -U postgres -h localhost -f data-processing/create-tables.sql minnpost_nice_ride```
+1. Create tables (note that this is destructive): ```psql -U postgres -h localhost -f data-processing/create-tables.sql minnpost_nice_ride```
 1. Import data: ```python data-processing/import-nice-ride-data.py```
     
 ### Calculate routes
