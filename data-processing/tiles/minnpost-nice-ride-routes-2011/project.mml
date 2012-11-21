@@ -31,7 +31,7 @@
       "geometry": "linestring",
       "Datasource": {
         "type": "postgis",
-        "table": "(\nSELECT DISTINCT\n\tro.id as id,\n\tro.route_geom as route_geom,\n\tCOUNT(r.id) as c\nFROM routes AS ro\nINNER JOIN rentals AS r\n\tON ro.terminal_id_start = r.start_terminal AND ro.terminal_id_end = r.end_terminal\nGROUP BY r.start_terminal, r.end_terminal, ro.id, ro.route_geom\nORDER BY ro.id\n) AS data",
+        "table": "(\nSELECT DISTINCT\n\tro.id as id,\n\tro.route_geom as route_geom,\n\tCOUNT(r.id) as c\nFROM routes_2011 AS ro\nINNER JOIN rentals_2011 AS r\n\tON ro.terminal_id_start = r.start_terminal AND ro.terminal_id_end = r.end_terminal\nGROUP BY r.start_terminal, r.end_terminal, ro.id, ro.route_geom\nORDER BY ro.id\n) AS data",
         "extent": "-93.4497,44.8753,-92.9773,45.1007",
         "key_field": "id",
         "geometry_field": "route_geom",
@@ -39,7 +39,7 @@
         "dbname": "minnpost_nice_ride",
         "user": "postgres",
         "id": "route_counts",
-        "project": "minnpost-nice-ride-testing",
+        "project": "minnpost-nice-ride-routes-2011",
         "srs": null
       },
       "id": "route_counts",
@@ -52,7 +52,7 @@
       "geometry": "point",
       "Datasource": {
         "type": "postgis",
-        "table": "(SELECT * FROM stations) AS data",
+        "table": "(SELECT * FROM stations_2011) AS data",
         "extent": "",
         "key_field": "id",
         "geometry_field": "location_geom",
@@ -60,7 +60,7 @@
         "dbname": "minnpost_nice_ride",
         "user": "postgres",
         "id": "stations",
-        "project": "minnpost-nice-ride-testing",
+        "project": "minnpost-nice-ride-routes-2011",
         "srs": null
       },
       "id": "stations",
@@ -70,8 +70,8 @@
       "name": "stations"
     }
   ],
-  "name": "MinnPost Nice Ride Routes and Stations",
-  "description": "2011 Nice Ride MN stations and projected routes taken for all rentals in 2011.",
+  "name": "MN Nice Ride Routes and Stations 2011",
+  "description": "Nice Ride MN stations and projected routes taken for all rentals in 2011.",
   "attribution": "Data provided by Nice Ride MN.",
   "legend": "<ul>\n<li><span style=\"color:#517F10; font-size: 300%;\">●</span> Nice Ride MN bike station</li>\n<li><span style=\"color:#10517F; font-size: 300%;\">●</span> Bike</li>\n<li><span style=\"color:#10517F; font-size: 200%; font-weight: bold; line-height: 10px;\">-</span> Least popular route</li>\n<li><span style=\"color:#10517F; font-size: 600%; font-weight: bold; line-height: 10px;\">-</span> More popular route</li>\n\n</ul>"
 }

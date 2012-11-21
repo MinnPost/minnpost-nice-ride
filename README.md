@@ -53,8 +53,9 @@ In order to better work with the data, we will put the Nice Ride data into a Pos
 
 There is a layer of routes we want to produce for our main visualization.
 
-1. Link the Tilemill project to where Tilemill expects it.  This is really only needed for working on it in TileMill.  ```cd data-processing/tiles && fab map:minnpost-nice-ride-routes link; cd -;```
-1. To export to S3, run the following: ```cd data-processing/tiles && fab map:minnpost-nice-ride-routes production export_deploy:32,8,16; cd -;```
+1. Link the Tilemill project to where Tilemill expects it.  This is really only needed for working on it in TileMill.  ```cd data-processing/tiles && fab map:minnpost-nice-ride-routes-2011 link; cd -;  cd data-processing/tiles && fab map:minnpost-nice-ride-routes-2012 link; cd -;```
+1. To export to S3, run the following (change map name accordingly): ```cd data-processing/tiles && fab map:minnpost-nice-ride-routes-[2011|2012] production export_deploy:32,8,16; cd -;```
+
 
 ### Data for visualization
 
