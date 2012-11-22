@@ -59,6 +59,53 @@ for y in years:
   count = db.fetchone()
   print '[%s] Total stations taken: %s' % (y, count[0])
   
+  # Count days
+  query = """
+  SELECT COUNT(*) FROM (
+    SELECT DISTINCT DATE(end_date)
+    FROM rentals_%s
+  ) AS days
+  """ % (y)
+  db.execute(query)
+  count = db.fetchone()
+  print '[%s] Total days: %s' % (y, count[0])
   
+  # Average trip taken
+  query = """
+  SELECT AVG(count) FROM (
+    SELECT COUNT(rental_id) AS count
+    FROM rentals_%s
+    GROUP BY DATE(end_date)
+  ) AS days
+  """ % (y)
+  db.execute(query)
+  count = db.fetchone()
+  print '[%s] Average rentals a day: %s' % (y, count[0])
+  
+  # Max trip taken in a day
+  query = """
+  SELECT DATE(end_date) AS day, COUNT(rental_id) AS count
+  FROM rentals_%s
+  GROUP BY DATE(end_date)
+  ORDER BY count DESC
+  LIMIT 1
+  """ % (y)
+  db.execute(query)
+  count = db.fetchone()
+  print '[%s] Max rentals in a day: %s on %s' % (y, count[1], count[0])
+  
+  # Min trip taken in a day
+  query = """
+  SELECT DATE(end_date) AS day, COUNT(rental_id) AS count
+  FROM rentals_%s
+  GROUP BY DATE(end_date)
+  ORDER BY count ASC
+  LIMIT 1
+  """ % (y)
+  db.execute(query)
+  count = db.fetchone()
+  print '[%s] Min rentals in a day: %s on %s' % (y, count[1], count[0])
+  
+  print ''
   
   
