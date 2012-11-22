@@ -35,30 +35,34 @@ for y in years:
   if (input_year == None) or (input_year != None and input_year == y):
   
     # First calculate how many.
-    db.execute("SELECT * FROM stations_" + y)
+    query = """
+      SELECT DISTINCT
+        s.terminal_id, s.lat, s.lon,
+        e.terminal_id, e.lat, e.lon
+      FROM rentals_%s AS r
+        INNER JOIN stations_%s AS s ON r.start_terminal = s.terminal_id
+        INNER JOIN stations_%s AS e ON r.end_terminal = e.terminal_id
+      ORDER BY s.terminal_id, e.terminal_id
+    """ % (y, y, y)
+    db.execute(query)
     rows = db.fetchall()
     total = len(rows)
     
-    pp('[%s] %s possible combinations. \n' % (y, total * (total - 1)))
+    pp('[%s] %s route combinations taken. \n' % (y, total))
     
     # First determine combinations.  We can have "duplicates" as one ways will
     # affect actual routes.
     combinations = {}
     matching = rows
     for row in rows:
-      for match in matching:
-        if '%s-%s' % (row[1], match[1]) in combinations:
-          # Already in combinations
-          pp('')
-        else:
-          combinations['%s-%s' % (row[1], match[1])] = {
-            'start': row[1],
-            'end': match[1],
-            'start_lat': row[4],
-            'start_lon': row[5],
-            'end_lat': match[4],
-            'end_lon': match[5]
-          }
+      combinations['%s-%s' % (row[0], row[3])] = {
+        'start': row[0],
+        'end': row[3],
+        'start_lat': row[1],
+        'start_lon': row[2],
+        'end_lat': row[4],
+        'end_lon': row[5]
+      }
           
     # Truncate table
     pp("[%s] Truncate routes table. \n" % y)
