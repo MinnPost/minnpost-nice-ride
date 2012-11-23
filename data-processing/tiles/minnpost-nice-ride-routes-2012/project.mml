@@ -60,7 +60,7 @@
         "dbname": "minnpost_nice_ride",
         "user": "postgres",
         "id": "stations",
-        "project": "minnpost-nice-ride-routes-2011",
+        "project": "minnpost-nice-ride-routes-2012",
         "srs": null
       },
       "id": "stations",
