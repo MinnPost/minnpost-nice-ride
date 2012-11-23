@@ -201,7 +201,7 @@ for y in years:
             # terminal_id character varying(16), common_name character varying(128), 
             # station character varying(128), lat numeric, lon numeric, install_date date,
             db.execute("INSERT INTO stations_" + y + " (terminal_id, station, lat, lon, bike_docks, location_geom) VALUES (%s, %s, %s, %s, %s, %s)" ,
-              (ct(row[0]), ct(row[1]), float(row[2]), float(row[3]), int(row[4]), ppygis.Point(float(row[4]), float(row[3]), srid=4326)))
+              (ct(row[0]), ct(row[1]), float(row[2]), float(row[3]), int(row[4]), ppygis.Point(float(row[3]), float(row[2]), srid=4326)))
             committed = conn.commit()
             
       row_count += 1
