@@ -28,6 +28,15 @@ db = conn.cursor()
 # Years
 years = [ '2011', '2012' ]
 for y in years:
+  
+  # Count stations
+  query = """
+  SELECT COUNT(*) FROM stations_%s
+  """ % (y)
+  db.execute(query)
+  count = db.fetchone()
+  print '[%s] Total stations: %s' % (y, count[0])
+  
   # Count routes
   query = """
   SELECT COUNT(*) FROM (
@@ -41,7 +50,7 @@ for y in years:
   """ % (y, y, y)
   db.execute(query)
   count = db.fetchone()
-  print '[%s] Total routes taken: %s' % (y, count[0])
+  print '[%s] Total unique routes taken: %s' % (y, count[0])
   
   # Count rentals
   query = """
@@ -50,14 +59,6 @@ for y in years:
   db.execute(query)
   count = db.fetchone()
   print '[%s] Total rentals/trips taken: %s' % (y, count[0])
-  
-  # Count stations
-  query = """
-  SELECT COUNT(*) FROM stations_%s
-  """ % (y)
-  db.execute(query)
-  count = db.fetchone()
-  print '[%s] Total stations taken: %s' % (y, count[0])
   
   # Count days
   query = """
