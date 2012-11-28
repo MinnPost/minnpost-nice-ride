@@ -79,17 +79,23 @@ for y in years:
     transport_priority = ['bicycle', 'super_bicycle', 'foot', 'moped', 'motorbike', 'motorcar']
     r_path = os.path.join(path, 'routino-2.2/web')
     conf_path = os.path.join(path, 'routino-conf')
-    # Assume all routes that start and stop at same station
-    # go to the library downtown
-    popular_location_lat = 44.98064594145076
-    popular_location_lon = -93.27032089233398
     
+    # Create command
     command = '%(path)s/bin/router --dir=%(path)s/data --profiles=%(c_path)s/profiles.xml  --translations=%(path)s/data/translations.xml --lat1=%(lat1)s --lon1=%(lon1)s --lat2=%(lat2)s --lon2=%(lon2)s --output-gpx-track --%(type)s --profile=%(transport)s --transport=bicycle'
     command_circle = '%(path)s/bin/router --dir=%(path)s/data --profiles=%(c_path)s/profiles.xml  --translations=%(path)s/data/translations.xml --lat1=%(lat1)s --lon1=%(lon1)s --lat2=%(lat2)s --lon2=%(lon2)s --lat3=%(lat3)s --lon3=%(lon3)s --output-gpx-track --%(type)s --profile=%(transport)s --transport=bicycle'
     out_gpx = '%s-track.gpx' % (route_type)
     
     for c, v in combinations.items():
       pp('[%s] Analyzing route: %s    ' % (y, c))
+      
+      # Assume all routes that start and stop at same station
+      # go to the library downtown or state capitol
+      if v['start_lon'] < -93.19564819335938:
+        popular_location_lat = 44.98064594145076
+        popular_location_lon = -93.27032089233398
+      else:
+        popular_location_lat = 44.95544494223271
+        popular_location_lon = -93.10204982757568
       
       # To handle the fact that some routes won't work with a given profile
       # we go through different transports
