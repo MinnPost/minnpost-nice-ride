@@ -28,6 +28,27 @@
   ],
   "Layer": [
     {
+      "geometry": "point",
+      "Datasource": {
+        "type": "postgis",
+        "table": "(SELECT * FROM stations_2012) AS data",
+        "extent": "",
+        "key_field": "id",
+        "geometry_field": "location_geom",
+        "host": "localhost",
+        "dbname": "minnpost_nice_ride",
+        "user": "postgres",
+        "id": "stations",
+        "project": "minnpost-nice-ride-routes-2012",
+        "srs": "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
+      },
+      "id": "stations",
+      "class": "",
+      "srs-name": "WGS84",
+      "srs": "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",
+      "name": "stations"
+    },
+    {
       "geometry": "linestring",
       "Datasource": {
         "type": "postgis",
@@ -47,27 +68,6 @@
       "srs-name": "WGS84",
       "srs": "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",
       "name": "route_counts"
-    },
-    {
-      "geometry": "point",
-      "Datasource": {
-        "type": "postgis",
-        "table": "(SELECT * FROM stations_2012) AS data",
-        "extent": "",
-        "key_field": "id",
-        "geometry_field": "location_geom",
-        "host": "localhost",
-        "dbname": "minnpost_nice_ride",
-        "user": "postgres",
-        "id": "stations",
-        "project": "minnpost-nice-ride-routes-2012",
-        "srs": null
-      },
-      "id": "stations",
-      "class": "",
-      "srs-name": "WGS84",
-      "srs": "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",
-      "name": "stations"
     }
   ],
   "scale": 1,
