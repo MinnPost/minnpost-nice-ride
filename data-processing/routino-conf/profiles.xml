@@ -167,40 +167,40 @@
     <speeds>
       <speed highway="motorway"      kph="1" />
       <speed highway="trunk"         kph="2" />
-      <speed highway="primary"       kph="10" />
-      <speed highway="secondary"     kph="20" />
-      <speed highway="tertiary"      kph="30" />
-      <speed highway="unclassified"  kph="20" />
-      <speed highway="residential"   kph="40" />
-      <speed highway="service"       kph="20" />
-      <speed highway="track"         kph="30" />
-      <speed highway="cycleway"      kph="50" />
-      <speed highway="path"          kph="30" />
+      <speed highway="primary"       kph="5" />
+      <speed highway="secondary"     kph="15" />
+      <speed highway="tertiary"      kph="15" />
+      <speed highway="unclassified"  kph="15" />
+      <speed highway="residential"   kph="15" />
+      <speed highway="service"       kph="10" />
+      <speed highway="track"         kph="15" />
+      <speed highway="cycleway"      kph="20" />
+      <speed highway="path"          kph="20" />
       <speed highway="steps"         kph="1" />
-      <speed highway="ferry"         kph="10" />
+      <speed highway="ferry"         kph="1" />
     </speeds>
     <preferences>
       <preference highway="motorway"      percent="1" />
       <preference highway="trunk"         percent="2" />
-      <preference highway="primary"       percent="10" />
-      <preference highway="secondary"     percent="40" />
-      <preference highway="tertiary"      percent="50" />
-      <preference highway="unclassified"  percent="50" />
-      <preference highway="residential"   percent="60" />
-      <preference highway="service"       percent="50" />
-      <preference highway="track"         percent="50" />
-      <preference highway="cycleway"      percent="80" />
-      <preference highway="path"          percent="70" />
+      <preference highway="primary"       percent="5" />
+      <preference highway="secondary"     percent="10" />
+      <preference highway="tertiary"      percent="20" />
+      <preference highway="unclassified"  percent="10" />
+      <preference highway="residential"   percent="20" />
+      <preference highway="service"       percent="10" />
+      <preference highway="track"         percent="20" />
+      <preference highway="cycleway"      percent="25" />
+      <preference highway="path"          percent="25" />
       <preference highway="steps"         percent="1" />
-      <preference highway="ferry"         percent="10" />
+      <preference highway="ferry"         percent="1" />
     </preferences>
     <properties>
       <property type="paved"        percent="60" />
-      <property type="multilane"    percent="25" />
+      <property type="multilane"    percent="45" />
       <property type="bridge"       percent="50" />
       <property type="tunnel"       percent="50" />
       <property type="footroute"    percent="50" />
-      <property type="bicycleroute" percent="90" />
+      <property type="bicycleroute" percent="60" />
     </properties>
     <restrictions>
       <oneway obey="1" /> 
@@ -216,40 +216,40 @@
     <speeds>
       <speed highway="motorway"      kph="1" />
       <speed highway="trunk"         kph="2" />
-      <speed highway="primary"       kph="10" />
-      <speed highway="secondary"     kph="20" />
-      <speed highway="tertiary"      kph="30" />
-      <speed highway="unclassified"  kph="20" />
-      <speed highway="residential"   kph="40" />
-      <speed highway="service"       kph="20" />
-      <speed highway="track"         kph="30" />
-      <speed highway="cycleway"      kph="50" />
-      <speed highway="path"          kph="30" />
+      <speed highway="primary"       kph="5" />
+      <speed highway="secondary"     kph="15" />
+      <speed highway="tertiary"      kph="15" />
+      <speed highway="unclassified"  kph="15" />
+      <speed highway="residential"   kph="15" />
+      <speed highway="service"       kph="10" />
+      <speed highway="track"         kph="15" />
+      <speed highway="cycleway"      kph="20" />
+      <speed highway="path"          kph="20" />
       <speed highway="steps"         kph="1" />
-      <speed highway="ferry"         kph="10" />
+      <speed highway="ferry"         kph="1" />
     </speeds>
     <preferences>
       <preference highway="motorway"      percent="1" />
       <preference highway="trunk"         percent="2" />
-      <preference highway="primary"       percent="10" />
-      <preference highway="secondary"     percent="40" />
-      <preference highway="tertiary"      percent="50" />
-      <preference highway="unclassified"  percent="50" />
-      <preference highway="residential"   percent="60" />
-      <preference highway="service"       percent="50" />
-      <preference highway="track"         percent="50" />
-      <preference highway="cycleway"      percent="80" />
-      <preference highway="path"          percent="70" />
+      <preference highway="primary"       percent="5" />
+      <preference highway="secondary"     percent="10" />
+      <preference highway="tertiary"      percent="20" />
+      <preference highway="unclassified"  percent="10" />
+      <preference highway="residential"   percent="20" />
+      <preference highway="service"       percent="10" />
+      <preference highway="track"         percent="20" />
+      <preference highway="cycleway"      percent="25" />
+      <preference highway="path"          percent="25" />
       <preference highway="steps"         percent="1" />
-      <preference highway="ferry"         percent="10" />
+      <preference highway="ferry"         percent="1" />
     </preferences>
     <properties>
-      <property type="paved"        percent="50" />
-      <property type="multilane"    percent="25" />
+      <property type="paved"        percent="60" />
+      <property type="multilane"    percent="45" />
       <property type="bridge"       percent="50" />
       <property type="tunnel"       percent="50" />
       <property type="footroute"    percent="50" />
-      <property type="bicycleroute" percent="90" />
+      <property type="bicycleroute" percent="60" />
     </properties>
     <restrictions>
       <oneway obey="0" /> 
