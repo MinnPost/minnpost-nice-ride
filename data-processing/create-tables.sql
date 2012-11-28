@@ -177,6 +177,11 @@ CREATE TABLE rentals_2012
 WITH (
   OIDS=FALSE
 );
+CREATE INDEX rentals_2012_rental_id ON rentals_2012 (rental_id);
+CREATE INDEX rentals_2012_subscriber_id ON rentals_2012 (subscriber_id);
+CREATE INDEX rentals_2012_start_terminal ON rentals_2012 (start_terminal);
+CREATE INDEX rentals_2012_end_terminal ON rentals_2012 (end_terminal);
+CREATE INDEX rentals_2012_start_end ON rentals_2012 (start_terminal, end_terminal);
 
 -- Table: stations
 
@@ -215,6 +220,7 @@ WITH (
 SELECT AddGeometryColumn('routes_2012', 'start_geom', 4326, 'POINT', 2);
 SELECT AddGeometryColumn('routes_2012', 'end_geom', 4326, 'POINT', 2);
 SELECT AddGeometryColumn('routes_2012', 'route_geom', 4326, 'LINESTRING', 2);
+CREATE INDEX routes_2012_start_end ON routes_2012 (terminal_id_start, terminal_id_end);
 
 -- Table: average_day
 DROP TABLE IF EXISTS average_day_2012;
