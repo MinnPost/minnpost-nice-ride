@@ -47,14 +47,16 @@
   marker-opacity: 1;
   marker-line-width: 0;
   marker-allow-overlap: true;
-  marker-width: [bike_docks] / 5;
+  marker-width: [bike_docks] / 8;
  }
  #stations::glowing {
     marker-fill: @station;
     marker-opacity: 0.7;
     marker-line-width: 0;
     marker-allow-overlap: true;
-    marker-width: [bike_docks] / 1.5;
+    marker-width: [bike_docks] / 5;
  }
+ #stations[zoom >= 12] { marker-width: [bike_docks] / 5; }
+ #stations::glowing[zoom >= 12] { marker-width: [bike_docks] / 3; }
  #stations[zoom >= 14] { marker-width: [bike_docks] / 2; }
  #stations::glowing[zoom >= 14] { marker-width: [bike_docks]; }
