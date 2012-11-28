@@ -202,6 +202,7 @@ WITH (
   OIDS=FALSE
 );
 SELECT AddGeometryColumn('stations_2012', 'location_geom', 4326, 'POINT', 2);
+CREATE INDEX stations_2012_terminal_id ON stations_2012 (terminal_id);
 
 
 -- Table: routes
@@ -220,6 +221,8 @@ WITH (
 SELECT AddGeometryColumn('routes_2012', 'start_geom', 4326, 'POINT', 2);
 SELECT AddGeometryColumn('routes_2012', 'end_geom', 4326, 'POINT', 2);
 SELECT AddGeometryColumn('routes_2012', 'route_geom', 4326, 'LINESTRING', 2);
+CREATE INDEX routes_2012_terminal_id_start ON routes_2012 (terminal_id_start);
+CREATE INDEX routes_2012_terminal_id_end ON routes_2012 (terminal_id_end);
 CREATE INDEX routes_2012_start_end ON routes_2012 (terminal_id_start, terminal_id_end);
 
 -- Table: average_day
