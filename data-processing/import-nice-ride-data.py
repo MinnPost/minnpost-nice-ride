@@ -80,6 +80,7 @@ for y in years:
     
     
     # Read casual_subscriptions file and insert into DB.  Clear DB first
+    """
     pp("\n[%s] Importing to casual_subscriptions." % y)
     db.execute("TRUNCATE TABLE casual_subscriptions_" + y)
     committed = conn.commit()
@@ -104,6 +105,7 @@ for y in years:
       row_count += 1
       
     pp("\n[%s] Commited %s rows to casual_subscriptions.\n" % (y, row_count))
+    """
     
     
     # Read rentals file and insert into DB.  Clear DB first
@@ -148,6 +150,7 @@ for y in years:
     
     
     # Read subscribers file and insert into DB.  Clear DB first
+    """
     pp("\n[%s] Importing to subscribers." % y)
     db.execute("TRUNCATE TABLE subscribers_" + y)
     committed = conn.commit()
@@ -184,6 +187,7 @@ for y in years:
       row_count += 1
       
     pp("\n[%s] Commited %s rows to subscribers.\n" % (y, row_count))
+    """
     
   ##########################################
   # 2012
