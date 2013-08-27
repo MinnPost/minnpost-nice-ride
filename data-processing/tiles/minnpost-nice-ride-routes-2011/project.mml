@@ -20,8 +20,8 @@
       "id"
     ]
   },
-  "minzoom": 10,
-  "maxzoom": 15,
+  "minzoom": 9,
+  "maxzoom": 16,
   "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
   "Stylesheet": [
     "style.mss"
@@ -70,6 +70,8 @@
       "name": "stations"
     }
   ],
+  "scale": 1,
+  "metatile": 2,
   "name": "MN Nice Ride Routes and Stations 2011",
   "description": "Nice Ride MN stations and projected routes taken for all rentals in 2011.",
   "attribution": "Data provided by Nice Ride MN.",

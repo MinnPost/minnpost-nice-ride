@@ -13,9 +13,11 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
   options: {
     'mapOptions': {
       'minZoom': 8,
-      'maxZoom': 15
+      'maxZoom': 15,
+      'attribution': 'Map imagery from <a target="_blank" href="http://minnpost.com">MinnPost</a>; Map data from <a target="_blank" href="http://openstreetmap.org">OpenStreetMap</a>.'
     },
     'mapID': 'map',
+    'mapboxMap': 'minnpost.map-wi88b700,minnpost.minnpost-nice-ride-routes-2011',
     'mapDefaultCenter': new L.LatLng(44.96552667056723, -93.25298309326172),
     'mapDefaultZoom': 12,
     'dataDir': 'data',
@@ -182,8 +184,9 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
   
   // Create map.
   createMap: function() {
-    this.map = new L.Map(this.options.mapID, this.options.mapOptions);
-    this.addMapLayers();
+    this.map = new L.mapbox.map(this.options.mapID, this.options.mapboxMap, this.options.mapOptions);
+    this.map.removeControl(this.map.legendControl);
+    
     this.map.setView(this.options.mapDefaultCenter, this.options.mapDefaultZoom);
     this.map.addControl(new L.Control.Fullscreen());
     
@@ -191,49 +194,6 @@ var BikeApplication = window.MinnPost.BikeApplication = Backbone.View.extend({
     this.map.attributionControl.setPrefix('');
     $('.footnote').html($('.footnote').html() + ' ' + this.map.attributionControl._container.innerHTML);
     this.map.removeControl(this.map.attributionControl);
-    
-    return this;
-  },
-  
-  // Add layers to map.
-  addMapLayers: function() {
-    var thisView = this;
-  
-    // Minnnpost base map
-    var minnpost = new L.TileLayer('http://{s}.tiles.minnpost.com/minnpost-basemaps/minnpost-minnesota-greyscale-no-labels/{z}/{x}/{y}.png', 
-     { attribution: 'Map imagery from <a target="_blank" href="http://minnpost.com">MinnPost</a>; Map data from <a target="_blank" href="http://openstreetmap.org">OpenStreetMap</a>.',
-      scheme: 'tms' });
-    this.map.addLayer(minnpost);
-    
-    // Labels
-    var minnpostLabels = new L.TileLayer('http://{s}.tiles.minnpost.com/minnpost-basemaps/minnpost-minnesota-greyscale-labels/{z}/{x}/{y}.png', 
-     { scheme: 'tms' });
-    
-    // Add route layer with TileJSON, then add labels on top
-    wax.tilejson('http://a.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/tilejson.jsonp', function(tilejson) {
-      // Hackaround
-      tilejson.tiles = [
-        'http://a.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.png',
-        'http://b.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.png',
-        'http://c.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.png',
-        'http://d.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.png'
-      ];
-      tilejson.grids = [
-        'http://a.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.grid.json',
-        'http://b.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.grid.json',
-        'http://c.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.grid.json',
-        'http://d.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.grid.json'
-      ];
-      tilejson.scheme = 'tms';
-      tilejson.attribution = 'Data provided by <a target="_blank" href="https://www.niceridemn.org/">Nice Ride MN</a>; ';
-    
-      thisView.map.addLayer(new L.TileLayer('http://{s}.tiles.minnpost.com/minnpost-nice-ride/minnpost-nice-ride-routes/{z}/{x}/{y}.png', tilejson));
-      thisView.map.addLayer(minnpostLabels);
-      wax.leaf.interaction()
-        .map(thisView.map)
-        .tilejson(tilejson)
-        .on(wax.tooltip().parent(thisView.map._container).events());
-    });
     
     return this;
   },
