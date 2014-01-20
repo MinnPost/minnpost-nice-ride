@@ -1,0 +1,23 @@
+
+
+2013_station_locations.csv lists the location of each station for the 2013 season. Street addresses are approximate
+
+
+all-rentals-2013.csv contains all individual rental records for the 2013 season.
+
+
+
+Questions?
+
+Mitch Vars,  I.T. Director 
+Nice Ride Minnesota
+
+mvars@niceridemn.org 
+
+612-436-2073
+
+2701 36th Avenue South
+Minneapolis, MN  55406
+
+niceridemn.org
+

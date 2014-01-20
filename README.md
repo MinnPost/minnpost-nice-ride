@@ -4,7 +4,11 @@
 
 ### Nice Ride data
 
-Nice Ride MN released all of its 2011 and 2012 data.  Included in this repository for convenience.
+Nice Ride MN released all of its 2011 and 2012 data.  Included in this repository for convenience.  Sources:
+
+* 2011
+* 2012
+* [2013](https://niceridemn.egnyte.com/h-s/20140112/8a05cc4b68014ce8)
 
 Note that the Subscriber data (date of birth, gender, etc) is removed from the original 2011 data at the request of [Anton Schieffer](http://antonschieffer.com/nice-ride-and-user-privacy-crossing-the-line/).
 
